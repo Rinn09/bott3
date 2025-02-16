@@ -8,13 +8,14 @@ const fs = require('node:fs');
 const mongoose = require('mongoose');
 const UserStat = require('./models/UserStat');
 const { token, testChannel, mongoosedbURI } = require('./config.json');
-
 const prefix = '%';
 const foldersPath = path.join(__dirname, 'commands');
 const disabledCommandsPath = path.join(__dirname, 'commands', 'utility', 'disabledCommands.json');
 const commandFolders = fs.readdirSync(foldersPath);
 const prefixModule = require('./prefix/prefix');
 const musicModule = require('./prefix/music');
+
+require('./scr/utils/voice')
 
 let userStats = {
   userMessages: {},
