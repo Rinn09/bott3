@@ -1,6 +1,19 @@
 const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const { joinVoiceChannel, createAudioResource, createAudioPlayer, entersState, VoiceConnectionStatus } = require('@discordjs/voice');
 const playDL = require('play-dl');
+const { createAudioResource, StreamType } = require('@discordjs/voice');
+
+try {
+  const stream = ytdl(link, { filter: 'audioonly', quality: 'highestaudio' });
+  const resource = createAudioResource(stream, {
+    inputType: StreamType.Arbitrary,
+    inlineVolume: true
+  });
+  audioPlayer.play(resource);
+} catch (error) {
+  console.error('Lỗi phát nhạc:', error);
+  interaction.followUp('❌ Có lỗi khi phát nhạc!');
+}
 
 let connection, player;
 global.isPlaying = false;

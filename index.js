@@ -24,10 +24,6 @@ let userStats = {
   lastLevel: {},
 };
 
-const openai = new OpenAI({
-  apiKey: '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'
-});
-
 const client = new Discord.Client({
   allowedMentions: {
     parse: ['users', 'roles'],
