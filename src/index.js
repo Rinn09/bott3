@@ -1,6 +1,7 @@
 require('dotenv').config();
 const { Client, GatewayIntentBits, Collection } = require('discord.js');
 const { Player } = require('discord-player');
+const { YouTubeExtractor } = require('@discord-player/extractor');
 
 const client = new Client({
   intents: [
@@ -11,21 +12,22 @@ const client = new Client({
   ]
 });
 
-client.on('ready', async () => {
-  console.log('Đã bật bot');
-});
-
-// Khởi tạo music player
+// Khởi tạo player và cấu hình
 const player = new Player(client, {
   ytdlOptions: {
     quality: 'highestaudio',
-    highWaterMark: 1 << 25,
-    requestOptions: {
-      headers: {
-        cookie: process.env.YOUTUBE_COOKIE || ''
-      }
-    }
+    highWaterMark: 1 << 25
   }
+});
+
+// Hàm khởi tạo async
+const initializePlayer = async () => {
+  await player.extractors.register(YouTubeExtractor, {});
+};
+
+client.on('ready', async () => {
+  console.log('Đã bật bot');
+  await initializePlayer(); // Đăng ký extractors sau khi ready
 });
 
 // Xử lý lỗi player
