@@ -4,6 +4,5 @@
 	"guildId": "1005814304509018113",
     "welcomeChannelId": "1115958935439020092",
 	"testChannel": "1197044047295033484",
-	"mongoosedbURI": "mongodb+srv://codezt:concac12345@slashbott.wgcjl3h.mongodb.net/?retryWrites=true&w=majority",
-	"gptApiKey": "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"
+	"mongoosedbURI": "mongodb+srv://codezt:concac12345@slashbott.wgcjl3h.mongodb.net/?retryWrites=true&w=majority"
 }
