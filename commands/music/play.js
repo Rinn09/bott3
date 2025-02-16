@@ -1,10 +1,8 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { joinVoiceChannel, createAudioPlayer, createAudioResource, entersState, VoiceConnectionStatus, StreamType } = require('@discordjs/voice');
 const ytdl = require('ytdl-core');
-const { Queue } = require('../../scr/utils/voice');
-const { useMasterPlayer } = require('discord-player');
+const Queue = require('../../queue');
 
-// Tạo queue map để quản lý từng server
 const queues = new Map();
 
 module.exports = {
@@ -13,50 +11,45 @@ module.exports = {
     .setDescription('Phát nhạc từ YouTube')
     .addStringOption(option =>
       option.setName('url')
-        .setDescription('URL YouTube hoặc từ khoá tìm kiếm')
+        .setDescription('URL YouTube')
         .setRequired(true)),
 
   async execute(interaction) {
-    await interaction.deferReply();
-
+    await interaction.deferReply({ ephemeral: true });
+    
     const voiceChannel = interaction.member.voice.channel;
     if (!voiceChannel) return interaction.editReply('❌ Bạn cần vào voice channel trước!');
 
     const guildId = interaction.guild.id;
     const url = interaction.options.getString('url');
+    let connection;
 
     try {
-      // Kiểm tra queue tồn tại
       if (!queues.has(guildId)) {
         queues.set(guildId, new Queue());
       }
       const queue = queues.get(guildId);
 
-      // Kết nối voice
-      const connection = joinVoiceChannel({
+      connection = joinVoiceChannel({
         channelId: voiceChannel.id,
         guildId: guildId,
         adapterCreator: interaction.guild.voiceAdapterCreator,
       });
 
-      // Tạo player
       const player = createAudioPlayer();
-      
-      // Xử lý lỗi player
+
       player.on('error', error => {
         console.error('Lỗi AudioPlayer:', error);
         interaction.channel.send('❌ Lỗi khi phát nhạc!');
       });
 
-      // Xử lý kết thúc bài hát
       player.on('stateChange', (oldState, newState) => {
         if (newState.status === 'idle') {
           const nextTrack = queue.next();
           if (nextTrack) {
             const newResource = createAudioResource(ytdl(nextTrack.url, {
               filter: 'audioonly',
-              highWaterMark: 1 << 62,
-              dlChunkSize: 0
+              highWaterMark: 1 << 25
             }));
             player.play(newResource);
           } else {
@@ -66,7 +59,6 @@ module.exports = {
         }
       });
 
-      // Thêm track vào queue
       const trackInfo = await ytdl.getInfo(url);
       const track = {
         title: trackInfo.videoDetails.title,
@@ -75,17 +67,14 @@ module.exports = {
       };
       queue.add(track);
 
-      // Chờ kết nối ready
       await entersState(connection, VoiceConnectionStatus.Ready, 30_000);
       connection.subscribe(player);
 
-      // Phát nhạc
       if (!queue.playing) {
         const stream = ytdl(track.url, {
           filter: 'audioonly',
           quality: 'highestaudio',
-          highWaterMark: 1 << 62,
-          dlChunkSize: 0
+          highWaterMark: 1 << 25
         });
 
         const resource = createAudioResource(stream, {
@@ -97,7 +86,7 @@ module.exports = {
         queue.playing = true;
 
         await interaction.editReply({
-          content: `🎶 Đang phát: **${track.title}**\n🕒 Thời lượng: ${track.duration}s`,
+          content: `🎶 Đang phát: **${track.title}**\n🕒 Thời lượng: ${Math.floor(track.duration / 60)}:${track.duration % 60 < 10 ? '0' : ''}${track.duration % 60}`,
           flags: 64
         });
       } else {
@@ -109,9 +98,9 @@ module.exports = {
 
     } catch (error) {
       console.error('Lỗi chính:', error);
-      interaction.editReply('❌ Có lỗi xảy ra khi phát nhạc!');
+      await interaction.editReply('❌ Có lỗi xảy ra khi phát nhạc!');
       if (connection) connection.destroy();
       queues.delete(guildId);
     }
   }
-};
+};  
