@@ -1,8 +1,0 @@
-{
-	"token": "MTE4OTIxMjY4MjQ2MTY1OTIwOA.Gejj2i.0hYFPcCfAvkIsxrAEK-C_qpL5iBTlF1hVtp5rI",
-	"clientId": "1189212682461659208",
-	"guildId": "1005814304509018113",
-    "welcomeChannelId": "1115958935439020092",
-	"testChannel": "1197044047295033484",
-	"mongoosedbURI": "mongodb+srv://codezt:concac12345@slashbott.wgcjl3h.mongodb.net/?retryWrites=true&w=majority"
-}
