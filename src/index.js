@@ -1,7 +1,7 @@
 const { Client, GatewayIntentBits, Collection } = require('discord.js');
 const { Player } = require('discord-player');
 const { YouTubeExtractor } = require('@discord-player/extractor');
-
+require('dotenv').config({ path: '../.env' });
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
