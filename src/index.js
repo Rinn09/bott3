@@ -1,7 +1,7 @@
 const { Client, GatewayIntentBits, Collection } = require('discord.js');
 const { Player } = require('discord-player');
-const { YouTubeExtractor } = require('@discord-player/extractor');
-require('dotenv').config({ path: '../.env' });
+const { YouTubeExtractor } = require('@discord-player/extractor'); // Chỉ import YouTubeExtractor
+
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
@@ -18,13 +18,12 @@ const player = new Player(client, {
   }
 });
 
-
-// Đăng ký extractor theo cách mới
-player.extractors.register(YouTubeExtractor);
-
-client.on('ready', () => {
+client.on('ready', async () => {
+  // Đăng ký extractor theo cách mới
+  await player.extractors.register(YouTubeExtractor);
+  
   console.log(`✅ ${client.user.tag} đã online!`);
-  console.log(`🎧 Extractor: ${player.extractors.size}`);
+  console.log(`🎧 Đã tải ${player.extractors.size} extractors`);
 });
 
 // Xử lý lỗi
@@ -57,4 +56,4 @@ client.on('interactionCreate', async interaction => {
   }
 });
 
-client.login(process.env.TOKEN);
+client.login('MTM0MDkwODU5MzgyMTc4MjA1Nw.G5waS0.BoS6jGLAai3bHKs7uigm7fchtmb_HL8PE1srYs');
