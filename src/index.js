@@ -56,4 +56,4 @@ client.on('interactionCreate', async interaction => {
   }
 });
 
-client.login('MTM0MDkwODU5MzgyMTc4MjA1Nw.G5waS0.BoS6jGLAai3bHKs7uigm7fchtmb_HL8PE1srYs');
+client.login(process.env.TOKEN);
