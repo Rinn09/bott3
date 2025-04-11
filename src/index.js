@@ -1,67 +1,52 @@
-require('dotenv').config();
 const { Client, GatewayIntentBits, Collection } = require('discord.js');
 const { Player } = require('discord-player');
 const { YouTubeExtractor } = require('@discord-player/extractor');
+
+// Khởi tạo player trước client
+const player = new Player();
 
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.GuildVoiceStates,
-    GatewayIntentBits.MessageContent
+    GatewayIntentBits.GuildVoiceStates
   ]
 });
 
-// Khởi tạo player và cấu hình
-const player = new Player(client, {
-  ytdlOptions: {
-    quality: 'highestaudio',
-    highWaterMark: 1 << 25
-  }
+// Đăng ký extractor theo cách mới
+player.extractors.register(YouTubeExtractor);
+
+client.on('ready', () => {
+  console.log(`✅ ${client.user.tag} đã online!`);
+  console.log(`🎧 Extractor: ${player.extractors.size}`);
 });
 
-// Hàm khởi tạo async
-const initializePlayer = async () => {
-  await player.extractors.register(YouTubeExtractor, {});
-};
-
-client.on('ready', async () => {
-  console.log('Đã bật bot');
-  await initializePlayer(); // Đăng ký extractors sau khi ready
-});
-
-// Xử lý lỗi player
+// Xử lý lỗi
 player.events.on('error', (queue, error) => {
-  console.error(`[${queue.guild.name}] Lỗi player:`, error);
+  console.error(`Lỗi tại server ${queue.guild.name}:`, error);
 });
 
 // Đăng ký commands
 client.commands = new Collection();
-const commands = [
-  require('./commands/music/play'),
-  require('./commands/music/skip'),
-  require('./commands/music/queue'),
-  require('./commands/music/volume')
-];
-
-commands.forEach(command => {
+['play', 'skip', 'queue'].forEach(cmd => {
+  const command = require(`./commands/music/${cmd}`);
   client.commands.set(command.data.name, command);
 });
 
 // Xử lý interactions
 client.on('interactionCreate', async interaction => {
-  if (!interaction.isCommand()) return;
+  if (!interaction.isChatInputCommand()) return;
 
   const command = client.commands.get(interaction.commandName);
   if (!command) return;
 
   try {
-    await command.execute({ interaction, player });
+    await command.execute(interaction); // Truyền interaction trực tiếp
   } catch (error) {
     console.error(error);
-    await interaction.reply({ 
-      content: '❌ Có lỗi khi thực hiện lệnh!',
-      ephemeral: true 
+    await interaction.reply({
+      content: '❌ Lỗi khi thực hiện lệnh!',
+      flags: 64
     });
   }
 });

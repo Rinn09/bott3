@@ -1,58 +1,33 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { SlashCommandBuilder } = require('discord.js');
+const { useMainPlayer } = require('discord-player');
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('play')
     .setDescription('Phát nhạc từ YouTube')
-    .addStringOption(option =>
+    .addStringOption(option => 
       option.setName('query')
-        .setDescription('URL hoặc tên bài hát')
+        .setDescription('URL hoặc từ khoá')
         .setRequired(true)
     ),
     
-    execute: async ({ interaction, player }) => {
-      await interaction.deferReply();
-  
-      const channel = interaction.member.voice.channel;
-      if (!channel) return interaction.editReply('❌ Bạn cần vào voice channel trước!');
-  
+  async execute(interaction) {
+    await interaction.deferReply();
+    
+    try {
+      const player = useMainPlayer();
       const query = interaction.options.getString('query');
+      const { track } = await player.play(interaction.member.voice.channel, query, {
+        nodeOptions: {
+          metadata: interaction,
+          volume: 50
+        }
+      });
       
-      try {
-        // Tìm kiếm với extractor đã đăng ký
-        const searchResult = await player.search(query, {
-          requestedBy: interaction.user,
-          searchEngine: 'youtube'
-        });
-  
-        if (!searchResult.hasTracks()) {
-          return interaction.editReply('❌ Không tìm thấy kết quả!');
-        }
-  
-        const queue = player.nodes.create(interaction.guild, {
-          metadata: interaction.channel,
-          selfDeaf: true,
-          volume: 50,
-          leaveOnEnd: false
-        });
-  
-        try {
-          if (!queue.connection) await queue.connect(channel);
-        } catch {
-          await player.deleteQueue(interaction.guildId);
-          return interaction.editReply('❌ Không thể vào voice channel!');
-        }
-  
-        searchResult.playlist 
-          ? queue.addTrack(searchResult.tracks)
-          : queue.addTrack(searchResult.tracks[0]);
-  
-        if (!queue.node.isPlaying()) await queue.node.play();
-        
-        return interaction.editReply(`🎶 Đang phát: **${searchResult.tracks[0].title}**`);
-      } catch (error) {
-        console.error(error);
-        return interaction.editReply('❌ Lỗi khi phát nhạc!');
-      }
+      return interaction.editReply(`🎶 Đang phát: ${track.title}`);
+    } catch (error) {
+      console.error(error);
+      return interaction.editReply('❌ Lỗi khi phát nhạc!');
     }
+  }
 };
