@@ -2,16 +2,22 @@ const { Client, GatewayIntentBits, Collection } = require('discord.js');
 const { Player } = require('discord-player');
 const { YouTubeExtractor } = require('@discord-player/extractor');
 
-// Khởi tạo player trước client
-const player = new Player();
-
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.GuildVoiceStates
+    GatewayIntentBits.GuildVoiceStates,
+    GatewayIntentBits.MessageContent
   ]
 });
+
+const player = new Player(client, {
+  ytdlOptions: {
+    quality: 'highestaudio',
+    highWaterMark: 1 << 25
+  }
+});
+
 
 // Đăng ký extractor theo cách mới
 player.extractors.register(YouTubeExtractor);
