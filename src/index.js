@@ -1,8 +1,9 @@
+const Discord = require('discord.js');
 const { Client, GatewayIntentBits, Collection } = require('discord.js');
 const { Player } = require('discord-player');
-const { YouTubeExtractor } = require('@discord-player/extractor'); // Chỉ import YouTubeExtractor
+const { DefaultExtractors } = require('@discord-player/extractor');
 
-const client = new Client({
+const client = new Discord.Client({
   intents: [
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMessages,
@@ -14,13 +15,14 @@ const client = new Client({
 const player = new Player(client, {
   ytdlOptions: {
     quality: 'highestaudio',
-    highWaterMark: 1 << 25
-  }
+    highWaterMark: 1 << 25,
+    filter: 'audioonly'
+  } 
 });
 
 client.on('ready', async () => {
-  // Đăng ký extractor theo cách mới
-  await player.extractors.register(YouTubeExtractor);
+  // Load các extractor cụ thể
+  await player.extractors.loadMulti(DefaultExtractors);
   
   console.log(`✅ ${client.user.tag} đã online!`);
   console.log(`🎧 Đã tải ${player.extractors.size} extractors`);
@@ -39,14 +41,22 @@ client.commands = new Collection();
 });
 
 // Xử lý interactions
-client.on('interactionCreate', async interaction => {
+client.on('interactionCreate', async (interaction) => {
+  if (interaction.isAutocomplete()) {
+    // Handling autocomplete requests
+    await command.autocompleteRun(interaction);
+} else if(interaction.isChatInputCommand()){
+    // Handling chat slashCommand  requests
+    await command.execute(interaction);
+}
+
   if (!interaction.isChatInputCommand()) return;
 
   const command = client.commands.get(interaction.commandName);
   if (!command) return;
 
   try {
-    await command.execute(interaction); // Truyền interaction trực tiếp
+    await player.context.provide({ guild: interaction.guild }, () => command.execute(interaction));
   } catch (error) {
     console.error(error);
     await interaction.reply({
