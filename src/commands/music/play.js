@@ -1,12 +1,21 @@
 const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const { joinVoiceChannel, createAudioResource, createAudioPlayer, entersState, VoiceConnectionStatus } = require('@discordjs/voice');
 const playDL = require('play-dl');
+const { useMainPlayer } = require("discord-player");
+const queues = new Map();
 
 let connection, player;
-global.isPlaying = false;
-global.queue = [];
-global.currentTrack = null;
-global.queueMessage = null;
+const getQueue = (guildId) => {
+    if (!queues.has(guildId)) {
+      queues.set(guildId, {
+        isPlaying: false,
+        queue: [],
+        currentTrack: null,
+        queueMessage: null,
+      });
+    }
+    return queues.get(guildId);
+  };
 
 module.exports = {
     data: new SlashCommandBuilder()
