@@ -43,26 +43,25 @@ client.commands = new Collection();
 // Xử lý interactions
 client.on('interactionCreate', async (interaction) => {
   if (interaction.isAutocomplete()) {
-    // Handling autocomplete requests
-    await command.autocompleteRun(interaction);
-} else if(interaction.isChatInputCommand()){
-    // Handling chat slashCommand  requests
-    await command.execute(interaction);
-}
+    const command = client.commands.get(interaction.commandName);
+    if (!command?.autocompleteRun) return;
+    await command.autocompleteRun(interaction); // ✅
+    return;
+  }
 
-  if (!interaction.isChatInputCommand()) return;
+  if (interaction.isChatInputCommand()) {
+    const command = client.commands.get(interaction.commandName);
+    if (!command) return;
 
-  const command = client.commands.get(interaction.commandName);
-  if (!command) return;
-
-  try {
-    await player.context.provide({ guild: interaction.guild }, () => command.execute(interaction));
-  } catch (error) {
-    console.error(error);
-    await interaction.reply({
-      content: '❌ Lỗi khi thực hiện lệnh!',
-      flags: 64
-    });
+    try {
+      await command.execute(interaction); // ✅
+    } catch (error) {
+      console.error(error);
+      await interaction.reply({
+        content: "❌ Lỗi khi thực hiện lệnh!",
+        ephemeral: true,
+      });
+    }
   }
 });
 
