@@ -4,18 +4,20 @@ const playDL = require('play-dl');
 const { useMainPlayer } = require("discord-player");
 const queues = new Map();
 
-let connection, player;
 const getQueue = (guildId) => {
     if (!queues.has(guildId)) {
-      queues.set(guildId, {
-        isPlaying: false,
-        queue: [],
-        currentTrack: null,
-        queueMessage: null,
-      });
+        queues.set(guildId, {
+            isPlaying: false,
+            queue: [],
+            currentTrack: null,
+            queueMessage: null,
+            timeout: null, // Thêm trường timeout
+            connection: null, // Thêm connection vào queue
+            player: null // Thêm player vào queue
+        });
     }
     return queues.get(guildId);
-  };
+};
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -52,25 +54,41 @@ module.exports = {
         }
 
         try {
-            if (!connection || connection.state.status === 'destroyed') {
-                connection = joinVoiceChannel({
+
+            const queue = getQueue(interaction.guild.id);
+            if (!queue.connection || queue.connection.state.status === 'destroyed') {
+                queue.connection = joinVoiceChannel({
                     channelId: voiceChannel.id,
                     guildId: interaction.guild.id,
                     adapterCreator: interaction.guild.voiceAdapterCreator,
+                    selfDeaf: false,
                 });
+                queue.player = createAudioPlayer();
+                queue.connection.subscribe(queue.player); // Subscribe player vào connection
+            }
+            
+            // Đảm bảo player được khởi tạo
+            if (!queue.player) {
+                queue.player = createAudioPlayer();
+                queue.connection.subscribe(queue.player);
             }
 
             if (url) {
                 const track = await playDL.video_basic_info(url);
-                global.queue.push({ title: track.video_details.title, url: url });
-                if (!global.isPlaying) {
-                    playNext(interaction);
+                const queue = getQueue(interaction.guild.id)
+                queue.queue.push({ // Thêm vào hàng đợi cụ thể
+                    title: track.video_details.title,
+                    url: url
+                });
+            
+                if (!queue.isPlaying) {
+                    playNext(interaction, interaction.guild.id);
                 } else {
                     const embed = new EmbedBuilder()
                         .setTitle('Hàng đợi')
                         .setDescription(`[**${track.video_details.title}**] đã được thêm vào hàng đợi.`)
                         .setColor(0x00FF00);
-                    global.queueMessage = await interaction.editReply({ embeds: [embed] });
+                    queue.queueMessage = await interaction.editReply({ embeds: [embed] });
                 }
             } else if (search) {
                 const searchResult = await playDL.search(search, { limit: 5, source: { youtube: 'video' } });
@@ -110,22 +128,49 @@ module.exports = {
                 const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
 
                 collector.on('collect', async i => {
+                    const queue = getQueue(interaction.guild.id);
                     const index = parseInt(i.customId.split('_')[1], 10);
                     const track = tracks[index];
-                    global.queue.push({ title: track.title, url: track.url });
-                    if (!global.isPlaying) {
+
+                    if (queue.timeout) {
+                        clearTimeout(queue.timeout);
+                        queue.timeout = null;
+                    }
+
+                    if (!queue.connection || queue.connection.state.status === 'destroyed') {
+                        queue.connection = joinVoiceChannel({
+                            channelId: voiceChannel.id,
+                            guildId: interaction.guild.id,
+                            adapterCreator: interaction.guild.voiceAdapterCreator,
+                            selfDeaf: false
+                        });
+                        
+                        queue.player = createAudioPlayer();
+                        queue.connection.subscribe(queue.player);
+                    }
+
+                    queue.queue.push({ 
+                        title: track.title, 
+                        url: track.url });
+
+                        if (queue.timeout) {
+                            clearTimeout(queue.timeout);
+                            queue.timeout = null;
+                        }
+
+                    if (!queue.isPlaying) {
                         const embed = new EmbedBuilder()
                             .setTitle('Đang phát')
                             .setDescription(`**${track.title}**`)
                             .setColor(0x00FF00);
                         await i.update({ embeds: [embed], components: [] });
-                        playNext(interaction);
+                        playNext(interaction, interaction.guild.id);
                     } else {
                         const embed = new EmbedBuilder()
                             .setTitle('Hàng đợi')
                             .setDescription(`[**${track.title}**] đã được thêm vào hàng đợi.`)
                             .setColor(0x00FF00);
-                        global.queueMessage = await i.update({ embeds: [embed], components: [] });
+                        queue.queueMessage = await i.update({ embeds: [embed], components: [] });
                     }
                 });
 
@@ -150,43 +195,74 @@ module.exports = {
     },
 };
 
-async function playNext(interaction) {
-    if (global.queue.length === 0) {
-        global.isPlaying = false;
-        global.currentTrack = null;
+async function playNext(interaction, guildId) {
+    const queue = getQueue(guildId);
+
+    if (queue.queue.length === 0) {
+        queue.isPlaying = false;
+        queue.currentTrack = null;
+
+        queue.timeout = setTimeout(() => {
+            if (queue.connection) {
+                queue.connection.destroy();
+                queues.delete(guildId);
+                console.log(`🛑 Tự động ngắt kết nối khỏi ${guildId}`);
+            }
+        }, 300000);
         return;
     }
 
-    const track = global.queue.shift();
-    global.currentTrack = track;
-    const stream = await playDL.stream(track.url);
-    const resource = createAudioResource(stream.stream, { inputType: stream.type });
-
-    if (!player) {
-        player = createAudioPlayer();
-        connection.subscribe(player);
+    if (queue.timeout) {
+        clearTimeout(queue.timeout);
+        queue.timeout = null;
     }
 
-    player.play(resource);
+    try {
+        const track = queue.queue.shift();
+        queue.currentTrack = track;
+        const stream = await playDL.stream(track.url).catch(async (err) => {
+            console.error('Lỗi khi tải video:', err);
+            const embed = new EmbedBuilder()
+                .setTitle('Lỗi')
+                .setDescription('Không thể tải video từ URL này!')
+                .setColor(0xFF0000);
+            await interaction.editReply({ embeds: [embed] });
+            return;
+        });
 
-    player.on('stateChange', async (oldState, newState) => {
-        if (newState.status === 'idle') {
-            if (global.queueMessage) {
-                try {
-                    await global.queueMessage.delete();
-                } catch (error) {
-                    console.error('Error deleting queue message:', error);
-                }
-                global.queueMessage = null;
-            }
-            playNext(interaction);
+        const resource = createAudioResource(stream.stream, { inputType: stream.type });
+
+        // Khởi tạo player nếu chưa có
+        if (!queue.player) {
+            queue.player = createAudioPlayer();
+            queue.connection.subscribe(queue.player); // Subscribe player vào connection
         }
-    });
 
-    global.isPlaying = true;
-    const embed = new EmbedBuilder()
-        .setTitle('Đang phát')
-        .setDescription(`**${track.title}**`)
-        .setColor(0xFF0000);
-    interaction.editReply({ embeds: [embed] });
+        queue.player.play(resource);
+        queue.isPlaying = true;
+
+        // Thêm sự kiện stateChange
+        queue.player.removeAllListeners('stateChange');
+        queue.player.on('stateChange', (oldState, newState) => {
+            if (newState.status === 'idle') {
+                playNext(interaction, guildId);
+            }
+        });
+
+        // Gửi thông báo phát nhạc
+        const embed = new EmbedBuilder()
+            .setTitle('Đang phát')
+            .setDescription(`**${track.title}**`)
+            .setColor(0xFF0000);
+        await interaction.editReply({ embeds: [embed] });
+
+    } catch (err) {
+        console.error('Lỗi khi phát nhạc:', err);
+        const embed = new EmbedBuilder()
+            .setTitle('Lỗi')
+            .setDescription('Không thể phát bài hát này!')
+            .setColor(0xFF0000);
+        await interaction.editReply({ embeds: [embed] });
+        playNext(interaction, guildId); // Thử phát bài tiếp theo
+    }
 }
