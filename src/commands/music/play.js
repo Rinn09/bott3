@@ -64,9 +64,16 @@ module.exports = {
                     selfDeaf: false,
                 });
                 queue.player = createAudioPlayer();
-                queue.connection.subscribe(queue.player); // Subscribe player vào connection
+                
+                // Subscribe player và kiểm tra subscription
+                try {
+                    queue.connection.subscribe(queue.player);
+                    console.log('✅ Player đã được subscribe:', queue.connection.state.subscription !== null);
+                } catch (err) {
+                    console.error('❌ Lỗi subscribe player:', err);
+                }
             }
-            
+
             // Đảm bảo player được khởi tạo
             if (!queue.player) {
                 queue.player = createAudioPlayer();
@@ -82,7 +89,7 @@ module.exports = {
                 });
             
                 if (!queue.isPlaying) {
-                    playNext(interaction, interaction.guild.id);
+                    await playNext(interaction, interaction.guild.id);
                 } else {
                     const embed = new EmbedBuilder()
                         .setTitle('Hàng đợi')
@@ -142,12 +149,13 @@ module.exports = {
                             channelId: voiceChannel.id,
                             guildId: interaction.guild.id,
                             adapterCreator: interaction.guild.voiceAdapterCreator,
-                            selfDeaf: false
+                            selfDeaf: false,
                         });
                         
                         queue.player = createAudioPlayer();
-                        queue.connection.subscribe(queue.player);
-                    }
+                        queue.connection.subscribe(queue.player); // Sử dụng subscribe() chính thức
+                        console.log('✅ Đã kết nối voice và khởi tạo player');
+                    }                    
 
                     queue.queue.push({ 
                         title: track.title, 
@@ -197,8 +205,15 @@ module.exports = {
 
 async function playNext(interaction, guildId) {
     const queue = getQueue(guildId);
+    console.log('🔊 Trạng thái queue:', {
+        isPlaying: queue.isPlaying,
+        queueLength: queue.queue.length,
+        connection: !!queue.connection,
+        player: !!queue.player
+    });
 
     if (queue.queue.length === 0) {
+        console.log('🎵 Hàng đợi trống, dừng phát nhạc');
         queue.isPlaying = false;
         queue.currentTrack = null;
 
@@ -219,35 +234,80 @@ async function playNext(interaction, guildId) {
 
     try {
         const track = queue.queue.shift();
+        console.log(`🎵 Đang xử lý track: ${track.title} (${track.url})`);
         queue.currentTrack = track;
-        const stream = await playDL.stream(track.url).catch(async (err) => {
-            console.error('Lỗi khi tải video:', err);
-            const embed = new EmbedBuilder()
-                .setTitle('Lỗi')
-                .setDescription('Không thể tải video từ URL này!')
-                .setColor(0xFF0000);
-            await interaction.editReply({ embeds: [embed] });
-            return;
+        playDL.setToken({
+            youtube: {
+                userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36'
+            }
+        });
+        const stream = await playDL.stream(track.url, {
+            cookies: require('../../../cookies.json'), // Đường dẫn đến file cookies
+            quality: 2,
+            discordPlayerCompatibility: true
         });
 
-        const resource = createAudioResource(stream.stream, { inputType: stream.type });
+        if (!stream || !stream.stream) {
+            console.error('❌ Stream không hợp lệ');
+            return;
+        }
+
+        const resource = createAudioResource(stream.stream, { 
+            inputType: stream.type ,
+            inlineVolume: true,
+            metadata: {
+                title: track.title,
+                url: track.url
+            }
+        });
+
+        queue.player.on('error', error => {
+            console.error('❌ Lỗi player:', error);
+            playNext(interaction, guildId);
+        });
+
+        console.log('🔊 Audio resource đã tạo:', !!resource);
 
         // Khởi tạo player nếu chưa có
         if (!queue.player) {
             queue.player = createAudioPlayer();
             queue.connection.subscribe(queue.player); // Subscribe player vào connection
+            console.log('🔄 Đã khởi tạo player mới');
         }
 
+        if (queue.connection && queue.player && !queue.connection.state.subscription) {
+            queue.connection.subscribe(queue.player);
+            console.log('🔌 Đã kết nối player với voice');
+        }
+        
         queue.player.play(resource);
         queue.isPlaying = true;
+        await entersState(queue.player, "playing", 15_000).catch(() => {
+            console.error('❌ Timeout khi chờ phát nhạc');
+            playNext(interaction, guildId);
+        });
+        console.log('▶️ Đang phát nhạc...');
+
+        queue.player.on('stateChange', (oldState, newState) => {
+            if (newState.status === 'playing') { // Chỉ đánh dấu isPlaying khi thực sự phát
+                queue.isPlaying = true;
+                console.log('🎵 Bắt đầu phát nhạc thực sự');
+            }
+        });
 
         // Thêm sự kiện stateChange
         queue.player.removeAllListeners('stateChange');
         queue.player.on('stateChange', (oldState, newState) => {
+            console.log(`🔊 Trạng thái player: ${oldState.status} → ${newState.status}`);
             if (newState.status === 'idle') {
+                console.log('⏭️ Phát bài tiếp theo...');
                 playNext(interaction, guildId);
             }
         });
+
+        console.log('🔊 Trạng thái player:', queue.player.state.status);
+        console.log('🔊 Trạng thái connection:', queue.connection.state.status);
+        console.log('🔊 Đang phát:', queue.player.state.resource !== null);
 
         // Gửi thông báo phát nhạc
         const embed = new EmbedBuilder()

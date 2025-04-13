@@ -3,6 +3,18 @@ const { Client, GatewayIntentBits, Collection } = require('discord.js');
 const { Player } = require('discord-player');
 const { DefaultExtractors } = require('@discord-player/extractor');
 
+// Thêm vào đầu file index.js
+const { execSync } = require('child_process');
+
+try {
+    const ffmpegPath = require('ffmpeg-static');
+    console.log('✅ FFmpeg path:', ffmpegPath);
+    console.log('ℹ️ FFmpeg version:', execSync(`"${ffmpegPath}" -version`).toString().split('\n')[0]);
+} catch (error) {
+    console.error('❌ Lỗi FFmpeg:', error);
+    process.exit(1);
+}
+
 const client = new Discord.Client({
   intents: [
     GatewayIntentBits.Guilds,
