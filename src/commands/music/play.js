@@ -1,8 +1,9 @@
 const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
-const { joinVoiceChannel, createAudioResource, createAudioPlayer, entersState, VoiceConnectionStatus } = require('@discordjs/voice');
+const { joinVoiceChannel, createAudioResource, createAudioPlayer, entersState, StreamType, VoiceConnectionStatus } = require('@discordjs/voice');
 const playDL = require('play-dl');
 const { useMainPlayer } = require("discord-player");
 const queues = new Map();
+const prism = require('prism-media');
 
 const getQueue = (guildId) => {
     if (!queues.has(guildId)) {
@@ -61,7 +62,9 @@ module.exports = {
                     channelId: voiceChannel.id,
                     guildId: interaction.guild.id,
                     adapterCreator: interaction.guild.voiceAdapterCreator,
-                    selfDeaf: false,
+                    selfDeaf: true,
+                    selfMute: false,
+                    debug: true
                 });
                 queue.player = createAudioPlayer();
                 
@@ -149,7 +152,9 @@ module.exports = {
                             channelId: voiceChannel.id,
                             guildId: interaction.guild.id,
                             adapterCreator: interaction.guild.voiceAdapterCreator,
-                            selfDeaf: false,
+                            selfDeaf: true,
+                            selfMute: false,
+                            debug: true
                         });
                         
                         queue.player = createAudioPlayer();
@@ -232,31 +237,44 @@ async function playNext(interaction, guildId) {
         queue.timeout = null;
     }
 
-    let cookies;
-
     try {
         const track = queue.queue.shift();
         console.log(`🎵 Đang xử lý track: ${track.title} (${track.url})`);
         queue.currentTrack = track;
+
+        // Gán cookie
+        const cookieString = require('../../../cookies.json')
+            .map(c => `${c.name}=${c.value}`)
+            .join('; ');
         playDL.setToken({
             youtube: {
+                cookie: cookieString,
                 userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36'
             }
         });
-        cookies = require('../../../cookies.json');
-        const stream = await playDL.stream(track.url, {
-            cookies: cookies,
-            quality: 2,
-            discordPlayerCompatibility: true
+
+        // Lấy stream từ play-dl
+        const info = await playDL.video_info(track.url);
+        const streamRaw = await playDL.stream_from_info(info);
+
+        // Chuyển stream sang định dạng Opus để Discord hiểu
+        const opusStream = new prism.FFmpeg({
+            args: [
+                '-analyzeduration', '0',
+                '-loglevel', '0',
+                '-i', 'pipe:0',
+                '-f', 'opus',
+                '-ar', '48000',
+                '-ac', '2',
+                '-acodec', 'libopus',
+                'pipe:1'
+            ]
         });
 
-        if (!stream || !stream.stream) {
-            console.error('❌ Stream không hợp lệ');
-            return;
-        }
+        const audioStream = streamRaw.stream.pipe(opusStream);
 
-        const resource = createAudioResource(stream.stream, { 
-            inputType: stream.type ,
+        const resource = createAudioResource(audioStream, {
+            inputType: StreamType.Opus,
             inlineVolume: true,
             metadata: {
                 title: track.title,
@@ -264,78 +282,57 @@ async function playNext(interaction, guildId) {
             }
         });
 
-        queue.player.on('error', error => {
-            console.error('❌ Lỗi player:', error);
-            playNext(interaction, guildId);
-        });
+        resource.volume.setVolume(1.0); // 100%
 
-        console.log('🔊 Audio resource đã tạo:', !!resource);
-
-        // Khởi tạo player nếu chưa có
+        // Nếu chưa có player thì tạo mới
         if (!queue.player) {
             queue.player = createAudioPlayer();
-            queue.connection.subscribe(queue.player); // Subscribe player vào connection
-            console.log('🔄 Đã khởi tạo player mới');
-        }
-
-        if (queue.connection && queue.player && !queue.connection.state.subscription) {
             queue.connection.subscribe(queue.player);
-            console.log('🔌 Đã kết nối player với voice');
         }
-        
-        queue.player.play(resource);
-        queue.isPlaying = true;
-        await entersState(queue.player, "playing", 15_000).catch(() => {
-            console.error('❌ Timeout khi chờ phát nhạc');
-            playNext(interaction, guildId);
-        });
-        console.log('▶️ Đang phát nhạc...');
 
-        queue.player.on('stateChange', (oldState, newState) => {
-            if (newState.status === 'playing') { // Chỉ đánh dấu isPlaying khi thực sự phát
-                queue.isPlaying = true;
-                console.log('🎵 Bắt đầu phát nhạc thực sự');
-            }
-        });
-
-        // Thêm sự kiện stateChange
+        // Gán sự kiện
         queue.player.removeAllListeners('stateChange');
         queue.player.on('stateChange', (oldState, newState) => {
             console.log(`🔊 Trạng thái player: ${oldState.status} → ${newState.status}`);
             if (newState.status === 'idle') {
                 console.log('⏭️ Phát bài tiếp theo...');
                 playNext(interaction, guildId);
+            } else if (newState.status === 'playing') {
+                console.log('🎵 Bắt đầu phát nhạc thực sự');
             }
         });
 
-        console.log('🔊 Trạng thái player:', queue.player.state.status);
-        console.log('🔊 Trạng thái connection:', queue.connection.state.status);
-        console.log('🔊 Đang phát:', queue.player.state.resource !== null);
+        queue.player.on('error', (error) => {
+            console.error('❌ Lỗi player:', error);
+            playNext(interaction, guildId);
+        });
 
-        // Gửi thông báo phát nhạc
+        // Bắt đầu phát
+        queue.player.play(resource);
+        queue.isPlaying = true;
+
+        await entersState(queue.player, "playing", 15_000).catch(() => {
+            console.error('❌ Timeout khi chờ phát nhạc');
+            playNext(interaction, guildId);
+        });
+
+        console.log('▶️ Đang phát nhạc...');
+
         const embed = new EmbedBuilder()
             .setTitle('Đang phát')
             .setDescription(`**${track.title}**`)
             .setColor(0xFF0000);
+
         await interaction.editReply({ embeds: [embed] });
 
     } catch (err) {
-        
         console.error('Lỗi khi phát nhạc:', err);
         const embed = new EmbedBuilder()
             .setTitle('Lỗi')
             .setDescription('Không thể phát bài hát này!')
             .setColor(0xFF0000);
         await interaction.editReply({ embeds: [embed] });
-        playNext(interaction, guildId); // Thử phát bài tiếp theo
-
-        console.error('❌ Không tìm thấy file cookies.json');
-        return interaction.editReply({
-        embeds: [new EmbedBuilder()
-            .setTitle('Lỗi')
-            .setDescription('Bot cần cookies để phát nhạc!')
-            .setColor(0xFF0000)
-            ]
-        });
+        playNext(interaction, guildId);
     }
 }
+

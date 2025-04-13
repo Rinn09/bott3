@@ -2,8 +2,6 @@ const Discord = require('discord.js');
 const { Client, GatewayIntentBits, Collection } = require('discord.js');
 const { Player } = require('discord-player');
 const { DefaultExtractors } = require('@discord-player/extractor');
-
-// Thêm vào đầu file index.js
 const { execSync } = require('child_process');
 
 try {
@@ -77,4 +75,5 @@ client.on('interactionCreate', async (interaction) => {
   }
 });
 
-client.login('MTM0MDkwODU5MzgyMTc4MjA1Nw.GpF7-d.mSUS5ayNe7cim_h1O9oIWKiU2b9zL9BVMCjDD4');
+require('dotenv').config();
+client.login(process.env.TOKEN);
