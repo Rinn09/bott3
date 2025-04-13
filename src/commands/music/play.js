@@ -232,6 +232,8 @@ async function playNext(interaction, guildId) {
         queue.timeout = null;
     }
 
+    let cookies;
+
     try {
         const track = queue.queue.shift();
         console.log(`🎵 Đang xử lý track: ${track.title} (${track.url})`);
@@ -241,8 +243,9 @@ async function playNext(interaction, guildId) {
                 userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36'
             }
         });
+        cookies = require('../../../cookies.json');
         const stream = await playDL.stream(track.url, {
-            cookies: require('../../../cookies.json'), // Đường dẫn đến file cookies
+            cookies: cookies,
             quality: 2,
             discordPlayerCompatibility: true
         });
@@ -317,6 +320,7 @@ async function playNext(interaction, guildId) {
         await interaction.editReply({ embeds: [embed] });
 
     } catch (err) {
+        
         console.error('Lỗi khi phát nhạc:', err);
         const embed = new EmbedBuilder()
             .setTitle('Lỗi')
@@ -324,5 +328,14 @@ async function playNext(interaction, guildId) {
             .setColor(0xFF0000);
         await interaction.editReply({ embeds: [embed] });
         playNext(interaction, guildId); // Thử phát bài tiếp theo
+
+        console.error('❌ Không tìm thấy file cookies.json');
+        return interaction.editReply({
+        embeds: [new EmbedBuilder()
+            .setTitle('Lỗi')
+            .setDescription('Bot cần cookies để phát nhạc!')
+            .setColor(0xFF0000)
+            ]
+        });
     }
 }
