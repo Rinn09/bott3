@@ -1,7 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const { joinVoiceChannel, createAudioResource, createAudioPlayer, entersState, StreamType, VoiceConnectionStatus } = require('@discordjs/voice');
 const playDL = require('play-dl');
-const { useMainPlayer } = require("discord-player");
 const queues = new Map();
 const prism = require('prism-media');
 
