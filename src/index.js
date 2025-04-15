@@ -1,8 +1,11 @@
+require('dotenv').config();
 const Discord = require('discord.js');
 const { Client, GatewayIntentBits, Collection } = require('discord.js');
 const { Player } = require('discord-player');
 const { DefaultExtractors } = require('@discord-player/extractor');
 const { execSync } = require('child_process');
+const { joinVoiceChannel, createAudioPlayer, createAudioResource, AudioPlayerStatus } = require('@discordjs/voice');
+const path = require('path');
 
 try {
     const ffmpegPath = require('ffmpeg-static');
@@ -75,5 +78,38 @@ client.on('interactionCreate', async (interaction) => {
   }
 });
 
-require('dotenv').config();
+client.on('messageCreate', async message => {
+  if (message.content === '!play') {
+      const voiceChannel = message.member.voice.channel;
+      if (!voiceChannel) {
+          return message.reply('❌ Bạn cần tham gia một kênh thoại trước!');
+      }
+
+      const connection = joinVoiceChannel({
+          channelId: voiceChannel.id,
+          guildId: message.guild.id,
+          adapterCreator: message.guild.voiceAdapterCreator,
+      });
+
+      const player = createAudioPlayer();
+      const resource = createAudioResource(path.join(__dirname, 'test', 'test1.mp3'));
+
+      player.play(resource);
+      connection.subscribe(player);
+
+      player.on(AudioPlayerStatus.Idle, () => {
+          connection.destroy();
+          console.log('✅ Phát xong tệp âm thanh.');
+      });
+
+      player.on('stateChange', (oldState, newState) => {
+        console.log(`Trạng thái player: ${oldState.status} -> ${newState.status}`);
+      });
+
+      player.on('error', error => {
+          console.error('❌ Lỗi khi phát tệp âm thanh:', error);
+      });
+  }
+});
+
 client.login(process.env.TOKEN);
