@@ -5,7 +5,31 @@ const { Player } = require('discord-player');
 const { DefaultExtractors } = require('@discord-player/extractor');
 const { execSync } = require('child_process');
 const { joinVoiceChannel, createAudioPlayer, createAudioResource, AudioPlayerStatus } = require('@discordjs/voice');
+const fs = require('node:fs');
 const path = require('path');
+const disabledCommandsPath = path.join(__dirname, 'commands', 'utility', 'disabledCommands.json');
+const foldersPath = path.join(__dirname, 'commands');
+const commandFolders = fs.readdirSync(foldersPath);	
+
+const client = new Discord.Client({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildIntegrations,
+    GatewayIntentBits.GuildVoiceStates,
+    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildMembers,
+    GatewayIntentBits.GuildPresences,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.GuildMessageReactions,
+    GatewayIntentBits.GuildMessageTyping,
+    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.DirectMessageReactions,
+    GatewayIntentBits.DirectMessageTyping,
+    GatewayIntentBits.DirectMessages
+  ]
+});
+
+client.commands = new Collection();
 
 try {
     const ffmpegPath = require('ffmpeg-static');
@@ -15,15 +39,6 @@ try {
     console.error('❌ Lỗi FFmpeg:', error);
     process.exit(1);
 }
-
-const client = new Discord.Client({
-  intents: [
-    GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.GuildVoiceStates,
-    GatewayIntentBits.MessageContent
-  ]
-});
 
 const player = new Player(client, {
   ytdlOptions: {
@@ -47,33 +62,60 @@ player.events.on('error', (queue, error) => {
 });
 
 // Đăng ký commands
-client.commands = new Collection();
-['play', 'skip', 'queue'].forEach(cmd => {
-  const command = require(`./commands/music/${cmd}`);
-  client.commands.set(command.data.name, command);
-});
+for (const folder of commandFolders) {
+  const commandsPath = path.join(foldersPath, folder);
+  const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
 
-// Xử lý interactions
-client.on('interactionCreate', async (interaction) => {
-  if (interaction.isAutocomplete()) {
-    const command = client.commands.get(interaction.commandName);
-    if (!command?.autocompleteRun) return;
-    await command.autocompleteRun(interaction); // ✅
+  for (const file of commandFiles) {
+    const filePath = path.join(commandsPath, file);
+    const command = require(filePath);
+
+    if ('data' in command && 'execute' in command) {
+      client.commands.set(command.data.name, command);
+    } else {
+      console.log(`[WARNING] Có 1 lệnh tại ${filePath} bị thiếu thuộc tính bắt buộc: "data" hoặc "execute".`);
+    }
+  }
+}
+
+client.on('interactionCreate', async interaction => {
+  if (!interaction.isChatInputCommand()) return;
+
+  const command = interaction.client.commands.get(interaction.commandName);
+
+  if (!command) {
+    console.error(`Không tìm thấy lệnh nào khớp với ${interaction.commandName}.`);
     return;
   }
 
-  if (interaction.isChatInputCommand()) {
-    const command = client.commands.get(interaction.commandName);
-    if (!command) return;
+  const guildId = interaction.guild.id;
+  let disabledCommands;
+  try {
+    disabledCommands = JSON.parse(fs.readFileSync(disabledCommandsPath, 'utf8') || '{}');
+  } catch (error) {
+    if (error.code === 'ENOENT') {
+      disabledCommands = {};
+    } else {
+      console.error('Có lỗi xảy ra khi đọc file disabledCommands.json', error);
+      return interaction.reply({ content: 'Có lỗi xảy ra khi kiểm tra lệnh bị vô hiệu hóa.', ephemeral: true });
+    }
+  }
 
-    try {
-      await command.execute(interaction); // ✅
-    } catch (error) {
-      console.error(error);
-      await interaction.reply({
-        content: "❌ Lỗi khi thực hiện lệnh!",
-        ephemeral: true,
-      });
+  if (disabledCommands[guildId] && disabledCommands[guildId][interaction.commandName]) {
+    const disabled = disabledCommands[guildId][interaction.commandName];
+    if (disabled === 'all' || (Array.isArray(disabled) && disabled.includes(interaction.channel.id))) {
+      return interaction.reply({ content: 'Lệnh này đã bị vô hiệu.', ephemeral: true });
+    }
+  }
+
+  try {
+    await command.execute(interaction, client);
+  } catch (error) {
+    console.error(error);
+    if (interaction.replied || interaction.deferred) {
+      await interaction.followUp({ content: 'Có lỗi xảy ra khi thực hiện(executing) lệnh này!', ephemeral: true });
+    } else {
+      await interaction.reply({ content: 'Có lỗi xảy ra khi thực hiện (executing) lệnh này!', ephemeral: true });
     }
   }
 });

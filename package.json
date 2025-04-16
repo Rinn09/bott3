@@ -17,7 +17,6 @@
     "discord-ytdl-core": "^5.0.4",
     "discord.js": "^14.18.0",
     "dotenv": "^16.5.0",
-    "ffmpeg": "^0.0.4",
     "ffmpeg-static": "^5.2.0",
     "mediaplex": "^1.0.0",
     "mongoose": "^8.10.1",
