@@ -86,7 +86,7 @@ module.exports = {
 
             if (url) {
                 const track = await playDL.video_basic_info(url);
-                console.log("🎥 Video Info:", track.video_details);
+                /*console.log("🎥 Video Info:", track.video_details);*/
                 queue.queue.push({ title: track.video_details.title, url: url });
                 if (!queue.isPlaying) {
                     playNext(interaction);
