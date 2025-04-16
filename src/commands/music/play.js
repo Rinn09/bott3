@@ -25,28 +25,28 @@ function getQueue(guildId) {
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('play')
-        .setDescription('Phát nhạc từ URL hoặc tìm kiếm trên YouTube')
+        .setDescription('Play music from Youtube url')
         .addStringOption(option =>
             option.setName('url')
-                .setDescription('URL của video YouTube')
+                .setDescription('URL')
                 .setRequired(false))
         .addStringOption(option =>
             option.setName('search')
-                .setDescription('Tìm kiếm video YouTube')
+                .setDescription('Search a video on Youtube')
                 .setRequired(false)),
     async execute(interaction) {
         const cookiePath = path.join(__dirname, '..', '..', '..', 'cookies.json');
         try {
-            const cookieData = JSON.parse(fs.readFileSync(cookiePath, 'utf-8'));
-            const cookie = cookieData.youtubeCookie;
+            const raw = fs.readFileSync(cookiePath, 'utf-8');
+            const cookie = JSON.parse(raw).youtubeCookie;
             if (cookie) {
                 playDL.setToken({ youtube: { cookie } });
-                console.log("✅ Cookie YouTube đã được thiết lập!");
+                console.log("✅ Cookie has been set up!");
             } else {
-                console.warn("⚠️ Không tìm thấy khóa 'youtubeCookie' trong cookies.json.");
+                console.warn("⚠️ Cant find 'youtubeCookie' on cookies.json.");
             }
         } catch (err) {
-            console.error("❌ Không thể đọc hoặc parse file cookies.json:", err);
+            console.error("❌ Cant read cookies.json:", err);
         }        
 
         await interaction.deferReply();
@@ -56,16 +56,16 @@ module.exports = {
 
         if (!voiceChannel) {
             const embed = new EmbedBuilder()
-                .setTitle('Lỗi')
-                .setDescription('Bạn cần phải ở trong một kênh thoại để phát nhạc!')
+                .setTitle('Error')
+                .setDescription('You must join a voice channel!')
                 .setColor(0xFF0000);
             return interaction.editReply({ embeds: [embed] });
         }
 
         if (!url && !search) {
             const embed = new EmbedBuilder()
-                .setTitle('Lỗi')
-                .setDescription('Bạn phải cung cấp URL hoặc từ khóa tìm kiếm!')
+                .setTitle('Error')
+                .setDescription('You must provide a link or a query!')
                 .setColor(0xFF0000);
             return interaction.editReply({ embeds: [embed] });
         }
@@ -86,13 +86,14 @@ module.exports = {
 
             if (url) {
                 const track = await playDL.video_basic_info(url);
+                console.log("🎥 Video Info:", track.video_details);
                 queue.queue.push({ title: track.video_details.title, url: url });
                 if (!queue.isPlaying) {
                     playNext(interaction);
                 } else {
                     const embed = new EmbedBuilder()
-                        .setTitle('Hàng đợi')
-                        .setDescription(`[**${track.video_details.title}**] đã được thêm vào hàng đợi.`)
+                        .setTitle('Queue')
+                        .setDescription(`Added [**${track.video_details.title}**] to queue.`)
                         .setColor(0x00FF00);
                     queue.queueMessage = await interaction.editReply({ embeds: [embed] });
                 }
@@ -100,8 +101,8 @@ module.exports = {
                 const searchResult = await playDL.search(search, { limit: 5, source: { youtube: 'video' } });
                 if (!searchResult || !searchResult.length) {
                     const embed = new EmbedBuilder()
-                        .setTitle('Lỗi')
-                        .setDescription('Không tìm thấy kết quả nào!')
+                        .setTitle('Error')
+                        .setDescription('No result!')
                         .setColor(0xFF0000);
                     return interaction.editReply({ embeds: [embed] });
                 }
@@ -114,7 +115,7 @@ module.exports = {
                 }));
 
                 const embed = new EmbedBuilder()
-                    .setTitle('Chọn một kết quả')
+                    .setTitle('Select one')
                     .setDescription(tracks.map((t, i) => `${i + 1}. [${t.title}](${t.url})`).join('\n'))
                     .setColor(0xFF0000);
 
@@ -139,15 +140,15 @@ module.exports = {
                     queue.queue.push({ title: track.title, url: track.url });
                     if (!queue.isPlaying) {
                         const embed = new EmbedBuilder()
-                            .setTitle('Đang phát')
+                            .setTitle('Playing')
                             .setDescription(`**${track.title}**`)
                             .setColor(0x00FF00);
                         await i.update({ embeds: [embed], components: [] });
                         playNext(interaction);
                     } else {
                         const embed = new EmbedBuilder()
-                            .setTitle('Hàng đợi')
-                            .setDescription(`[**${track.title}**] đã được thêm vào hàng đợi.`)
+                            .setTitle('Queue')
+                            .setDescription(`Added [**${track.title}**] to queue.`)
                             .setColor(0x00FF00);
                         queue.queueMessage = await i.update({ embeds: [embed], components: [] });
                     }
@@ -156,8 +157,8 @@ module.exports = {
                 collector.on('end', collected => {
                     if (collected.size === 0) {
                         const embed = new EmbedBuilder()
-                            .setTitle('Hết thời gian')
-                            .setDescription('Hết thời gian lựa chọn.')
+                            .setTitle('Timeout!')
+                            .setDescription('No more time to choose.')
                             .setColor(0xFF0000);
                         interaction.editReply({ embeds: [embed], components: [] });
                     }
@@ -167,7 +168,7 @@ module.exports = {
             console.error(err);
             const embed = new EmbedBuilder()
                 .setTitle('Lỗi')
-                .setDescription('Có lỗi xảy ra khi tìm kiếm video.')
+                .setDescription('Error while searching video.')
                 .setColor(0xFF0000);
             return interaction.editReply({ embeds: [embed] });
         }
@@ -185,8 +186,9 @@ async function playNext(interaction) {
     const track = queue.queue.shift();
     queue.currentTrack = track;
 
-    console.log("🎵 Lấy stream từ:", track.url);
+    console.log("🎵 Get stream from:", track.url);
     const stream = await playDL.stream(track.url, {
+        quality: 2,
         discordPlayerCompatibility: true
     });
     console.log("📦 Stream OK, type:", stream.type);
@@ -196,7 +198,7 @@ async function playNext(interaction) {
         inlineVolume: true
     });
 
-    console.log("✅ Tạo resource thành công");
+    console.log("✅ Resource created!");
 
     if (!queue.player) {
         queue.player = createAudioPlayer();
@@ -204,18 +206,18 @@ async function playNext(interaction) {
     }
 
     queue.player.play(resource);
-    console.log("▶️ Phát nhạc...");
+    console.log("▶️ Playing music...");
 
     try {
         await entersState(queue.player, AudioPlayerStatus.Playing, 10_000);
-        console.log("✅ Player đang phát");
+        console.log("✅ Player is playing");
     } catch (err) {
-        console.error("❌ Không thể phát:", err);
+        console.error("❌ Can not play:", err);
     }
 
     queue.isPlaying = true;
     const embed = new EmbedBuilder()
-        .setTitle('Đang phát')
+        .setTitle('Playing...')
         .setDescription(`🎵 ${track.title}`)
         .setColor(0x00FF00);
     interaction.editReply({ embeds: [embed] });
