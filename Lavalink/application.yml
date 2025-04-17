@@ -1,0 +1,21 @@
+server:
+  port: 2333
+
+lavalink:
+  server:
+    password: "1234"
+    sources:
+      youtube: true
+      soundcloud: true
+      bandcamp: true
+      twitch: true
+      vimeo: true
+      http: true
+      local: false
+    bufferDurationMs: 400
+
+logging:
+  file:
+    path: ./logs/
+  level:
+    root: INFO

@@ -1,0 +1,37 @@
+2025-04-17T14:30:02.128+07:00  INFO 8124 --- [main] lavalink.server.Launcher                 : Starting Launcher v4.0.4 using Java 24.0.1 with PID 8124 (C:\bott3\Lavalink\Lavalink.jar started by LAM PC in C:\bott3\Lavalink)
+2025-04-17T14:30:02.136+07:00  INFO 8124 --- [main] lavalink.server.Launcher                 : No active profile set, falling back to 1 default profile: "default"
+2025-04-17T14:30:03.377+07:00  INFO 8124 --- [main] lavalink.server.Launcher                 : Started Launcher in 1.862 seconds (process running for 2.473)
+2025-04-17T14:30:03.445+07:00  INFO 8124 --- [main] lavalink.server.Launcher                 : 
+
+[32m       .  [31m _                  _ _       _    [32m__ _ _
+[32m      /\\ [31m| | __ ___   ____ _| (_)_ __ | | __[32m\ \ \ \
+[32m     ( ( )[31m| |/ _` \ \ / / _` | | | '_ \| |/ /[32m \ \ \ \
+[32m      \\/ [31m| | (_| |\ V / (_| | | | | | |   < [32m  ) ) ) )
+[32m       '  [31m|_|\__,_| \_/ \__,_|_|_|_| |_|_|\_\[32m / / / /
+[0m    =========================================[32m/_/_/_/[0m
+
+	Version:        4.0.4
+	Build time:     10.03.2024 17:32:10 UTC
+	Branch          HEAD
+	Commit:         bb5e126
+	Commit time:    10.03.2024 17:29:08 UTC
+	JVM:            24.0.1
+	Lavaplayer      2.1.1
+
+2025-04-17T14:30:03.457+07:00  INFO 8124 --- [main] lavalink.server.Launcher                 : No active profile set, falling back to 1 default profile: "default"
+2025-04-17T14:30:04.222+07:00  WARN 8124 --- [main] io.undertow.websockets.jsr               : UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2025-04-17T14:30:04.246+07:00  INFO 8124 --- [main] io.undertow.servlet                      : Initializing Spring embedded WebApplicationContext
+2025-04-17T14:30:04.246+07:00  INFO 8124 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 785 ms
+2025-04-17T14:30:04.378+07:00  INFO 8124 --- [main] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
+2025-04-17T14:30:05.416+07:00  INFO 8124 --- [main] l.server.config.KoeConfiguration         : OS: WINDOWS, Arch: X86_64
+2025-04-17T14:30:05.416+07:00  INFO 8124 --- [main] l.server.config.KoeConfiguration         : Enabling JDA-NAS
+2025-04-17T14:30:05.420+07:00  INFO 8124 --- [main] c.s.l.c.natives.NativeLibraryLoader      : Native library udpqueue: loading with filter null
+2025-04-17T14:30:05.428+07:00  INFO 8124 --- [main] c.s.l.c.natives.NativeLibraryLoader      : Native library udpqueue: successfully loaded.
+2025-04-17T14:30:05.442+07:00  WARN 8124 --- [main] l.server.config.SentryConfiguration      : Turning off sentry
+2025-04-17T14:30:05.723+07:00  INFO 8124 --- [main] io.undertow                              : starting server: Undertow - 2.3.6.Final
+2025-04-17T14:30:05.732+07:00  INFO 8124 --- [main] org.xnio                                 : XNIO version 3.8.8.Final
+2025-04-17T14:30:05.748+07:00  INFO 8124 --- [main] org.xnio.nio                             : XNIO NIO Implementation Version 3.8.8.Final
+2025-04-17T14:30:05.868+07:00  INFO 8124 --- [main] org.jboss.threads                        : JBoss Threads version 3.5.0.Final
+2025-04-17T14:30:05.944+07:00  INFO 8124 --- [main] o.s.b.w.e.undertow.UndertowWebServer     : Undertow started on port(s) 2333 (http)
+2025-04-17T14:30:05.949+07:00  INFO 8124 --- [main] lavalink.server.Launcher                 : Started Launcher in 2.564 seconds (process running for 5.045)
+2025-04-17T14:30:05.950+07:00  INFO 8124 --- [main] lavalink.server.Launcher                 : Lavalink is ready to accept connections.
