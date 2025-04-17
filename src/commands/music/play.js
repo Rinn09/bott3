@@ -158,7 +158,7 @@ module.exports = {
                     if (collected.size === 0) {
                         const embed = new EmbedBuilder()
                             .setTitle('Timeout!')
-                            .setDescription('No more time to choose.')
+                            .setDescription('Time up!')
                             .setColor(0xFF0000);
                         interaction.editReply({ embeds: [embed], components: [] });
                     }

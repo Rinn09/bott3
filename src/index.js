@@ -4,7 +4,6 @@ const { Client, GatewayIntentBits, Collection } = require('discord.js');
 const { Player } = require('discord-player');
 const { DefaultExtractors } = require('@discord-player/extractor');
 const { execSync } = require('child_process');
-const { joinVoiceChannel, createAudioPlayer, createAudioResource, AudioPlayerStatus } = require('@discordjs/voice');
 const fs = require('node:fs');
 const path = require('path');
 const disabledCommandsPath = path.join(__dirname, 'commands', 'utility', 'disabledCommands.json');
