@@ -6,6 +6,9 @@ const { EventHandler } = require('./handlers/eventHandler');
 const { LavalinkHandler } = require('./handlers/lavalinkHandler');
 const botConfig = require('./config/botConfig');
 const lavalinkConfig = require('./config/lavalinkConfig');
+const errorHandler = require('./utils/errorHandler');
+
+errorHandler(client);
 
 class Bot {
   constructor() {
