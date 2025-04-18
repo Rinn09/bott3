@@ -1,17 +1,36 @@
 const { Manager } = require("erela.js");
 
-const manager = new Manager({
-  nodes: [
-    {
-      host: "localhost", // hoặc "127.0.0.1"
-      port: 2333,
-      password: "1234", // mặc định trong application.yml
+module.exports = (client) => {
+  client.manager = new Manager({
+    nodes: [
+      {
+        host: "localhost",
+        port: 2333,
+        password: "1234",
+      },
+    ],
+    send: (id, payload) => {
+      const guild = client.guilds.cache.get(id);
+      if (guild) guild.shard.send(payload);
     },
-  ],
-  send: (id, payload) => {
-    const guild = client.guilds.cache.get(id);
-    if (guild) guild.shard.send(payload);
-  },
-});
+  });
 
-module.exports = manager;
+  client.manager.on("nodeConnect", node => {
+    console.log(`Node "${node.options.identifier}" connected.`);
+  });
+
+  client.manager.on("nodeError", (node, error) => {
+    console.log(`Node "${node.options.identifier}" encountered an error: ${error.message}.`);
+  });
+
+  client.manager.on("trackStart", (player, track) => {
+    const channel = client.channels.cache.get(player.textChannel);
+    channel.send(`Now playing: \`${track.title}\``);
+  });
+
+  client.manager.on("queueEnd", player => {
+    const channel = client.channels.cache.get(player.textChannel);
+    channel.send("Queue has ended.");
+    player.destroy();
+  });
+};

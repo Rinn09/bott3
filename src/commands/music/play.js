@@ -1,229 +1,125 @@
 const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
-const { joinVoiceChannel, createAudioResource, createAudioPlayer, entersState, StreamType, AudioPlayerStatus } = require('@discordjs/voice');
-const playDL = require('play-dl');
-const queues = new Map();
-const path = require('path');
-const ffmpegPath = require('ffmpeg-static');
-const fs = require('fs');
-
-console.log('✅ FFmpeg path:', ffmpegPath);
-
-function getQueue(guildId) {
-    if (!queues.has(guildId)) {
-        queues.set(guildId, {
-            isPlaying: false,
-            queue: [],
-            currentTrack: null,
-            connection: null,
-            player: null,
-            timeout: null
-        });
-    }
-    return queues.get(guildId);
-}
 
 module.exports = {
-    data: new SlashCommandBuilder()
-        .setName('play')
-        .setDescription('Play music from Youtube url')
-        .addStringOption(option =>
-            option.setName('url')
-                .setDescription('URL')
-                .setRequired(false))
-        .addStringOption(option =>
-            option.setName('search')
-                .setDescription('Search a video on Youtube')
-                .setRequired(false)),
-    async execute(interaction) {
-        const cookiePath = path.join(__dirname, '..', '..', '..', 'cookies.json');
-        try {
-            const raw = fs.readFileSync(cookiePath, 'utf-8');
-            const cookie = JSON.parse(raw).youtubeCookie;
-            if (cookie) {
-                playDL.setToken({ youtube: { cookie } });
-                console.log("✅ Cookie has been set up!");
-            } else {
-                console.warn("⚠️ Cant find 'youtubeCookie' on cookies.json.");
-            }
-        } catch (err) {
-            console.error("❌ Cant read cookies.json:", err);
-        }        
+  data: new SlashCommandBuilder()
+    .setName('play')
+    .setDescription('Phát nhạc từ YouTube')
+    .addStringOption(option =>
+      option.setName('url')
+        .setDescription('URL YouTube')
+        .setRequired(false))
+    .addStringOption(option =>
+      option.setName('search')
+        .setDescription('Tìm kiếm video YouTube')
+        .setRequired(false)
+    ),
 
-        await interaction.deferReply();
-        const url = interaction.options.getString('url');
-        const search = interaction.options.getString('search');
-        const voiceChannel = interaction.member.voice.channel;
+  async execute(interaction, client) {
+    await interaction.deferReply();
 
-        if (!voiceChannel) {
-            const embed = new EmbedBuilder()
-                .setTitle('Error')
-                .setDescription('You must join a voice channel!')
-                .setColor(0xFF0000);
-            return interaction.editReply({ embeds: [embed] });
-        }
+    const url = interaction.options.getString('url');
+    const search = interaction.options.getString('search');
+    const voiceChannel = interaction.member.voice.channel;
 
-        if (!url && !search) {
-            const embed = new EmbedBuilder()
-                .setTitle('Error')
-                .setDescription('You must provide a link or a query!')
-                .setColor(0xFF0000);
-            return interaction.editReply({ embeds: [embed] });
-        }
-
-        const queue = getQueue(interaction.guild.id);
-
-        try {
-            if (!queue.connection || queue.connection.state.status === 'destroyed') {
-                queue.connection = joinVoiceChannel({
-                    channelId: voiceChannel.id,
-                    guildId: interaction.guild.id,
-                    adapterCreator: interaction.guild.voiceAdapterCreator,
-                });
-
-                queue.player = createAudioPlayer();
-                queue.connection.subscribe(queue.player);
-            }
-
-            if (url) {
-                const track = await playDL.video_basic_info(url);
-                /*console.log("🎥 Video Info:", track.video_details);*/
-                queue.queue.push({ title: track.video_details.title, url: url });
-                if (!queue.isPlaying) {
-                    playNext(interaction);
-                } else {
-                    const embed = new EmbedBuilder()
-                        .setTitle('Queue')
-                        .setDescription(`Added [**${track.video_details.title}**] to queue.`)
-                        .setColor(0x00FF00);
-                    queue.queueMessage = await interaction.editReply({ embeds: [embed] });
-                }
-            } else if (search) {
-                const searchResult = await playDL.search(search, { limit: 5, source: { youtube: 'video' } });
-                if (!searchResult || !searchResult.length) {
-                    const embed = new EmbedBuilder()
-                        .setTitle('Error')
-                        .setDescription('No result!')
-                        .setColor(0xFF0000);
-                    return interaction.editReply({ embeds: [embed] });
-                }
-
-                const tracks = searchResult.map((track, index) => ({
-                    title: track.title,
-                    url: track.url,
-                    description: track.description,
-                    index: index
-                }));
-
-                const embed = new EmbedBuilder()
-                    .setTitle('Select one')
-                    .setDescription(tracks.map((t, i) => `${i + 1}. [${t.title}](${t.url})`).join('\n'))
-                    .setColor(0xFF0000);
-
-                const row = new ActionRowBuilder()
-                    .addComponents(
-                        tracks.map((t, i) =>
-                            new ButtonBuilder()
-                                .setCustomId(`select_${i}`)
-                                .setLabel(`${i + 1}`)
-                                .setStyle(ButtonStyle.Primary)
-                        )
-                    );
-
-                await interaction.editReply({ embeds: [embed], components: [row] });
-
-                const filter = i => i.customId.startsWith('select_') && i.user.id === interaction.user.id;
-                const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
-
-                collector.on('collect', async i => {
-                    const index = parseInt(i.customId.split('_')[1], 10);
-                    const track = tracks[index];
-                    queue.queue.push({ title: track.title, url: track.url });
-                    if (!queue.isPlaying) {
-                        const embed = new EmbedBuilder()
-                            .setTitle('Playing')
-                            .setDescription(`**${track.title}**`)
-                            .setColor(0x00FF00);
-                        await i.update({ embeds: [embed], components: [] });
-                        playNext(interaction);
-                    } else {
-                        const embed = new EmbedBuilder()
-                            .setTitle('Queue')
-                            .setDescription(`Added [**${track.title}**] to queue.`)
-                            .setColor(0x00FF00);
-                        queue.queueMessage = await i.update({ embeds: [embed], components: [] });
-                    }
-                });
-
-                collector.on('end', collected => {
-                    if (collected.size === 0) {
-                        const embed = new EmbedBuilder()
-                            .setTitle('Timeout!')
-                            .setDescription('Time up!')
-                            .setColor(0xFF0000);
-                        interaction.editReply({ embeds: [embed], components: [] });
-                    }
-                });
-            }
-        } catch (err) {
-            console.error(err);
-            const embed = new EmbedBuilder()
-                .setTitle('Lỗi')
-                .setDescription('Error while searching video.')
-                .setColor(0xFF0000);
-            return interaction.editReply({ embeds: [embed] });
-        }
-    },
-};
-
-async function playNext(interaction) {
-    const queue = getQueue(interaction.guild.id);
-    if (queue.queue.length === 0) {
-        queue.isPlaying = false;
-        queue.currentTrack = null;
-        return;
+    if (!voiceChannel) {
+      return interaction.editReply({
+        embeds: [new EmbedBuilder()
+          .setTitle('Lỗi')
+          .setDescription('Bạn cần vào voice channel!')
+          .setColor(0xFF0000)]
+      });
     }
 
-    const track = queue.queue.shift();
-    queue.currentTrack = track;
+    const node = client.lavalink.nodes.get('main');
+    if (!node || !node.connected) {
+      return interaction.editReply({
+        embeds: [new EmbedBuilder()
+          .setTitle('Lỗi')
+          .setDescription('Lavalink chưa sẵn sàng!')
+          .setColor(0xFF0000)]
+      });
+    }
 
-    console.log("🎵 Get stream from:", track.url);
-    const stream = await playDL.stream(track.url, {
-        quality: 2,
-        discordPlayerCompatibility: true
-    });
-    console.log("📦 Stream OK, type:", stream.type);
+    const query = url || `ytsearch:${search}`;
+    const res = await node.rest.loadTracks(query);
 
-    const resource = createAudioResource(stream.stream, {
-        inputType: StreamType.WebmOpus, // hoặc stream.type nếu chắc chắn
-        inlineVolume: true
+    if (!res.tracks.length) {
+      return interaction.editReply({
+        embeds: [new EmbedBuilder()
+          .setTitle('Không tìm thấy bài hát!')
+          .setColor(0xFF0000)]
+      });
+    }
+
+    const player = node.createPlayer({
+      guildId: interaction.guild.id,
+      voiceChannelId: voiceChannel.id,
+      textChannelId: interaction.channel.id,
+      selfDeaf: true,
     });
 
-    console.log("✅ Resource created!");
+    if (url || res.loadType === "TRACK_LOADED") {
+      const track = res.tracks[0];
+      player.queue.add(track);
+      if (!player.playing) player.play();
 
-    if (!queue.player) {
-        queue.player = createAudioPlayer();
-        queue.connection.subscribe(queue.player);
+      return interaction.editReply({
+        embeds: [new EmbedBuilder()
+          .setTitle('Đã thêm vào hàng chờ')
+          .setDescription(`[${track.info.title}](${track.info.uri})`)
+          .setColor(0x00FF00)]
+      });
     }
 
-    queue.player.play(resource);
-    console.log("▶️ Playing music...");
+    // Nếu là kết quả tìm kiếm
+    const tracks = res.tracks.slice(0, 5);
+    const buttons = tracks.map((t, i) =>
+      new ButtonBuilder()
+        .setCustomId(`select_${i}`)
+        .setLabel(`${i + 1}`)
+        .setStyle(ButtonStyle.Primary)
+    );
 
-    try {
-        await entersState(queue.player, AudioPlayerStatus.Playing, 10_000);
-        console.log("✅ Player is playing");
-    } catch (err) {
-        console.error("❌ Can not play:", err);
-    }
-
-    queue.isPlaying = true;
     const embed = new EmbedBuilder()
-        .setTitle('Playing...')
-        .setDescription(`🎵 ${track.title}`)
-        .setColor(0x00FF00);
-    interaction.editReply({ embeds: [embed] });
+      .setTitle('Chọn bài hát:')
+      .setDescription(tracks.map((t, i) => `${i + 1}. [${t.info.title}](${t.info.uri})`).join('\n'))
+      .setColor(0x00FF00);
 
-    queue.player.once(AudioPlayerStatus.Idle, () => {
-        queue.isPlaying = false;
-        playNext(interaction);
+    const row = new ActionRowBuilder().addComponents(buttons);
+
+    await interaction.editReply({ embeds: [embed], components: [row] });
+
+    const collector = interaction.channel.createMessageComponentCollector({
+      filter: i => i.user.id === interaction.user.id && i.customId.startsWith('select_'),
+      time: 15000
     });
-}
+
+    collector.on('collect', async i => {
+      const index = parseInt(i.customId.split('_')[1], 10);
+      const track = tracks[index];
+
+      player.queue.add(track);
+      await i.update({
+        embeds: [new EmbedBuilder()
+          .setTitle('Đã thêm')
+          .setDescription(`[${track.info.title}](${track.info.uri})`)
+          .setColor(0x00FF00)],
+        components: []
+      });
+
+      if (!player.playing) player.play();
+    });
+
+    collector.on('end', collected => {
+      if (collected.size === 0) {
+        interaction.editReply({
+          embeds: [new EmbedBuilder()
+            .setTitle('Hết thời gian')
+            .setDescription('Bạn không chọn bài nào.')
+            .setColor(0xFF0000)],
+          components: []
+        });
+      }
+    });
+  }
+};
