@@ -8,5 +8,6 @@ module.exports = {
     'DirectMessages'
   ],
   prefix: '!',
-  defaultCooldown: 3
+  defaultCooldown: 3000,
+  debug: process.env.NODE_ENV === 'development'
 };

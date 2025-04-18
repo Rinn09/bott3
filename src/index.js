@@ -20,18 +20,26 @@ class Bot {
 
   async start() {
     try {
-      // Initialize handlers
+      process.on('unhandledRejection', this.handleError.bind(this));
+      process.on('uncaughtException', this.handleError.bind(this));
+
       await this.commandHandler.loadCommands();
       await this.eventHandler.loadEvents();
       await this.lavalinkHandler.initialize(lavalinkConfig);
 
-      // Login
       await this.client.login(process.env.TOKEN);
       Logger.info(`Bot logged in as ${this.client.user.tag}`);
     } catch (error) {
-      Logger.error('Error starting bot:', error);
-      process.exit(1);
+      this.handleError(error);
     }
+  }
+
+  handleError(error) {
+    Logger.error('Critical error:', error);
+    if (this.client) {
+      this.client.destroy();
+    }
+    process.exit(1);
   }
 }
 
