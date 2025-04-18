@@ -1,9 +1,10 @@
 module.exports = {
-    nodes: [{
-      id: process.env.LAVALINK_ID || "main",
-      host: process.env.LAVALINK_HOST || "localhost",
-      port: parseInt(process.env.LAVALINK_PORT) || 2333,
-      password: process.env.LAVALINK_PASSWORD || "1234",
-      secure: process.env.LAVALINK_SECURE === 'true' || false
-    }]
-  };
+  nodes: [
+    {
+      name: 'Main',
+      url: `${process.env.LAVALINK_HOST}:${process.env.LAVALINK_PORT}`,
+      auth: process.env.LAVALINK_PASSWORD,
+      secure: process.env.LAVALINK_SECURE === 'true'
+    }
+  ]
+};
