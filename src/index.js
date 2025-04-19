@@ -1,14 +1,14 @@
 require('dotenv').config();
 const { Client, GatewayIntentBits } = require('discord.js');
-const { Logger } = require('./utils/logger');
-const { CommandHandler } = require('./handlers/commandHandler');
+const Logger = require('./utils/logger');
+const CommandHandler = require('./handlers/commandHandler');
 const { EventHandler } = require('./handlers/eventHandler');
-const { LavalinkHandler } = require('./handlers/lavalinkHandler');
+const { LavalinkHandler} = require('./handlers/lavalinkHandler');
 const botConfig = require('./config/botConfig');
 const lavalinkConfig = require('./config/lavalinkConfig');
 const errorHandler = require('./utils/errorHandler');
 
-errorHandler(client);
+console.log('Logger instance:', Logger);
 
 class Bot {
   constructor() {
@@ -23,8 +23,8 @@ class Bot {
 
   async start() {
     try {
-      process.on('unhandledRejection', this.handleError.bind(this));
-      process.on('uncaughtException', this.handleError.bind(this));
+      process.on('unhandledRejection', (error) => this.handleError(error));
+      process.on('uncaughtException', (error) => this.handleError(error));
 
       await this.commandHandler.loadCommands();
       await this.eventHandler.loadEvents();
@@ -38,7 +38,13 @@ class Bot {
   }
 
   handleError(error) {
-    Logger.error('Critical error:', error);
+    console.log('Error object:', error);
+  
+    const errorMessage = error?.message || 'Unknown error';
+    const errorStack = error?.stack || 'No stack trace available';
+  
+    Logger.error(`Critical error: ${errorMessage}`, { stack: errorStack });
+  
     if (this.client) {
       this.client.destroy();
     }
@@ -51,5 +57,8 @@ bot.start();
 
 // Handle unhandled rejections
 process.on('unhandledRejection', error => {
-  Logger.error('Unhandled promise rejection:', error);
+  const errorMessage = error?.message || 'Unknown rejection';
+  const errorStack = error?.stack || 'No stack trace available';
+
+  Logger.error(`Unhandled promise rejection: ${errorMessage}`, { stack: errorStack });
 });

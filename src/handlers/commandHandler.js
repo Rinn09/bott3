@@ -11,6 +11,7 @@ class CommandHandler {
   }
 
   async loadCommands() {
+    console.log('Loading commands...');
     const foldersPath = path.join(__dirname, '..', 'commands');
     const commandFolders = fs.readdirSync(foldersPath);
 
