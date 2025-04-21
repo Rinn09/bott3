@@ -1,7 +1,7 @@
 const { Collection } = require('discord.js');
 const path = require('path');
 const fs = require('fs');
-const { Logger } = require('../utils/logger');
+const Logger = require('../utils/logger');
 
 class CommandHandler {
   constructor(client) {
@@ -25,13 +25,18 @@ class CommandHandler {
           const command = require(filePath);
 
           if ('data' in command && 'execute' in command) {
-            this.commands.set(command.data.name, command);
-            Logger.info(`Loaded command: ${command.data.name}`);
+            if (typeof command.data === 'object' && typeof command.execute === 'function' && command.data.name) {
+              this.commands.set(command.data.name, command);
+              Logger.info(`Loaded command: ${command.data.name}`);
+            } else {
+              Logger.warn(`Command at ${filePath} has invalid data or execute properties`);
+            }
           } else {
             Logger.warn(`Command at ${filePath} missing required properties`);
           }
         } catch (error) {
-          Logger.error(`Error loading command ${file}:`, error);
+          console.log('Error loading command:', error);
+          Logger.error(`Error loading command ${file}: ${error?.message || 'Unknown error'}`, { stack: error?.stack || 'No stack trace available' });
         }
       }
     }
@@ -62,6 +67,49 @@ class CommandHandler {
       }
     }
   }
+
+  async registerCommands() {
+    const { REST, Routes } = require('discord.js');
+    const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
+    
+    try {
+      const commandsData = Array.from(this.commands.values()).map(command => command.data.toJSON());
+      Logger.info(`Đang đăng ký ${commandsData.length} lệnh với Discord API...`);
+      
+      // Đăng ký lệnh global (có thể mất đến 1 giờ để hiển thị trên tất cả server)
+      const data = await rest.put(
+        Routes.applicationCommands(process.env.CLIENT_ID),
+        { body: commandsData },
+      );
+      
+      Logger.info(`Đã đăng ký thành công ${data.length} lệnh với Discord API`);
+      return data;
+    } catch (error) {
+      Logger.error(`Lỗi khi đăng ký lệnh: ${error.message}`);
+      throw error;
+    }
+  }
+
+  async refreshCommands() {
+    const { REST, Routes } = require('discord.js');
+    const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
+    
+    try {
+      Logger.info(`Đang xóa tất cả lệnh...`);
+      await rest.put(
+        Routes.applicationCommands(process.env.CLIENT_ID),
+        { body: [] },
+      );
+      Logger.info(`Đã xóa tất cả lệnh thành công!`);
+      
+      // Đăng ký lại tất cả lệnh
+      await this.registerCommands();
+    } catch (error) {
+      Logger.error(`Lỗi khi làm mới lệnh: ${error.message}`);
+      throw error;
+    }
+  }
 }
+
 
 module.exports = CommandHandler;

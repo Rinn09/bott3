@@ -30,7 +30,7 @@ module.exports = {
       });
     }
 
-    const node = client.lavalink.nodes.get('main');
+    const node = client.lavalinkHandler.getNode();
     if (!node || !node.connected) {
       return interaction.editReply({
         embeds: [new EmbedBuilder()

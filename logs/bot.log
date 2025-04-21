@@ -1,0 +1,58 @@
+2025-04-19T05:40:19.506Z [INFO]: Loaded command: play
+2025-04-19T05:40:19.510Z [INFO]: Loaded command: disablecommand
+2025-04-19T05:40:19.513Z [INFO]: Lavalink handler initialized
+2025-04-19T05:40:20.793Z [INFO]: Bot logged in as Machine Lux#4690
+2025-04-19T05:40:21.263Z [ERROR]: Critical error: nodes is not iterable
+2025-04-21T07:30:27.691Z [INFO]: Loaded command: play
+2025-04-21T07:30:27.695Z [INFO]: Loaded command: disablecommand
+2025-04-21T07:30:27.697Z [INFO]: Lavalink handler initialized
+2025-04-21T07:30:28.901Z [INFO]: Bot logged in as Machine Lux#4690
+2025-04-21T07:30:29.617Z [INFO]: Bot is ready as Machine Lux#4690
+2025-04-21T07:30:29.619Z [ERROR]: Unhandled promise rejection: url was not found from the given options.
+2025-04-21T07:34:51.355Z [INFO]: Loaded command: play
+2025-04-21T07:34:51.365Z [INFO]: Loaded command: disablecommand
+2025-04-21T07:34:51.372Z [INFO]: Lavalink handler initialized
+2025-04-21T07:34:52.676Z [INFO]: Bot logged in as Machine Lux#4690
+2025-04-21T07:34:53.237Z [INFO]: Bot is ready as Machine Lux#4690
+2025-04-21T07:34:53.472Z [INFO]: Lavalink Node main is ready!
+2025-04-21T07:46:58.664Z [INFO]: Loaded command: refresh
+2025-04-21T07:46:58.668Z [INFO]: Loaded command: play
+2025-04-21T07:46:58.671Z [INFO]: Loaded command: disablecommand
+2025-04-21T07:46:58.673Z [INFO]: Lavalink handler initialized
+2025-04-21T07:46:59.861Z [INFO]: Bot logged in as Machine Lux#4690
+2025-04-21T07:47:00.163Z [INFO]: Bot is ready as Machine Lux#4690
+2025-04-21T07:47:00.171Z [INFO]: Lavalink Node main is ready!
+2025-04-21T07:56:06.021Z [INFO]: Loaded command: refresh
+2025-04-21T07:56:06.028Z [INFO]: Loaded command: play
+2025-04-21T07:56:06.030Z [INFO]: Loaded command: disablecommand
+2025-04-21T07:56:06.032Z [INFO]: Đang đăng ký 3 lệnh với Discord API...
+2025-04-21T07:56:06.669Z [INFO]: Đã đăng ký thành công 3 lệnh với Discord API
+2025-04-21T07:56:06.670Z [INFO]: Lavalink handler initialized
+2025-04-21T07:56:07.717Z [INFO]: Bot logged in as Machine Lux#4690
+2025-04-21T07:56:08.069Z [INFO]: Bot is ready as Machine Lux#4690
+2025-04-21T07:56:08.078Z [INFO]: Lavalink Node main is ready!
+2025-04-21T08:01:05.995Z [INFO]: Loaded command: refresh
+2025-04-21T08:01:06.001Z [INFO]: Loaded command: play
+2025-04-21T08:01:06.004Z [INFO]: Loaded command: disablecommand
+2025-04-21T08:01:06.008Z [INFO]: Đang đăng ký 3 lệnh với Discord API...
+2025-04-21T08:01:06.640Z [INFO]: Đã đăng ký thành công 3 lệnh với Discord API
+2025-04-21T08:02:56.216Z [INFO]: Loaded command: refresh
+2025-04-21T08:02:56.221Z [INFO]: Loaded command: play
+2025-04-21T08:02:56.223Z [INFO]: Loaded command: disablecommand
+2025-04-21T08:02:56.226Z [INFO]: Đang đăng ký 3 lệnh với Discord API...
+2025-04-21T08:02:57.891Z [INFO]: Đã đăng ký thành công 3 lệnh với Discord API
+2025-04-21T08:02:57.893Z [INFO]: Lavalink handler initialized
+2025-04-21T08:02:58.974Z [INFO]: Bot logged in as Machine Lux#4690
+2025-04-21T08:02:59.232Z [INFO]: Bot is ready as Machine Lux#4690
+2025-04-21T08:02:59.240Z [INFO]: Lavalink Node main is ready!
+2025-04-21T08:10:58.250Z [INFO]: Loaded command: refresh
+2025-04-21T08:10:58.256Z [INFO]: Loaded command: play
+2025-04-21T08:10:58.259Z [INFO]: Loaded command: disablecommand
+2025-04-21T08:10:58.260Z [INFO]: Đang xóa tất cả lệnh...
+2025-04-21T08:10:58.925Z [INFO]: Đã xóa tất cả lệnh thành công!
+2025-04-21T08:10:58.927Z [INFO]: Đang đăng ký 3 lệnh với Discord API...
+2025-04-21T08:10:59.604Z [INFO]: Đã đăng ký thành công 3 lệnh với Discord API
+2025-04-21T08:10:59.605Z [INFO]: Lavalink handler initialized
+2025-04-21T08:11:00.804Z [INFO]: Bot logged in as Machine Lux#4690
+2025-04-21T08:11:01.196Z [INFO]: Bot is ready as Machine Lux#4690
+2025-04-21T08:11:01.203Z [INFO]: Lavalink Node main is ready!

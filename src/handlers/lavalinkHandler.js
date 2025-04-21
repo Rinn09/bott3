@@ -1,5 +1,5 @@
 const { Shoukaku, Connectors } = require('shoukaku');
-const { Logger } = require('../utils/logger');
+const Logger = require('../utils/logger');
 
 class LavalinkHandler {
   constructor(client) {
@@ -33,7 +33,12 @@ class LavalinkHandler {
   }
 
   getNode() {
-    return this.shoukaku.getNode();
+    const nodes = this.shoukaku.nodes;
+    if (!nodes || nodes.length === 0) {
+      Logger.error('No Lavalink nodes available');
+      return null;
+    }
+    return nodes[0]; // Trả về node đầu tiên, có thể thay đổi theo nhu cầu
   }
 
   async createPlayer(guildId, channelId, options = {}) {
@@ -49,4 +54,4 @@ class LavalinkHandler {
   }
 }
 
-module.exports = { LavalinkHandler };
+module.exports = LavalinkHandler;

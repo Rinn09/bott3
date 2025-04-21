@@ -1,6 +1,6 @@
 const path = require('path');
 const fs = require('fs');
-const { Logger } = require('../utils/logger');
+const Logger = require('../utils/logger');
 
 class EventHandler {
   constructor(client) {
@@ -30,4 +30,4 @@ class EventHandler {
   }
 }
 
-module.exports = { EventHandler };
+module.exports = EventHandler;
