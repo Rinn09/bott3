@@ -33,12 +33,12 @@ class LavalinkHandler {
   }
 
   getNode() {
-    const nodes = this.shoukaku.nodes;
-    if (!nodes || nodes.length === 0) {
-      Logger.error('No Lavalink nodes available');
+    const node = this.shoukaku.getNode();
+    if (!node || !node.ready) {
+      Logger.error('No Lavalink nodes are ready');
       return null;
     }
-    return nodes[0]; // Trả về node đầu tiên, có thể thay đổi theo nhu cầu
+    return node;
   }
 
   async createPlayer(guildId, channelId, options = {}) {

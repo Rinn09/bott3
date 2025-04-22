@@ -2,13 +2,12 @@ const { REST, Routes } = require('discord.js');
 require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
-const Logger = require('./src/utils/logger');
 
 // Tạo một mảng để chứa các lệnh cần đăng ký
 const commands = [];
 
 // Lấy tất cả các thư mục lệnh
-const foldersPath = path.join(__dirname, 'src/commands');
+const foldersPath = path.join(__dirname, 'commands');
 const commandFolders = fs.readdirSync(foldersPath);
 
 // Đọc tất cả các file lệnh từ các thư mục
@@ -35,7 +34,7 @@ const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
   try {
     console.log(`Bắt đầu đăng ký ${commands.length} lệnh cho Discord API...`);
     const data = await rest.put(
-      Routes.applicationCommands(process.env.CLIENT_ID),
+        Routes.applicationCommands(process.env.CLIENT_ID),
       { body: commands },
     );
     console.log(`Đã đăng ký ${data.length} lệnh global thành công.`);
@@ -44,3 +43,5 @@ const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
     console.error('Lỗi khi đăng ký lệnh:', error);
   }
 })();
+
+// node src/register-commands.js

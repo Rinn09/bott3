@@ -76,7 +76,6 @@ class CommandHandler {
       const commandsData = Array.from(this.commands.values()).map(command => command.data.toJSON());
       Logger.info(`Đang đăng ký ${commandsData.length} lệnh với Discord API...`);
       
-      // Đăng ký lệnh global (có thể mất đến 1 giờ để hiển thị trên tất cả server)
       const data = await rest.put(
         Routes.applicationCommands(process.env.CLIENT_ID),
         { body: commandsData },
@@ -102,7 +101,6 @@ class CommandHandler {
       );
       Logger.info(`Đã xóa tất cả lệnh thành công!`);
       
-      // Đăng ký lại tất cả lệnh
       await this.registerCommands();
     } catch (error) {
       Logger.error(`Lỗi khi làm mới lệnh: ${error.message}`);

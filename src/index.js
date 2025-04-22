@@ -24,17 +24,26 @@ class Bot {
 
   async start() {
     try {
-      await this.commandHandler.loadCommands();
-      await this.commandHandler.refreshCommands();
+      await this.commandHandler.loadCommands(); // Load commands first
+      await this.commandHandler.registerCommands(); // Register commands with Discord API
+      // await this.commandHandler.refreshCommands(); // Uncomment if you want to refresh commands every time
       await this.eventHandler.loadEvents();
       await this.lavalinkHandler.initialize(lavalinkConfig);
       
+      Logger.info('Lavalink handler initialized');
+      Logger.info('Command handler initialized');
+      Logger.info('Event handler initialized');
+      Logger.info('Bot is starting...');
+
       await this.client.login(process.env.TOKEN);
       await this.client.user.setPresence({
         activities: [{ name: 'Your mom', type: ActivityType.Playing }],
         status: 'online'
       });
       Logger.info(`Bot logged in as ${this.client.user.tag}`);
+      this.client.on('interactionCreate', async interaction => {
+        await this.commandHandler.handleInteraction(interaction);
+      });
     } catch (error) {
       this.handleError(error);
     }
@@ -56,7 +65,7 @@ class Bot {
 }
 
 const bot = new Bot();
-errorHandler(bot.client); // Initialize error handler with the client instance
+errorHandler(bot.client);
 bot.client.on('error', (error) => {
   Logger.error('WebSocket error:', error);
 });
@@ -66,4 +75,11 @@ bot.client.on('ready', () => {
 bot.client.on('disconnect', (event) => {
   Logger.warn('Bot disconnected:', event);
 });
+bot.client.on('reconnect', () => {
+  Logger.info('Bot is reconnecting...');
+});
 bot.start();
+
+// cd c:/bott3/Lavalink
+// java -jar Lavalink.jar
+// node src/index.js

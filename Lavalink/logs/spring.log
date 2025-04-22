@@ -1,7 +1,7 @@
-2025-04-21T14:30:03.595+07:00  INFO 17668 --- [Lavalink] [main] lavalink.server.Launcher                 : Starting Launcher v4.0.8 using Java 24.0.1 with PID 17668 (C:\bott3\Lavalink\Lavalink.jar started by LAM PC in C:\bott3\Lavalink)
-2025-04-21T14:30:03.620+07:00  INFO 17668 --- [Lavalink] [main] lavalink.server.Launcher                 : No active profile set, falling back to 1 default profile: "default"
-2025-04-21T14:30:05.254+07:00  INFO 17668 --- [Lavalink] [main] lavalink.server.Launcher                 : Started Launcher in 2.293 seconds (process running for 2.974)
-2025-04-21T14:30:05.342+07:00  INFO 17668 --- [Lavalink] [main] lavalink.server.Launcher                 : 
+2025-04-22T12:33:37.910+07:00  INFO 5452 --- [Lavalink] [main] lavalink.server.Launcher                 : Starting Launcher v4.0.8 using Java 24.0.1 with PID 5452 (C:\bott3\Lavalink\Lavalink.jar started by LAM PC in C:\bott3\Lavalink)
+2025-04-22T12:33:37.940+07:00  INFO 5452 --- [Lavalink] [main] lavalink.server.Launcher                 : No active profile set, falling back to 1 default profile: "default"
+2025-04-22T12:33:40.197+07:00  INFO 5452 --- [Lavalink] [main] lavalink.server.Launcher                 : Started Launcher in 3.326 seconds (process running for 4.293)
+2025-04-22T12:33:40.290+07:00  INFO 5452 --- [Lavalink] [main] lavalink.server.Launcher                 : 
 
 [32m       .  [31m _                  _ _       _    [32m__ _ _
 [32m      /\\ [31m| | __ ___   ____ _| (_)_ __ | | __[32m\ \ \ \
@@ -18,50 +18,94 @@
 	JVM:            24.0.1
 	Lavaplayer      2.2.2
 
-2025-04-21T14:30:05.352+07:00  INFO 17668 --- [Lavalink] [main] lavalink.server.Launcher                 : No active profile set, falling back to 1 default profile: "default"
-2025-04-21T14:30:06.267+07:00  WARN 17668 --- [Lavalink] [main] io.undertow.websockets.jsr               : UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
-2025-04-21T14:30:06.311+07:00  INFO 17668 --- [Lavalink] [main] io.undertow.servlet                      : Initializing Spring embedded WebApplicationContext
-2025-04-21T14:30:06.312+07:00  INFO 17668 --- [Lavalink] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 952 ms
-2025-04-21T14:30:06.517+07:00  INFO 17668 --- [Lavalink] [main] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
-2025-04-21T14:30:06.739+07:00  WARN 17668 --- [Lavalink] [main] l.s.config.AudioPlayerConfiguration      : The default Youtube source is now deprecated and won't receive further updates.
+2025-04-22T12:33:40.300+07:00  INFO 5452 --- [Lavalink] [main] lavalink.server.Launcher                 : No active profile set, falling back to 1 default profile: "default"
+2025-04-22T12:33:41.412+07:00  WARN 5452 --- [Lavalink] [main] io.undertow.websockets.jsr               : UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2025-04-22T12:33:41.448+07:00  INFO 5452 --- [Lavalink] [main] io.undertow.servlet                      : Initializing Spring embedded WebApplicationContext
+2025-04-22T12:33:41.449+07:00  INFO 5452 --- [Lavalink] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1133 ms
+2025-04-22T12:33:41.637+07:00  INFO 5452 --- [Lavalink] [main] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
+2025-04-22T12:33:41.907+07:00  WARN 5452 --- [Lavalink] [main] l.s.config.AudioPlayerConfiguration      : The default Youtube source is now deprecated and won't receive further updates.
 You should use the new Youtube source plugin instead.
 https://github.com/lavalink-devs/youtube-source#plugin.
 To disable this warning, set 'lavalink.server.sources.youtube' to false in your application.yml.
-2025-04-21T14:30:07.688+07:00  INFO 17668 --- [Lavalink] [main] l.server.config.KoeConfiguration         : OS: WINDOWS, Arch: X86_64
-2025-04-21T14:30:07.688+07:00  INFO 17668 --- [Lavalink] [main] l.server.config.KoeConfiguration         : Enabling JDA-NAS
-2025-04-21T14:30:07.693+07:00  INFO 17668 --- [Lavalink] [main] c.s.l.c.natives.NativeLibraryLoader      : Native library udpqueue: loading with filter null
-2025-04-21T14:30:07.701+07:00  INFO 17668 --- [Lavalink] [main] c.s.l.c.natives.NativeLibraryLoader      : Native library udpqueue: successfully loaded.
-2025-04-21T14:30:07.736+07:00  WARN 17668 --- [Lavalink] [main] l.server.config.SentryConfiguration      : Turning off sentry
-2025-04-21T14:30:08.153+07:00  INFO 17668 --- [Lavalink] [main] io.undertow                              : starting server: Undertow - 2.3.13.Final
-2025-04-21T14:30:08.174+07:00  INFO 17668 --- [Lavalink] [main] org.xnio                                 : XNIO version 3.8.8.Final
-2025-04-21T14:30:08.192+07:00  INFO 17668 --- [Lavalink] [main] org.xnio.nio                             : XNIO NIO Implementation Version 3.8.8.Final
-2025-04-21T14:30:08.364+07:00  INFO 17668 --- [Lavalink] [main] org.jboss.threads                        : JBoss Threads version 3.5.0.Final
-2025-04-21T14:30:08.451+07:00  INFO 17668 --- [Lavalink] [main] o.s.b.w.e.undertow.UndertowWebServer     : Undertow started on port 2333 (http) with context path '/'
-2025-04-21T14:30:08.456+07:00  INFO 17668 --- [Lavalink] [main] lavalink.server.Launcher                 : Started Launcher in 3.19 seconds (process running for 6.176)
-2025-04-21T14:30:08.458+07:00  INFO 17668 --- [Lavalink] [main] lavalink.server.Launcher                 : Lavalink is ready to accept connections.
-2025-04-21T14:34:53.293+07:00  INFO 17668 --- [Lavalink] [XNIO-1 task-2] io.undertow.servlet                      : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-04-21T14:34:53.294+07:00  INFO 17668 --- [Lavalink] [XNIO-1 task-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-04-21T14:34:53.296+07:00  INFO 17668 --- [Lavalink] [XNIO-1 task-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2025-04-21T14:34:53.359+07:00  INFO 17668 --- [Lavalink] [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /[0:0:0:0:0:0:0:1]:55039
-2025-04-21T14:34:53.389+07:00  INFO 17668 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/websocket
-2025-04-21T14:34:53.469+07:00  INFO 17668 --- [Lavalink] [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from shoukaku/4.1.1 (https://github.com/shipgirlproject/Shoukaku.git)
-2025-04-21T14:46:53.466+07:00  INFO 17668 --- [Lavalink] [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Connection closed from /[0:0:0:0:0:0:0:1]:55039 with id bv2sdmwdtimflfpj -- CloseStatus[code=1006, reason=]
-2025-04-21T14:46:53.467+07:00  INFO 17668 --- [Lavalink] [XNIO-1 I/O-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
-2025-04-21T14:47:00.167+07:00  INFO 17668 --- [Lavalink] [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /[0:0:0:0:0:0:0:1]:55455
-2025-04-21T14:47:00.169+07:00  INFO 17668 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/websocket
-2025-04-21T14:47:00.171+07:00  INFO 17668 --- [Lavalink] [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from shoukaku/4.1.1 (https://github.com/shipgirlproject/Shoukaku.git)
-2025-04-21T14:56:02.678+07:00  INFO 17668 --- [Lavalink] [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Connection closed from /[0:0:0:0:0:0:0:1]:55455 with id fda3k9gxojt5nwb5 -- CloseStatus[code=1006, reason=]
-2025-04-21T14:56:02.678+07:00  INFO 17668 --- [Lavalink] [XNIO-1 I/O-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
-2025-04-21T14:56:08.073+07:00  INFO 17668 --- [Lavalink] [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /[0:0:0:0:0:0:0:1]:55726
-2025-04-21T14:56:08.074+07:00  INFO 17668 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/websocket
-2025-04-21T14:56:08.076+07:00  INFO 17668 --- [Lavalink] [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from shoukaku/4.1.1 (https://github.com/shipgirlproject/Shoukaku.git)
-2025-04-21T15:00:34.651+07:00  INFO 17668 --- [Lavalink] [XNIO-1 I/O-5] lavalink.server.io.SocketServer          : Connection closed from /[0:0:0:0:0:0:0:1]:55726 with id 1woe0tsviycxxd76 -- CloseStatus[code=1006, reason=]
-2025-04-21T15:00:34.652+07:00  INFO 17668 --- [Lavalink] [XNIO-1 I/O-5] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
-2025-04-21T15:02:59.236+07:00  INFO 17668 --- [Lavalink] [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /[0:0:0:0:0:0:0:1]:55996
-2025-04-21T15:02:59.237+07:00  INFO 17668 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/websocket
-2025-04-21T15:02:59.239+07:00  INFO 17668 --- [Lavalink] [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from shoukaku/4.1.1 (https://github.com/shipgirlproject/Shoukaku.git)
-2025-04-21T15:10:41.937+07:00  INFO 17668 --- [Lavalink] [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /[0:0:0:0:0:0:0:1]:55996 with id 3ujkl9j5tt7r5iic -- CloseStatus[code=1006, reason=]
-2025-04-21T15:10:41.937+07:00  INFO 17668 --- [Lavalink] [XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
-2025-04-21T15:11:01.199+07:00  INFO 17668 --- [Lavalink] [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /[0:0:0:0:0:0:0:1]:56217
-2025-04-21T15:11:01.200+07:00  INFO 17668 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/websocket
-2025-04-21T15:11:01.202+07:00  INFO 17668 --- [Lavalink] [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from shoukaku/4.1.1 (https://github.com/shipgirlproject/Shoukaku.git)
+2025-04-22T12:33:42.990+07:00  INFO 5452 --- [Lavalink] [main] l.server.config.KoeConfiguration         : OS: WINDOWS, Arch: X86_64
+2025-04-22T12:33:42.990+07:00  INFO 5452 --- [Lavalink] [main] l.server.config.KoeConfiguration         : Enabling JDA-NAS
+2025-04-22T12:33:42.995+07:00  INFO 5452 --- [Lavalink] [main] c.s.l.c.natives.NativeLibraryLoader      : Native library udpqueue: loading with filter null
+2025-04-22T12:33:43.008+07:00  INFO 5452 --- [Lavalink] [main] c.s.l.c.natives.NativeLibraryLoader      : Native library udpqueue: successfully loaded.
+2025-04-22T12:33:43.060+07:00  WARN 5452 --- [Lavalink] [main] l.server.config.SentryConfiguration      : Turning off sentry
+2025-04-22T12:33:43.626+07:00  INFO 5452 --- [Lavalink] [main] io.undertow                              : starting server: Undertow - 2.3.13.Final
+2025-04-22T12:33:43.666+07:00  INFO 5452 --- [Lavalink] [main] org.xnio                                 : XNIO version 3.8.8.Final
+2025-04-22T12:33:43.683+07:00  INFO 5452 --- [Lavalink] [main] org.xnio.nio                             : XNIO NIO Implementation Version 3.8.8.Final
+2025-04-22T12:33:44.085+07:00  INFO 5452 --- [Lavalink] [main] org.jboss.threads                        : JBoss Threads version 3.5.0.Final
+2025-04-22T12:33:44.224+07:00  INFO 5452 --- [Lavalink] [main] o.s.b.w.e.undertow.UndertowWebServer     : Undertow started on port 2333 (http) with context path '/'
+2025-04-22T12:33:44.232+07:00  INFO 5452 --- [Lavalink] [main] lavalink.server.Launcher                 : Started Launcher in 4.025 seconds (process running for 8.328)
+2025-04-22T12:33:44.234+07:00  INFO 5452 --- [Lavalink] [main] lavalink.server.Launcher                 : Lavalink is ready to accept connections.
+2025-04-22T12:33:59.355+07:00  INFO 5452 --- [Lavalink] [XNIO-1 task-2] io.undertow.servlet                      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-22T12:33:59.356+07:00  INFO 5452 --- [Lavalink] [XNIO-1 task-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-04-22T12:33:59.357+07:00  INFO 5452 --- [Lavalink] [XNIO-1 task-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-04-22T12:33:59.394+07:00  INFO 5452 --- [Lavalink] [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /[0:0:0:0:0:0:0:1]:61002
+2025-04-22T12:33:59.421+07:00  INFO 5452 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/websocket
+2025-04-22T12:33:59.498+07:00  INFO 5452 --- [Lavalink] [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from shoukaku/4.1.1 (https://github.com/shipgirlproject/Shoukaku.git)
+2025-04-22T12:37:41.698+07:00  INFO 5452 --- [Lavalink] [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : Connection closed from /[0:0:0:0:0:0:0:1]:61002 with id c7pwtt3kqwnd70s5 -- CloseStatus[code=1006, reason=]
+2025-04-22T12:37:41.698+07:00  INFO 5452 --- [Lavalink] [XNIO-1 I/O-6] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2025-04-22T12:37:48.128+07:00  INFO 5452 --- [Lavalink] [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /[0:0:0:0:0:0:0:1]:61122
+2025-04-22T12:37:48.129+07:00  INFO 5452 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/websocket
+2025-04-22T12:37:48.131+07:00  INFO 5452 --- [Lavalink] [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from shoukaku/4.1.1 (https://github.com/shipgirlproject/Shoukaku.git)
+2025-04-22T13:10:52.593+07:00  INFO 5452 --- [Lavalink] [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : Connection closed from /[0:0:0:0:0:0:0:1]:61122 with id 7eu5hq2avhdv2eca -- CloseStatus[code=1006, reason=]
+2025-04-22T13:10:52.594+07:00  INFO 5452 --- [Lavalink] [XNIO-1 I/O-6] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2025-04-22T17:38:53.674+07:00  INFO 6596 --- [Lavalink] [main] lavalink.server.Launcher                 : Starting Launcher v4.0.8 using Java 24.0.1 with PID 6596 (C:\bott3\Lavalink\Lavalink.jar started by LAM PC in C:\bott3\Lavalink)
+2025-04-22T17:38:53.687+07:00  INFO 6596 --- [Lavalink] [main] lavalink.server.Launcher                 : No active profile set, falling back to 1 default profile: "default"
+2025-04-22T17:38:55.390+07:00  INFO 6596 --- [Lavalink] [main] lavalink.server.Launcher                 : Started Launcher in 2.402 seconds (process running for 3.243)
+2025-04-22T17:38:55.496+07:00  INFO 6596 --- [Lavalink] [main] lavalink.server.Launcher                 : 
+
+[32m       .  [31m _                  _ _       _    [32m__ _ _
+[32m      /\\ [31m| | __ ___   ____ _| (_)_ __ | | __[32m\ \ \ \
+[32m     ( ( )[31m| |/ _` \ \ / / _` | | | '_ \| |/ /[32m \ \ \ \
+[32m      \\/ [31m| | (_| |\ V / (_| | | | | | |   < [32m  ) ) ) )
+[32m       '  [31m|_|\__,_| \_/ \__,_|_|_|_| |_|_|\_\[32m / / / /
+[0m    =========================================[32m/_/_/_/[0m
+
+	Version:        4.0.8
+	Build time:     20.09.2024 20:20:10 UTC
+	Branch          HEAD
+	Commit:         2946608
+	Commit time:    20.09.2024 20:17:58 UTC
+	JVM:            24.0.1
+	Lavaplayer      2.2.2
+
+2025-04-22T17:38:55.512+07:00  INFO 6596 --- [Lavalink] [main] lavalink.server.Launcher                 : No active profile set, falling back to 1 default profile: "default"
+2025-04-22T17:38:56.523+07:00  WARN 6596 --- [Lavalink] [main] io.undertow.websockets.jsr               : UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2025-04-22T17:38:56.564+07:00  INFO 6596 --- [Lavalink] [main] io.undertow.servlet                      : Initializing Spring embedded WebApplicationContext
+2025-04-22T17:38:56.564+07:00  INFO 6596 --- [Lavalink] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1047 ms
+2025-04-22T17:38:56.770+07:00  INFO 6596 --- [Lavalink] [main] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
+2025-04-22T17:38:57.101+07:00  WARN 6596 --- [Lavalink] [main] l.s.config.AudioPlayerConfiguration      : The default Youtube source is now deprecated and won't receive further updates.
+You should use the new Youtube source plugin instead.
+https://github.com/lavalink-devs/youtube-source#plugin.
+To disable this warning, set 'lavalink.server.sources.youtube' to false in your application.yml.
+2025-04-22T17:38:58.078+07:00  INFO 6596 --- [Lavalink] [main] l.server.config.KoeConfiguration         : OS: WINDOWS, Arch: X86_64
+2025-04-22T17:38:58.078+07:00  INFO 6596 --- [Lavalink] [main] l.server.config.KoeConfiguration         : Enabling JDA-NAS
+2025-04-22T17:38:58.085+07:00  INFO 6596 --- [Lavalink] [main] c.s.l.c.natives.NativeLibraryLoader      : Native library udpqueue: loading with filter null
+2025-04-22T17:38:58.094+07:00  INFO 6596 --- [Lavalink] [main] c.s.l.c.natives.NativeLibraryLoader      : Native library udpqueue: successfully loaded.
+2025-04-22T17:38:58.135+07:00  WARN 6596 --- [Lavalink] [main] l.server.config.SentryConfiguration      : Turning off sentry
+2025-04-22T17:38:58.586+07:00  INFO 6596 --- [Lavalink] [main] io.undertow                              : starting server: Undertow - 2.3.13.Final
+2025-04-22T17:38:58.604+07:00  INFO 6596 --- [Lavalink] [main] org.xnio                                 : XNIO version 3.8.8.Final
+2025-04-22T17:38:58.623+07:00  INFO 6596 --- [Lavalink] [main] org.xnio.nio                             : XNIO NIO Implementation Version 3.8.8.Final
+2025-04-22T17:38:58.826+07:00  INFO 6596 --- [Lavalink] [main] org.jboss.threads                        : JBoss Threads version 3.5.0.Final
+2025-04-22T17:38:58.938+07:00  INFO 6596 --- [Lavalink] [main] o.s.b.w.e.undertow.UndertowWebServer     : Undertow started on port 2333 (http) with context path '/'
+2025-04-22T17:38:58.947+07:00  INFO 6596 --- [Lavalink] [main] lavalink.server.Launcher                 : Started Launcher in 3.54 seconds (process running for 6.799)
+2025-04-22T17:38:58.949+07:00  INFO 6596 --- [Lavalink] [main] lavalink.server.Launcher                 : Lavalink is ready to accept connections.
+2025-04-22T17:39:04.263+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] io.undertow.servlet                      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-22T17:39:04.264+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-04-22T17:39:04.265+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-04-22T17:39:04.296+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /[0:0:0:0:0:0:0:1]:55512
+2025-04-22T17:39:04.321+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/websocket
+2025-04-22T17:39:04.394+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from shoukaku/4.1.1 (https://github.com/shipgirlproject/Shoukaku.git)
+2025-04-22T17:48:39.071+07:00  INFO 6596 --- [Lavalink] [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Connection closed from /[0:0:0:0:0:0:0:1]:55512 with id 32wwil0xbuz9aoo3 -- CloseStatus[code=1006, reason=]
+2025-04-22T17:48:39.072+07:00  INFO 6596 --- [Lavalink] [XNIO-1 I/O-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2025-04-22T17:48:52.579+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /[0:0:0:0:0:0:0:1]:55837
+2025-04-22T17:48:52.581+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/websocket
+2025-04-22T17:48:52.584+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from shoukaku/4.1.1 (https://github.com/shipgirlproject/Shoukaku.git)
+2025-04-22T17:50:33.658+07:00  INFO 6596 --- [Lavalink] [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /[0:0:0:0:0:0:0:1]:55837 with id hnp8b2p3wjp2uuot -- CloseStatus[code=1006, reason=]
+2025-04-22T17:50:33.659+07:00  INFO 6596 --- [Lavalink] [XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2025-04-22T17:58:42.085+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /[0:0:0:0:0:0:0:1]:56286
+2025-04-22T17:58:42.086+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/websocket
+2025-04-22T17:58:42.088+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from shoukaku/4.1.1 (https://github.com/shipgirlproject/Shoukaku.git)
