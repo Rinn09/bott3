@@ -30,8 +30,21 @@ module.exports = {
       });
     }
 
+    console.log('Checking Lavalink status...');
+    console.log('Shoukaku exists:', !!client.lavalinkHandler.shoukaku);
+    console.log('Nodes size:', client.lavalinkHandler.shoukaku?.nodes?.size || 0);
+    if (client.lavalinkHandler.shoukaku?.nodes?.size > 0) {
+      const nodesArray = Array.from(client.lavalinkHandler.shoukaku.nodes.values());
+      console.log('Nodes info:', nodesArray.map(n => ({
+        name: n.options?.name,
+        state: n.state,
+        connected: !!n.connected,
+        available: !!n.available
+      })));
+  }
+
     const node = client.lavalinkHandler.getNode();
-    if (!node || !node.connected) {
+    if (!node || (node.state !== 'CONNECTED' && node.state !== 2)) {
       return interaction.editReply({
         embeds: [new EmbedBuilder()
           .setTitle('Lỗi')
@@ -39,7 +52,6 @@ module.exports = {
           .setColor(0xFF0000)]
       });
     }
-
     const query = url || `ytsearch:${search}`;
     const res = await node.rest.loadTracks(query);
 

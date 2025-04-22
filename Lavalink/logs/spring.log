@@ -109,3 +109,40 @@ To disable this warning, set 'lavalink.server.sources.youtube' to false in your 
 2025-04-22T17:58:42.085+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /[0:0:0:0:0:0:0:1]:56286
 2025-04-22T17:58:42.086+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/websocket
 2025-04-22T17:58:42.088+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from shoukaku/4.1.1 (https://github.com/shipgirlproject/Shoukaku.git)
+2025-04-22T18:20:45.591+07:00  INFO 6596 --- [Lavalink] [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : Connection closed from /[0:0:0:0:0:0:0:1]:56286 with id qj7phaza29kv6ukm -- CloseStatus[code=1006, reason=]
+2025-04-22T18:20:45.593+07:00  INFO 6596 --- [Lavalink] [XNIO-1 I/O-4] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2025-04-22T18:20:55.629+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /[0:0:0:0:0:0:0:1]:57031
+2025-04-22T18:20:55.633+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/websocket
+2025-04-22T18:20:55.637+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from shoukaku/4.1.1 (https://github.com/shipgirlproject/Shoukaku.git)
+2025-04-22T18:44:11.473+07:00  INFO 6596 --- [Lavalink] [XNIO-1 I/O-5] lavalink.server.io.SocketServer          : Connection closed from /[0:0:0:0:0:0:0:1]:57031 with id 31mn51wg2gw5c1n0 -- CloseStatus[code=1006, reason=]
+2025-04-22T18:44:11.474+07:00  INFO 6596 --- [Lavalink] [XNIO-1 I/O-5] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2025-04-22T18:44:18.658+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /[0:0:0:0:0:0:0:1]:57520
+2025-04-22T18:44:18.659+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/websocket
+2025-04-22T18:44:18.661+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from shoukaku/4.1.1 (https://github.com/shipgirlproject/Shoukaku.git)
+2025-04-22T18:45:22.867+07:00  INFO 6596 --- [Lavalink] [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /[0:0:0:0:0:0:0:1]:57520 with id powhp0w2krcjgr2o -- CloseStatus[code=1006, reason=]
+2025-04-22T18:45:22.867+07:00  INFO 6596 --- [Lavalink] [XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2025-04-22T18:45:32.757+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /[0:0:0:0:0:0:0:1]:57555
+2025-04-22T18:45:32.759+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/websocket
+2025-04-22T18:45:32.761+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from shoukaku/4.1.1 (https://github.com/shipgirlproject/Shoukaku.git)
+2025-04-22T18:49:34.882+07:00  INFO 6596 --- [Lavalink] [XNIO-1 I/O-5] lavalink.server.io.SocketServer          : Connection closed from /[0:0:0:0:0:0:0:1]:57555 with id alp995vfc94h4n09 -- CloseStatus[code=1006, reason=]
+2025-04-22T18:49:34.883+07:00  INFO 6596 --- [Lavalink] [XNIO-1 I/O-5] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2025-04-22T18:49:44.362+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /[0:0:0:0:0:0:0:1]:57643
+2025-04-22T18:49:44.364+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/websocket
+2025-04-22T18:49:44.366+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from shoukaku/4.1.1 (https://github.com/shipgirlproject/Shoukaku.git)
+2025-04-22T18:57:46.629+07:00  INFO 6596 --- [Lavalink] [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /[0:0:0:0:0:0:0:1]:57643 with id ykn5stqvltoe0je3 -- CloseStatus[code=1006, reason=]
+2025-04-22T18:57:46.631+07:00  INFO 6596 --- [Lavalink] [XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2025-04-22T18:58:00.146+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /[0:0:0:0:0:0:0:1]:57879
+2025-04-22T18:58:00.170+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/websocket
+2025-04-22T18:58:00.184+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from shoukaku/4.1.1 (https://github.com/shipgirlproject/Shoukaku.git)
+2025-04-22T19:05:07.838+07:00  INFO 6596 --- [Lavalink] [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : Connection closed from /[0:0:0:0:0:0:0:1]:57879 with id xjyrq3vqysmll1ih -- CloseStatus[code=1006, reason=]
+2025-04-22T19:05:07.839+07:00  INFO 6596 --- [Lavalink] [XNIO-1 I/O-4] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2025-04-22T19:05:15.265+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /[0:0:0:0:0:0:0:1]:58053
+2025-04-22T19:05:15.268+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/websocket
+2025-04-22T19:05:15.271+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from shoukaku/4.1.1 (https://github.com/shipgirlproject/Shoukaku.git)
+2025-04-22T19:05:57.428+07:00  INFO 6596 --- [Lavalink] [XNIO-1 I/O-5] lavalink.server.io.SocketServer          : Connection closed from /[0:0:0:0:0:0:0:1]:58053 with id jo8alih09gpk4kxq -- CloseStatus[code=1006, reason=]
+2025-04-22T19:05:57.429+07:00  INFO 6596 --- [Lavalink] [XNIO-1 I/O-5] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2025-04-22T19:06:09.371+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /[0:0:0:0:0:0:0:1]:58084
+2025-04-22T19:06:09.372+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/websocket
+2025-04-22T19:06:09.373+07:00  INFO 6596 --- [Lavalink] [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from shoukaku/4.1.1 (https://github.com/shipgirlproject/Shoukaku.git)
+2025-04-22T19:16:15.786+07:00  INFO 6596 --- [Lavalink] [XNIO-1 I/O-5] lavalink.server.io.SocketServer          : Connection closed from /[0:0:0:0:0:0:0:1]:58084 with id ngrumm1uv2ww9qv6 -- CloseStatus[code=1006, reason=]
+2025-04-22T19:16:15.790+07:00  INFO 6596 --- [Lavalink] [XNIO-1 I/O-5] lavalink.server.io.SocketContext         : Shutting down 0 playing players.

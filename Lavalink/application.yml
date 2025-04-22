@@ -2,7 +2,7 @@ server:
   port: 2333
 
 lavalink:
-  server:
+  server: 
     password: "1234"
     sources:
       youtube: true
