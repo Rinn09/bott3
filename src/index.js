@@ -8,7 +8,7 @@ const botConfig = require('./config/botConfig');
 const lavalinkConfig = require('./config/lavalinkConfig');
 const errorHandler = require('./utils/errorHandler');
 const { Kazagumo, Plugins } = require('kazagumo');
-const { connectors } = require('shoukaku');
+const { Connectors } = require('shoukaku');
 
 console.log('Logger instance:', Logger);
 
@@ -82,16 +82,14 @@ bot.client.on('reconnect', () => {
 });
 bot.start();
 
-client.manager = new Kazagumo({
+bot.client.manager = new Kazagumo({
   defaultSearchEngine: 'youtube',
-  plugins: [new Plugins.playerMoved(client),],
+  plugins: [new Plugins.PlayerMoved(bot.client)],
   send: (id, payload) => {
-    const guild = client.guilds.cache.get(id);
-    if (guild) {
-      if (guild) guild.shard.send(payload);
-    }
+    const guild = bot.client.guilds.cache.get(id);
+    if (guild) guild.shard.send(payload);
   },
-}, new connectors.DiscordJS(client), lavalinkConfig.nodes)
+}, new Connectors.DiscordJS(bot.client), lavalinkConfig.nodes);
 
 // cd c:/bott3/Lavalink
 // java -jar Lavalink.jar

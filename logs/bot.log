@@ -1,1 +1,131 @@
 
+2025-04-23T04:39:45.753Z [INFO]: Loaded command: refresh
+2025-04-23T04:39:45.758Z [INFO]: Loaded command: play
+2025-04-23T04:39:45.760Z [INFO]: Loaded command: disablecommand
+2025-04-23T04:39:45.764Z [INFO]: Đang đăng ký 3 lệnh với Discord API...
+2025-04-23T04:39:46.460Z [INFO]: Đã đăng ký thành công 3 lệnh với Discord API
+2025-04-23T04:39:46.461Z [INFO]: Total 0 events loaded.
+2025-04-23T04:39:46.463Z [INFO]: Initializing Lavalink with config:
+2025-04-23T04:39:51.475Z [INFO]: Nodes count: 0
+2025-04-23T04:39:51.475Z [INFO]: Node states after timeout: No nodes
+2025-04-23T04:39:51.476Z [INFO]: Lavalink handler initialized
+2025-04-23T04:39:51.476Z [INFO]: Command handler initialized
+2025-04-23T04:39:51.476Z [INFO]: Event handler initialized
+2025-04-23T04:39:51.476Z [INFO]: Bot is starting...
+2025-04-23T04:39:52.556Z [INFO]: Bot logged in as Machine Lux#4690
+2025-04-23T04:39:53.066Z [INFO]: Bot is ready as Machine Lux#4690
+2025-04-23T04:40:14.489Z [ERROR]: Uncaught exception: Unhandled error. ('localhost')
+2025-04-23T04:41:09.673Z [INFO]: Loaded command: refresh
+2025-04-23T04:41:09.679Z [INFO]: Loaded command: play
+2025-04-23T04:41:09.680Z [INFO]: Loaded command: disablecommand
+2025-04-23T04:41:09.683Z [INFO]: Đang đăng ký 3 lệnh với Discord API...
+2025-04-23T04:41:10.269Z [INFO]: Đã đăng ký thành công 3 lệnh với Discord API
+2025-04-23T04:41:10.270Z [INFO]: Total 0 events loaded.
+2025-04-23T04:41:10.270Z [INFO]: Initializing Lavalink with config:
+2025-04-23T04:41:15.276Z [INFO]: Nodes count: 0
+2025-04-23T04:41:15.276Z [INFO]: Node states after timeout: No nodes
+2025-04-23T04:41:15.276Z [INFO]: Lavalink handler initialized
+2025-04-23T04:41:15.277Z [INFO]: Command handler initialized
+2025-04-23T04:41:15.277Z [INFO]: Event handler initialized
+2025-04-23T04:41:15.277Z [INFO]: Bot is starting...
+2025-04-23T04:41:16.603Z [INFO]: Bot logged in as Machine Lux#4690
+2025-04-23T04:41:17.201Z [INFO]: Bot is ready as Machine Lux#4690
+2025-04-23T04:41:17.206Z [ERROR]: Uncaught exception: Unhandled error. ('localhost')
+2025-04-23T04:41:46.587Z [INFO]: Loaded command: refresh
+2025-04-23T04:41:46.591Z [INFO]: Loaded command: play
+2025-04-23T04:41:46.593Z [INFO]: Loaded command: disablecommand
+2025-04-23T04:41:46.596Z [INFO]: Đang đăng ký 3 lệnh với Discord API...
+2025-04-23T04:41:47.155Z [INFO]: Đã đăng ký thành công 3 lệnh với Discord API
+2025-04-23T04:41:47.156Z [INFO]: Total 0 events loaded.
+2025-04-23T04:41:47.157Z [INFO]: Initializing Lavalink with config:
+2025-04-23T04:41:52.166Z [INFO]: Nodes count: 0
+2025-04-23T04:41:52.167Z [INFO]: Node states after timeout: No nodes
+2025-04-23T04:41:52.168Z [INFO]: Lavalink handler initialized
+2025-04-23T04:41:52.168Z [INFO]: Command handler initialized
+2025-04-23T04:41:52.169Z [INFO]: Event handler initialized
+2025-04-23T04:41:52.169Z [INFO]: Bot is starting...
+2025-04-23T04:41:53.179Z [INFO]: Bot logged in as Machine Lux#4690
+2025-04-23T04:41:53.720Z [INFO]: Bot is ready as Machine Lux#4690
+2025-04-23T04:41:53.907Z [INFO]: Lavalink Node localhost is ready!
+2025-04-23T04:41:53.907Z [INFO]: Lavalink connection established - resolving initialize
+2025-04-23T04:43:46.241Z [INFO]: Found 1 nodes
+2025-04-23T04:43:46.241Z [INFO]: Node Unknown state: 2
+2025-04-23T04:43:46.241Z [INFO]: Node Unknown details: {"connected":false,"state":2}
+2025-04-23T04:43:46.242Z [INFO]: Selected node Unknown with state: 2
+2025-04-23T04:43:46.245Z [ERROR]: Error executing play: node.rest.loadTracks is not a function
+2025-04-23T04:51:42.975Z [INFO]: Loaded command: refresh
+2025-04-23T04:51:42.981Z [INFO]: Loaded command: play
+2025-04-23T04:51:42.985Z [INFO]: Loaded command: disablecommand
+2025-04-23T04:51:42.988Z [INFO]: Đang đăng ký 3 lệnh với Discord API...
+2025-04-23T04:51:43.614Z [INFO]: Đã đăng ký thành công 3 lệnh với Discord API
+2025-04-23T04:51:43.614Z [INFO]: Total 0 events loaded.
+2025-04-23T04:51:43.615Z [INFO]: Initializing Lavalink with config:
+2025-04-23T04:51:48.622Z [INFO]: Nodes count: 0
+2025-04-23T04:51:48.623Z [INFO]: Node states after timeout: No nodes
+2025-04-23T04:51:48.623Z [INFO]: Lavalink handler initialized
+2025-04-23T04:51:48.624Z [INFO]: Command handler initialized
+2025-04-23T04:51:48.624Z [INFO]: Event handler initialized
+2025-04-23T04:51:48.624Z [INFO]: Bot is starting...
+2025-04-23T04:51:49.761Z [INFO]: Bot logged in as Machine Lux#4690
+2025-04-23T04:51:50.367Z [INFO]: Bot is ready as Machine Lux#4690
+2025-04-23T04:51:50.388Z [INFO]: Lavalink Node localhost is ready!
+2025-04-23T04:51:50.389Z [INFO]: Lavalink connection established - resolving initialize
+2025-04-23T04:52:02.838Z [INFO]: Found 1 nodes
+2025-04-23T04:52:02.838Z [INFO]: Node Unknown state: 2
+2025-04-23T04:52:02.839Z [INFO]: Node Unknown details: {"connected":false,"state":2}
+2025-04-23T04:52:02.839Z [INFO]: Selected node Unknown with state: 2
+2025-04-23T04:52:03.664Z [ERROR]: Error executing play: Cannot read properties of undefined (reading 'length')
+2025-04-23T04:53:02.145Z [INFO]: Loaded command: refresh
+2025-04-23T04:53:02.149Z [INFO]: Loaded command: play
+2025-04-23T04:53:02.151Z [INFO]: Loaded command: disablecommand
+2025-04-23T04:53:02.153Z [INFO]: Đang đăng ký 3 lệnh với Discord API...
+2025-04-23T04:53:02.706Z [INFO]: Đã đăng ký thành công 3 lệnh với Discord API
+2025-04-23T04:53:02.707Z [INFO]: Total 0 events loaded.
+2025-04-23T04:53:02.708Z [INFO]: Initializing Lavalink with config:
+2025-04-23T04:53:07.718Z [INFO]: Nodes count: 0
+2025-04-23T04:53:07.718Z [INFO]: Node states after timeout: No nodes
+2025-04-23T04:53:07.718Z [INFO]: Lavalink handler initialized
+2025-04-23T04:53:07.719Z [INFO]: Command handler initialized
+2025-04-23T04:53:07.719Z [INFO]: Event handler initialized
+2025-04-23T04:53:07.719Z [INFO]: Bot is starting...
+2025-04-23T04:53:08.802Z [INFO]: Bot logged in as Machine Lux#4690
+2025-04-23T04:53:09.168Z [INFO]: Bot is ready as Machine Lux#4690
+2025-04-23T04:53:09.177Z [INFO]: Lavalink Node localhost is ready!
+2025-04-23T04:53:09.178Z [INFO]: Lavalink connection established - resolving initialize
+2025-04-23T04:53:21.589Z [INFO]: Found 1 nodes
+2025-04-23T04:53:21.589Z [INFO]: Node Unknown state: 2
+2025-04-23T04:53:21.589Z [INFO]: Node Unknown details: {"connected":false,"state":2}
+2025-04-23T04:53:21.589Z [INFO]: Selected node Unknown with state: 2
+2025-04-23T04:57:45.077Z [INFO]: Found 1 nodes
+2025-04-23T04:57:45.078Z [INFO]: Node Unknown state: 2
+2025-04-23T04:57:45.078Z [INFO]: Node Unknown details: {"connected":false,"state":2}
+2025-04-23T04:57:45.078Z [INFO]: Selected node Unknown with state: 2
+2025-04-23T05:32:45.324Z [INFO]: Found 1 nodes
+2025-04-23T05:32:45.324Z [INFO]: Node Unknown state: 2
+2025-04-23T05:32:45.324Z [INFO]: Node Unknown details: {"connected":false,"state":2}
+2025-04-23T05:32:45.324Z [INFO]: Selected node Unknown with state: 2
+2025-04-23T05:36:45.618Z [INFO]: Found 1 nodes
+2025-04-23T05:36:45.619Z [INFO]: Node Unknown state: 2
+2025-04-23T05:36:45.619Z [INFO]: Node Unknown details: {"connected":false,"state":2}
+2025-04-23T05:36:45.619Z [INFO]: Selected node Unknown with state: 2
+2025-04-23T14:02:12.360Z [INFO]: Loaded command: refresh
+2025-04-23T14:02:12.364Z [INFO]: Loaded command: play
+2025-04-23T14:02:12.368Z [INFO]: Loaded command: disablecommand
+2025-04-23T14:02:12.370Z [INFO]: Đang đăng ký 3 lệnh với Discord API...
+2025-04-23T14:02:13.117Z [INFO]: Đã đăng ký thành công 3 lệnh với Discord API
+2025-04-23T14:02:13.118Z [INFO]: Total 0 events loaded.
+2025-04-23T14:02:13.119Z [INFO]: Initializing Lavalink with config:
+2025-04-23T14:02:18.123Z [INFO]: Nodes count: 0
+2025-04-23T14:02:18.123Z [INFO]: Node states after timeout: No nodes
+2025-04-23T14:02:18.124Z [INFO]: Lavalink handler initialized
+2025-04-23T14:02:18.124Z [INFO]: Command handler initialized
+2025-04-23T14:02:18.124Z [INFO]: Event handler initialized
+2025-04-23T14:02:18.125Z [INFO]: Bot is starting...
+2025-04-23T14:02:19.370Z [INFO]: Bot logged in as Machine Lux#4690
+2025-04-23T14:02:19.785Z [INFO]: Bot is ready as Machine Lux#4690
+2025-04-23T14:02:19.868Z [INFO]: Lavalink Node localhost is ready!
+2025-04-23T14:02:19.868Z [INFO]: Lavalink connection established - resolving initialize
+2025-04-23T14:02:52.040Z [INFO]: Found 1 nodes
+2025-04-23T14:02:52.040Z [INFO]: Node Unknown state: 2
+2025-04-23T14:02:52.041Z [INFO]: Node Unknown details: {"connected":false,"state":2}
+2025-04-23T14:02:52.041Z [INFO]: Selected node Unknown with state: 2

@@ -41,21 +41,22 @@ module.exports = {
         connected: !!n.connected,
         available: !!n.available
       })));
-  }
+    }
 
     const node = client.lavalinkHandler.getNode();
-    if (!node || (node.state !== 'CONNECTED' && node.state !== 2)) {
+    if (!node || !node.connected || !node.available) {
       return interaction.editReply({
         embeds: [new EmbedBuilder()
           .setTitle('Lỗi')
-          .setDescription('Lavalink chưa sẵn sàng!')
+          .setDescription('Lavalink chưa sẵn sàng! Vui lòng thử lại sau.')
           .setColor(0xFF0000)]
       });
     }
-    const query = url || `ytsearch:${search}`;
-    const res = await node.rest.loadTracks(query);
 
-    if (!res.tracks.length) {
+    const query = url || `ytsearch:${search}`;
+    const res = await node.rest.resolve(query);
+
+    if (!res || !res.tracks || res.tracks.length === 0) {
       return interaction.editReply({
         embeds: [new EmbedBuilder()
           .setTitle('Không tìm thấy bài hát!')
