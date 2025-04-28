@@ -129,3 +129,117 @@
 2025-04-23T14:02:52.040Z [INFO]: Node Unknown state: 2
 2025-04-23T14:02:52.041Z [INFO]: Node Unknown details: {"connected":false,"state":2}
 2025-04-23T14:02:52.041Z [INFO]: Selected node Unknown with state: 2
+2025-04-28T06:55:21.982Z [INFO]: Loaded command: refresh
+2025-04-28T06:55:21.994Z [INFO]: Loaded command: setup-autorole
+2025-04-28T06:55:21.995Z [INFO]: Loaded command: setup-goodbye
+2025-04-28T06:55:21.996Z [INFO]: Loaded command: setup-welcome
+2025-04-28T06:55:21.998Z [INFO]: Loaded command: play
+2025-04-28T06:55:22.000Z [INFO]: Loaded command: disablecommand
+2025-04-28T06:55:22.004Z [INFO]: Đang đăng ký 6 lệnh với Discord API...
+2025-04-28T06:55:22.625Z [INFO]: Đã đăng ký thành công 6 lệnh với Discord API
+2025-04-28T06:58:03.771Z [INFO]: Loaded command: refresh
+2025-04-28T06:58:03.786Z [INFO]: Loaded command: setup-autorole
+2025-04-28T06:58:03.787Z [INFO]: Loaded command: setup-goodbye
+2025-04-28T06:58:03.788Z [INFO]: Loaded command: setup-welcome
+2025-04-28T06:58:03.790Z [INFO]: Loaded command: play
+2025-04-28T06:58:03.792Z [INFO]: Loaded command: disablecommand
+2025-04-28T06:58:03.795Z [INFO]: Đang đăng ký 6 lệnh với Discord API...
+2025-04-28T06:58:04.388Z [INFO]: Đã đăng ký thành công 6 lệnh với Discord API
+2025-04-28T06:58:04.391Z [INFO]: Loaded event: guildMemberAdd
+2025-04-28T06:58:04.392Z [INFO]: Loaded event: guildMemberRemove
+2025-04-28T06:58:04.392Z [INFO]: Total 2 events loaded.
+2025-04-28T06:58:04.393Z [INFO]: Command handler initialized
+2025-04-28T06:58:04.393Z [INFO]: Event handler initialized
+2025-04-28T06:58:04.393Z [INFO]: Bot is starting...
+2025-04-28T06:58:05.473Z [INFO]: Bot logged in as Machine Lux#4690
+2025-04-28T06:58:05.743Z [INFO]: Bot is ready as Machine Lux#4690
+2025-04-28T06:58:05.751Z [ERROR]: Uncaught exception: Unhandled error. ('localhost')
+2025-04-28T06:59:49.273Z [INFO]: Loaded command: refresh
+2025-04-28T06:59:49.284Z [INFO]: Loaded command: setup-autorole
+2025-04-28T06:59:49.286Z [INFO]: Loaded command: setup-goodbye
+2025-04-28T06:59:49.287Z [INFO]: Loaded command: setup-welcome
+2025-04-28T06:59:49.290Z [INFO]: Loaded command: play
+2025-04-28T06:59:49.292Z [INFO]: Loaded command: disablecommand
+2025-04-28T06:59:49.295Z [INFO]: Đang đăng ký 6 lệnh với Discord API...
+2025-04-28T06:59:49.864Z [INFO]: Đã đăng ký thành công 6 lệnh với Discord API
+2025-04-28T06:59:49.866Z [INFO]: Loaded event: guildMemberAdd
+2025-04-28T06:59:49.868Z [INFO]: Loaded event: guildMemberRemove
+2025-04-28T06:59:49.868Z [INFO]: Total 2 events loaded.
+2025-04-28T06:59:49.868Z [INFO]: Command handler initialized
+2025-04-28T06:59:49.868Z [INFO]: Event handler initialized
+2025-04-28T06:59:49.869Z [INFO]: Bot is starting...
+2025-04-28T06:59:50.943Z [INFO]: Bot logged in as Machine Lux#4690
+2025-04-28T06:59:51.378Z [INFO]: Bot is ready as Machine Lux#4690
+2025-04-28T07:01:55.295Z [INFO]: Loaded command: refresh
+2025-04-28T07:01:55.307Z [INFO]: Loaded command: setup-autorole
+2025-04-28T07:01:55.309Z [INFO]: Loaded command: setup-goodbye
+2025-04-28T07:01:55.310Z [INFO]: Loaded command: setup-welcome
+2025-04-28T07:01:55.311Z [INFO]: Loaded command: play
+2025-04-28T07:01:55.313Z [INFO]: Loaded command: disablecommand
+2025-04-28T07:01:55.316Z [INFO]: Đang đăng ký 6 lệnh với Discord API...
+2025-04-28T07:01:55.888Z [INFO]: Đã đăng ký thành công 6 lệnh với Discord API
+2025-04-28T07:01:55.891Z [INFO]: Loaded event: guildMemberAdd
+2025-04-28T07:01:55.892Z [INFO]: Loaded event: guildMemberRemove
+2025-04-28T07:01:55.893Z [INFO]: Total 2 events loaded.
+2025-04-28T07:01:55.893Z [INFO]: Command handler initialized
+2025-04-28T07:01:55.896Z [INFO]: Event handler initialized
+2025-04-28T07:01:55.897Z [INFO]: Bot is starting...
+2025-04-28T07:01:56.914Z [INFO]: Bot logged in as Machine Lux#4690
+2025-04-28T07:01:57.478Z [INFO]: Bot is ready as Machine Lux#4690
+2025-04-28T07:23:29.696Z [INFO]: Event file voiceStateUpdate.js changed (rename). Reloading events...
+2025-04-28T07:23:29.821Z [INFO]: Loaded event: guildMemberAdd
+2025-04-28T07:23:29.822Z [INFO]: Loaded event: guildMemberRemove
+2025-04-28T07:23:29.823Z [WARN]: Event at C:\bott3\src\events\voiceStateUpdate.js missing required 'name' or 'execute' properties.
+2025-04-28T07:23:29.823Z [INFO]: Total 2 events loaded.
+2025-04-28T07:23:29.823Z [INFO]: Events reloaded successfully.
+2025-04-28T07:25:20.715Z [INFO]: Event file guildMemberAdd.js changed (change). Reloading events...
+2025-04-28T07:25:20.716Z [INFO]: Event file guildMemberAdd.js changed (change). Reloading events...
+2025-04-28T07:25:20.717Z [INFO]: Event file guildMemberAdd.js changed (change). Reloading events...
+2025-04-28T07:25:20.825Z [ERROR]: Error loading events: Cannot find module '../../models/GuildConfig'
+Require stack:
+- C:\bott3\src\events\guildMemberAdd.js
+- C:\bott3\src\handlers\eventHandler.js
+- C:\bott3\src\index.js
+2025-04-28T07:25:20.825Z [ERROR]: Error reloading events: Cannot find module '../../models/GuildConfig'
+Require stack:
+- C:\bott3\src\events\guildMemberAdd.js
+- C:\bott3\src\handlers\eventHandler.js
+- C:\bott3\src\index.js
+2025-04-28T07:25:20.826Z [ERROR]: Error loading events: Cannot find module '../../models/GuildConfig'
+Require stack:
+- C:\bott3\src\events\guildMemberAdd.js
+- C:\bott3\src\handlers\eventHandler.js
+- C:\bott3\src\index.js
+2025-04-28T07:25:20.827Z [ERROR]: Error reloading events: Cannot find module '../../models/GuildConfig'
+Require stack:
+- C:\bott3\src\events\guildMemberAdd.js
+- C:\bott3\src\handlers\eventHandler.js
+- C:\bott3\src\index.js
+2025-04-28T07:25:20.828Z [ERROR]: Error loading events: Cannot find module '../../models/GuildConfig'
+Require stack:
+- C:\bott3\src\events\guildMemberAdd.js
+- C:\bott3\src\handlers\eventHandler.js
+- C:\bott3\src\index.js
+2025-04-28T07:25:20.828Z [ERROR]: Error reloading events: Cannot find module '../../models/GuildConfig'
+Require stack:
+- C:\bott3\src\events\guildMemberAdd.js
+- C:\bott3\src\handlers\eventHandler.js
+- C:\bott3\src\index.js
+2025-04-28T07:26:20.453Z [INFO]: Event file guildMemberAdd.js changed (change). Reloading events...
+2025-04-28T07:26:20.454Z [INFO]: Event file guildMemberAdd.js changed (change). Reloading events...
+2025-04-28T07:26:20.455Z [INFO]: Event file guildMemberAdd.js changed (change). Reloading events...
+2025-04-28T07:26:20.557Z [INFO]: Loaded event: guildMemberAdd
+2025-04-28T07:26:20.558Z [INFO]: Loaded event: guildMemberRemove
+2025-04-28T07:26:20.558Z [WARN]: Event at C:\bott3\src\events\voiceStateUpdate.js missing required 'name' or 'execute' properties.
+2025-04-28T07:26:20.559Z [INFO]: Total 2 events loaded.
+2025-04-28T07:26:20.559Z [INFO]: Events reloaded successfully.
+2025-04-28T07:26:20.559Z [INFO]: Loaded event: guildMemberAdd
+2025-04-28T07:26:20.560Z [INFO]: Loaded event: guildMemberRemove
+2025-04-28T07:26:20.560Z [WARN]: Event at C:\bott3\src\events\voiceStateUpdate.js missing required 'name' or 'execute' properties.
+2025-04-28T07:26:20.560Z [INFO]: Total 2 events loaded.
+2025-04-28T07:26:20.560Z [INFO]: Events reloaded successfully.
+2025-04-28T07:26:20.561Z [INFO]: Loaded event: guildMemberAdd
+2025-04-28T07:26:20.562Z [INFO]: Loaded event: guildMemberRemove
+2025-04-28T07:26:20.563Z [WARN]: Event at C:\bott3\src\events\voiceStateUpdate.js missing required 'name' or 'execute' properties.
+2025-04-28T07:26:20.563Z [INFO]: Total 2 events loaded.
+2025-04-28T07:26:20.563Z [INFO]: Events reloaded successfully.

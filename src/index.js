@@ -1,16 +1,21 @@
+// const { Kazagumo, Plugins } = require('kazagumo');
+// const { Connectors } = require('shoukaku');
+// const lavalinkConfig = require('./config/lavalinkConfig');
+// const LavalinkHandler = require('./handlers/lavalinkHandler');
 require('dotenv').config();
 const { Client, GatewayIntentBits, ActivityType } = require('discord.js');
 const Logger = require('./utils/logger');
 const CommandHandler = require('./handlers/commandHandler');
 const EventHandler = require('./handlers/eventHandler');
-const LavalinkHandler = require('./handlers/lavalinkHandler');
 const botConfig = require('./config/botConfig');
-const lavalinkConfig = require('./config/lavalinkConfig');
 const errorHandler = require('./utils/errorHandler');
-const { Kazagumo, Plugins } = require('kazagumo');
-const { Connectors } = require('shoukaku');
+const mongoose = require('mongoose');
 
 console.log('Logger instance:', Logger);
+
+mongoose.connect(process.env.MONGO_URI)
+.then(() => console.log("✅ Kết nối MongoDB thành công!"))
+.catch((err) => console.error("❌ MongoDB lỗi:", err));
 
 class Bot {
   constructor() {
@@ -20,8 +25,8 @@ class Bot {
 
     this.commandHandler = new CommandHandler(this.client);
     this.eventHandler = new EventHandler(this.client);
-    this.lavalinkHandler = new LavalinkHandler(this.client);
-    this.client.lavalinkHandler = this.lavalinkHandler;
+    // this.lavalinkHandler = new LavalinkHandler(this.client);
+    // this.client.lavalinkHandler = this.lavalinkHandler;
   }
 
   async start() {
@@ -30,9 +35,9 @@ class Bot {
       await this.commandHandler.registerCommands(); // Register commands with Discord API
       // await this.commandHandler.refreshCommands(); // Uncomment if you want to refresh commands every time
       await this.eventHandler.loadEvents();
-      await this.lavalinkHandler.initialize(lavalinkConfig);
+      // await this.lavalinkHandler.initialize(lavalinkConfig);
       
-      Logger.info('Lavalink handler initialized');
+      // Logger.info('Lavalink handler initialized');
       Logger.info('Command handler initialized');
       Logger.info('Event handler initialized');
       Logger.info('Bot is starting...');
@@ -82,14 +87,14 @@ bot.client.on('reconnect', () => {
 });
 bot.start();
 
-bot.client.manager = new Kazagumo({
+/*bot.client.manager = new Kazagumo({
   defaultSearchEngine: 'youtube',
   plugins: [new Plugins.PlayerMoved(bot.client)],
   send: (id, payload) => {
     const guild = bot.client.guilds.cache.get(id);
     if (guild) guild.shard.send(payload);
   },
-}, new Connectors.DiscordJS(bot.client), lavalinkConfig.nodes);
+}, new Connectors.DiscordJS(bot.client), lavalinkConfig.nodes);*/
 
 // cd c:/bott3/Lavalink
 // java -jar Lavalink.jar
