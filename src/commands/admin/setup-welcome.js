@@ -25,7 +25,7 @@ module.exports = {
 
     await interaction.reply({
       content: `✅ Đã đặt kênh chào mừng là ${channel}`,
-      ephemeral: true
+      flags: 64
     });
   }
 };

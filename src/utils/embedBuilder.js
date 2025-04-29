@@ -1,14 +1,32 @@
-const { EmbedBuilder } = require('discord.js');
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 
-function createWelcomeEmbed(member, message, image) {
-  return new EmbedBuilder()
-    .setColor("#00FF00")
-    .setTitle("🎉 Thành viên mới!")
-    .setDescription(message)
+function createWelcomeEmbed(member, rulesChannelId, description, image) {
+  const embed = new EmbedBuilder()
+    .setColor('#00FF99')
+    .setTitle(`Chào mừng ${member.user.username} đã đến với ${member.guild.name}! 🎉`)
+    .setDescription(description) // ✅ custom message
     .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
-    .setImage(image)
-    .setFooter({ text: `Thành viên số ${member.guild.memberCount}` })
     .setTimestamp();
+
+  if (image) embed.setImage(image);
+
+  const row = new ActionRowBuilder()
+    .addComponents(
+      new ButtonBuilder()
+        .setLabel('📖 Đọc luật')
+        .setStyle(ButtonStyle.Link)
+        .setURL(`https://discord.com/channels/${member.guild.id}/${rulesChannelId}`),
+      new ButtonBuilder()
+        .setCustomId('select-gender')
+        .setLabel('Có cu không?')
+        .setStyle(ButtonStyle.Primary),
+      new ButtonBuilder()
+        .setCustomId('select-game')
+        .setLabel('Có chơi game gì không?')
+        .setStyle(ButtonStyle.Success)
+    );
+
+  return { embed, row };
 }
 
 function createGoodbyeEmbed(member, message, image) {

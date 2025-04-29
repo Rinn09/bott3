@@ -1,4 +1,4 @@
-const { createGoodbyeEmbed } = require("../utils/embedBuilder");
+const { createGoodbyeEmbed } = require('../utils/embedBuilder');
 const config = require("../config/botConfig");
 const GuildConfig = require("../models/GuildConfig");
 

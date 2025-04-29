@@ -25,7 +25,7 @@ module.exports = {
 
     await interaction.reply({
       content: `✅ Đã đặt role tự động tặng là **${role.name}**`,
-      ephemeral: true
+      flags: 64
     });
   }
 };

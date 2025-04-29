@@ -3,11 +3,11 @@ const GuildConfig = require('../../models/GuildConfig');
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName('setup-log')
-    .setDescription('Cài đặt kênh ghi log hoạt động server')
-    .addChannelOption(option => 
+    .setName('setup-rule')
+    .setDescription('Cài đặt kênh nội quy để hiển thị trong tin nhắn chào mừng.')
+    .addChannelOption(option =>
       option.setName('channel')
-        .setDescription('Chọn kênh để gửi log')
+        .setDescription('Chọn kênh nội quy của server.')
         .setRequired(true)
     )
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
@@ -20,11 +20,11 @@ module.exports = {
       config = new GuildConfig({ guildId: interaction.guild.id });
     }
 
-    config.logChannelId = channel.id;
+    config.rulesChannelId = channel.id;
     await config.save();
 
     await interaction.reply({
-      content: `✅ Đã cài đặt kênh log: ${channel}`,
+      content: `✅ Đã đặt kênh nội quy là ${channel}`,
       flags: 64
     });
   }

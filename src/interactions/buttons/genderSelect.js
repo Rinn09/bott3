@@ -25,7 +25,8 @@ module.exports = {
     await interaction.reply({
       content: '🧑 Hãy chọn giới tính của bạn:',
       components: [genderMenu],
-      ephemeral: true // chỉ mình người click thấy
+      flags: 64,
+      ephemeral: true
     });
   }
 };

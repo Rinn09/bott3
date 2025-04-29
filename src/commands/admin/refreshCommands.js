@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 const Logger = require('../../utils/logger');
 
