@@ -568,3 +568,21 @@ Require stack:
 2025-04-29T05:55:50.176Z [INFO]: Bot is starting...
 2025-04-29T05:55:51.450Z [INFO]: Bot logged in as Machine Lux#4690
 2025-04-29T05:55:52.044Z [INFO]: Bot is ready as Machine Lux#4690
+2025-04-29T10:32:36.374Z [INFO]: Event file guildMemberRemove.js changed (change). Reloading events...
+2025-04-29T10:32:36.376Z [INFO]: Event file guildMemberAdd.js changed (change). Reloading events...
+2025-04-29T10:32:36.380Z [INFO]: Event file voiceStateUpdate.js changed (change). Reloading events...
+2025-04-29T10:32:36.477Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T10:32:36.478Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T10:32:36.480Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T10:32:36.480Z [INFO]: Total 3 events loaded.
+2025-04-29T10:32:36.481Z [INFO]: Events reloaded successfully.
+2025-04-29T10:32:36.483Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T10:32:36.485Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T10:32:36.486Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T10:32:36.487Z [INFO]: Total 3 events loaded.
+2025-04-29T10:32:36.487Z [INFO]: Events reloaded successfully.
+2025-04-29T10:32:36.489Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T10:32:36.490Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T10:32:36.492Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T10:32:36.492Z [INFO]: Total 3 events loaded.
+2025-04-29T10:32:36.493Z [INFO]: Events reloaded successfully.
