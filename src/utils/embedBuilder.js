@@ -1,30 +1,25 @@
 const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 
-function createWelcomeEmbed(member, rulesChannelId, description, image) {
+function createWelcomeEmbed(member, ruleChannelId, roleChannelId, message, image) {
   const embed = new EmbedBuilder()
-    .setColor('#00FF99')
-    .setTitle(`Chào mừng ${member.user.username} đã đến với ${member.guild.name}! 🎉`)
-    .setDescription(description) // ✅ custom message
+    .setColor('#00ff99')
+    .setTitle('👋 Chào mừng bạn đến với server!')
+    .setDescription(message)
     .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
-    .setTimestamp();
+    .setImage(image)
+    .setFooter({ text: `${member.guild.name}`, iconURL: member.guild.iconURL() });
 
-  if (image) embed.setImage(image);
+  const row = new ActionRowBuilder().addComponents(
+    new ButtonBuilder()
+      .setLabel('📖 Nội quy')
+      .setStyle(ButtonStyle.Link)
+      .setURL(`https://discord.com/channels/${member.guild.id}/${ruleChannelId}`),
 
-  const row = new ActionRowBuilder()
-    .addComponents(
-      new ButtonBuilder()
-        .setLabel('📖 Đọc luật')
-        .setStyle(ButtonStyle.Link)
-        .setURL(`https://discord.com/channels/${member.guild.id}/${rulesChannelId}`),
-      new ButtonBuilder()
-        .setCustomId('select-gender')
-        .setLabel('Có cu không?')
-        .setStyle(ButtonStyle.Primary),
-      new ButtonBuilder()
-        .setCustomId('select-game')
-        .setLabel('Có chơi game gì không?')
-        .setStyle(ButtonStyle.Success)
-    );
+    new ButtonBuilder()
+      .setLabel('🧑‍💼 Pick Your Role')
+      .setStyle(ButtonStyle.Link)
+      .setURL(`https://discord.com/channels/${member.guild.id}/${roleChannelId}`)
+  );
 
   return { embed, row };
 }

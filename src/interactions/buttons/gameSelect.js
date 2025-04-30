@@ -42,10 +42,9 @@ module.exports = {
           ])
       );
 
-    await interaction.reply({
+      return interaction.reply({
       content: '🎮 Hãy chọn tựa game bạn chơi:',
       components: [gameMenu],
-      flags: 64,
       ephemeral: true
     });
   }

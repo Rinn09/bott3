@@ -5,11 +5,10 @@ const botConfig = require("../config/botConfig");
 module.exports = {
   name: 'guildMemberAdd',
   async execute(member) {
-    const guildConfig = await GuildConfig.findOne({ guildId: member.guild.id });
+    const config = await GuildConfig.findOne({ guildId: member.guild.id });
+    if (!config || !config.welcomeChannelId || !config.rulesChannelId || !config.roleChannelId) return;
 
-    if (!guildConfig?.welcomeChannelId || !guildConfig?.rulesChannelId) return;
-
-    const channel = member.guild.channels.cache.get(guildConfig.welcomeChannelId);
+    const channel = member.guild.channels.cache.get(config.welcomeChannelId);
     if (!channel) return;
 
     // 🌟 Random câu chào & ảnh từ botConfig
@@ -20,7 +19,14 @@ module.exports = {
       .replace("{user}", `<@${member.id}>`)
       .replace("{server}", member.guild.name);
 
-    const { embed, row } = createWelcomeEmbed(member, guildConfig.rulesChannelId, message, image);
+    const { embed, row } = createWelcomeEmbed(
+      member,
+      config.rulesChannelId,
+      config.roleChannelId,
+      message,
+      image
+    );
+
     await channel.send({ embeds: [embed], components: [row] });
   }
 };

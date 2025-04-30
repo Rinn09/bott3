@@ -586,3 +586,588 @@ Require stack:
 2025-04-29T10:32:36.492Z [INFO]: Loaded event: voiceStateUpdate
 2025-04-29T10:32:36.492Z [INFO]: Total 3 events loaded.
 2025-04-29T10:32:36.493Z [INFO]: Events reloaded successfully.
+2025-04-29T14:01:31.577Z [INFO]: Event file guildMemberAdd.js changed (change). Reloading events...
+2025-04-29T14:01:31.709Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T14:01:31.710Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T14:01:31.720Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T14:01:31.739Z [INFO]: Total 3 events loaded.
+2025-04-29T14:01:31.740Z [INFO]: Events reloaded successfully.
+2025-04-29T14:01:31.740Z [INFO]: Event file guildMemberRemove.js changed (change). Reloading events...
+2025-04-29T14:01:31.741Z [INFO]: Event file voiceStateUpdate.js changed (change). Reloading events...
+2025-04-29T14:01:31.845Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T14:01:31.847Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T14:01:31.848Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T14:01:31.848Z [INFO]: Total 3 events loaded.
+2025-04-29T14:01:31.848Z [INFO]: Events reloaded successfully.
+2025-04-29T14:01:31.849Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T14:01:31.850Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T14:01:31.853Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T14:01:31.853Z [INFO]: Total 3 events loaded.
+2025-04-29T14:01:31.853Z [INFO]: Events reloaded successfully.
+2025-04-29T15:09:26.721Z [INFO]: Event file guildMemberAdd.js changed (change). Reloading events...
+2025-04-29T15:09:26.840Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T15:09:26.841Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T15:09:26.844Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T15:09:26.844Z [INFO]: Total 3 events loaded.
+2025-04-29T15:09:26.844Z [INFO]: Events reloaded successfully.
+2025-04-29T15:09:26.845Z [INFO]: Event file guildMemberRemove.js changed (change). Reloading events...
+2025-04-29T15:09:26.847Z [INFO]: Event file voiceStateUpdate.js changed (change). Reloading events...
+2025-04-29T15:09:26.948Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T15:09:26.949Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T15:09:26.950Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T15:09:26.951Z [INFO]: Total 3 events loaded.
+2025-04-29T15:09:26.951Z [INFO]: Events reloaded successfully.
+2025-04-29T15:09:26.954Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T15:09:26.956Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T15:09:26.958Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T15:09:26.960Z [INFO]: Total 3 events loaded.
+2025-04-29T15:09:26.960Z [INFO]: Events reloaded successfully.
+2025-04-29T15:13:23.822Z [INFO]: Loaded command: refresh
+2025-04-29T15:13:23.837Z [INFO]: Loaded command: setup-autorole
+2025-04-29T15:13:23.839Z [INFO]: Loaded command: setup-goodbye
+2025-04-29T15:13:23.841Z [INFO]: Loaded command: setup-log
+2025-04-29T15:13:23.843Z [INFO]: Loaded command: setup-rule
+2025-04-29T15:13:23.845Z [INFO]: Loaded command: setup-welcome
+2025-04-29T15:13:23.847Z [INFO]: Loaded command: play
+2025-04-29T15:13:23.849Z [INFO]: Loaded command: disablecommand
+2025-04-29T15:13:23.853Z [INFO]: Đang đăng ký 8 lệnh với Discord API...
+2025-04-29T15:13:24.508Z [INFO]: Đã đăng ký thành công 8 lệnh với Discord API
+2025-04-29T15:13:24.511Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T15:13:24.512Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T15:13:24.513Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T15:13:24.513Z [INFO]: Total 3 events loaded.
+2025-04-29T15:13:24.514Z [INFO]: Command handler initialized
+2025-04-29T15:13:24.514Z [INFO]: Event handler initialized
+2025-04-29T15:13:24.514Z [INFO]: Bot is starting...
+2025-04-29T15:13:25.581Z [INFO]: Bot logged in as Machine Lux#4690
+2025-04-29T15:13:26.057Z [INFO]: Bot is ready as Machine Lux#4690
+2025-04-29T15:15:21.977Z [INFO]: Loaded command: refresh
+2025-04-29T15:15:21.991Z [INFO]: Loaded command: setup-autorole
+2025-04-29T15:15:21.992Z [INFO]: Loaded command: setup-goodbye
+2025-04-29T15:15:21.994Z [INFO]: Loaded command: setup-log
+2025-04-29T15:15:21.995Z [INFO]: Loaded command: setup-rule
+2025-04-29T15:15:21.996Z [INFO]: Loaded command: setup-welcome
+2025-04-29T15:15:21.999Z [INFO]: Loaded command: play
+2025-04-29T15:15:22.000Z [INFO]: Loaded command: disablecommand
+2025-04-29T15:15:22.002Z [INFO]: Đang đăng ký 8 lệnh với Discord API...
+2025-04-29T15:15:22.611Z [INFO]: Đã đăng ký thành công 8 lệnh với Discord API
+2025-04-29T15:15:22.614Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T15:15:22.615Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T15:15:22.616Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T15:15:22.616Z [INFO]: Total 3 events loaded.
+2025-04-29T15:15:22.617Z [INFO]: Command handler initialized
+2025-04-29T15:15:22.617Z [INFO]: Event handler initialized
+2025-04-29T15:15:22.617Z [INFO]: Bot is starting...
+2025-04-29T15:15:23.752Z [INFO]: Bot logged in as Machine Lux#4690
+2025-04-29T15:15:23.977Z [INFO]: Bot is ready as Machine Lux#4690
+2025-04-29T15:22:13.911Z [INFO]: Loaded command: refresh
+2025-04-29T15:22:13.924Z [INFO]: Loaded command: setup-autorole
+2025-04-29T15:22:13.926Z [INFO]: Loaded command: setup-goodbye
+2025-04-29T15:22:13.927Z [INFO]: Loaded command: setup-log
+2025-04-29T15:22:13.928Z [INFO]: Loaded command: setup-rule
+2025-04-29T15:22:13.930Z [INFO]: Loaded command: setup-welcome
+2025-04-29T15:22:13.931Z [INFO]: Loaded command: play
+2025-04-29T15:22:13.934Z [INFO]: Loaded command: disablecommand
+2025-04-29T15:22:13.936Z [INFO]: Đang đăng ký 8 lệnh với Discord API...
+2025-04-29T15:22:14.521Z [INFO]: Đã đăng ký thành công 8 lệnh với Discord API
+2025-04-29T15:22:14.524Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T15:22:14.525Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T15:22:14.527Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T15:22:14.528Z [INFO]: Total 3 events loaded.
+2025-04-29T15:22:14.528Z [INFO]: Command handler initialized
+2025-04-29T15:22:14.528Z [INFO]: Event handler initialized
+2025-04-29T15:22:14.529Z [INFO]: Bot is starting...
+2025-04-29T15:22:15.602Z [INFO]: Bot logged in as Machine Lux#4690
+2025-04-29T15:22:16.194Z [INFO]: Bot is ready as Machine Lux#4690
+2025-04-29T15:54:40.612Z [INFO]: Event file messageReactionAdd.js changed (rename). Reloading events...
+2025-04-29T15:54:40.728Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T15:54:40.731Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T15:54:40.733Z [WARN]: Event at C:\bott3\src\events\messageReactionAdd.js missing required 'name' or 'execute' properties.
+2025-04-29T15:54:40.738Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T15:54:40.738Z [INFO]: Total 3 events loaded.
+2025-04-29T15:54:40.739Z [INFO]: Events reloaded successfully.
+2025-04-29T15:59:05.800Z [INFO]: Event file messageReactionAdd.js changed (change). Reloading events...
+2025-04-29T15:59:05.801Z [INFO]: Event file messageReactionAdd.js changed (change). Reloading events...
+2025-04-29T15:59:05.803Z [INFO]: Event file messageReactionAdd.js changed (change). Reloading events...
+2025-04-29T15:59:05.904Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T15:59:05.905Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T15:59:05.906Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T15:59:05.908Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T15:59:05.908Z [INFO]: Total 4 events loaded.
+2025-04-29T15:59:05.908Z [INFO]: Events reloaded successfully.
+2025-04-29T15:59:05.909Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T15:59:05.910Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T15:59:05.911Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T15:59:05.913Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T15:59:05.913Z [INFO]: Total 4 events loaded.
+2025-04-29T15:59:05.913Z [INFO]: Events reloaded successfully.
+2025-04-29T15:59:05.915Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T15:59:05.915Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T15:59:05.916Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T15:59:05.917Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T15:59:05.918Z [INFO]: Total 4 events loaded.
+2025-04-29T15:59:05.918Z [INFO]: Events reloaded successfully.
+2025-04-29T15:59:24.782Z [INFO]: Event file messageReactionRemove.js changed (rename). Reloading events...
+2025-04-29T15:59:24.887Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T15:59:24.887Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T15:59:24.888Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T15:59:24.891Z [WARN]: Event at C:\bott3\src\events\messageReactionRemove.js missing required 'name' or 'execute' properties.
+2025-04-29T15:59:24.892Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T15:59:24.892Z [INFO]: Total 4 events loaded.
+2025-04-29T15:59:24.892Z [INFO]: Events reloaded successfully.
+2025-04-29T16:00:06.720Z [INFO]: Event file messageReactionRemove.js changed (change). Reloading events...
+2025-04-29T16:00:06.721Z [INFO]: Event file messageReactionRemove.js changed (change). Reloading events...
+2025-04-29T16:00:06.722Z [INFO]: Event file messageReactionRemove.js changed (change). Reloading events...
+2025-04-29T16:00:06.825Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T16:00:06.839Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T16:00:06.840Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T16:00:06.841Z [INFO]: Loaded event: messageReactionRemove
+2025-04-29T16:00:06.842Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T16:00:06.843Z [INFO]: Total 5 events loaded.
+2025-04-29T16:00:06.843Z [INFO]: Events reloaded successfully.
+2025-04-29T16:00:06.844Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T16:00:06.845Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T16:00:06.846Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T16:00:06.846Z [INFO]: Loaded event: messageReactionRemove
+2025-04-29T16:00:06.847Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T16:00:06.847Z [INFO]: Total 5 events loaded.
+2025-04-29T16:00:06.847Z [INFO]: Events reloaded successfully.
+2025-04-29T16:00:06.848Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T16:00:06.849Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T16:00:06.850Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T16:00:06.851Z [INFO]: Loaded event: messageReactionRemove
+2025-04-29T16:00:06.852Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T16:00:06.852Z [INFO]: Total 5 events loaded.
+2025-04-29T16:00:06.852Z [INFO]: Events reloaded successfully.
+2025-04-29T16:00:17.525Z [INFO]: Event file messageReactionAdd.js changed (change). Reloading events...
+2025-04-29T16:00:17.526Z [INFO]: Event file messageReactionAdd.js changed (change). Reloading events...
+2025-04-29T16:00:17.527Z [INFO]: Event file messageReactionAdd.js changed (change). Reloading events...
+2025-04-29T16:00:17.642Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T16:00:17.643Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T16:00:17.644Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T16:00:17.645Z [INFO]: Loaded event: messageReactionRemove
+2025-04-29T16:00:17.646Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T16:00:17.647Z [INFO]: Total 5 events loaded.
+2025-04-29T16:00:17.647Z [INFO]: Events reloaded successfully.
+2025-04-29T16:00:17.649Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T16:00:17.650Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T16:00:17.651Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T16:00:17.652Z [INFO]: Loaded event: messageReactionRemove
+2025-04-29T16:00:17.653Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T16:00:17.653Z [INFO]: Total 5 events loaded.
+2025-04-29T16:00:17.653Z [INFO]: Events reloaded successfully.
+2025-04-29T16:00:17.654Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T16:00:17.655Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T16:00:17.656Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T16:00:17.657Z [INFO]: Loaded event: messageReactionRemove
+2025-04-29T16:00:17.658Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T16:00:17.658Z [INFO]: Total 5 events loaded.
+2025-04-29T16:00:17.658Z [INFO]: Events reloaded successfully.
+2025-04-29T16:00:49.134Z [INFO]: Loaded command: refresh
+2025-04-29T16:00:49.157Z [INFO]: Loaded command: setup-autorole
+2025-04-29T16:00:49.160Z [INFO]: Loaded command: setup-goodbye
+2025-04-29T16:00:49.163Z [INFO]: Loaded command: setup-log
+2025-04-29T16:00:49.166Z [INFO]: Loaded command: setup-role-channel
+2025-04-29T16:00:49.168Z [INFO]: Loaded command: setup-rule
+2025-04-29T16:00:49.172Z [INFO]: Loaded command: setup-welcome
+2025-04-29T16:00:49.175Z [INFO]: Loaded command: play
+2025-04-29T16:00:49.178Z [INFO]: Loaded command: disablecommand
+2025-04-29T16:00:49.182Z [INFO]: Đang đăng ký 9 lệnh với Discord API...
+2025-04-29T16:00:49.959Z [INFO]: Đã đăng ký thành công 9 lệnh với Discord API
+2025-04-29T16:00:49.962Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T16:00:49.963Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T16:00:49.964Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T16:00:49.965Z [INFO]: Loaded event: messageReactionRemove
+2025-04-29T16:00:49.966Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T16:00:49.967Z [INFO]: Total 5 events loaded.
+2025-04-29T16:00:49.967Z [INFO]: Command handler initialized
+2025-04-29T16:00:49.967Z [INFO]: Event handler initialized
+2025-04-29T16:00:49.967Z [INFO]: Bot is starting...
+2025-04-29T16:00:51.081Z [INFO]: Bot logged in as Machine Lux#4690
+2025-04-29T16:00:51.350Z [INFO]: Bot is ready as Machine Lux#4690
+2025-04-29T16:06:16.425Z [ERROR]: Error executing setup-role-channel: Unknown Emoji
+2025-04-29T16:07:03.581Z [ERROR]: Error executing setup-role-channel: Unknown Emoji
+2025-04-29T16:10:45.322Z [INFO]: Event file guildMemberAdd.js changed (change). Reloading events...
+2025-04-29T16:10:45.431Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T16:10:45.431Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T16:10:45.432Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T16:10:45.433Z [INFO]: Loaded event: messageReactionRemove
+2025-04-29T16:10:45.434Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T16:10:45.434Z [INFO]: Total 5 events loaded.
+2025-04-29T16:10:45.434Z [INFO]: Events reloaded successfully.
+2025-04-29T16:10:45.435Z [INFO]: Event file guildMemberRemove.js changed (change). Reloading events...
+2025-04-29T16:10:45.436Z [INFO]: Event file voiceStateUpdate.js changed (change). Reloading events...
+2025-04-29T16:10:45.540Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T16:10:45.540Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T16:10:45.541Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T16:10:45.541Z [INFO]: Loaded event: messageReactionRemove
+2025-04-29T16:10:45.542Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T16:10:45.542Z [INFO]: Total 5 events loaded.
+2025-04-29T16:10:45.542Z [INFO]: Events reloaded successfully.
+2025-04-29T16:10:45.543Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T16:10:45.543Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T16:10:45.544Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T16:10:45.544Z [INFO]: Loaded event: messageReactionRemove
+2025-04-29T16:10:45.545Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T16:10:45.545Z [INFO]: Total 5 events loaded.
+2025-04-29T16:10:45.545Z [INFO]: Events reloaded successfully.
+2025-04-29T16:19:42.343Z [INFO]: Loaded command: refresh
+2025-04-29T16:19:42.359Z [INFO]: Loaded command: setup-autorole
+2025-04-29T16:19:42.362Z [INFO]: Loaded command: setup-goodbye
+2025-04-29T16:19:42.364Z [INFO]: Loaded command: setup-log
+2025-04-29T16:19:42.365Z [INFO]: Loaded command: setup-role-channel
+2025-04-29T16:19:42.366Z [INFO]: Loaded command: setup-rule
+2025-04-29T16:19:42.369Z [INFO]: Loaded command: setup-welcome
+2025-04-29T16:19:42.372Z [INFO]: Loaded command: play
+2025-04-29T16:19:42.374Z [INFO]: Loaded command: disablecommand
+2025-04-29T16:19:42.377Z [INFO]: Đang đăng ký 9 lệnh với Discord API...
+2025-04-29T16:19:43.007Z [INFO]: Đã đăng ký thành công 9 lệnh với Discord API
+2025-04-29T16:19:43.010Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T16:19:43.012Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T16:19:43.013Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T16:19:43.015Z [INFO]: Loaded event: messageReactionRemove
+2025-04-29T16:19:43.017Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T16:19:43.017Z [INFO]: Total 5 events loaded.
+2025-04-29T16:19:43.017Z [INFO]: Command handler initialized
+2025-04-29T16:19:43.018Z [INFO]: Event handler initialized
+2025-04-29T16:19:43.018Z [INFO]: Bot is starting...
+2025-04-29T16:19:44.112Z [INFO]: Bot logged in as Machine Lux#4690
+2025-04-29T16:19:44.656Z [INFO]: Bot is ready as Machine Lux#4690
+2025-04-29T16:20:17.634Z [ERROR]: Error executing setup-role-channel: Unknown interaction
+2025-04-29T16:20:17.997Z [ERROR]: Client error: Unknown interaction
+2025-04-29T16:20:17.997Z [ERROR]: WebSocket error: Unknown interaction
+2025-04-29T16:23:52.443Z [INFO]: Loaded command: refresh
+2025-04-29T16:23:52.458Z [INFO]: Loaded command: setup-autorole
+2025-04-29T16:23:52.460Z [INFO]: Loaded command: setup-goodbye
+2025-04-29T16:23:52.462Z [INFO]: Loaded command: setup-log
+2025-04-29T16:23:52.464Z [INFO]: Loaded command: setup-role-channel
+2025-04-29T16:23:52.465Z [INFO]: Loaded command: setup-rule
+2025-04-29T16:23:52.467Z [INFO]: Loaded command: setup-welcome
+2025-04-29T16:23:52.468Z [INFO]: Loaded command: play
+2025-04-29T16:23:52.470Z [INFO]: Loaded command: disablecommand
+2025-04-29T16:23:52.473Z [INFO]: Đang đăng ký 9 lệnh với Discord API...
+2025-04-29T16:23:53.071Z [INFO]: Đã đăng ký thành công 9 lệnh với Discord API
+2025-04-29T16:23:53.073Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T16:23:53.075Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T16:23:53.076Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T16:23:53.076Z [INFO]: Loaded event: messageReactionRemove
+2025-04-29T16:23:53.078Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T16:23:53.078Z [INFO]: Total 5 events loaded.
+2025-04-29T16:23:53.078Z [INFO]: Command handler initialized
+2025-04-29T16:23:53.079Z [INFO]: Event handler initialized
+2025-04-29T16:23:53.079Z [INFO]: Bot is starting...
+2025-04-29T16:23:55.481Z [INFO]: Bot logged in as Machine Lux#4690
+2025-04-29T16:23:55.959Z [INFO]: Bot is ready as Machine Lux#4690
+2025-04-29T16:33:31.402Z [INFO]: Event file messageReactionAdd.js changed (change). Reloading events...
+2025-04-29T16:33:31.404Z [INFO]: Event file messageReactionAdd.js changed (change). Reloading events...
+2025-04-29T16:33:31.405Z [INFO]: Event file messageReactionAdd.js changed (change). Reloading events...
+2025-04-29T16:33:31.519Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T16:33:31.520Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T16:33:31.521Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T16:33:31.523Z [INFO]: Loaded event: messageReactionRemove
+2025-04-29T16:33:31.524Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T16:33:31.525Z [INFO]: Total 5 events loaded.
+2025-04-29T16:33:31.525Z [INFO]: Events reloaded successfully.
+2025-04-29T16:33:31.526Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T16:33:31.527Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T16:33:31.528Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T16:33:31.528Z [INFO]: Loaded event: messageReactionRemove
+2025-04-29T16:33:31.531Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T16:33:31.531Z [INFO]: Total 5 events loaded.
+2025-04-29T16:33:31.531Z [INFO]: Events reloaded successfully.
+2025-04-29T16:33:31.533Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T16:33:31.533Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T16:33:31.534Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T16:33:31.535Z [INFO]: Loaded event: messageReactionRemove
+2025-04-29T16:33:31.536Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T16:33:31.536Z [INFO]: Total 5 events loaded.
+2025-04-29T16:33:31.537Z [INFO]: Events reloaded successfully.
+2025-04-29T16:35:17.597Z [INFO]: Loaded command: refresh
+2025-04-29T16:35:17.613Z [INFO]: Loaded command: setup-autorole
+2025-04-29T16:35:17.616Z [INFO]: Loaded command: setup-goodbye
+2025-04-29T16:35:17.622Z [INFO]: Loaded command: setup-log
+2025-04-29T16:35:17.625Z [INFO]: Loaded command: setup-role-channel
+2025-04-29T16:35:17.627Z [INFO]: Loaded command: setup-rule
+2025-04-29T16:35:17.628Z [INFO]: Loaded command: setup-welcome
+2025-04-29T16:35:17.631Z [INFO]: Loaded command: play
+2025-04-29T16:35:17.634Z [INFO]: Loaded command: disablecommand
+2025-04-29T16:35:17.637Z [INFO]: Đang đăng ký 9 lệnh với Discord API...
+2025-04-29T16:35:18.152Z [INFO]: Đã đăng ký thành công 9 lệnh với Discord API
+2025-04-29T16:35:18.155Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T16:35:18.156Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T16:35:18.157Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T16:35:18.158Z [INFO]: Loaded event: messageReactionRemove
+2025-04-29T16:35:18.159Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T16:35:18.159Z [INFO]: Total 5 events loaded.
+2025-04-29T16:35:18.160Z [INFO]: Command handler initialized
+2025-04-29T16:35:18.160Z [INFO]: Event handler initialized
+2025-04-29T16:35:18.160Z [INFO]: Bot is starting...
+2025-04-29T16:35:19.202Z [INFO]: Bot logged in as Machine Lux#4690
+2025-04-29T16:35:19.501Z [INFO]: Bot is ready as Machine Lux#4690
+2025-04-29T16:40:48.095Z [INFO]: Event file messageReactionRemove.js changed (change). Reloading events...
+2025-04-29T16:40:48.096Z [INFO]: Event file messageReactionRemove.js changed (change). Reloading events...
+2025-04-29T16:40:48.097Z [INFO]: Event file messageReactionRemove.js changed (change). Reloading events...
+2025-04-29T16:40:48.202Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T16:40:48.202Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T16:40:48.203Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T16:40:48.203Z [INFO]: Loaded event: messageReactionRemove
+2025-04-29T16:40:48.204Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T16:40:48.204Z [INFO]: Total 5 events loaded.
+2025-04-29T16:40:48.204Z [INFO]: Events reloaded successfully.
+2025-04-29T16:40:48.205Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T16:40:48.205Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T16:40:48.206Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T16:40:48.207Z [INFO]: Loaded event: messageReactionRemove
+2025-04-29T16:40:48.208Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T16:40:48.208Z [INFO]: Total 5 events loaded.
+2025-04-29T16:40:48.208Z [INFO]: Events reloaded successfully.
+2025-04-29T16:40:48.209Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T16:40:48.210Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T16:40:48.210Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T16:40:48.211Z [INFO]: Loaded event: messageReactionRemove
+2025-04-29T16:40:48.212Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T16:40:48.212Z [INFO]: Total 5 events loaded.
+2025-04-29T16:40:48.212Z [INFO]: Events reloaded successfully.
+2025-04-29T16:41:04.694Z [INFO]: Event file messageReactionAdd.js changed (change). Reloading events...
+2025-04-29T16:41:04.695Z [INFO]: Event file messageReactionAdd.js changed (change). Reloading events...
+2025-04-29T16:41:04.695Z [INFO]: Event file messageReactionAdd.js changed (change). Reloading events...
+2025-04-29T16:41:04.797Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T16:41:04.797Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T16:41:04.798Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T16:41:04.798Z [INFO]: Loaded event: messageReactionRemove
+2025-04-29T16:41:04.799Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T16:41:04.799Z [INFO]: Total 5 events loaded.
+2025-04-29T16:41:04.799Z [INFO]: Events reloaded successfully.
+2025-04-29T16:41:04.800Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T16:41:04.800Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T16:41:04.800Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T16:41:04.801Z [INFO]: Loaded event: messageReactionRemove
+2025-04-29T16:41:04.801Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T16:41:04.801Z [INFO]: Total 5 events loaded.
+2025-04-29T16:41:04.801Z [INFO]: Events reloaded successfully.
+2025-04-29T16:41:04.802Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T16:41:04.803Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T16:41:04.803Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T16:41:04.804Z [INFO]: Loaded event: messageReactionRemove
+2025-04-29T16:41:04.805Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T16:41:04.805Z [INFO]: Total 5 events loaded.
+2025-04-29T16:41:04.805Z [INFO]: Events reloaded successfully.
+2025-04-29T16:44:18.755Z [INFO]: Event file messageReactionAdd.js changed (change). Reloading events...
+2025-04-29T16:44:18.755Z [INFO]: Event file messageReactionAdd.js changed (change). Reloading events...
+2025-04-29T16:44:18.756Z [INFO]: Event file messageReactionAdd.js changed (change). Reloading events...
+2025-04-29T16:44:18.856Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T16:44:18.856Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T16:44:18.857Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T16:44:18.857Z [INFO]: Loaded event: messageReactionRemove
+2025-04-29T16:44:18.858Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T16:44:18.858Z [INFO]: Total 5 events loaded.
+2025-04-29T16:44:18.858Z [INFO]: Events reloaded successfully.
+2025-04-29T16:44:18.859Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T16:44:18.860Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T16:44:18.861Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T16:44:18.861Z [INFO]: Loaded event: messageReactionRemove
+2025-04-29T16:44:18.862Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T16:44:18.862Z [INFO]: Total 5 events loaded.
+2025-04-29T16:44:18.862Z [INFO]: Events reloaded successfully.
+2025-04-29T16:44:18.864Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T16:44:18.864Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T16:44:18.865Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T16:44:18.865Z [INFO]: Loaded event: messageReactionRemove
+2025-04-29T16:44:18.866Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T16:44:18.866Z [INFO]: Total 5 events loaded.
+2025-04-29T16:44:18.866Z [INFO]: Events reloaded successfully.
+2025-04-29T16:44:53.718Z [INFO]: Loaded command: refresh
+2025-04-29T16:44:53.730Z [INFO]: Loaded command: setup-autorole
+2025-04-29T16:44:53.732Z [INFO]: Loaded command: setup-goodbye
+2025-04-29T16:44:53.733Z [INFO]: Loaded command: setup-log
+2025-04-29T16:44:53.735Z [INFO]: Loaded command: setup-role-channel
+2025-04-29T16:44:53.737Z [INFO]: Loaded command: setup-rule
+2025-04-29T16:44:53.739Z [INFO]: Loaded command: setup-welcome
+2025-04-29T16:44:53.741Z [INFO]: Loaded command: play
+2025-04-29T16:44:53.743Z [INFO]: Loaded command: disablecommand
+2025-04-29T16:44:53.746Z [INFO]: Đang đăng ký 9 lệnh với Discord API...
+2025-04-29T16:44:54.411Z [INFO]: Đã đăng ký thành công 9 lệnh với Discord API
+2025-04-29T16:44:54.413Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T16:44:54.414Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T16:44:54.415Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T16:44:54.416Z [INFO]: Loaded event: messageReactionRemove
+2025-04-29T16:44:54.417Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T16:44:54.418Z [INFO]: Total 5 events loaded.
+2025-04-29T16:44:54.418Z [INFO]: Command handler initialized
+2025-04-29T16:44:54.418Z [INFO]: Event handler initialized
+2025-04-29T16:44:54.418Z [INFO]: Bot is starting...
+2025-04-29T16:44:55.525Z [INFO]: Bot logged in as Machine Lux#4690
+2025-04-29T16:44:56.090Z [INFO]: Bot is ready as Machine Lux#4690
+2025-04-29T16:59:01.913Z [INFO]: Loaded command: refresh
+2025-04-29T16:59:01.925Z [INFO]: Loaded command: setup-autorole
+2025-04-29T16:59:01.927Z [INFO]: Loaded command: setup-goodbye
+2025-04-29T16:59:01.929Z [INFO]: Loaded command: setup-log
+2025-04-29T16:59:01.930Z [INFO]: Loaded command: setup-role-channel
+2025-04-29T16:59:01.932Z [INFO]: Loaded command: setup-rule
+2025-04-29T16:59:01.934Z [INFO]: Loaded command: setup-welcome
+2025-04-29T16:59:01.935Z [INFO]: Loaded command: play
+2025-04-29T16:59:01.937Z [INFO]: Loaded command: disablecommand
+2025-04-29T16:59:01.939Z [INFO]: Đang đăng ký 9 lệnh với Discord API...
+2025-04-29T16:59:02.489Z [INFO]: Đã đăng ký thành công 9 lệnh với Discord API
+2025-04-29T16:59:02.491Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T16:59:02.493Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T16:59:02.494Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T16:59:02.495Z [INFO]: Loaded event: messageReactionRemove
+2025-04-29T16:59:02.497Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T16:59:02.497Z [INFO]: Total 5 events loaded.
+2025-04-29T16:59:02.497Z [INFO]: Command handler initialized
+2025-04-29T16:59:02.498Z [INFO]: Event handler initialized
+2025-04-29T16:59:02.498Z [INFO]: Bot is starting...
+2025-04-29T16:59:03.608Z [INFO]: Bot logged in as Machine Lux#4690
+2025-04-29T16:59:04.346Z [INFO]: Bot is ready as Machine Lux#4690
+2025-04-29T17:13:03.484Z [INFO]: Event file guildMemberAdd.js changed (change). Reloading events...
+2025-04-29T17:13:03.585Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T17:13:03.586Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T17:13:03.587Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T17:13:03.587Z [INFO]: Loaded event: messageReactionRemove
+2025-04-29T17:13:03.589Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T17:13:03.590Z [INFO]: Total 5 events loaded.
+2025-04-29T17:13:03.591Z [INFO]: Events reloaded successfully.
+2025-04-29T17:13:03.593Z [INFO]: Event file guildMemberRemove.js changed (change). Reloading events...
+2025-04-29T17:13:03.594Z [INFO]: Event file voiceStateUpdate.js changed (change). Reloading events...
+2025-04-29T17:13:03.695Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T17:13:03.696Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T17:13:03.697Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T17:13:03.698Z [INFO]: Loaded event: messageReactionRemove
+2025-04-29T17:13:03.698Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T17:13:03.698Z [INFO]: Total 5 events loaded.
+2025-04-29T17:13:03.699Z [INFO]: Events reloaded successfully.
+2025-04-29T17:13:03.700Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T17:13:03.701Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T17:13:03.702Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T17:13:03.703Z [INFO]: Loaded event: messageReactionRemove
+2025-04-29T17:13:03.705Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T17:13:03.705Z [INFO]: Total 5 events loaded.
+2025-04-29T17:13:03.706Z [INFO]: Events reloaded successfully.
+2025-04-29T17:13:08.543Z [INFO]: Event file guildMemberAdd.js changed (change). Reloading events...
+2025-04-29T17:13:08.544Z [INFO]: Event file guildMemberAdd.js changed (change). Reloading events...
+2025-04-29T17:13:08.544Z [INFO]: Event file guildMemberAdd.js changed (change). Reloading events...
+2025-04-29T17:13:08.650Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T17:13:08.651Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T17:13:08.652Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T17:13:08.654Z [INFO]: Loaded event: messageReactionRemove
+2025-04-29T17:13:08.656Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T17:13:08.656Z [INFO]: Total 5 events loaded.
+2025-04-29T17:13:08.656Z [INFO]: Events reloaded successfully.
+2025-04-29T17:13:08.658Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T17:13:08.659Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T17:13:08.661Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T17:13:08.662Z [INFO]: Loaded event: messageReactionRemove
+2025-04-29T17:13:08.663Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T17:13:08.663Z [INFO]: Total 5 events loaded.
+2025-04-29T17:13:08.663Z [INFO]: Events reloaded successfully.
+2025-04-29T17:13:08.664Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T17:13:08.665Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T17:13:08.667Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T17:13:08.668Z [INFO]: Loaded event: messageReactionRemove
+2025-04-29T17:13:08.669Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T17:13:08.669Z [INFO]: Total 5 events loaded.
+2025-04-29T17:13:08.670Z [INFO]: Events reloaded successfully.
+2025-04-29T17:13:30.598Z [INFO]: Loaded command: refresh
+2025-04-29T17:13:30.613Z [INFO]: Loaded command: setup-autorole
+2025-04-29T17:13:30.615Z [INFO]: Loaded command: setup-goodbye
+2025-04-29T17:13:30.616Z [INFO]: Loaded command: setup-log
+2025-04-29T17:13:30.618Z [INFO]: Loaded command: setup-role-channel
+2025-04-29T17:13:30.620Z [INFO]: Loaded command: setup-rule
+2025-04-29T17:13:30.621Z [INFO]: Loaded command: setup-welcome
+2025-04-29T17:13:30.622Z [INFO]: Loaded command: play
+2025-04-29T17:13:30.624Z [INFO]: Loaded command: disablecommand
+2025-04-29T17:13:30.627Z [INFO]: Đang đăng ký 9 lệnh với Discord API...
+2025-04-29T17:13:31.257Z [INFO]: Đã đăng ký thành công 9 lệnh với Discord API
+2025-04-29T17:13:31.260Z [INFO]: Loaded event: guildMemberAdd
+2025-04-29T17:13:31.261Z [INFO]: Loaded event: guildMemberRemove
+2025-04-29T17:13:31.262Z [INFO]: Loaded event: messageReactionAdd
+2025-04-29T17:13:31.263Z [INFO]: Loaded event: messageReactionRemove
+2025-04-29T17:13:31.265Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-29T17:13:31.265Z [INFO]: Total 5 events loaded.
+2025-04-29T17:13:31.265Z [INFO]: Command handler initialized
+2025-04-29T17:13:31.266Z [INFO]: Event handler initialized
+2025-04-29T17:13:31.266Z [INFO]: Bot is starting...
+2025-04-29T17:13:33.677Z [INFO]: Bot logged in as Machine Lux#4690
+2025-04-29T17:13:34.175Z [INFO]: Bot is ready as Machine Lux#4690
+2025-04-30T04:50:07.909Z [INFO]: Loaded command: refresh
+2025-04-30T04:50:07.932Z [INFO]: Loaded command: setup-autorole
+2025-04-30T04:50:07.934Z [INFO]: Loaded command: setup-goodbye
+2025-04-30T04:50:07.935Z [INFO]: Loaded command: setup-log
+2025-04-30T04:50:07.937Z [INFO]: Loaded command: setup-role-channel
+2025-04-30T04:50:07.940Z [INFO]: Loaded command: setup-rule
+2025-04-30T04:50:07.972Z [INFO]: Loaded command: setup-welcome
+2025-04-30T04:50:07.976Z [INFO]: Loaded command: play
+2025-04-30T04:50:07.979Z [INFO]: Loaded command: disablecommand
+2025-04-30T04:50:07.982Z [INFO]: Đang đăng ký 9 lệnh với Discord API...
+2025-04-30T04:50:08.590Z [INFO]: Đã đăng ký thành công 9 lệnh với Discord API
+2025-04-30T04:50:08.592Z [INFO]: Loaded event: guildMemberAdd
+2025-04-30T04:50:08.593Z [INFO]: Loaded event: guildMemberRemove
+2025-04-30T04:50:08.594Z [INFO]: Loaded event: messageReactionAdd
+2025-04-30T04:50:08.595Z [INFO]: Loaded event: messageReactionRemove
+2025-04-30T04:50:08.597Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-30T04:50:08.598Z [INFO]: Total 5 events loaded.
+2025-04-30T04:50:08.598Z [INFO]: Command handler initialized
+2025-04-30T04:50:08.598Z [INFO]: Event handler initialized
+2025-04-30T04:50:08.598Z [INFO]: Bot is starting...
+2025-04-30T04:50:08.606Z [INFO]: Event file guildMemberRemove.js changed (change). Reloading events...
+2025-04-30T04:50:08.607Z [INFO]: Event file messageReactionAdd.js changed (change). Reloading events...
+2025-04-30T04:50:08.608Z [INFO]: Event file messageReactionRemove.js changed (change). Reloading events...
+2025-04-30T04:50:08.608Z [INFO]: Event file voiceStateUpdate.js changed (change). Reloading events...
+2025-04-30T04:50:08.709Z [INFO]: Loaded event: guildMemberAdd
+2025-04-30T04:50:08.709Z [INFO]: Loaded event: guildMemberRemove
+2025-04-30T04:50:08.710Z [INFO]: Loaded event: messageReactionAdd
+2025-04-30T04:50:08.710Z [INFO]: Loaded event: messageReactionRemove
+2025-04-30T04:50:08.711Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-30T04:50:08.711Z [INFO]: Total 5 events loaded.
+2025-04-30T04:50:08.712Z [INFO]: Events reloaded successfully.
+2025-04-30T04:50:08.712Z [INFO]: Loaded event: guildMemberAdd
+2025-04-30T04:50:08.713Z [INFO]: Loaded event: guildMemberRemove
+2025-04-30T04:50:08.713Z [INFO]: Loaded event: messageReactionAdd
+2025-04-30T04:50:08.713Z [INFO]: Loaded event: messageReactionRemove
+2025-04-30T04:50:08.714Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-30T04:50:08.714Z [INFO]: Total 5 events loaded.
+2025-04-30T04:50:08.715Z [INFO]: Events reloaded successfully.
+2025-04-30T04:50:08.715Z [INFO]: Loaded event: guildMemberAdd
+2025-04-30T04:50:08.716Z [INFO]: Loaded event: guildMemberRemove
+2025-04-30T04:50:08.717Z [INFO]: Loaded event: messageReactionAdd
+2025-04-30T04:50:08.717Z [INFO]: Loaded event: messageReactionRemove
+2025-04-30T04:50:08.718Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-30T04:50:08.718Z [INFO]: Total 5 events loaded.
+2025-04-30T04:50:08.719Z [INFO]: Events reloaded successfully.
+2025-04-30T04:50:08.719Z [INFO]: Loaded event: guildMemberAdd
+2025-04-30T04:50:08.720Z [INFO]: Loaded event: guildMemberRemove
+2025-04-30T04:50:08.721Z [INFO]: Loaded event: messageReactionAdd
+2025-04-30T04:50:08.722Z [INFO]: Loaded event: messageReactionRemove
+2025-04-30T04:50:08.723Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-30T04:50:08.723Z [INFO]: Total 5 events loaded.
+2025-04-30T04:50:08.724Z [INFO]: Events reloaded successfully.
+2025-04-30T04:50:09.670Z [INFO]: Bot logged in as Machine Lux#4690
+2025-04-30T04:50:10.382Z [INFO]: Bot is ready as Machine Lux#4690
+2025-04-30T04:58:58.146Z [INFO]: Loaded command: ban
+2025-04-30T04:58:58.150Z [INFO]: Loaded command: kick
+2025-04-30T04:58:58.152Z [INFO]: Loaded command: mute
+2025-04-30T04:58:58.154Z [INFO]: Loaded command: refresh
+2025-04-30T04:58:58.167Z [INFO]: Loaded command: setup-autorole
+2025-04-30T04:58:58.168Z [INFO]: Loaded command: setup-goodbye
+2025-04-30T04:58:58.170Z [INFO]: Loaded command: setup-log
+2025-04-30T04:58:58.172Z [INFO]: Loaded command: setup-role-channel
+2025-04-30T04:58:58.173Z [INFO]: Loaded command: setup-rule
+2025-04-30T04:58:58.175Z [INFO]: Loaded command: setup-welcome
+2025-04-30T04:58:58.176Z [INFO]: Loaded command: unban
+2025-04-30T04:58:58.178Z [INFO]: Loaded command: unmute
+2025-04-30T04:58:58.180Z [INFO]: Loaded command: play
+2025-04-30T04:58:58.182Z [INFO]: Loaded command: disablecommand
+2025-04-30T04:58:58.184Z [INFO]: Đang đăng ký 14 lệnh với Discord API...
+2025-04-30T04:58:58.801Z [INFO]: Đã đăng ký thành công 14 lệnh với Discord API
+2025-04-30T04:58:58.805Z [INFO]: Loaded event: guildMemberAdd
+2025-04-30T04:58:58.806Z [INFO]: Loaded event: guildMemberRemove
+2025-04-30T04:58:58.807Z [INFO]: Loaded event: messageReactionAdd
+2025-04-30T04:58:58.809Z [INFO]: Loaded event: messageReactionRemove
+2025-04-30T04:58:58.811Z [INFO]: Loaded event: voiceStateUpdate
+2025-04-30T04:58:58.811Z [INFO]: Total 5 events loaded.
+2025-04-30T04:58:58.811Z [INFO]: Command handler initialized
+2025-04-30T04:58:58.811Z [INFO]: Event handler initialized
+2025-04-30T04:58:58.812Z [INFO]: Bot is starting...
+2025-04-30T04:59:01.366Z [INFO]: Bot logged in as Machine Lux#4690
+2025-04-30T04:59:01.652Z [INFO]: Bot is ready as Machine Lux#4690

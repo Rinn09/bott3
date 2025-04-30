@@ -6,19 +6,17 @@ Bot được thiết kế bằng **JavaScript (Node.js)** với thư viện **Di
 
 - Gửi **chào mừng/tạm biệt** tự động
 - Gửi **log khi member ra/vào server** hoặc voice channel
-- Gửi **nút tương tác**: Xem nội quy, Chọn giới tính, Chọn game
+- Gửi **reaction role tự động**: chọn giới tính và game bằng emoji
 - Lệnh admin dễ cài đặt
 
 ## ⚙ Cài đặt
 
 ### 1. Cài thư viện
-
 ```bash
 npm install
 ```
 
 ### 2. Tạo file `.env`
-
 ```env
 TOKEN=YOUR_BOT_TOKEN
 MONGO_URI=YOUR_MONGODB_URI
@@ -26,7 +24,6 @@ NODE_ENV=development
 ```
 
 ### 3. Khởi động bot
-
 ```bash
 node src/index.js
 ```
@@ -34,16 +31,16 @@ node src/index.js
 ---
 
 ## 🧩 Các lệnh cài đặt (Admin)
-
 > Yêu cầu role admin trong server
 
-| Lệnh                    | Mô tả                                 |
-| ----------------------- | ------------------------------------- |
-| `/setup-welcome #kênh`  | Cài kênh gửi tin nhắn chào mừng       |
-| `/setup-goodbye #kênh`  | Cài kênh gửi tin nhắn tạm biệt        |
-| `/setup-log #kênh`      | Cài kênh gửi log ra/vào server, voice |
-| `/setup-autorole @Role` | Tự động gán Role khi user tham gia    |
-| `/setup-rule #kênh`     | Cài kênh nội quy cho Welcome Embed    |
+| Lệnh                        | Mô tả                                                  |
+|-----------------------------|---------------------------------------------------------|
+| `/setup-welcome #kênh`     | Cài kênh gửi tin nhắn chào mừng                         |
+| `/setup-goodbye #kênh`     | Cài kênh gửi tin nhắn tạm biệt                          |
+| `/setup-log #kênh`         | Cài kênh gửi log ra/vào server, voice                   |
+| `/setup-autorole @Role`    | Tự động gán Role khi user tham gia                      |
+| `/setup-rule #kênh`        | Cài kênh nội quy cho Welcome Embed                      |
+| `/setup-role-channel #kênh`| Gửi tin nhắn phản ứng chọn giới tính và game vào kênh   |
 
 ---
 
@@ -53,8 +50,15 @@ node src/index.js
 - Chèn **đường dẫn kênh nội quy**
 - Gửi **3 nút**:
   - [📖 Xem nội quy]
-  - [🧑 Chọn giới tính] → Mở Select Menu gán role Nam/Nữ
-  - [🎮 Chọn game] → Gán role game (Valorant, Genshin, CS2...)
+  - [🧑 Chọn giới tính] → chuyển sang hệ thống reaction role
+  - [🎮 Chọn game] → chuyển sang hệ thống reaction role
+
+## 🧷 Reaction Role (thay thế hệ thống button)
+
+- Sử dụng `/setup-role-channel` để bot gửi 2 tin nhắn:
+  - "Bạn là nam hay nữ?" → phản ứng bằng emoji `:6004greatgatsbypepewink:` (Nam), `:2767pepefrog:` (Nữ)
+  - "Bạn chơi game gì?" → phản ứng bằng emoji tương ứng (Minecraft, PUBG, CS2...)
+- Khi thành viên nhấn emoji, bot sẽ gán role tương ứng
 
 ## 📤 Goodbye & Logging
 
@@ -64,8 +68,7 @@ node src/index.js
 
 ---
 
-## 🛠 Cáu trúc MongoDB (models/GuildConfig.js)
-
+## 🛠 Cấu trúc MongoDB (models/GuildConfig.js)
 ```js
 {
   guildId: String,
@@ -73,7 +76,11 @@ node src/index.js
   goodbyeChannelId: String,
   rulesChannelId: String,
   logChannelId: String,
-  autoRoleId: String
+  autoRoleId: String,
+  roleMessageIds: {
+    gender: String,
+    game: String
+  }
 }
 ```
 
@@ -81,16 +88,17 @@ node src/index.js
 
 ## 📌 Ghi chú
 
-- Hãy chắc chắn bot có quyền **Manage Roles**, **Send Messages**, **Embed Links**
+- Hãy chắc chắn bot có quyền **Manage Roles**, **Send Messages**, **Embed Links**, **Add Reactions**
 - Role bot trong danh sách role phải **cao hơn** các role mà bot sẽ gán
-- Các ID role game, giới tính đã được định sẵn trong code (có thể tuỳ chỉnh sau)
+- Các emoji được sử dụng phải nằm trong server và có quyền sử dụng
 
 ---
 
 ## 🚀 Phát triển sắp tới
 
 - Hệ thống tiền tệ chung
-- Sòng bạc cho các con nghiện!
+- Minigame dân gian (bầu cua, xì dách, bài cào)
+- Giao diện WebUI dashboard
 
 ---
 
