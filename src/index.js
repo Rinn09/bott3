@@ -11,6 +11,7 @@ const botConfig = require('./config/botConfig');
 const errorHandler = require('./utils/errorHandler');
 const mongoose = require('mongoose');
 
+
 console.log('Logger instance:', Logger);
 
 mongoose.connect(process.env.MONGO_URI)

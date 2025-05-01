@@ -7,10 +7,15 @@ const GuildConfigSchema = new mongoose.Schema({
   rulesChannelId: { type: String, default: null },
   logChannelId: { type: String, default: null },
   autoRoleId: { type: String, default: null },
-  roleChannelId: { type: String, default: null }, // 👈 Thêm dòng này
+  roleChannelId: { type: String, default: null },
   roleMessageIds: {
     gender: { type: String, default: null },
     game: { type: String, default: null }
+  },
+  statsChannels: {
+    total: { type: String, default: null },
+    online: { type: String, default: null },
+    bots: { type: String, default: null }
   }
 });
 
