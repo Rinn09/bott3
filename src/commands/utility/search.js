@@ -17,7 +17,7 @@ module.exports = {
     const cx = process.env.GOOGLE_CSE_ID;
 
     try {
-      const response = await axios.get('put your!', {
+      const response = await axios.get('https://www.googleapis.com/customsearch/v1', {
         params: {
           key: apiKey,
           cx: cx,
