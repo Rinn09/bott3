@@ -37,6 +37,6 @@ module.exports = {
       )
       .setFooter({ text: `Server: ${interaction.guild.name}` });
 
-    await interaction.reply({ embeds: [embed], ephemeral: true });
+    await interaction.reply({ embeds: [embed] });
   }
 };

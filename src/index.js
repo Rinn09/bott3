@@ -10,6 +10,7 @@ const EventHandler = require('./handlers/eventHandler');
 const botConfig = require('./config/botConfig');
 const errorHandler = require('./utils/errorHandler');
 const mongoose = require('mongoose');
+const prefixHandler = require('./handlers/prefixHandler');
 
 
 console.log('Logger instance:', Logger);
@@ -33,6 +34,7 @@ class Bot {
   async start() {
     try {
       await this.commandHandler.loadCommands(); // Load commands first
+      this.client.commands = this.commandHandler.commands;
       await this.commandHandler.registerCommands(); // Register commands with Discord API
       // await this.commandHandler.refreshCommands(); // Uncomment if you want to refresh commands every time
       await this.eventHandler.loadEvents();
@@ -73,6 +75,7 @@ class Bot {
 }
 
 const bot = new Bot();
+prefixHandler(bot.client);
 errorHandler(bot.client);
 bot.client.on('error', (error) => {
   Logger.error('WebSocket error:', error);

@@ -16,7 +16,8 @@ const GuildConfigSchema = new mongoose.Schema({
     total: { type: String, default: null },
     online: { type: String, default: null },
     bots: { type: String, default: null }
-  }
+  },
+  prefix: { type: String, default: '!' }
 });
 
 module.exports = mongoose.model('GuildConfig', GuildConfigSchema);

@@ -20,6 +20,6 @@ module.exports = {
       console.error('[CLEAR ERROR]', err);
     });
 
-    return interaction.reply({ content: `✅ Đã xoá ${messages.size} tin nhắn.`, ephemeral: true });
+    return interaction.reply({ content: `✅ Đã xoá ${messages.size} tin nhắn.` });
   }
 };
