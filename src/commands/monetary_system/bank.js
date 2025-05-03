@@ -7,12 +7,12 @@ module.exports = {
     .setName('bank')
     .setDescription('Gửi hoặc rút tiền từ ngân hàng')
     .addSubcommand(sub =>
-      sub.setName('deposit')
+      sub.setName('gui_tien')
         .setDescription('Gửi tiền vào ngân hàng')
         .addIntegerOption(opt =>
           opt.setName('amount').setDescription('Số tiền muốn gửi').setRequired(true)))
     .addSubcommand(sub =>
-      sub.setName('withdraw')
+      sub.setName('rut_tien')
         .setDescription('Rút tiền từ ngân hàng')
         .addIntegerOption(opt =>
           opt.setName('amount').setDescription('Số tiền muốn rút').setRequired(true))),
@@ -28,13 +28,13 @@ module.exports = {
 
     if (amount <= 0) return interaction.reply({ content: '❌ Số tiền phải lớn hơn 0.', ephemeral: true });
 
-    if (sub === 'deposit') {
+    if (sub === 'gui_tien') {
       if (user.balance < amount) {
         return interaction.reply({ content: '❌ Bạn không có đủ tiền trong ví.', ephemeral: true });
       }
       user.balance -= amount;
       user.bank += amount;
-    } else if (sub === 'withdraw') {
+    } else if (sub === 'rut_tien') {
       if (user.bank < amount) {
         return interaction.reply({ content: '❌ Bạn không có đủ tiền trong ngân hàng.', ephemeral: true });
       }
@@ -44,7 +44,7 @@ module.exports = {
 
     await user.save();
     return interaction.reply({
-      content: `✅ Bạn đã ${sub === 'deposit' ? 'gửi' : 'rút'} **${amount.toLocaleString()} VNĐ** ${sub === 'deposit' ? 'vào' : 'từ'} ngân hàng.`
+      content: `✅ Bạn đã ${sub === 'gui_tien' ? 'gửi' : 'rút'} **${amount.toLocaleString()} VNĐ** ${sub === 'gui_tien' ? 'vào' : 'từ'} ngân hàng.`
     });
   }
 };

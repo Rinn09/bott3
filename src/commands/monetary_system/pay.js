@@ -4,22 +4,22 @@ const User = require('../../models/User');
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName('pay')
+    .setName('chuyen_tien')
     .setDescription('Chuyển tiền cho người dùng khác')
     .addUserOption(option =>
-      option.setName('nguoichuyen')
+      option.setName('nguoi_nhan')
         .setDescription('Tag người nhận')
         .setRequired(true))
     .addIntegerOption(option =>
-      option.setName('sotien')
+      option.setName('so_tien')
         .setDescription('Số tiền muốn chuyển')
         .setRequired(true)),
 
   async execute(interaction) {
     const senderId = interaction.user.id;
     const guildId = interaction.guild.id;
-    const receiver = interaction.options.getUser('nguoichuyen');
-    const amount = interaction.options.getInteger('sotien');
+    const receiver = interaction.options.getUser('nguoi_nhan');
+    const amount = interaction.options.getInteger('so_tien');
 
     if (receiver.bot || receiver.id === senderId) {
       return interaction.reply({ content: '❌ Không thể chuyển tiền cho bot hoặc chính mình.', ephemeral: true });

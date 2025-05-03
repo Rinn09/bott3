@@ -4,7 +4,7 @@ const User = require('../../models/User');
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName('balance')
+    .setName('so_du')
     .setDescription('Xem số tiền bạn đang có'),
 
   async execute(interaction) {
