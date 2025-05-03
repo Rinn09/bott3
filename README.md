@@ -45,62 +45,67 @@ Bot Discord Quản Lý & Minigame được xây dựng bằng **Node.js** và **
 - **Command Handler:** Tự động load và đăng ký các lệnh từ thư mục `src/commands`.
 
 ### 2. Lệnh Quản Trị (Admin)
+| NO. | Lệnh                 | Mô Tả                                                                                           |
 |-----|----------------------|-------------------------------------------------------------------------------------------------|
-| 1   | /ban                 | Ban một thành viên khỏi server.                                                                | 
-| 2   | /kick                | Đuổi một thành viên khỏi server.                                                              | 
-| 3   | /mute                | Tắt tiếng (text/voice) cho thành viên.                                                         | 
-| 4   | /unban               | Gỡ ban một thành viên khỏi server.                                                            | 
-| 5   | /change-prefix       | Thay đổi prefix của bot cho server (cập nhật vào MongoDB và cache).                           | 
-| 6   | /set-noti            | Cài đặt kênh thông báo nhận lương cho người dùng.                                              | 
-| 7   | /anticaps            | Cấu hình chống spam tin nhắn chứa quá nhiều chữ IN HOA.                                       | 
-| 8   | /captcha             | Xác thực người dùng qua captcha và gán role nếu thành công.                                   | 
-| 9   | /list-bans           | Hiển thị danh sách người dùng bị ban.                                                        | 
-| 10  | /refresh             | Làm mới (refresh) và đăng ký lại các lệnh với Discord API.                                     | 
-| 11  | /reset-user          | Reset toàn bộ dữ liệu của người dùng (tiền, XP, level, …).                                     | 
+| 1   | /ban                 | Ban một thành viên khỏi server.                                                                 | 
+| 2   | /kick                | Đuổi một thành viên khỏi server.                                                                | 
+| 3   | /mute                | Tắt tiếng (text/voice) cho thành viên.                                                          | 
+| 4   | /unban               | Gỡ ban một thành viên khỏi server.                                                              | 
+| 5   | /change-prefix       | Thay đổi prefix của bot cho server (cập nhật vào MongoDB và cache).                             | 
+| 6   | /set-noti            | Cài đặt kênh thông báo nhận lương cho người dùng.                                               | 
+| 7   | /anticaps            | Cấu hình chống spam tin nhắn chứa quá nhiều chữ IN HOA.                                         | 
+| 8   | /captcha             | Xác thực người dùng qua captcha và gán role nếu thành công.                                     | 
+| 9   | /list-bans           | Hiển thị danh sách người dùng bị ban.                                                           | 
+| 10  | /refresh             | Làm mới (refresh) và đăng ký lại các lệnh với Discord API.                                      | 
+| 11  | /reset-user          | Reset toàn bộ dữ liệu của người dùng (tiền, XP, level, …).                                      | 
 | 12  | /setup-welcome       | Cài đặt kênh gửi tin nhắn chào mừng.                                                            | 
 | 13  | /setup-goodbye       | Cài đặt kênh gửi tin nhắn tạm biệt.                                                             | 
-| 14  | /setup-log           | Cài đặt kênh gửi log các sự kiện hoạt động server.                                             | 
-| 15  | /setup-rule          | Cài đặt kênh nội quy để hiển thị trong tin nhắn chào mừng.                                     | 
-| 16  | /setup-autorole      | Cài đặt role tự động gán cho thành viên mới.                                                   | 
-| 17  | /setup-role-channel  | Gửi tin nhắn reaction role để người dùng chọn role (ví dụ: chọn giới tính, game).              | 
-| 18  | /status              | Hiển thị tình trạng cấu hình Bot (các kênh, role tự động, log, v.v.).                         | 
-| 19  | /disablecommand      | Vô hiệu hóa một lệnh theo kênh hoặc toàn server.                                               | 
-| 20  | /lock                | Khoá kênh hiện tại cho @everyone.                                                              | 
-| 21  | /unlock              | Mở khoá kênh hiện tại cho @everyone.                                                           | 
+| 14  | /setup-log           | Cài đặt kênh gửi log các sự kiện hoạt động server.                                              | 
+| 15  | /setup-rule          | Cài đặt kênh nội quy để hiển thị trong tin nhắn chào mừng.                                      | 
+| 16  | /setup-autorole      | Cài đặt role tự động gán cho thành viên mới.                                                    | 
+| 17  | /setup-role-channel  | Gửi tin nhắn reaction role để người dùng chọn role (ví dụ: chọn giới tính, game).               | 
+| 18  | /status              | Hiển thị tình trạng cấu hình Bot (các kênh, role tự động, log, v.v.).                           | 
+| 19  | /disablecommand      | Vô hiệu hóa một lệnh theo kênh hoặc toàn server.                                                | 
+| 20  | /lock                | Khoá kênh hiện tại cho @everyone.                                                               | 
+| 21  | /unlock              | Mở khoá kênh hiện tại cho @everyone.                                                            | 
 
 ### 3. Hệ thống Tiền Tệ
+| NO. | Lệnh                 | Mô Tả                                                                                           |
 |-----|----------------------|-------------------------------------------------------------------------------------------------|
-| 23  | /daily               | Nhận thưởng hàng ngày (cooldown 24h).                                                          | 
+| 23  | /daily               | Nhận thưởng hàng ngày (cooldown 24h).                                                           | 
 | 24  | /work                | Làm việc kiếm tiền với hiệu ứng ngẫu nhiên (bonus, lost, drop, double, triple, jackpot).        | 
-| 25  | /bank                | Gửi tiền vào hoặc rút tiền từ ngân hàng.                                                       | 
-| 26  | /top-money           | Hiển thị bảng xếp hạng người giàu nhất (tổng tiền = ví + ngân hàng).                           | 
-| 27  | /chuyen_tien         | Chuyển tiền cho người dùng khác.                                                              | 
+| 25  | /bank                | Gửi tiền vào hoặc rút tiền từ ngân hàng.                                                        | 
+| 26  | /top-money           | Hiển thị bảng xếp hạng người giàu nhất (tổng tiền = ví + ngân hàng).                            | 
+| 27  | /chuyen_tien         | Chuyển tiền cho người dùng khác.                                                                | 
 
 ### 4. Hệ thống Công Việc (Job System)
+| NO. | Lệnh                 | Mô Tả                                                                                           |
 |-----|----------------------|-------------------------------------------------------------------------------------------------|
 | 28  | /add-job             | Admin tạo một công việc mới với thông số: tên, tier, lương, cooldown, XP yêu cầu, …             | 
-| 29  | /nhan_viec           | Người dùng ứng tuyển vào công việc hiện có.                                                  | Job 
-| 30  | /cong_viec_hien_tai   | Hiển thị thông tin công việc hiện tại của người dùng.                                         | 
-| 31  | /nhan_luong          | Nhận lương từ công việc sau khi hết cooldown.                                                  | 
-| 32  | /nghi_viec           | Từ bỏ công việc hiện tại.                                                                      | 
-| 33  | /remove-job          | Admin xóa bỏ một công việc khỏi hệ thống.                                                     | Job 
-| 34  | /jobs                | Hiển thị danh sách tất cả các công việc đang có.                                               | 
+| 29  | /nhan_viec           | Người dùng ứng tuyển vào công việc hiện có.                                                     | 
+| 30  | /cong_viec_hien_tai  | Hiển thị thông tin công việc hiện tại của người dùng.                                          | 
+| 31  | /nhan_luong          | Nhận lương từ công việc sau khi hết cooldown.                                                   | 
+| 32  | /nghi_viec           | Từ bỏ công việc hiện tại.                                                                       | 
+| 33  | /remove-job          | Admin xóa bỏ một công việc khỏi hệ thống.                                                       |  
+| 34  | /jobs                | Hiển thị danh sách tất cả các công việc đang có.                                                | 
 
 ### 5. Các Lệnh Tiện ích & Thông tin
+| NO. | Lệnh                 | Mô Tả                                                                                           |
 |-----|----------------------|-------------------------------------------------------------------------------------------------|
 | 35  | /ping                | Kiểm tra độ trễ của bot.                                                                        | 
-| 36  | /avatar              | Hiển thị avatar của người dùng hoặc thành viên được tag.                                      | 
-| 37  | /user-info           | Hiển thị thông tin chi tiết của thành viên.                                                  | 
-| 38  | /server-info         | Hiển thị thông tin server (số thành viên, khu vực, v.v.).                                      | 
-| 39  | /help                | Hiển thị danh sách lệnh và hướng dẫn sử dụng chi tiết.                                        | 
-| 40  | /unmute              | Bỏ mute thành viên (text hoặc voice).                                                         |
+| 36  | /avatar              | Hiển thị avatar của người dùng hoặc thành viên được tag.                                        | 
+| 37  | /user-info           | Hiển thị thông tin chi tiết của thành viên.                                                     | 
+| 38  | /server-info         | Hiển thị thông tin server (số thành viên, khu vực, v.v.).                                       | 
+| 39  | /help                | Hiển thị danh sách lệnh và hướng dẫn sử dụng chi tiết.                                          | 
+| 40  | /unmute              | Bỏ mute thành viên (text hoặc voice).                                                           |
 
 ### 6. Hệ Thống Cấp độ (Level System) & XP
+| NO. | Lệnh                 | Mô Tả                                                                                           |
 |-----|----------------------|-------------------------------------------------------------------------------------------------|
-| 41  | /level               | Hiển thị cấp độ và kinh nghiệm hiện tại của người dùng.                                      | 
-| 42  | /rank                | Hiển thị bảng xếp hạng cấp độ của server.                                                      | 
-| 43  | /add-xp              | Admin cộng XP cho người dùng.                                                                  | 
-| 44  | /level-rewards       | Hiển thị phần thưởng và lợi ích theo cấp độ.                                                   | 
+| 41  | /level               | Hiển thị cấp độ và kinh nghiệm hiện tại của người dùng.                                         | 
+| 42  | /rank                | Hiển thị bảng xếp hạng cấp độ của server.                                                       | 
+| 43  | /add-xp              | Admin cộng XP cho người dùng.                                                                   | 
+| 44  | /level-rewards       | Hiển thị phần thưởng và lợi ích theo cấp độ.                                                    | 
 
 ### 7. Các Tính Năng Hỗ Trợ Khác
 - **Reaction Roles:** Cho phép người dùng chọn role theo emoji (ví dụ: chọn giới tính, game).
