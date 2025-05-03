@@ -45,6 +45,7 @@ Bot Discord Quản Lý & Minigame được xây dựng bằng **Node.js** và **
 - **Command Handler:** Tự động load và đăng ký các lệnh từ thư mục `src/commands`.
 
 ### 2. Lệnh Quản Trị (Admin)
+|-----|----------------------|-------------------------------------------------------------------------------------------------|
 | 1   | /ban                 | Ban một thành viên khỏi server.                                                                | 
 | 2   | /kick                | Đuổi một thành viên khỏi server.                                                              | 
 | 3   | /mute                | Tắt tiếng (text/voice) cho thành viên.                                                         | 
@@ -66,7 +67,9 @@ Bot Discord Quản Lý & Minigame được xây dựng bằng **Node.js** và **
 | 19  | /disablecommand      | Vô hiệu hóa một lệnh theo kênh hoặc toàn server.                                               | 
 | 20  | /lock                | Khoá kênh hiện tại cho @everyone.                                                              | 
 | 21  | /unlock              | Mở khoá kênh hiện tại cho @everyone.                                                           | 
+
 ### 3. Hệ thống Tiền Tệ
+|-----|----------------------|-------------------------------------------------------------------------------------------------|
 | 23  | /daily               | Nhận thưởng hàng ngày (cooldown 24h).                                                          | 
 | 24  | /work                | Làm việc kiếm tiền với hiệu ứng ngẫu nhiên (bonus, lost, drop, double, triple, jackpot).        | 
 | 25  | /bank                | Gửi tiền vào hoặc rút tiền từ ngân hàng.                                                       | 
@@ -74,6 +77,7 @@ Bot Discord Quản Lý & Minigame được xây dựng bằng **Node.js** và **
 | 27  | /chuyen_tien         | Chuyển tiền cho người dùng khác.                                                              | 
 
 ### 4. Hệ thống Công Việc (Job System)
+|-----|----------------------|-------------------------------------------------------------------------------------------------|
 | 28  | /add-job             | Admin tạo một công việc mới với thông số: tên, tier, lương, cooldown, XP yêu cầu, …             | 
 | 29  | /nhan_viec           | Người dùng ứng tuyển vào công việc hiện có.                                                  | Job 
 | 30  | /cong_viec_hien_tai   | Hiển thị thông tin công việc hiện tại của người dùng.                                         | 
@@ -83,6 +87,7 @@ Bot Discord Quản Lý & Minigame được xây dựng bằng **Node.js** và **
 | 34  | /jobs                | Hiển thị danh sách tất cả các công việc đang có.                                               | 
 
 ### 5. Các Lệnh Tiện ích & Thông tin
+|-----|----------------------|-------------------------------------------------------------------------------------------------|
 | 35  | /ping                | Kiểm tra độ trễ của bot.                                                                        | 
 | 36  | /avatar              | Hiển thị avatar của người dùng hoặc thành viên được tag.                                      | 
 | 37  | /user-info           | Hiển thị thông tin chi tiết của thành viên.                                                  | 
@@ -91,6 +96,7 @@ Bot Discord Quản Lý & Minigame được xây dựng bằng **Node.js** và **
 | 40  | /unmute              | Bỏ mute thành viên (text hoặc voice).                                                         |
 
 ### 6. Hệ Thống Cấp độ (Level System) & XP
+|-----|----------------------|-------------------------------------------------------------------------------------------------|
 | 41  | /level               | Hiển thị cấp độ và kinh nghiệm hiện tại của người dùng.                                      | 
 | 42  | /rank                | Hiển thị bảng xếp hạng cấp độ của server.                                                      | 
 | 43  | /add-xp              | Admin cộng XP cho người dùng.                                                                  | 
