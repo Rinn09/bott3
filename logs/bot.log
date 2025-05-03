@@ -6578,3 +6578,261 @@ Require stack:
 2025-05-03T09:26:58.462Z [INFO]: Loaded event: voiceStateUpdate
 2025-05-03T09:26:58.463Z [INFO]: Total 7 events loaded.
 2025-05-03T09:26:58.463Z [INFO]: Events reloaded successfully.
+2025-05-03T10:06:25.380Z [INFO]: Event file messageXP.js changed (change). Reloading events...
+2025-05-03T10:06:25.494Z [INFO]: Loaded event: guildMemberAdd
+2025-05-03T10:06:25.495Z [INFO]: Loaded event: guildMemberRemove
+2025-05-03T10:06:25.497Z [INFO]: Loaded event: messageReactionAdd
+2025-05-03T10:06:25.498Z [INFO]: Loaded event: messageReactionRemove
+2025-05-03T10:06:25.501Z [INFO]: Loaded event: messageCreate
+2025-05-03T10:06:25.503Z [INFO]: Loaded event: ready
+2025-05-03T10:06:25.504Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-03T10:06:25.505Z [INFO]: Total 7 events loaded.
+2025-05-03T10:06:25.505Z [INFO]: Events reloaded successfully.
+2025-05-03T10:06:25.506Z [INFO]: Event file guildMemberAdd.js changed (change). Reloading events...
+2025-05-03T10:06:25.506Z [INFO]: Event file guildMemberRemove.js changed (change). Reloading events...
+2025-05-03T10:06:25.507Z [INFO]: Event file messageReactionAdd.js changed (change). Reloading events...
+2025-05-03T10:06:25.508Z [INFO]: Event file messageReactionRemove.js changed (change). Reloading events...
+2025-05-03T10:06:25.508Z [INFO]: Event file statsUpdater.js changed (change). Reloading events...
+2025-05-03T10:06:25.613Z [INFO]: Loaded event: guildMemberAdd
+2025-05-03T10:06:25.614Z [INFO]: Loaded event: guildMemberRemove
+2025-05-03T10:06:25.615Z [INFO]: Loaded event: messageReactionAdd
+2025-05-03T10:06:25.615Z [INFO]: Loaded event: messageReactionRemove
+2025-05-03T10:06:25.616Z [INFO]: Loaded event: messageCreate
+2025-05-03T10:06:25.617Z [INFO]: Loaded event: ready
+2025-05-03T10:06:25.618Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-03T10:06:25.618Z [INFO]: Total 7 events loaded.
+2025-05-03T10:06:25.618Z [INFO]: Events reloaded successfully.
+2025-05-03T10:06:25.619Z [INFO]: Loaded event: guildMemberAdd
+2025-05-03T10:06:25.620Z [INFO]: Loaded event: guildMemberRemove
+2025-05-03T10:06:25.621Z [INFO]: Loaded event: messageReactionAdd
+2025-05-03T10:06:25.622Z [INFO]: Loaded event: messageReactionRemove
+2025-05-03T10:06:25.623Z [INFO]: Loaded event: messageCreate
+2025-05-03T10:06:25.624Z [INFO]: Loaded event: ready
+2025-05-03T10:06:25.626Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-03T10:06:25.626Z [INFO]: Total 7 events loaded.
+2025-05-03T10:06:25.626Z [INFO]: Events reloaded successfully.
+2025-05-03T10:06:25.627Z [INFO]: Loaded event: guildMemberAdd
+2025-05-03T10:06:25.628Z [INFO]: Loaded event: guildMemberRemove
+2025-05-03T10:06:25.629Z [INFO]: Loaded event: messageReactionAdd
+2025-05-03T10:06:25.630Z [INFO]: Loaded event: messageReactionRemove
+2025-05-03T10:06:25.631Z [INFO]: Loaded event: messageCreate
+2025-05-03T10:06:25.632Z [INFO]: Loaded event: ready
+2025-05-03T10:06:25.633Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-03T10:06:25.633Z [INFO]: Total 7 events loaded.
+2025-05-03T10:06:25.633Z [INFO]: Events reloaded successfully.
+2025-05-03T10:06:25.635Z [INFO]: Loaded event: guildMemberAdd
+2025-05-03T10:06:25.636Z [INFO]: Loaded event: guildMemberRemove
+2025-05-03T10:06:25.637Z [INFO]: Loaded event: messageReactionAdd
+2025-05-03T10:06:25.638Z [INFO]: Loaded event: messageReactionRemove
+2025-05-03T10:06:25.638Z [INFO]: Loaded event: messageCreate
+2025-05-03T10:06:25.639Z [INFO]: Loaded event: ready
+2025-05-03T10:06:25.640Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-03T10:06:25.640Z [INFO]: Total 7 events loaded.
+2025-05-03T10:06:25.640Z [INFO]: Events reloaded successfully.
+2025-05-03T10:06:25.641Z [INFO]: Loaded event: guildMemberAdd
+2025-05-03T10:06:25.642Z [INFO]: Loaded event: guildMemberRemove
+2025-05-03T10:06:25.643Z [INFO]: Loaded event: messageReactionAdd
+2025-05-03T10:06:25.645Z [INFO]: Loaded event: messageReactionRemove
+2025-05-03T10:06:25.646Z [INFO]: Loaded event: messageCreate
+2025-05-03T10:06:25.647Z [INFO]: Loaded event: ready
+2025-05-03T10:06:25.649Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-03T10:06:25.650Z [INFO]: Total 7 events loaded.
+2025-05-03T10:06:25.650Z [INFO]: Events reloaded successfully.
+2025-05-03T10:31:13.488Z [INFO]: Loaded command: anticaps
+2025-05-03T10:31:13.609Z [INFO]: Loaded command: captcha
+2025-05-03T10:31:13.612Z [INFO]: Loaded command: change-prefix
+2025-05-03T10:31:13.616Z [INFO]: Loaded command: clear
+2025-05-03T10:31:13.620Z [INFO]: Loaded command: disablecommand
+2025-05-03T10:31:13.623Z [INFO]: Loaded command: list-bans
+2025-05-03T10:31:13.625Z [INFO]: Loaded command: lock
+2025-05-03T10:31:13.628Z [INFO]: Loaded command: refresh
+2025-05-03T10:31:13.634Z [INFO]: Loaded command: reset-user
+2025-05-03T10:31:13.638Z [INFO]: Loaded command: setup-autorole
+2025-05-03T10:31:13.641Z [INFO]: Loaded command: setup-goodbye
+2025-05-03T10:31:13.644Z [INFO]: Loaded command: setup-log
+2025-05-03T10:31:13.647Z [INFO]: Loaded command: setup-role-channel
+2025-05-03T10:31:13.650Z [INFO]: Loaded command: setup-rule
+2025-05-03T10:31:13.654Z [INFO]: Loaded command: setup-stats-channel
+2025-05-03T10:31:13.658Z [INFO]: Loaded command: setup-welcome
+2025-05-03T10:31:13.661Z [INFO]: Loaded command: status
+2025-05-03T10:31:13.663Z [INFO]: Loaded command: unlock
+2025-05-03T10:31:13.673Z [INFO]: Loaded command: add-job
+2025-05-03T10:31:13.673Z [INFO]: Loaded command: nhan_viec
+2025-05-03T10:31:13.676Z [INFO]: Loaded command: cong_viec_hien_tai
+2025-05-03T10:31:13.678Z [INFO]: Loaded command: cac_cong_viec
+2025-05-03T10:31:13.679Z [INFO]: Loaded command: remove-job
+2025-05-03T10:31:13.681Z [INFO]: Loaded command: nghi_viec
+2025-05-03T10:31:13.684Z [INFO]: Loaded command: nhan_luong
+2025-05-03T10:31:13.688Z [INFO]: Loaded command: add-xp
+2025-05-03T10:31:13.690Z [INFO]: Loaded command: level-rewards
+2025-05-03T10:31:13.692Z [INFO]: Loaded command: level
+2025-05-03T10:31:13.693Z [INFO]: Loaded command: rank
+2025-05-03T10:31:13.696Z [INFO]: Loaded command: so_du
+2025-05-03T10:31:13.699Z [INFO]: Loaded command: bank
+2025-05-03T10:31:13.702Z [INFO]: Loaded command: daily
+2025-05-03T10:31:13.705Z [INFO]: Loaded command: chuyen_tien
+2025-05-03T10:31:13.707Z [INFO]: Loaded command: set-noti
+2025-05-03T10:31:13.710Z [INFO]: Loaded command: top-money
+2025-05-03T10:31:13.712Z [INFO]: Loaded command: work
+2025-05-03T10:31:13.715Z [INFO]: Loaded command: play
+2025-05-03T10:31:13.719Z [INFO]: Loaded command: avatar
+2025-05-03T10:31:13.721Z [INFO]: Loaded command: ban
+2025-05-03T10:31:13.726Z [INFO]: Loaded command: help
+2025-05-03T10:31:13.728Z [INFO]: Loaded command: kick
+2025-05-03T10:31:13.732Z [INFO]: Loaded command: mute
+2025-05-03T10:31:13.735Z [INFO]: Loaded command: ping
+2025-05-03T10:31:13.881Z [INFO]: Loaded command: search
+2025-05-03T10:31:13.883Z [INFO]: Loaded command: server-info
+2025-05-03T10:31:13.885Z [INFO]: Loaded command: unban
+2025-05-03T10:31:13.887Z [INFO]: Loaded command: unmute
+2025-05-03T10:31:13.889Z [INFO]: Loaded command: user-info
+2025-05-03T10:31:13.896Z [INFO]: Đang đăng ký 48 lệnh với Discord API...
+2025-05-03T10:31:14.541Z [INFO]: Đã đăng ký thành công 48 lệnh với Discord API
+2025-05-03T10:31:14.552Z [INFO]: Loaded event: guildMemberAdd
+2025-05-03T10:31:14.554Z [INFO]: Loaded event: guildMemberRemove
+2025-05-03T10:31:14.555Z [INFO]: Loaded event: messageReactionAdd
+2025-05-03T10:31:14.556Z [INFO]: Loaded event: messageReactionRemove
+2025-05-03T10:31:14.559Z [INFO]: Loaded event: messageCreate
+2025-05-03T10:31:14.561Z [INFO]: Loaded event: ready
+2025-05-03T10:31:14.563Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-03T10:31:14.564Z [INFO]: Total 7 events loaded.
+2025-05-03T10:31:14.564Z [INFO]: Command handler initialized
+2025-05-03T10:31:14.564Z [INFO]: Event handler initialized
+2025-05-03T10:31:14.565Z [INFO]: Bot is starting...
+2025-05-03T10:31:14.584Z [INFO]: Event file voiceStateUpdate.js changed (change). Reloading events...
+2025-05-03T10:31:14.696Z [INFO]: Loaded event: guildMemberAdd
+2025-05-03T10:31:14.697Z [INFO]: Loaded event: guildMemberRemove
+2025-05-03T10:31:14.698Z [INFO]: Loaded event: messageReactionAdd
+2025-05-03T10:31:14.699Z [INFO]: Loaded event: messageReactionRemove
+2025-05-03T10:31:14.700Z [INFO]: Loaded event: messageCreate
+2025-05-03T10:31:14.701Z [INFO]: Loaded event: ready
+2025-05-03T10:31:14.703Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-03T10:31:14.703Z [INFO]: Total 7 events loaded.
+2025-05-03T10:31:14.704Z [INFO]: Events reloaded successfully.
+2025-05-03T10:31:15.652Z [INFO]: Bot logged in as Perry#4690
+2025-05-03T10:49:21.991Z [INFO]: Loaded command: anticaps
+2025-05-03T10:49:22.089Z [INFO]: Loaded command: captcha
+2025-05-03T10:49:22.091Z [INFO]: Loaded command: change-prefix
+2025-05-03T10:49:22.093Z [INFO]: Loaded command: clear
+2025-05-03T10:49:22.096Z [INFO]: Loaded command: disablecommand
+2025-05-03T10:49:22.100Z [INFO]: Loaded command: list-bans
+2025-05-03T10:49:22.102Z [INFO]: Loaded command: lock
+2025-05-03T10:49:22.104Z [INFO]: Loaded command: refresh
+2025-05-03T10:49:22.109Z [INFO]: Loaded command: reset-user
+2025-05-03T10:49:22.111Z [INFO]: Loaded command: setup-autorole
+2025-05-03T10:49:22.114Z [INFO]: Loaded command: setup-goodbye
+2025-05-03T10:49:22.116Z [INFO]: Loaded command: setup-log
+2025-05-03T10:49:22.118Z [INFO]: Loaded command: setup-role-channel
+2025-05-03T10:49:22.120Z [INFO]: Loaded command: setup-rule
+2025-05-03T10:49:22.123Z [INFO]: Loaded command: setup-stats-channel
+2025-05-03T10:49:22.125Z [INFO]: Loaded command: setup-welcome
+2025-05-03T10:49:22.127Z [INFO]: Loaded command: status
+2025-05-03T10:49:22.129Z [INFO]: Loaded command: unlock
+2025-05-03T10:49:22.137Z [INFO]: Loaded command: add-job
+2025-05-03T10:49:22.137Z [INFO]: Loaded command: nhan_viec
+2025-05-03T10:49:22.138Z [INFO]: Loaded command: cong_viec_hien_tai
+2025-05-03T10:49:22.140Z [INFO]: Loaded command: cac_cong_viec
+2025-05-03T10:49:22.142Z [INFO]: Loaded command: remove-job
+2025-05-03T10:49:22.144Z [INFO]: Loaded command: nghi_viec
+2025-05-03T10:49:22.145Z [INFO]: Loaded command: nhan_luong
+2025-05-03T10:49:22.149Z [INFO]: Loaded command: add-xp
+2025-05-03T10:49:22.150Z [INFO]: Loaded command: level-rewards
+2025-05-03T10:49:22.152Z [INFO]: Loaded command: level
+2025-05-03T10:49:22.153Z [INFO]: Loaded command: rank
+2025-05-03T10:49:22.155Z [INFO]: Loaded command: so_du
+2025-05-03T10:49:22.157Z [INFO]: Loaded command: bank
+2025-05-03T10:49:22.158Z [INFO]: Loaded command: daily
+2025-05-03T10:49:22.160Z [INFO]: Loaded command: chuyen_tien
+2025-05-03T10:49:22.163Z [INFO]: Loaded command: set-noti
+2025-05-03T10:49:22.164Z [INFO]: Loaded command: top-money
+2025-05-03T10:49:22.166Z [INFO]: Loaded command: work
+2025-05-03T10:49:22.168Z [INFO]: Loaded command: play
+2025-05-03T10:49:22.171Z [INFO]: Loaded command: avatar
+2025-05-03T10:49:22.172Z [INFO]: Loaded command: ban
+2025-05-03T10:49:22.175Z [INFO]: Loaded command: help
+2025-05-03T10:49:22.177Z [INFO]: Loaded command: kick
+2025-05-03T10:49:22.180Z [INFO]: Loaded command: mute
+2025-05-03T10:49:22.182Z [INFO]: Loaded command: ping
+2025-05-03T10:49:22.291Z [INFO]: Loaded command: search
+2025-05-03T10:49:22.292Z [INFO]: Loaded command: server-info
+2025-05-03T10:49:22.294Z [INFO]: Loaded command: unban
+2025-05-03T10:49:22.296Z [INFO]: Loaded command: unmute
+2025-05-03T10:49:22.298Z [INFO]: Loaded command: user-info
+2025-05-03T10:49:22.304Z [INFO]: Đang đăng ký 48 lệnh với Discord API...
+2025-05-03T10:49:22.982Z [INFO]: Đã đăng ký thành công 48 lệnh với Discord API
+2025-05-03T10:49:22.986Z [INFO]: Loaded event: guildMemberAdd
+2025-05-03T10:49:22.989Z [INFO]: Loaded event: guildMemberRemove
+2025-05-03T10:49:22.991Z [INFO]: Loaded event: messageReactionAdd
+2025-05-03T10:49:22.993Z [INFO]: Loaded event: messageReactionRemove
+2025-05-03T10:49:22.995Z [INFO]: Loaded event: messageCreate
+2025-05-03T10:49:22.997Z [INFO]: Loaded event: ready
+2025-05-03T10:49:23.000Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-03T10:49:23.001Z [INFO]: Total 7 events loaded.
+2025-05-03T10:49:23.002Z [INFO]: Command handler initialized
+2025-05-03T10:49:23.002Z [INFO]: Event handler initialized
+2025-05-03T10:49:23.003Z [INFO]: Bot is starting...
+2025-05-03T10:49:24.297Z [INFO]: Bot logged in as Perry#4690
+2025-05-03T10:49:24.581Z [INFO]: Bot is ready as Perry#4690
+2025-05-03T11:02:10.159Z [INFO]: Loaded command: anticaps
+2025-05-03T11:02:10.246Z [INFO]: Loaded command: captcha
+2025-05-03T11:02:10.248Z [INFO]: Loaded command: change-prefix
+2025-05-03T11:02:10.250Z [INFO]: Loaded command: clear
+2025-05-03T11:02:10.253Z [INFO]: Loaded command: disablecommand
+2025-05-03T11:02:10.255Z [INFO]: Loaded command: list-bans
+2025-05-03T11:02:10.256Z [INFO]: Loaded command: lock
+2025-05-03T11:02:10.261Z [INFO]: Loaded command: refresh
+2025-05-03T11:02:10.266Z [INFO]: Loaded command: reset-user
+2025-05-03T11:02:10.268Z [INFO]: Loaded command: setup-autorole
+2025-05-03T11:02:10.270Z [INFO]: Loaded command: setup-goodbye
+2025-05-03T11:02:10.273Z [INFO]: Loaded command: setup-log
+2025-05-03T11:02:10.275Z [INFO]: Loaded command: setup-role-channel
+2025-05-03T11:02:10.277Z [INFO]: Loaded command: setup-rule
+2025-05-03T11:02:10.280Z [INFO]: Loaded command: setup-stats-channel
+2025-05-03T11:02:10.282Z [INFO]: Loaded command: setup-welcome
+2025-05-03T11:02:10.284Z [INFO]: Loaded command: status
+2025-05-03T11:02:10.285Z [INFO]: Loaded command: unlock
+2025-05-03T11:02:10.296Z [INFO]: Loaded command: add-job
+2025-05-03T11:02:10.296Z [INFO]: Loaded command: nhan_viec
+2025-05-03T11:02:10.297Z [INFO]: Loaded command: cong_viec_hien_tai
+2025-05-03T11:02:10.300Z [INFO]: Loaded command: cac_cong_viec
+2025-05-03T11:02:10.302Z [INFO]: Loaded command: remove-job
+2025-05-03T11:02:10.304Z [INFO]: Loaded command: nghi_viec
+2025-05-03T11:02:10.305Z [INFO]: Loaded command: nhan_luong
+2025-05-03T11:02:10.309Z [INFO]: Loaded command: add-xp
+2025-05-03T11:02:10.310Z [INFO]: Loaded command: level-rewards
+2025-05-03T11:02:10.312Z [INFO]: Loaded command: level
+2025-05-03T11:02:10.313Z [INFO]: Loaded command: rank
+2025-05-03T11:02:10.316Z [INFO]: Loaded command: so_du
+2025-05-03T11:02:10.318Z [INFO]: Loaded command: bank
+2025-05-03T11:02:10.320Z [INFO]: Loaded command: daily
+2025-05-03T11:02:10.322Z [INFO]: Loaded command: chuyen_tien
+2025-05-03T11:02:10.324Z [INFO]: Loaded command: set-noti
+2025-05-03T11:02:10.327Z [INFO]: Loaded command: top-money
+2025-05-03T11:02:10.328Z [INFO]: Loaded command: work
+2025-05-03T11:02:10.331Z [INFO]: Loaded command: play
+2025-05-03T11:02:10.333Z [INFO]: Loaded command: avatar
+2025-05-03T11:02:10.336Z [INFO]: Loaded command: ban
+2025-05-03T11:02:10.339Z [INFO]: Loaded command: help
+2025-05-03T11:02:10.341Z [INFO]: Loaded command: kick
+2025-05-03T11:02:10.344Z [INFO]: Loaded command: mute
+2025-05-03T11:02:10.345Z [INFO]: Loaded command: ping
+2025-05-03T11:02:10.464Z [INFO]: Loaded command: search
+2025-05-03T11:02:10.466Z [INFO]: Loaded command: server-info
+2025-05-03T11:02:10.467Z [INFO]: Loaded command: unban
+2025-05-03T11:02:10.468Z [INFO]: Loaded command: unmute
+2025-05-03T11:02:10.470Z [INFO]: Loaded command: user-info
+2025-05-03T11:02:10.474Z [INFO]: Đang đăng ký 48 lệnh với Discord API...
+2025-05-03T11:02:11.239Z [INFO]: Đã đăng ký thành công 48 lệnh với Discord API
+2025-05-03T11:02:11.242Z [INFO]: Loaded event: guildMemberAdd
+2025-05-03T11:02:11.243Z [INFO]: Loaded event: guildMemberRemove
+2025-05-03T11:02:11.244Z [INFO]: Loaded event: messageReactionAdd
+2025-05-03T11:02:11.245Z [INFO]: Loaded event: messageReactionRemove
+2025-05-03T11:02:11.247Z [INFO]: Loaded event: messageCreate
+2025-05-03T11:02:11.248Z [INFO]: Loaded event: ready
+2025-05-03T11:02:11.250Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-03T11:02:11.250Z [INFO]: Total 7 events loaded.
+2025-05-03T11:02:11.250Z [INFO]: Command handler initialized
+2025-05-03T11:02:11.250Z [INFO]: Event handler initialized
+2025-05-03T11:02:11.251Z [INFO]: Bot is starting...
+2025-05-03T11:02:12.433Z [INFO]: Bot logged in as Perry#4690
+2025-05-03T11:02:12.827Z [INFO]: Bot is ready as Perry#4690
