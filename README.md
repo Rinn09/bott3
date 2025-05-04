@@ -8,7 +8,7 @@ Bot Discord Quản Lý & Minigame được xây dựng bằng **Node.js** và **
 
 1. **Clone repository:**
    ```bash
-   git clone <https://github.com/Rinn09/bott3>
+   git clone https://github.com/Rinn09/bott3
    ```
 
 2. **Cài đặt các thư viện cần thiết:**
@@ -31,7 +31,7 @@ Bot Discord Quản Lý & Minigame được xây dựng bằng **Node.js** và **
 
 4. **Khởi động bot:**
    ```bash
-   npm run dev
+   node src/index.js
    ```
    hoặc
    ```bash

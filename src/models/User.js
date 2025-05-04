@@ -20,6 +20,18 @@ const userSchema = new mongoose.Schema({
     lastSalary: Date,
     hiredAt: Date
   },
+  mainJob: {
+    name: String,
+    level: { type: Number, default: 1 },
+    xp: { type: Number, default: 0 },
+    lastSalary: Date,
+    hiredAt: Date,
+    cooldowns: {
+      harvest: Date
+    },
+    taskCount: { type: Number, default: 0 }
+  },  
+  
   totalEarned: { type: Number, default: 0 },
   totalSpent: { type: Number, default: 0 }
 });

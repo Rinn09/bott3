@@ -9,9 +9,13 @@ module.exports = {
   async execute(interaction) {
     const guildId = interaction.guild.id;
 
-    const users = await User.find({ guildId }).sort({ 
-      $expr: { $add: ['$balance', '$bank'] } 
-    }).limit(10);
+    // Sử dụng aggregation pipeline để tính tổng tiền và sắp xếp
+    const users = await User.aggregate([
+      { $match: { guildId } },
+      { $addFields: { total: { $add: ['$balance', '$bank'] } } },
+      { $sort: { total: -1 } },
+      { $limit: 10 }
+    ]);
 
     if (!users.length) {
       return interaction.reply('❌ Không có dữ liệu nào để hiển thị.');
@@ -21,8 +25,7 @@ module.exports = {
       title: '💸 Top 10 người giàu nhất',
       color: 0xFFD700,
       description: users.map((user, i) => {
-        const total = user.balance + user.bank;
-        return `\`#${i + 1}\` <@${user.userId}> – **${total.toLocaleString()} VNĐ**`;
+        return `\`#${i + 1}\` <@${user.userId}> – **${user.total.toLocaleString()} VNĐ**`;
       }).join('\n'),
       footer: { text: 'Tổng cộng = Ví tiền + Ngân hàng' },
       timestamp: new Date()

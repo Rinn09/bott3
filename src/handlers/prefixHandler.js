@@ -36,6 +36,7 @@ const commandAliases = {
   'nghi_viec': ['ngv'],
   'rank': ['rk'],
   'cong_viec_hien_tai': ['cvht'],
+  'cac_cong_viec': ['ccv'],
 };
 
 const prefixCache = new Map();

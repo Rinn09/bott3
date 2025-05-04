@@ -11,6 +11,7 @@ const botConfig = require('./config/botConfig');
 const errorHandler = require('./utils/errorHandler');
 const mongoose = require('mongoose');
 const prefixHandler = require('./handlers/prefixHandler');
+const salaryNotificationHandler = require('./handlers/salaryReminder');
 
 
 console.log('Logger instance:', Logger);
@@ -75,12 +76,14 @@ class Bot {
 }
 
 const bot = new Bot();
-prefixHandler(bot.client);
+
 errorHandler(bot.client);
 bot.client.on('error', (error) => {
   Logger.error('WebSocket error:', error);
 });
 bot.client.on('ready', () => {
+  prefixHandler(bot.client);
+  salaryNotificationHandler(bot.client);
   Logger.info(`Bot is ready as ${bot.client.user.tag}`);
 });
 bot.client.on('disconnect', (event) => {
