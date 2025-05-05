@@ -1,6 +1,8 @@
 const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 const AntiCaps = require('../../models/anticaps');
 const { EmbedBuilder } = require('discord.js');
+const anticapsCache = require('../../utils/anticapsCache');
+const Logger = require('../../utils/logger');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -37,6 +39,9 @@ module.exports = {
             const channel = options.getChannel('channel');
             const data = await AntiCaps.findOne({ guildId: interaction.guild.id, channelId: channel.id });
 
+            const guildId = interaction.guild.id;
+            const channelId = channel.id;
+
             async function sendMessage(channel, message) {
                 const embed = new EmbedBuilder()
                     .setColor('#FF0000')
@@ -47,34 +52,45 @@ module.exports = {
                 await interaction.reply({ embeds: [embed] });
             }
 
-            switch (subcommand) {
-                case 'setup':
-                    if (data) {
-                        return sendMessage(channel, `Tính năng chống chữ in hoa đã được cài đặt trong kênh ${channel}.`);
-                    } else {
-                        const allowedRaw = options.getString('allowed-ids');
-                        let allowedArray = [];
-                        if (allowedRaw) {
-                            allowedArray = allowedRaw.split(',').map(id => id.trim());
-                        }
+            try {
+                switch (subcommand) {
+                    case 'setup':
+                            if (data) {
+                                return sendMessage(channel, `Tính năng chống chữ in hoa đã được cài đặt trong kênh ${channel}.`);
+                            } else {
+                                const allowedRaw = options.getString('allowed-ids');
+                                let allowedArray = [];
+                                if (allowedRaw) {   
+                                    allowedArray = allowedRaw.split(',').map(id => id.trim());
+                                }
 
-                        await AntiCaps.create({
-                            guildId: interaction.guild.id,
-                            channelId: channel.id,
-                            allowedUsers: allowedArray
-                        });
+                                const newData = await AntiCaps.findOneAndUpdate(
+                                    { guildId, channelId },
+                                    { allowedUsers: allowedArray },
+                                    { upsert: true, new: true } 
+                                );
 
-                        await sendMessage(channel, `Tính năng chống chữ in hoa đã được cài đặt trong kênh ${channel}.`);
-                    }
-                    break;
-                case 'disable':
-                    if (!data) {
-                        return sendMessage(channel, `Tính năng chống chữ in hoa chưa được cài đặt trong kênh ${channel}.`);
-                    } else {
-                        await AntiCaps.deleteOne({ guildId: interaction.guild.id, channelId: channel.id });
-                        await sendMessage(channel, `Tính năng chống chữ in hoa đã được tắt trong kênh ${channel}.`);
-                    }
-                    break;
+                                anticapsCache.updateConfig(guildId, channelId, newData);
+                                await sendMessage(channel, `Tính năng chống chữ in hoa đã được cài đặt trong kênh ${channel}.`);
+                            }
+
+                        break;
+
+                    case 'disable':
+
+                            if (!data) {
+                                return sendMessage(channel, `Tính năng chống chữ in hoa chưa được cài đặt trong kênh ${channel}.`);
+                            } else {
+                                await AntiCaps.deleteOne({ guildId, channelId });
+                                anticapsCache.updateConfig(guildId, channelId, null);
+                                await sendMessage(channel, `✅ Tính năng chống chữ in hoa đã được tắt trong kênh ${channel}.`);
+                            }
+
+                        break;
+                }
+            } catch (error) {
+                Logger.error(`Lỗi lệnh anticaps: ${error.message}`, { stack: error.stack });
+                await interaction.reply({ content: '❌ Có lỗi xảy ra khi thực thi lệnh anticaps.', ephemeral: true });
             }
         }
 }

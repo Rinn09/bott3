@@ -1,107 +1,123 @@
 const { CaptchaGenerator } = require('captcha-canvas');
-const { 
-  AttachmentBuilder, 
-  EmbedBuilder, 
-  ActionRowBuilder, 
-  ButtonBuilder, 
-  ButtonStyle, 
-  ModalBuilder,
-  TextInputBuilder,
-  TextInputStyle
-} = require('discord.js');
+const { AttachmentBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, ModalBuilder, TextInputBuilder, TextInputStyle, InteractionType } = require('discord.js'); // Thêm InteractionType
+const Logger = require('../utils/logger'); // Thêm Logger
 
-async function captcha(text, channel, author) {
-  if (!text) throw new Error('Text is required for captcha generation.');
+async function captcha(channel, author) { // Bỏ tham số text, luôn tạo random
   if (!channel) throw new Error('Channel is required for captcha generation.');
   if (!author) throw new Error('Author is required for captcha generation.');
 
-  // Tạo text captcha ngẫu nhiên nếu "random"
+  // Luôn tạo text captcha ngẫu nhiên
   let capText = "";
-  if (text.toLowerCase() === "random") {
-    const alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    for (let i = 0; i < 10; i++) {
-      capText += alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-    }
-  } else {
-    capText = text;
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; // Đơn giản hóa ký tự
+  for (let i = 0; i < 6; i++) { // Giảm độ dài xuống 6 ký tự
+    capText += alphabet.charAt(Math.floor(Math.random() * alphabet.length));
   }
 
-  // Tạo captcha image bằng captcha-canvas
-  const captchaImg = new CaptchaGenerator({})
-    .setDimension(150, 450)
-    .setCaptcha({ text: capText, fontSize: 60, color: '#000000', background: '#ffffff' })
-    .setDecoy({ opacity: 0.5 })
-    .setTrace({ color: '#000000' })
-    .generateSync();
-  const captchaBuffer = Buffer.from(captchaImg, 'base64');
-  const attachment = new AttachmentBuilder(captchaBuffer, { name: 'captcha.png' });
+  try {
+      // Tạo captcha image
+      const captchaInstance = new CaptchaGenerator()
+        .setDimension(150, 450)
+        .setCaptcha({ text: capText, size: 60, color: "grey" }) // Dùng size thay fontSize
+        .setDecoy({ opacity: 0.5, size: 40 }) // Giảm size decoy
+        .setTrace({ color: "grey", size: 5 }) // Dùng size thay vì color string đơn thuần
+        .generateSync(); // Tạo captcha
+      const captchaBuffer = Buffer.from(captchaInstance);
+      const attachment = new AttachmentBuilder(captchaBuffer, { name: 'captcha.png' });
 
-  // Tạo embed captcha
-  const embed = new EmbedBuilder()
-    .setColor('#0099ff')
-    .setTitle('Captcha Verification')
-    .setDescription('Vui lòng nhập văn bản xuất hiện bên dưới để xác thực.')
-    .setImage('attachment://captcha.png')
-    .setFooter({ text: 'Captcha Verification' });
+      // Tạo embed
+      const embed = new EmbedBuilder()
+        .setColor('#0099ff')
+        .setTitle('🔍 Xác thực Captcha')
+        .setDescription(`Vui lòng nhấp vào nút "Xác thực" và nhập lại ${capText.length} ký tự bạn thấy trong ảnh để hoàn tất.`)
+        .setImage('attachment://captcha.png')
+        .setFooter({ text: `Yêu cầu bởi ${author.tag} | Bạn có 2 phút` });
 
-  // Tạo nút Verify và gửi tin nhắn
-  const verifyButton = new ButtonBuilder()
-    .setCustomId('captcha-verify')
-    .setLabel('Verify')
-    .setStyle(ButtonStyle.Danger);
-  const row = new ActionRowBuilder().addComponents(verifyButton);
-  const msg = await channel.send({ embeds: [embed], files: [attachment], components: [row] });
+      // Tạo nút Verify
+      const verifyButton = new ButtonBuilder()
+        .setCustomId(`captcha_verify_${author.id}_${Date.now()}`) // ID duy nhất cho mỗi lần tạo
+        .setLabel('Xác thực')
+        .setStyle(ButtonStyle.Success); // Đổi style thành Success
+      const row = new ActionRowBuilder().addComponents(verifyButton);
 
-  // Trả về Promise đợi kết quả từ collectors
-  return new Promise((resolve, reject) => {
-    // Collector cho nút
-    const collector = msg.createMessageComponentCollector({ time: 600000, componentType: 'BUTTON' });
-    collector.on('collect', async (interaction) => {
-      if (interaction.customId !== 'captcha-verify') return;
-      if (interaction.user.id !== author.id) {
-        await interaction.reply({ content: 'Captcha này không dành cho bạn.', ephemeral: true });
-        return;
-      }
-      
-      // Xác nhận interaction để tránh "This interaction failed"
-      await interaction.deferUpdate();
-      
-      // Tạo Modal nhập captcha
-      const modal = new ModalBuilder()
-        .setTitle('SUBMIT CAPTCHA')
-        .setCustomId('captcha-modal');
-      const answerInput = new TextInputBuilder()
-        .setCustomId('captcha-answer')
-        .setLabel('Nhập văn bản xác thực')
-        .setPlaceholder('Nhập văn bản bên trên')
-        .setStyle(TextInputStyle.Short);
-      const modalRow = new ActionRowBuilder().addComponents(answerInput);
-      modal.addComponents(modalRow);
-      
-      await interaction.showModal(modal);
-      
-      // Chờ nhận submit từ Modal
-      try {
-        const modalSubmit = await interaction.awaitModalSubmit({ time: 600000 });
-        const answer = modalSubmit.fields.getTextInputValue('captcha-answer');
-        if (answer === capText) {
-          await modalSubmit.reply({ content: 'Captcha verified successfully!', ephemeral: true });
-          resolve(true);
-          collector.stop();
-          await msg.delete().catch(() => {});
-        } else {
-          await modalSubmit.reply({ content: 'Incorrect captcha. Please try again.', ephemeral: true });
-          resolve(false);
-          collector.stop();
-        }
-      } catch (err) {
-        reject(err);
-      }
-    });
-    collector.on('end', collected => {
-      if (collected.size === 0) resolve(false);
-    });
-  });
+      // Gửi tin nhắn captcha (có thể để ephemeral nếu lệnh /captcha là ephemeral)
+      const msg = await channel.send({ embeds: [embed], files: [attachment], components: [row] });
+
+      // Trả về Promise đợi kết quả
+      return new Promise((resolve) => {
+        const filter = (i) => i.customId === verifyButton.data.custom_id && i.user.id === author.id;
+        const collector = channel.createMessageComponentCollector({ filter, time: 120000 }); // 2 phút timeout
+
+        collector.on('collect', async (interaction) => {
+          if (interaction.type !== InteractionType.MessageComponent) return; // Chỉ xử lý button click
+
+          try {
+            // Phản hồi nhanh chóng trước khi show modal
+            await interaction.deferUpdate();
+
+            // Tạo Modal nhập captcha
+            const modal = new ModalBuilder()
+              .setTitle('Nhập Captcha')
+              .setCustomId(`captcha_modal_${author.id}_${Date.now()}`); // ID duy nhất
+            const answerInput = new TextInputBuilder()
+              .setCustomId('captcha-answer')
+              .setLabel(`Nhập ${capText.length} ký tự trong ảnh`)
+              .setPlaceholder('Phân biệt chữ hoa/thường')
+              .setStyle(TextInputStyle.Short)
+              .setRequired(true)
+              .setMinLength(capText.length)
+              .setMaxLength(capText.length);
+            const modalRow = new ActionRowBuilder().addComponents(answerInput);
+            modal.addComponents(modalRow);
+
+            await interaction.showModal(modal);
+
+            // Chờ nhận submit từ Modal
+            const modalSubmit = await interaction.awaitModalSubmit({
+                filter: (i) => i.customId === modal.data.custom_id && i.user.id === author.id,
+                time: 110000 // Timeout modal ngắn hơn collector 1 chút
+             }).catch(err => {
+                 Logger.warn(`[Captcha] Modal submit timeout or error for ${author.tag}: ${err.message}`);
+                 // Không cần gửi gì thêm ở đây, collector sẽ xử lý timeout chung
+                 return null; // Trả về null để biết là timeout/lỗi
+             });
+
+             if (!modalSubmit) { // Nếu modal timeout hoặc lỗi
+                collector.stop('modal_timeout');
+                return;
+             }
+
+            await modalSubmit.deferReply({ ephemeral: true });
+            const answer = modalSubmit.fields.getTextInputValue('captcha-answer');
+            if (answer === capText) {
+              await modalSubmit.editReply({ content: '✅ Xác thực thành công!' });
+              resolve(true); // Resolve thành công
+              collector.stop('verified');
+            } else {
+              await modalSubmit.editReply({ content: '❌ Mã Captcha không đúng. Vui lòng thử lại lệnh.' });
+              resolve(false); // Resolve thất bại
+              collector.stop('incorrect');
+            }
+          } catch (modalError) {
+             Logger.error(`[Captcha] Error during modal interaction for ${author.tag}: ${modalError.message}`, { stack: modalError.stack });
+             resolve(false); // Resolve thất bại nếu có lỗi
+             collector.stop('error');
+          }
+        });
+
+        collector.on('end', async (collected, reason) => {
+          // Xóa tin nhắn captcha sau khi kết thúc (thành công, thất bại, hết hạn)
+          await msg.delete().catch(err => Logger.warn(`[Captcha] Could not delete captcha message: ${err.message}`));
+          // Nếu chưa resolve và lý do là timeout, resolve false
+          if (reason === 'time') {
+              Logger.info(`[Captcha] Timed out for ${author.tag}`);
+              resolve(false);
+          }
+          // Các trường hợp khác đã được resolve trong 'collect'
+        });
+      }); // Kết thúc Promise
+  } catch (error) {
+      Logger.error(`[Captcha] Failed to generate or send captcha: ${error.message}`, { stack: error.stack });
+      return false; // Trả về false nếu có lỗi ngay từ đầu
+  }
 }
-
 module.exports = captcha;

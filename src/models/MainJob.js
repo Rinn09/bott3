@@ -5,10 +5,12 @@ const mainJobSchema = new mongoose.Schema({
   description: String,
   tasks: [
     {
+      taskId: { type: String, required: true },
       name: String,
       command: String, // Lệnh thực hiện nhiệm vụ
       xp: Number,
-      reward: Number // Tiền thưởng
+      reward: Number, // Tiền thưởng
+      cooldown: Number
     }
   ],
   salaryByLevel: {

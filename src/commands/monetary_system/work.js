@@ -6,11 +6,13 @@ const workMessages = [
   "Bạn vừa hoàn thành xong một ca làm mệt mỏi.",
   "Bạn đi làm từ sáng đến tối... nhưng lương vẫn bèo.",
   "Bạn cố gắng hết sức... và được trả công xứng đáng.",
-  "Bạn đã giúp một cụ già qua đường và được thưởng tiền!"
+  "Bạn đã giúp một cụ già qua đường và được bả cho tiền!",
+  "Bạn đi đái bậy và nhặt được tiền lẻ!",
+  "Bạn mới móc túi người khác mà nó cũng nghèo như bạn...",
 ];
 
 const events = [
-  { type: "bonus", chance: 0.1, message: "Bạn nhặt được {amount} VNĐ trên đường!", min: 1000, max: 20000 },
+  { type: "bonus", chance: 0.3, message: "Bạn nhặt được {amount} VNĐ trên đường!", min: 1000, max: 20000 },
   { type: "lost", chance: 0.05, message: "Bạn bị cướp mất {amount} VNĐ!", min: 10000, max: 50000 },
   { type: "drop", chance: 0.07, message: "Bạn làm rơi ví và mất {amount} VNĐ!", min: 1000, max: 20000 },
   { type: "double", chance: 0.05, message: "Bạn được tăng ca và nhận gấp đôi tiền công!" },

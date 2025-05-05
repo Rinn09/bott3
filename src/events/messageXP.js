@@ -12,45 +12,36 @@ module.exports = {
     // Bỏ qua tin nhắn từ bot hoặc trong DM
     if (message.author.bot || !message.guild) return;
     
-    // ----------------- AntiCaps Check -----------------
+    // ----------------- AntiCaps Check (sử dụng cache) -----------------
     try {
-      const data = await AntiCaps.findOne({ 
-        guildId: message.guild.id, 
-        channelId: message.channel.id 
-      });
-  
-      if (data) {
-        // Kiểm tra xem author có nằm trong danh sách user được phép không
-        let allowed = false;
-        for (const userId of data.allowedUsers) {
-          const u = await message.client.users.fetch(userId.toString()).catch(() => {});
-          if (u && u.id === message.author.id) {
-            allowed = true;
-            break;
-          }
-        }
-        // Nếu không được phép, kiểm tra tỉ lệ chữ in hoa
-        if (!allowed) {
-          const upcaseChars = message.content.split('').filter(char => char >= 'A' && char <= 'Z').length;
-          if (message.content.length > 5 && upcaseChars / message.content.length > 0.5) {
-            const embed = new EmbedBuilder()
-              .setColor('#FF0000')
-              .setDescription(`❌ Bạn không được phép gửi tin nhắn quá nhiều chữ in hoa trong kênh này.`)
-              .setTimestamp()
-              .setFooter({ text: 'AntiCaps' });
-            await message.channel.send({ embeds: [embed] });
-            // Chờ 3 giây rồi xóa tin nhắn
-            await new Promise(resolve => setTimeout(resolve, 3000));
-            await message.delete().catch(() => {});
-            return;
+      const config = anticapsCache.getConfig(message.guild.id, message.channel.id);
+
+      if (config) {
+        const isAllowed = config.allowedUsers.has(message.author.id);
+
+        if (!isAllowed) {
+          const content = message.content;
+          if (content.length >= 5) { // Chỉ kiểm tra tin nhắn dài hơn 5 ký tự
+             const uppercaseChars = content.replace(/[^A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ]/g, "").length;
+             const relevantLength = content.replace(/\s/g, "").length; // Không tính khoảng trắng
+
+             if (relevantLength > 0 && (uppercaseChars / relevantLength) > 0.7) { // Tăng ngưỡng lên 70% chữ cái in hoa
+               await message.delete().catch(err => Logger.warn(`[AntiCaps] Failed to delete message: ${err.message}`));
+               const replyMsg = await message.channel.send({
+                   content: `${message.author}, vui lòng không viết IN HOA quá nhiều trong kênh này.`,
+               });
+               // Tự động xóa tin nhắn cảnh báo sau 5 giây
+               setTimeout(() => replyMsg.delete().catch(() => {}), 5000);
+               return; // Dừng xử lý XP nếu tin nhắn bị xóa
+             }
           }
         }
       }
     } catch (err) {
-      console.error('AntiCaps error:', err);
-      // Khi có lỗi xảy ra trong phần AntiCaps, ta vẫn tiếp tục xử lý XP
+      Logger.error(`[AntiCaps Check Error] ${err.message}`, { stack: err.stack });
+      // Vẫn tiếp tục xử lý XP dù có lỗi check anticaps
     }
-    
+
     // ----------------- XP & Level Up -----------------
     const cooldownKey = `${message.guild.id}-${message.author.id}`;
     const last = xpCooldowns.get(cooldownKey) || 0;

@@ -12,7 +12,7 @@ const errorHandler = require('./utils/errorHandler');
 const mongoose = require('mongoose');
 const prefixHandler = require('./handlers/prefixHandler');
 const salaryNotificationHandler = require('./handlers/salaryReminder');
-
+const anticapsCache = require('./utils/anticapsCache');
 
 console.log('Logger instance:', Logger);
 
@@ -84,6 +84,7 @@ bot.client.on('error', (error) => {
 bot.client.on('ready', () => {
   prefixHandler(bot.client);
   salaryNotificationHandler(bot.client);
+  anticapsCache.loadAllConfigs(bot.client);
   Logger.info(`Bot is ready as ${bot.client.user.tag}`);
 });
 bot.client.on('disconnect', (event) => {
