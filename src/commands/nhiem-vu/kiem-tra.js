@@ -62,8 +62,8 @@ module.exports = {
       // --- Tạo Embed phản hồi ---
       const requiredXP = getRequiredXPForLevel(user.mainJob.level);
       const embed = new EmbedBuilder()
-        .setTitle(`🧑‍🏫 ${task.name} thành công!`) // Thay đổi emoji và tiêu đề
-        .setColor('Green') // Thay đổi màu
+        .setTitle(`🔎 ${task.name} thành công!`) // Thay đổi emoji và tiêu đề
+        .setColor('#FFD700') // Thay đổi màu
         .setDescription(
           `Bạn đã hoàn thành công việc kiểm tra chất lượng.\n` +
           `+✨ **${xpGain} XP**\n` +

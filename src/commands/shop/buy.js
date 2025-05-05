@@ -37,9 +37,20 @@ module.exports = {
 
     // Kiểm tra yêu cầu nghề/level (nếu có)
     if (item.requiredJob) {
-        if (!user.mainJob || user.mainJob.name?.toLowerCase() !== item.requiredJob.toLowerCase() || (user.mainJob.level || 1) < (item.requiredLevel || 1)) {
-            return interaction.reply({ content: `❌ Bạn cần là **${item.requiredJob}** cấp **${item.requiredLevel || 1}** trở lên để mua vật phẩm này.`, ephemeral: true });
-        }
+      let reqJobs = [];
+      if (Array.isArray(item.requiredJob)) {
+        reqJobs = item.requiredJob.map(job => job.toLowerCase());
+      } else {
+        reqJobs = [item.requiredJob.toLowerCase()];
+      }
+
+      const userJob = user.mainJob?.name?.toLowerCase();
+      if (!userJob || !reqJobs.includes(userJob) || (user.mainJob.level || 1) < (item.requiredLevel || 1)) {
+        return interaction.reply({ 
+          content: `❌ Bạn cần là một trong những nghề **${reqJobs.join(', ')}** cấp **${item.requiredLevel || 1}** trở lên để mua vật phẩm này.`, 
+          ephemeral: true 
+        });
+      }
     }
     const totalCost = item.buyPrice * quantity;
 

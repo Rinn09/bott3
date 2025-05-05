@@ -12,11 +12,8 @@ module.exports = {
   async execute(interaction) {
     await interaction.deferReply();
 
-    const items = await ShopItem.find({ buyPrice: { $ne: null } }).sort({ name: 1 }); // Chỉ hiển thị đồ có thể mua
-
-    if (!items.length) {
-      return interaction.editReply('Cửa hàng hiện đang trống trơn!');
-    }
+    const items = await ShopItem.find({ buyPrice: { $ne: null } }).sort({ name: 1 });
+    if (!items.length) return interaction.editReply('Cửa hàng hiện đang trống trơn!');
 
     const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
     let currentPage = 0;
@@ -28,15 +25,24 @@ module.exports = {
 
       const embed = new EmbedBuilder()
         .setTitle('🛒 Cửa Hàng Vật Phẩm')
-        .setColor('Green')
-        .setDescription(currentItems.map(item =>
-          `**${item.name}** (\`${item.itemId}\`)\n` +
-          `*${item.description}*\n` +
-          `Giá mua: **${item.buyPrice?.toLocaleString()} VNĐ**` +
-          `${item.sellPrice ? ` | Giá bán: ${item.sellPrice.toLocaleString()} VNĐ` : ''}` +
-          `${item.requiredJob ? `\n*Yêu cầu nghề: ${item.requiredJob} (Cấp ${item.requiredLevel || 1})*` : ''}`
-        ).join('\n\n'))
-        .setFooter({ text: `Trang ${page + 1}/${totalPages}` });
+        .setColor('#00A86B') // Màu xanh lá mạnh mẽ, dễ nhìn
+        .setDescription(`Có tổng cộng **${items.length}** vật phẩm, hiển thị trang **${page + 1}/${totalPages}**.\n\n`)
+        .setTimestamp()
+        .setFooter({ text: `Trang ${page + 1} của ${totalPages}` });
+
+      currentItems.forEach(item => {
+        let fieldValue = `**Mô tả:** ${item.description}\n` +
+          `**Giá mua:** ${item.buyPrice?.toLocaleString()} VNĐ`;
+        if (item.sellPrice) {
+          fieldValue += ` | **Giá bán:** ${item.sellPrice.toLocaleString()} VNĐ`;
+        }
+        if (item.requiredJob) {
+          const reqJob = Array.isArray(item.requiredJob) ? item.requiredJob.join(', ') : item.requiredJob;
+          fieldValue += `\n*Yêu cầu nghề:* ${reqJob} (Cấp ${item.requiredLevel || 1}+ )`;
+        }
+        embed.addFields({ name: `**${item.name}** (\`${item.itemId}\`)`, value: fieldValue });
+      });
+
       return embed;
     };
 
@@ -76,8 +82,8 @@ module.exports = {
     });
 
     collector.on('end', () => {
-        const disabledButtons = generateButtons(currentPage).components.map(b => b.setDisabled(true));
-        interaction.editReply({ components: [new ActionRowBuilder().addComponents(disabledButtons)] }).catch(()=>{});
+      const disabledButtons = generateButtons(currentPage).components.map(b => b.setDisabled(true));
+      interaction.editReply({ components: [new ActionRowBuilder().addComponents(disabledButtons)] }).catch(() => {});
     });
   }
 };

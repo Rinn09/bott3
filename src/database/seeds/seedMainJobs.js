@@ -267,3 +267,5 @@ async function seedJobs() {
   );
   console.log('✅ Đã tạo/cập nhật nghề: kỹ sư');
 }
+
+// node src/database/seeds/seedMainJobs.js

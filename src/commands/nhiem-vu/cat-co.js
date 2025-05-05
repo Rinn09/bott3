@@ -70,7 +70,7 @@ module.exports = {
 
       const requiredXP = getRequiredXPForLevel(user.mainJob.level);
       const embed = new EmbedBuilder()
-        .setTitle(`🚿 ${task.name} thành công!`)
+        .setTitle(`🌿 ${task.name} thành công!`)
         .setColor('Green')
         .setDescription(
           `+💧 **${xpGain} XP**\n` +

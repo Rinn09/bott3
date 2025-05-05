@@ -34,7 +34,7 @@ module.exports = {
     // Tạo embed xác nhận
     const embed = new EmbedBuilder()
       .setTitle('❓ Xác nhận nghỉ việc')
-      .setDescription(`Bạn có chắc chắn muốn nghỉ việc **${userData.mainJob.name}** không?`)
+      .setDescription(`Bạn có chắc chắn muốn nghỉ việc **${userData.mainJob.name}** không? Bạn phải đợi 12h sau khi nghỉ việc mới có thể xin công việc khác?`)
       .setColor('Yellow');
 
     // Tạo nút xác nhận
