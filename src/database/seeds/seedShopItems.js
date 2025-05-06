@@ -4,9 +4,9 @@ const mongoose = require('mongoose');
 require('dotenv').config(); // Để sử dụng biến môi trường
 async function seedItems() {
     await ShopItem.findOneAndUpdate(
-        { itemId: 'phan_bon' },
+        { itemId: 'phan-bon' },
         {
-            itemId: 'phan_bon',
+            itemId: 'phan-bon',
             name: 'Phân bón',
             description: 'Giúp cây trồng phát triển nhanh hơn, giảm thời gian chờ thu hoạch.',
             buyPrice: 10000,
@@ -25,9 +25,9 @@ async function seedItems() {
     console.log('✅ Đã tạo/cập nhật vật phẩm: Phân bón');
 
     await ShopItem.findOneAndUpdate(
-        { itemId: 'hat_giong' }, // Đặt ID khác nếu có nhiều loại hạt giống
+        { itemId: 'hat-giong' }, // Đặt ID khác nếu có nhiều loại hạt giống
         {
-            itemId: 'hat_giong',
+            itemId: 'hat-giong',
             name: 'Hạt giống',
             description: 'Loại hạt giống đặc biệt, rút ngắn thời gian chờ gieo hạt tiếp theo.',
             buyPrice: 3000,
@@ -57,7 +57,7 @@ async function seedItems() {
                 requiredJob: 'nông dân', // Ví dụ: chỉ nông dân mua được
                 effects: {
                     cooldownReduction: {
-                        targetTaskId: 'thuHoach', // Ảnh hưởng task 'thuHoach'
+                        targetTaskId: 'catCo', // Ảnh hưởng task 'thuHoach'
                         reductionTime: 40 * 60 * 1000 // Giảm 1 giờ
                     }
                 }

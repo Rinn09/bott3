@@ -1,4 +1,3 @@
-// src/commands/shop/sell.js
 const { SlashCommandBuilder } = require('discord.js');
 const User = require('../../models/User');
 const ShopItem = require('../../models/ShopItem');

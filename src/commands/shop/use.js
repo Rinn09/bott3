@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const User = require('../../models/User');
 const ShopItem = require('../../models/ShopItem');
+const MainJob = require('../../models/MainJob'); // Thêm model MainJob
 const Logger = require('../../utils/logger'); // Để ghi log
 
 module.exports = {
@@ -23,7 +24,7 @@ module.exports = {
     const itemIdToUse = interaction.options.getString('item_id').toLowerCase();
     const quantityToUse = interaction.options.getInteger('quantity') || 1;
 
-    await interaction.deferReply({ ephemeral: true });
+    await interaction.deferReply({ ephemeral: false });
 
     try {
       const user = await User.findOne({ userId, guildId });
@@ -41,50 +42,81 @@ module.exports = {
       let replyMessage = `✅ Bạn đã sử dụng ${quantityToUse} ${itemData.name}.`;
       let cooldownReduced = false; // Biến cờ để kiểm tra có giảm cooldown không
 
+      // --- Xử lý kiểm tra yêu cầu nghề ---
+      if (itemData.requiredJob) {
+        let reqJobs = [];
+        if (Array.isArray(itemData.requiredJob)) {
+          reqJobs = itemData.requiredJob.map(job => job.toLowerCase());
+        } else {
+          reqJobs = [itemData.requiredJob.toLowerCase()];
+        }
+        const userJob = user.mainJob?.name?.toLowerCase();
+        if (!userJob || !reqJobs.includes(userJob)) {
+          return interaction.editReply(`❌ Bạn cần làm nghề **${reqJobs.join(', ')}** để sử dụng vật phẩm này.`);
+        }
+      }
+
       // --- Xử lý hiệu ứng vật phẩm ---
-      if (itemData.effects?.cooldownReduction?.targetTaskId && itemData.effects?.cooldownReduction?.reductionTime) {
-        const targetTaskId = itemData.effects.cooldownReduction.targetTaskId;
-        const reductionTime = itemData.effects.cooldownReduction.reductionTime * quantityToUse; // Giảm theo số lượng dùng
+      let targetTaskId = itemData.effects.cooldownReduction.targetTaskId;
+      
+      // Nếu targetTaskId không phải là string, ví dụ là mảng, ta lấy phần tử đầu tiên
+      if (Array.isArray(targetTaskId)) {
+        targetTaskId = targetTaskId[0];
+      }
 
-        // Kiểm tra xem user có nghề phù hợp không (nếu vật phẩm yêu cầu)
-        if (itemData.requiredJob && (!user.mainJob || user.mainJob.name?.toLowerCase() !== itemData.requiredJob.toLowerCase())) {
-             return interaction.editReply(`❌ Bạn cần làm nghề **${itemData.requiredJob}** để sử dụng vật phẩm này.`);
-        }
-        // Kiểm tra level nghề (nếu cần)
-        if (itemData.requiredLevel && (!user.mainJob || (user.mainJob.level || 1) < itemData.requiredLevel)) {
-            return interaction.editReply(`❌ Bạn cần đạt cấp **<span class="math-inline">\{itemData\.requiredLevel\}\*\* nghề \*\*</span>{user.mainJob?.name || ''}** để sử dụng vật phẩm này.`);
-        }
+      const reductionTime = itemData.effects.cooldownReduction.reductionTime * quantityToUse; // Giảm theo số lượng dùng
 
+      // Nếu cần kiểm tra level nghề, giữ nguyên:
+      if (itemData.requiredLevel && (!user.mainJob || (user.mainJob.level || 1) < itemData.requiredLevel)) {
+        return interaction.editReply(`❌ Bạn cần đạt cấp **${itemData.requiredLevel}** nghề **${user.mainJob?.name || ''}** để sử dụng vật phẩm này.`);
+      }
+
+      // Lấy dữ liệu nhiệm vụ (từ MainJob) để biết cooldownTime của nhiệm vụ targetTaskId
+      const mainJobData = await MainJob.findOne({ name: user.mainJob.name.toLowerCase() });
+      const taskData = mainJobData?.tasks?.find(t => t.taskId.toLowerCase() === targetTaskId.toLowerCase());
+      if (!taskData) {
+        replyMessage += `\nℹ️ Không tìm thấy thông tin nhiệm vụ cho \`${targetTaskId}\`.`;
+      } else {
+        const cooldownTime = taskData.cooldown; // Cooldown ban đầu của nhiệm vụ
+        // Lấy timestamp khi nhiệm vụ được thực hiện; nếu không có, coi là sẵn sàng (remaining = 0)
         const lastUsedTimestamp = user.mainJob?.taskCooldowns?.get(targetTaskId) || 0;
+        const now = Date.now();
+        const elapsed = now - lastUsedTimestamp;
+        const remaining = lastUsedTimestamp ? Math.max(0, cooldownTime - elapsed) : 0;
 
-        if (lastUsedTimestamp > 0) { // Chỉ giảm nếu task đang trong cooldown
-          // Giảm thời gian cooldown bằng cách trừ đi thời gian giảm
-          // Đảm bảo không giảm về giá trị âm (tức là không thể rem cooldown về quá khứ xa)
-          const newTimestamp = Math.max(0, lastUsedTimestamp - reductionTime);
-
-          if (!user.mainJob.taskCooldowns) user.mainJob.taskCooldowns = new Map(); // Đảm bảo map tồn tại
+        if (remaining > 0) {
+          // Nhiệm vụ vẫn trong cooldown, áp dụng giảm
+          let newRemaining = remaining - reductionTime;
+          if (newRemaining < 0) newRemaining = 0;
+          // Tính lại timestamp: newLastUsed = now - (cooldownTime - newRemaining)
+          const newTimestamp = now - (cooldownTime - newRemaining);
           user.mainJob.taskCooldowns.set(targetTaskId, newTimestamp);
+          user.markModified('mainJob.taskCooldowns'); // Đánh dấu phần này đã được thay đổi
           cooldownReduced = true;
 
           const minutesReduced = Math.floor(reductionTime / 60000);
           const secondsReduced = Math.floor((reductionTime % 60000) / 1000);
           replyMessage += `\n⏱️ Cooldown nhiệm vụ \`${targetTaskId}\` đã giảm ${minutesReduced} phút ${secondsReduced} giây!`;
-          Logger.info(`User ${userId} used ${quantityToUse} ${itemIdToUse}, reduced cooldown for ${targetTaskId} by ${reductionTime}ms. Old: ${lastUsedTimestamp}, New: ${newTimestamp}`);
+          Logger.info(`User ${userId} used ${quantityToUse} ${itemIdToUse}, reduced cooldown for ${targetTaskId} by ${reductionTime}ms. Old remaining: ${remaining}ms, New remaining: ${newRemaining}ms`);
         } else {
           replyMessage += `\nℹ️ Nhiệm vụ \`${targetTaskId}\` hiện không trong thời gian chờ nên không thể giảm.`;
         }
       }
-      // Thêm các xử lý hiệu ứng khác (ví dụ: tăng XP tạm thời,...) ở đây
 
-      // --- Tiêu hao vật phẩm (nếu cần) ---
+      // --- Tiêu hao vật phẩm (chỉ nếu hiệu ứng thành công) ---
       if (itemData.consumable) {
-        const newQuantity = userQuantity - quantityToUse;
-        if (newQuantity <= 0) {
-          user.inventory.delete(itemIdToUse);
+        // Chỉ tiêu hao nếu có ít nhất 1 hiệu ứng được áp dụng (hoặc bạn có thể thay đổi điều kiện tùy ý)
+        if (cooldownReduced) {
+          const newQuantity = user.inventory?.get(itemIdToUse) - quantityToUse;
+          if (newQuantity <= 0) {
+            user.inventory.delete(itemIdToUse);
+          } else {
+            user.inventory.set(itemIdToUse, newQuantity);
+          }
+          replyMessage += `\n🎒 Số lượng còn lại: ${Math.max(0, newQuantity)}.`;
         } else {
-          user.inventory.set(itemIdToUse, newQuantity);
+          replyMessage += `\nℹ️ Không tiêu hao vật phẩm vì hiệu ứng không được kích hoạt.`;
         }
-        replyMessage += `\n🎒 Số lượng còn lại: ${Math.max(0, newQuantity)}.`;
       }
 
       await user.save();

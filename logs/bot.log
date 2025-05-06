@@ -5936,3 +5936,1669 @@ Require stack:
 2025-05-05T08:37:21.389Z [INFO]: [View Job Debug] user.mainJob.name is: "nông dân" (Type: string)
 2025-05-05T08:40:23.195Z [INFO]: [View Job Debug] user.mainJob.name is: "nông dân" (Type: string)
 2025-05-05T08:43:16.569Z [ERROR]: Lỗi lệnh use (luoi-liem): itemData.requiredJob.toLowerCase is not a function
+2025-05-05T08:45:35.407Z [INFO]: Loaded command: anticaps
+2025-05-05T08:45:35.518Z [INFO]: Loaded command: captcha
+2025-05-05T08:45:35.521Z [INFO]: Loaded command: change-prefix
+2025-05-05T08:45:35.523Z [INFO]: Loaded command: clear
+2025-05-05T08:45:35.527Z [INFO]: Loaded command: disablecommand
+2025-05-05T08:45:35.531Z [INFO]: Loaded command: list-bans
+2025-05-05T08:45:35.533Z [INFO]: Loaded command: lock
+2025-05-05T08:45:35.536Z [INFO]: Loaded command: refresh
+2025-05-05T08:45:35.539Z [INFO]: Loaded command: reset-user
+2025-05-05T08:45:35.544Z [INFO]: Loaded command: setup-autorole
+2025-05-05T08:45:35.548Z [INFO]: Loaded command: setup-goodbye
+2025-05-05T08:45:35.553Z [INFO]: Loaded command: setup-log
+2025-05-05T08:45:35.560Z [INFO]: Loaded command: setup-role-channel
+2025-05-05T08:45:35.567Z [INFO]: Loaded command: setup-rule
+2025-05-05T08:45:35.571Z [INFO]: Loaded command: setup-stats-channel
+2025-05-05T08:45:35.579Z [INFO]: Loaded command: setup-welcome
+2025-05-05T08:45:35.582Z [INFO]: Loaded command: status
+2025-05-05T08:45:35.585Z [INFO]: Loaded command: unlock
+2025-05-05T08:45:35.591Z [INFO]: Loaded command: add-job
+2025-05-05T08:45:35.594Z [INFO]: Loaded command: nhan_viec
+2025-05-05T08:45:35.597Z [INFO]: Loaded command: cong_viec_hien_tai
+2025-05-05T08:45:35.600Z [INFO]: Loaded command: cac_cong_viec
+2025-05-05T08:45:35.602Z [INFO]: Loaded command: remove-job
+2025-05-05T08:45:35.605Z [INFO]: Loaded command: nghi_viec
+2025-05-05T08:45:35.608Z [INFO]: Loaded command: nhan_luong
+2025-05-05T08:45:35.614Z [INFO]: Loaded command: add-xp
+2025-05-05T08:45:35.618Z [INFO]: Loaded command: level-rewards
+2025-05-05T08:45:35.620Z [INFO]: Loaded command: level
+2025-05-05T08:45:35.622Z [INFO]: Loaded command: rank
+2025-05-05T08:45:35.626Z [INFO]: Loaded command: bo_nghe
+2025-05-05T08:45:35.636Z [INFO]: Loaded command: danh_sach_nghe_chinh
+2025-05-05T08:45:35.640Z [INFO]: Loaded command: main_job_level_rewards
+2025-05-05T08:45:35.643Z [INFO]: Loaded command: chon_nghe
+2025-05-05T08:45:35.646Z [INFO]: Loaded command: view-main-job
+2025-05-05T08:45:35.649Z [INFO]: Loaded command: so_du
+2025-05-05T08:45:35.653Z [INFO]: Loaded command: bank
+2025-05-05T08:45:35.656Z [INFO]: Loaded command: daily
+2025-05-05T08:45:35.659Z [INFO]: Loaded command: chuyen_tien
+2025-05-05T08:45:35.665Z [INFO]: Loaded command: set-noti
+2025-05-05T08:45:35.669Z [INFO]: Loaded command: top-money
+2025-05-05T08:45:35.671Z [INFO]: Loaded command: work
+2025-05-05T08:45:35.675Z [INFO]: Loaded command: play
+2025-05-05T08:45:35.677Z [INFO]: Loaded command: bao-tri
+2025-05-05T08:45:35.681Z [INFO]: Loaded command: cap-cuu
+2025-05-05T08:45:35.684Z [INFO]: Loaded command: cat-co
+2025-05-05T08:45:35.690Z [INFO]: Loaded command: cham-soc-hoc-sinh
+2025-05-05T08:45:35.694Z [INFO]: Loaded command: day-hoc
+2025-05-05T08:45:35.696Z [INFO]: Loaded command: gieo-hat
+2025-05-05T08:45:35.698Z [INFO]: Loaded command: kham-suc-khoe
+2025-05-05T08:45:35.701Z [INFO]: Loaded command: kiem-dinh
+2025-05-05T08:45:35.703Z [INFO]: Loaded command: kiem-tra
+2025-05-05T08:45:35.707Z [INFO]: Loaded command: lap-rap
+2025-05-05T08:45:35.710Z [INFO]: Loaded command: phat-trien
+2025-05-05T08:45:35.711Z [INFO]: Loaded command: soan-giao-an
+2025-05-05T08:45:35.714Z [INFO]: Loaded command: tham-gia-hoi-thao
+2025-05-05T08:45:35.718Z [INFO]: Loaded command: thiet-ke
+2025-05-05T08:45:35.720Z [INFO]: Loaded command: thu-hoach
+2025-05-05T08:45:35.726Z [INFO]: Loaded command: thuc-hien-xet-nghiem
+2025-05-05T08:45:35.730Z [INFO]: Loaded command: tu-van-ky-thuat
+2025-05-05T08:45:35.732Z [INFO]: Loaded command: tu-van
+2025-05-05T08:45:35.734Z [INFO]: Loaded command: tuoi-cay
+2025-05-05T08:45:35.738Z [INFO]: Loaded command: van-chuyen
+2025-05-05T08:45:35.746Z [INFO]: Loaded command: buy
+2025-05-05T08:45:35.749Z [INFO]: Loaded command: inventory
+2025-05-05T08:45:35.754Z [INFO]: Loaded command: sell
+2025-05-05T08:45:35.757Z [INFO]: Loaded command: shop
+2025-05-05T08:45:35.761Z [INFO]: Loaded command: use
+2025-05-05T08:45:35.764Z [INFO]: Loaded command: avatar
+2025-05-05T08:45:35.767Z [INFO]: Loaded command: ban
+2025-05-05T08:45:35.773Z [INFO]: Loaded command: help
+2025-05-05T08:45:35.775Z [INFO]: Loaded command: kick
+2025-05-05T08:45:35.779Z [INFO]: Loaded command: mute
+2025-05-05T08:45:35.781Z [INFO]: Loaded command: ping
+2025-05-05T08:45:35.942Z [INFO]: Loaded command: search
+2025-05-05T08:45:35.944Z [INFO]: Loaded command: server-info
+2025-05-05T08:45:35.947Z [INFO]: Loaded command: unban
+2025-05-05T08:45:35.951Z [INFO]: Loaded command: unmute
+2025-05-05T08:45:35.955Z [INFO]: Loaded command: user-info
+2025-05-05T08:45:35.961Z [INFO]: Đang đăng ký 78 lệnh với Discord API...
+2025-05-05T08:45:36.643Z [INFO]: Đã đăng ký thành công 78 lệnh với Discord API
+2025-05-05T08:45:36.648Z [INFO]: Loaded event: guildMemberAdd
+2025-05-05T08:45:36.649Z [INFO]: Loaded event: guildMemberRemove
+2025-05-05T08:45:36.651Z [INFO]: Loaded event: messageReactionAdd
+2025-05-05T08:45:36.653Z [INFO]: Loaded event: messageReactionRemove
+2025-05-05T08:45:36.657Z [INFO]: Loaded event: messageCreate
+2025-05-05T08:45:36.658Z [INFO]: Loaded event: ready
+2025-05-05T08:45:36.660Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-05T08:45:36.661Z [INFO]: Total 7 events loaded.
+2025-05-05T08:45:36.661Z [INFO]: Command handler initialized
+2025-05-05T08:45:36.661Z [INFO]: Event handler initialized
+2025-05-05T08:45:36.661Z [INFO]: Bot is starting...
+2025-05-05T08:45:37.739Z [INFO]: Bot logged in as Perry#4690
+2025-05-05T08:45:38.572Z [INFO]: [AntiCaps Cache] Loading all anticaps settings...
+2025-05-05T08:45:38.574Z [INFO]: Bot is ready as Perry#4690
+2025-05-05T08:45:38.615Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1005814304509018113
+2025-05-05T08:45:38.652Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1186898120789995580
+2025-05-05T08:45:38.652Z [INFO]: [AntiCaps Cache] Finished loading all anticaps settings.
+2025-05-05T08:47:28.847Z [INFO]: [View Job Debug] user.mainJob.name is: "nông dân" (Type: string)
+2025-05-05T08:50:47.912Z [INFO]: Loaded command: anticaps
+2025-05-05T08:50:47.947Z [INFO]: Loaded command: captcha
+2025-05-05T08:50:47.953Z [INFO]: Loaded command: change-prefix
+2025-05-05T08:50:47.955Z [INFO]: Loaded command: clear
+2025-05-05T08:50:47.958Z [INFO]: Loaded command: disablecommand
+2025-05-05T08:50:47.960Z [INFO]: Loaded command: list-bans
+2025-05-05T08:50:47.962Z [INFO]: Loaded command: lock
+2025-05-05T08:50:47.965Z [INFO]: Loaded command: refresh
+2025-05-05T08:50:47.967Z [INFO]: Loaded command: reset-user
+2025-05-05T08:50:47.969Z [INFO]: Loaded command: setup-autorole
+2025-05-05T08:50:47.971Z [INFO]: Loaded command: setup-goodbye
+2025-05-05T08:50:47.973Z [INFO]: Loaded command: setup-log
+2025-05-05T08:50:47.977Z [INFO]: Loaded command: setup-role-channel
+2025-05-05T08:50:47.979Z [INFO]: Loaded command: setup-rule
+2025-05-05T08:50:47.984Z [INFO]: Loaded command: setup-stats-channel
+2025-05-05T08:50:47.988Z [INFO]: Loaded command: setup-welcome
+2025-05-05T08:50:47.990Z [INFO]: Loaded command: status
+2025-05-05T08:50:47.991Z [INFO]: Loaded command: unlock
+2025-05-05T08:50:47.994Z [INFO]: Loaded command: add-job
+2025-05-05T08:50:47.994Z [INFO]: Loaded command: nhan_viec
+2025-05-05T08:50:47.996Z [INFO]: Loaded command: cong_viec_hien_tai
+2025-05-05T08:50:47.998Z [INFO]: Loaded command: cac_cong_viec
+2025-05-05T08:50:47.999Z [INFO]: Loaded command: remove-job
+2025-05-05T08:50:48.001Z [INFO]: Loaded command: nghi_viec
+2025-05-05T08:50:48.004Z [INFO]: Loaded command: nhan_luong
+2025-05-05T08:50:48.007Z [INFO]: Loaded command: add-xp
+2025-05-05T08:50:48.008Z [INFO]: Loaded command: level-rewards
+2025-05-05T08:50:48.010Z [INFO]: Loaded command: level
+2025-05-05T08:50:48.012Z [INFO]: Loaded command: rank
+2025-05-05T08:50:48.014Z [INFO]: Loaded command: bo_nghe
+2025-05-05T08:50:48.021Z [INFO]: Loaded command: danh_sach_nghe_chinh
+2025-05-05T08:50:48.022Z [INFO]: Loaded command: main_job_level_rewards
+2025-05-05T08:50:48.024Z [INFO]: Loaded command: chon_nghe
+2025-05-05T08:50:48.026Z [INFO]: Loaded command: view-main-job
+2025-05-05T08:50:48.028Z [INFO]: Loaded command: so_du
+2025-05-05T08:50:48.030Z [INFO]: Loaded command: bank
+2025-05-05T08:50:48.032Z [INFO]: Loaded command: daily
+2025-05-05T08:50:48.033Z [INFO]: Loaded command: chuyen_tien
+2025-05-05T08:50:48.035Z [INFO]: Loaded command: set-noti
+2025-05-05T08:50:48.037Z [INFO]: Loaded command: top-money
+2025-05-05T08:50:48.039Z [INFO]: Loaded command: work
+2025-05-05T08:50:48.042Z [INFO]: Loaded command: play
+2025-05-05T08:50:48.044Z [INFO]: Loaded command: bao-tri
+2025-05-05T08:50:48.045Z [INFO]: Loaded command: cap-cuu
+2025-05-05T08:50:48.047Z [INFO]: Loaded command: cat-co
+2025-05-05T08:50:48.049Z [INFO]: Loaded command: cham-soc-hoc-sinh
+2025-05-05T08:50:48.053Z [INFO]: Loaded command: day-hoc
+2025-05-05T08:50:48.055Z [INFO]: Loaded command: gieo-hat
+2025-05-05T08:50:48.056Z [INFO]: Loaded command: kham-suc-khoe
+2025-05-05T08:50:48.058Z [INFO]: Loaded command: kiem-dinh
+2025-05-05T08:50:48.060Z [INFO]: Loaded command: kiem-tra
+2025-05-05T08:50:48.061Z [INFO]: Loaded command: lap-rap
+2025-05-05T08:50:48.063Z [INFO]: Loaded command: phat-trien
+2025-05-05T08:50:48.065Z [INFO]: Loaded command: soan-giao-an
+2025-05-05T08:50:48.067Z [INFO]: Loaded command: tham-gia-hoi-thao
+2025-05-05T08:50:48.069Z [INFO]: Loaded command: thiet-ke
+2025-05-05T08:50:48.070Z [INFO]: Loaded command: thu-hoach
+2025-05-05T08:50:48.073Z [INFO]: Loaded command: thuc-hien-xet-nghiem
+2025-05-05T08:50:48.075Z [INFO]: Loaded command: tu-van-ky-thuat
+2025-05-05T08:50:48.076Z [INFO]: Loaded command: tu-van
+2025-05-05T08:50:48.078Z [INFO]: Loaded command: tuoi-cay
+2025-05-05T08:50:48.081Z [INFO]: Loaded command: van-chuyen
+2025-05-05T08:50:48.088Z [INFO]: Loaded command: buy
+2025-05-05T08:50:48.090Z [INFO]: Loaded command: inventory
+2025-05-05T08:50:48.091Z [INFO]: Loaded command: sell
+2025-05-05T08:50:48.092Z [INFO]: Loaded command: shop
+2025-05-05T08:50:48.095Z [INFO]: Loaded command: use
+2025-05-05T08:50:48.097Z [INFO]: Loaded command: avatar
+2025-05-05T08:50:48.099Z [INFO]: Loaded command: ban
+2025-05-05T08:50:48.102Z [INFO]: Loaded command: help
+2025-05-05T08:50:48.105Z [INFO]: Loaded command: kick
+2025-05-05T08:50:48.108Z [INFO]: Loaded command: mute
+2025-05-05T08:50:48.109Z [INFO]: Loaded command: ping
+2025-05-05T08:50:48.178Z [INFO]: Loaded command: search
+2025-05-05T08:50:48.179Z [INFO]: Loaded command: server-info
+2025-05-05T08:50:48.180Z [INFO]: Loaded command: unban
+2025-05-05T08:50:48.181Z [INFO]: Loaded command: unmute
+2025-05-05T08:50:48.184Z [INFO]: Loaded command: user-info
+2025-05-05T08:50:48.188Z [INFO]: Đang đăng ký 78 lệnh với Discord API...
+2025-05-05T08:50:49.192Z [INFO]: Đã đăng ký thành công 78 lệnh với Discord API
+2025-05-05T08:50:49.196Z [INFO]: Loaded event: guildMemberAdd
+2025-05-05T08:50:49.197Z [INFO]: Loaded event: guildMemberRemove
+2025-05-05T08:50:49.198Z [INFO]: Loaded event: messageReactionAdd
+2025-05-05T08:50:49.200Z [INFO]: Loaded event: messageReactionRemove
+2025-05-05T08:50:49.202Z [INFO]: Loaded event: messageCreate
+2025-05-05T08:50:49.203Z [INFO]: Loaded event: ready
+2025-05-05T08:50:49.205Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-05T08:50:49.206Z [INFO]: Total 7 events loaded.
+2025-05-05T08:50:49.206Z [INFO]: Command handler initialized
+2025-05-05T08:50:49.207Z [INFO]: Event handler initialized
+2025-05-05T08:50:49.207Z [INFO]: Bot is starting...
+2025-05-05T08:50:50.288Z [INFO]: Bot logged in as Perry#4690
+2025-05-05T08:50:51.094Z [INFO]: [AntiCaps Cache] Loading all anticaps settings...
+2025-05-05T08:50:51.096Z [INFO]: Bot is ready as Perry#4690
+2025-05-05T08:50:51.138Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1005814304509018113
+2025-05-05T08:50:51.169Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1186898120789995580
+2025-05-05T08:50:51.170Z [INFO]: [AntiCaps Cache] Finished loading all anticaps settings.
+2025-05-05T08:51:38.186Z [INFO]: [View Job Debug] user.mainJob.name is: "nông dân" (Type: string)
+2025-05-05T08:55:09.937Z [INFO]: Loaded command: anticaps
+2025-05-05T08:55:09.973Z [INFO]: Loaded command: captcha
+2025-05-05T08:55:09.976Z [INFO]: Loaded command: change-prefix
+2025-05-05T08:55:09.978Z [INFO]: Loaded command: clear
+2025-05-05T08:55:09.980Z [INFO]: Loaded command: disablecommand
+2025-05-05T08:55:09.981Z [INFO]: Loaded command: list-bans
+2025-05-05T08:55:09.983Z [INFO]: Loaded command: lock
+2025-05-05T08:55:09.986Z [INFO]: Loaded command: refresh
+2025-05-05T08:55:09.988Z [INFO]: Loaded command: reset-user
+2025-05-05T08:55:09.991Z [INFO]: Loaded command: setup-autorole
+2025-05-05T08:55:09.993Z [INFO]: Loaded command: setup-goodbye
+2025-05-05T08:55:09.996Z [INFO]: Loaded command: setup-log
+2025-05-05T08:55:09.999Z [INFO]: Loaded command: setup-role-channel
+2025-05-05T08:55:10.000Z [INFO]: Loaded command: setup-rule
+2025-05-05T08:55:10.002Z [INFO]: Loaded command: setup-stats-channel
+2025-05-05T08:55:10.004Z [INFO]: Loaded command: setup-welcome
+2025-05-05T08:55:10.009Z [INFO]: Loaded command: status
+2025-05-05T08:55:10.012Z [INFO]: Loaded command: unlock
+2025-05-05T08:55:10.015Z [INFO]: Loaded command: add-job
+2025-05-05T08:55:10.015Z [INFO]: Loaded command: nhan_viec
+2025-05-05T08:55:10.016Z [INFO]: Loaded command: cong_viec_hien_tai
+2025-05-05T08:55:10.017Z [INFO]: Loaded command: cac_cong_viec
+2025-05-05T08:55:10.019Z [INFO]: Loaded command: remove-job
+2025-05-05T08:55:10.020Z [INFO]: Loaded command: nghi_viec
+2025-05-05T08:55:10.022Z [INFO]: Loaded command: nhan_luong
+2025-05-05T08:55:10.027Z [INFO]: Loaded command: add-xp
+2025-05-05T08:55:10.028Z [INFO]: Loaded command: level-rewards
+2025-05-05T08:55:10.029Z [INFO]: Loaded command: level
+2025-05-05T08:55:10.030Z [INFO]: Loaded command: rank
+2025-05-05T08:55:10.032Z [INFO]: Loaded command: bo_nghe
+2025-05-05T08:55:10.036Z [INFO]: Loaded command: danh_sach_nghe_chinh
+2025-05-05T08:55:10.037Z [INFO]: Loaded command: main_job_level_rewards
+2025-05-05T08:55:10.040Z [INFO]: Loaded command: chon_nghe
+2025-05-05T08:55:10.042Z [INFO]: Loaded command: view-main-job
+2025-05-05T08:55:10.045Z [INFO]: Loaded command: so_du
+2025-05-05T08:55:10.046Z [INFO]: Loaded command: bank
+2025-05-05T08:55:10.048Z [INFO]: Loaded command: daily
+2025-05-05T08:55:10.049Z [INFO]: Loaded command: chuyen_tien
+2025-05-05T08:55:10.050Z [INFO]: Loaded command: set-noti
+2025-05-05T08:55:10.051Z [INFO]: Loaded command: top-money
+2025-05-05T08:55:10.052Z [INFO]: Loaded command: work
+2025-05-05T08:55:10.054Z [INFO]: Loaded command: play
+2025-05-05T08:55:10.056Z [INFO]: Loaded command: bao-tri
+2025-05-05T08:55:10.057Z [INFO]: Loaded command: cap-cuu
+2025-05-05T08:55:10.058Z [INFO]: Loaded command: cat-co
+2025-05-05T08:55:10.060Z [INFO]: Loaded command: cham-soc-hoc-sinh
+2025-05-05T08:55:10.062Z [INFO]: Loaded command: day-hoc
+2025-05-05T08:55:10.063Z [INFO]: Loaded command: gieo-hat
+2025-05-05T08:55:10.065Z [INFO]: Loaded command: kham-suc-khoe
+2025-05-05T08:55:10.066Z [INFO]: Loaded command: kiem-dinh
+2025-05-05T08:55:10.068Z [INFO]: Loaded command: kiem-tra
+2025-05-05T08:55:10.070Z [INFO]: Loaded command: lap-rap
+2025-05-05T08:55:10.072Z [INFO]: Loaded command: phat-trien
+2025-05-05T08:55:10.075Z [INFO]: Loaded command: soan-giao-an
+2025-05-05T08:55:10.076Z [INFO]: Loaded command: tham-gia-hoi-thao
+2025-05-05T08:55:10.077Z [INFO]: Loaded command: thiet-ke
+2025-05-05T08:55:10.079Z [INFO]: Loaded command: thu-hoach
+2025-05-05T08:55:10.080Z [INFO]: Loaded command: thuc-hien-xet-nghiem
+2025-05-05T08:55:10.082Z [INFO]: Loaded command: tu-van-ky-thuat
+2025-05-05T08:55:10.083Z [INFO]: Loaded command: tu-van
+2025-05-05T08:55:10.085Z [INFO]: Loaded command: tuoi-cay
+2025-05-05T08:55:10.088Z [INFO]: Loaded command: van-chuyen
+2025-05-05T08:55:10.092Z [INFO]: Loaded command: buy
+2025-05-05T08:55:10.093Z [INFO]: Loaded command: inventory
+2025-05-05T08:55:10.095Z [INFO]: Loaded command: sell
+2025-05-05T08:55:10.096Z [INFO]: Loaded command: shop
+2025-05-05T08:55:10.098Z [INFO]: Loaded command: use
+2025-05-05T08:55:10.099Z [INFO]: Loaded command: avatar
+2025-05-05T08:55:10.101Z [INFO]: Loaded command: ban
+2025-05-05T08:55:10.103Z [INFO]: Loaded command: help
+2025-05-05T08:55:10.105Z [INFO]: Loaded command: kick
+2025-05-05T08:55:10.108Z [INFO]: Loaded command: mute
+2025-05-05T08:55:10.109Z [INFO]: Loaded command: ping
+2025-05-05T08:55:10.179Z [INFO]: Loaded command: search
+2025-05-05T08:55:10.180Z [INFO]: Loaded command: server-info
+2025-05-05T08:55:10.182Z [INFO]: Loaded command: unban
+2025-05-05T08:55:10.183Z [INFO]: Loaded command: unmute
+2025-05-05T08:55:10.185Z [INFO]: Loaded command: user-info
+2025-05-05T08:55:10.192Z [INFO]: Đang đăng ký 78 lệnh với Discord API...
+2025-05-05T08:55:11.009Z [INFO]: Đã đăng ký thành công 78 lệnh với Discord API
+2025-05-05T08:55:11.014Z [INFO]: Loaded event: guildMemberAdd
+2025-05-05T08:55:11.015Z [INFO]: Loaded event: guildMemberRemove
+2025-05-05T08:55:11.016Z [INFO]: Loaded event: messageReactionAdd
+2025-05-05T08:55:11.018Z [INFO]: Loaded event: messageReactionRemove
+2025-05-05T08:55:11.020Z [INFO]: Loaded event: messageCreate
+2025-05-05T08:55:11.021Z [INFO]: Loaded event: ready
+2025-05-05T08:55:11.022Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-05T08:55:11.022Z [INFO]: Total 7 events loaded.
+2025-05-05T08:55:11.023Z [INFO]: Command handler initialized
+2025-05-05T08:55:11.023Z [INFO]: Event handler initialized
+2025-05-05T08:55:11.023Z [INFO]: Bot is starting...
+2025-05-05T08:55:12.100Z [INFO]: Bot logged in as Perry#4690
+2025-05-05T08:55:12.747Z [INFO]: [AntiCaps Cache] Loading all anticaps settings...
+2025-05-05T08:55:12.748Z [INFO]: Bot is ready as Perry#4690
+2025-05-05T08:55:12.789Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1005814304509018113
+2025-05-05T08:55:12.821Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1186898120789995580
+2025-05-05T08:55:12.821Z [INFO]: [AntiCaps Cache] Finished loading all anticaps settings.
+2025-05-05T08:57:06.521Z [INFO]: [View Job Debug] user.mainJob.name is: "nông dân" (Type: string)
+2025-05-05T08:59:35.030Z [INFO]: Loaded command: anticaps
+2025-05-05T08:59:35.084Z [INFO]: Loaded command: captcha
+2025-05-05T08:59:35.086Z [INFO]: Loaded command: change-prefix
+2025-05-05T08:59:35.092Z [INFO]: Loaded command: clear
+2025-05-05T08:59:35.095Z [INFO]: Loaded command: disablecommand
+2025-05-05T08:59:35.097Z [INFO]: Loaded command: list-bans
+2025-05-05T08:59:35.099Z [INFO]: Loaded command: lock
+2025-05-05T08:59:35.101Z [INFO]: Loaded command: refresh
+2025-05-05T08:59:35.106Z [INFO]: Loaded command: reset-user
+2025-05-05T08:59:35.117Z [INFO]: Loaded command: setup-autorole
+2025-05-05T08:59:35.129Z [INFO]: Loaded command: setup-goodbye
+2025-05-05T08:59:35.134Z [INFO]: Loaded command: setup-log
+2025-05-05T08:59:35.149Z [INFO]: Loaded command: setup-role-channel
+2025-05-05T08:59:35.153Z [INFO]: Loaded command: setup-rule
+2025-05-05T08:59:35.157Z [INFO]: Loaded command: setup-stats-channel
+2025-05-05T08:59:35.162Z [INFO]: Loaded command: setup-welcome
+2025-05-05T08:59:35.165Z [INFO]: Loaded command: status
+2025-05-05T08:59:35.173Z [INFO]: Loaded command: unlock
+2025-05-05T08:59:35.177Z [INFO]: Loaded command: add-job
+2025-05-05T08:59:35.177Z [INFO]: Loaded command: nhan_viec
+2025-05-05T08:59:35.180Z [INFO]: Loaded command: cong_viec_hien_tai
+2025-05-05T08:59:35.182Z [INFO]: Loaded command: cac_cong_viec
+2025-05-05T08:59:35.183Z [INFO]: Loaded command: remove-job
+2025-05-05T08:59:35.185Z [INFO]: Loaded command: nghi_viec
+2025-05-05T08:59:35.189Z [INFO]: Loaded command: nhan_luong
+2025-05-05T08:59:35.192Z [INFO]: Loaded command: add-xp
+2025-05-05T08:59:35.196Z [INFO]: Loaded command: level-rewards
+2025-05-05T08:59:35.201Z [INFO]: Loaded command: level
+2025-05-05T08:59:35.205Z [INFO]: Loaded command: rank
+2025-05-05T08:59:35.207Z [INFO]: Loaded command: bo_nghe
+2025-05-05T08:59:35.215Z [INFO]: Loaded command: danh_sach_nghe_chinh
+2025-05-05T08:59:35.217Z [INFO]: Loaded command: main_job_level_rewards
+2025-05-05T08:59:35.219Z [INFO]: Loaded command: chon_nghe
+2025-05-05T08:59:35.222Z [INFO]: Loaded command: view-main-job
+2025-05-05T08:59:35.224Z [INFO]: Loaded command: so_du
+2025-05-05T08:59:35.226Z [INFO]: Loaded command: bank
+2025-05-05T08:59:35.229Z [INFO]: Loaded command: daily
+2025-05-05T08:59:35.231Z [INFO]: Loaded command: chuyen_tien
+2025-05-05T08:59:35.232Z [INFO]: Loaded command: set-noti
+2025-05-05T08:59:35.233Z [INFO]: Loaded command: top-money
+2025-05-05T08:59:35.235Z [INFO]: Loaded command: work
+2025-05-05T08:59:35.239Z [INFO]: Loaded command: play
+2025-05-05T08:59:35.241Z [INFO]: Loaded command: bao-tri
+2025-05-05T08:59:35.243Z [INFO]: Loaded command: cap-cuu
+2025-05-05T08:59:35.245Z [INFO]: Loaded command: cat-co
+2025-05-05T08:59:35.246Z [INFO]: Loaded command: cham-soc-hoc-sinh
+2025-05-05T08:59:35.249Z [INFO]: Loaded command: day-hoc
+2025-05-05T08:59:35.253Z [INFO]: Loaded command: gieo-hat
+2025-05-05T08:59:35.254Z [INFO]: Loaded command: kham-suc-khoe
+2025-05-05T08:59:35.255Z [INFO]: Loaded command: kiem-dinh
+2025-05-05T08:59:35.258Z [INFO]: Loaded command: kiem-tra
+2025-05-05T08:59:35.260Z [INFO]: Loaded command: lap-rap
+2025-05-05T08:59:35.262Z [INFO]: Loaded command: phat-trien
+2025-05-05T08:59:35.265Z [INFO]: Loaded command: soan-giao-an
+2025-05-05T08:59:35.266Z [INFO]: Loaded command: tham-gia-hoi-thao
+2025-05-05T08:59:35.268Z [INFO]: Loaded command: thiet-ke
+2025-05-05T08:59:35.273Z [INFO]: Loaded command: thu-hoach
+2025-05-05T08:59:35.274Z [INFO]: Loaded command: thuc-hien-xet-nghiem
+2025-05-05T08:59:35.276Z [INFO]: Loaded command: tu-van-ky-thuat
+2025-05-05T08:59:35.278Z [INFO]: Loaded command: tu-van
+2025-05-05T08:59:35.279Z [INFO]: Loaded command: tuoi-cay
+2025-05-05T08:59:35.280Z [INFO]: Loaded command: van-chuyen
+2025-05-05T08:59:35.285Z [INFO]: Loaded command: buy
+2025-05-05T08:59:35.286Z [INFO]: Loaded command: inventory
+2025-05-05T08:59:35.288Z [INFO]: Loaded command: sell
+2025-05-05T08:59:35.291Z [INFO]: Loaded command: shop
+2025-05-05T08:59:35.292Z [INFO]: Loaded command: use
+2025-05-05T08:59:35.294Z [INFO]: Loaded command: avatar
+2025-05-05T08:59:35.295Z [INFO]: Loaded command: ban
+2025-05-05T08:59:35.298Z [INFO]: Loaded command: help
+2025-05-05T08:59:35.302Z [INFO]: Loaded command: kick
+2025-05-05T08:59:35.305Z [INFO]: Loaded command: mute
+2025-05-05T08:59:35.306Z [INFO]: Loaded command: ping
+2025-05-05T08:59:35.396Z [INFO]: Loaded command: search
+2025-05-05T08:59:35.398Z [INFO]: Loaded command: server-info
+2025-05-05T08:59:35.399Z [INFO]: Loaded command: unban
+2025-05-05T08:59:35.401Z [INFO]: Loaded command: unmute
+2025-05-05T08:59:35.409Z [INFO]: Loaded command: user-info
+2025-05-05T08:59:35.414Z [INFO]: Đang đăng ký 78 lệnh với Discord API...
+2025-05-05T08:59:36.150Z [INFO]: Đã đăng ký thành công 78 lệnh với Discord API
+2025-05-05T08:59:36.154Z [INFO]: Loaded event: guildMemberAdd
+2025-05-05T08:59:36.155Z [INFO]: Loaded event: guildMemberRemove
+2025-05-05T08:59:36.155Z [INFO]: Loaded event: messageReactionAdd
+2025-05-05T08:59:36.157Z [INFO]: Loaded event: messageReactionRemove
+2025-05-05T08:59:36.159Z [INFO]: Loaded event: messageCreate
+2025-05-05T08:59:36.160Z [INFO]: Loaded event: ready
+2025-05-05T08:59:36.162Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-05T08:59:36.162Z [INFO]: Total 7 events loaded.
+2025-05-05T08:59:36.162Z [INFO]: Command handler initialized
+2025-05-05T08:59:36.162Z [INFO]: Event handler initialized
+2025-05-05T08:59:36.163Z [INFO]: Bot is starting...
+2025-05-05T08:59:37.322Z [INFO]: Bot logged in as Perry#4690
+2025-05-05T08:59:38.154Z [INFO]: [AntiCaps Cache] Loading all anticaps settings...
+2025-05-05T08:59:38.155Z [INFO]: Bot is ready as Perry#4690
+2025-05-05T08:59:38.199Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1005814304509018113
+2025-05-05T08:59:38.233Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1186898120789995580
+2025-05-05T08:59:38.233Z [INFO]: [AntiCaps Cache] Finished loading all anticaps settings.
+2025-05-05T08:59:53.993Z [ERROR]: Lỗi lệnh use (luoi-liem): targetTaskId.toLowerCase is not a function
+2025-05-05T09:01:34.095Z [INFO]: Loaded command: anticaps
+2025-05-05T09:01:34.123Z [INFO]: Loaded command: captcha
+2025-05-05T09:01:34.125Z [INFO]: Loaded command: change-prefix
+2025-05-05T09:01:34.127Z [INFO]: Loaded command: clear
+2025-05-05T09:01:34.130Z [INFO]: Loaded command: disablecommand
+2025-05-05T09:01:34.196Z [INFO]: Loaded command: list-bans
+2025-05-05T09:01:34.252Z [INFO]: Loaded command: lock
+2025-05-05T09:01:34.256Z [INFO]: Loaded command: refresh
+2025-05-05T09:01:34.263Z [INFO]: Loaded command: reset-user
+2025-05-05T09:01:34.265Z [INFO]: Loaded command: setup-autorole
+2025-05-05T09:01:34.268Z [INFO]: Loaded command: setup-goodbye
+2025-05-05T09:01:34.270Z [INFO]: Loaded command: setup-log
+2025-05-05T09:01:34.272Z [INFO]: Loaded command: setup-role-channel
+2025-05-05T09:01:34.273Z [INFO]: Loaded command: setup-rule
+2025-05-05T09:01:34.274Z [INFO]: Loaded command: setup-stats-channel
+2025-05-05T09:01:34.321Z [INFO]: Loaded command: setup-welcome
+2025-05-05T09:01:34.325Z [INFO]: Loaded command: status
+2025-05-05T09:01:34.327Z [INFO]: Loaded command: unlock
+2025-05-05T09:01:34.331Z [INFO]: Loaded command: add-job
+2025-05-05T09:01:34.331Z [INFO]: Loaded command: nhan_viec
+2025-05-05T09:01:34.334Z [INFO]: Loaded command: cong_viec_hien_tai
+2025-05-05T09:01:34.335Z [INFO]: Loaded command: cac_cong_viec
+2025-05-05T09:01:34.337Z [INFO]: Loaded command: remove-job
+2025-05-05T09:01:34.338Z [INFO]: Loaded command: nghi_viec
+2025-05-05T09:01:34.341Z [INFO]: Loaded command: nhan_luong
+2025-05-05T09:01:34.345Z [INFO]: Loaded command: add-xp
+2025-05-05T09:01:34.346Z [INFO]: Loaded command: level-rewards
+2025-05-05T09:01:34.348Z [INFO]: Loaded command: level
+2025-05-05T09:01:34.350Z [INFO]: Loaded command: rank
+2025-05-05T09:01:34.351Z [INFO]: Loaded command: bo_nghe
+2025-05-05T09:01:34.357Z [INFO]: Loaded command: danh_sach_nghe_chinh
+2025-05-05T09:01:34.358Z [INFO]: Loaded command: main_job_level_rewards
+2025-05-05T09:01:34.359Z [INFO]: Loaded command: chon_nghe
+2025-05-05T09:01:34.361Z [INFO]: Loaded command: view-main-job
+2025-05-05T09:01:34.363Z [INFO]: Loaded command: so_du
+2025-05-05T09:01:34.364Z [INFO]: Loaded command: bank
+2025-05-05T09:01:34.365Z [INFO]: Loaded command: daily
+2025-05-05T09:01:34.366Z [INFO]: Loaded command: chuyen_tien
+2025-05-05T09:01:34.368Z [INFO]: Loaded command: set-noti
+2025-05-05T09:01:34.371Z [INFO]: Loaded command: top-money
+2025-05-05T09:01:34.372Z [INFO]: Loaded command: work
+2025-05-05T09:01:34.379Z [INFO]: Loaded command: play
+2025-05-05T09:01:34.381Z [INFO]: Loaded command: bao-tri
+2025-05-05T09:01:34.383Z [INFO]: Loaded command: cap-cuu
+2025-05-05T09:01:34.385Z [INFO]: Loaded command: cat-co
+2025-05-05T09:01:34.386Z [INFO]: Loaded command: cham-soc-hoc-sinh
+2025-05-05T09:01:34.388Z [INFO]: Loaded command: day-hoc
+2025-05-05T09:01:34.390Z [INFO]: Loaded command: gieo-hat
+2025-05-05T09:01:34.392Z [INFO]: Loaded command: kham-suc-khoe
+2025-05-05T09:01:34.393Z [INFO]: Loaded command: kiem-dinh
+2025-05-05T09:01:34.394Z [INFO]: Loaded command: kiem-tra
+2025-05-05T09:01:34.396Z [INFO]: Loaded command: lap-rap
+2025-05-05T09:01:34.397Z [INFO]: Loaded command: phat-trien
+2025-05-05T09:01:34.399Z [INFO]: Loaded command: soan-giao-an
+2025-05-05T09:01:34.401Z [INFO]: Loaded command: tham-gia-hoi-thao
+2025-05-05T09:01:34.402Z [INFO]: Loaded command: thiet-ke
+2025-05-05T09:01:34.404Z [INFO]: Loaded command: thu-hoach
+2025-05-05T09:01:34.406Z [INFO]: Loaded command: thuc-hien-xet-nghiem
+2025-05-05T09:01:34.408Z [INFO]: Loaded command: tu-van-ky-thuat
+2025-05-05T09:01:34.413Z [INFO]: Loaded command: tu-van
+2025-05-05T09:01:34.415Z [INFO]: Loaded command: tuoi-cay
+2025-05-05T09:01:34.417Z [INFO]: Loaded command: van-chuyen
+2025-05-05T09:01:34.422Z [INFO]: Loaded command: buy
+2025-05-05T09:01:34.423Z [INFO]: Loaded command: inventory
+2025-05-05T09:01:34.425Z [INFO]: Loaded command: sell
+2025-05-05T09:01:34.426Z [INFO]: Loaded command: shop
+2025-05-05T09:01:34.430Z [INFO]: Loaded command: use
+2025-05-05T09:01:34.431Z [INFO]: Loaded command: avatar
+2025-05-05T09:01:34.433Z [INFO]: Loaded command: ban
+2025-05-05T09:01:34.435Z [INFO]: Loaded command: help
+2025-05-05T09:01:34.437Z [INFO]: Loaded command: kick
+2025-05-05T09:01:34.439Z [INFO]: Loaded command: mute
+2025-05-05T09:01:34.440Z [INFO]: Loaded command: ping
+2025-05-05T09:01:34.516Z [INFO]: Loaded command: search
+2025-05-05T09:01:34.517Z [INFO]: Loaded command: server-info
+2025-05-05T09:01:34.519Z [INFO]: Loaded command: unban
+2025-05-05T09:01:34.520Z [INFO]: Loaded command: unmute
+2025-05-05T09:01:34.521Z [INFO]: Loaded command: user-info
+2025-05-05T09:01:34.527Z [INFO]: Đang đăng ký 78 lệnh với Discord API...
+2025-05-05T09:01:35.227Z [INFO]: Đã đăng ký thành công 78 lệnh với Discord API
+2025-05-05T09:01:35.229Z [INFO]: Loaded event: guildMemberAdd
+2025-05-05T09:01:35.230Z [INFO]: Loaded event: guildMemberRemove
+2025-05-05T09:01:35.231Z [INFO]: Loaded event: messageReactionAdd
+2025-05-05T09:01:35.232Z [INFO]: Loaded event: messageReactionRemove
+2025-05-05T09:01:35.233Z [INFO]: Loaded event: messageCreate
+2025-05-05T09:01:35.234Z [INFO]: Loaded event: ready
+2025-05-05T09:01:35.236Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-05T09:01:35.236Z [INFO]: Total 7 events loaded.
+2025-05-05T09:01:35.237Z [INFO]: Command handler initialized
+2025-05-05T09:01:35.237Z [INFO]: Event handler initialized
+2025-05-05T09:01:35.237Z [INFO]: Bot is starting...
+2025-05-05T09:01:36.352Z [INFO]: Bot logged in as Perry#4690
+2025-05-05T09:01:36.982Z [INFO]: [AntiCaps Cache] Loading all anticaps settings...
+2025-05-05T09:01:36.988Z [INFO]: Bot is ready as Perry#4690
+2025-05-05T09:01:37.056Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1005814304509018113
+2025-05-05T09:01:37.091Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1186898120789995580
+2025-05-05T09:01:37.092Z [INFO]: [AntiCaps Cache] Finished loading all anticaps settings.
+2025-05-05T09:01:51.900Z [INFO]: User 953837159192879104 used 1 luoi-liem, reduced cooldown for thuHoach by 2400000ms. Old remaining: 5904350ms, New remaining: 3504350ms
+2025-05-05T09:02:00.477Z [INFO]: [View Job Debug] user.mainJob.name is: "nông dân" (Type: string)
+2025-05-05T09:05:48.362Z [INFO]: Loaded command: anticaps
+2025-05-05T09:05:48.401Z [INFO]: Loaded command: captcha
+2025-05-05T09:05:48.403Z [INFO]: Loaded command: change-prefix
+2025-05-05T09:05:48.406Z [INFO]: Loaded command: clear
+2025-05-05T09:05:48.413Z [INFO]: Loaded command: disablecommand
+2025-05-05T09:05:48.416Z [INFO]: Loaded command: list-bans
+2025-05-05T09:05:48.418Z [INFO]: Loaded command: lock
+2025-05-05T09:05:48.421Z [INFO]: Loaded command: refresh
+2025-05-05T09:05:48.423Z [INFO]: Loaded command: reset-user
+2025-05-05T09:05:48.427Z [INFO]: Loaded command: setup-autorole
+2025-05-05T09:05:48.429Z [INFO]: Loaded command: setup-goodbye
+2025-05-05T09:05:48.431Z [INFO]: Loaded command: setup-log
+2025-05-05T09:05:48.434Z [INFO]: Loaded command: setup-role-channel
+2025-05-05T09:05:48.436Z [INFO]: Loaded command: setup-rule
+2025-05-05T09:05:48.441Z [INFO]: Loaded command: setup-stats-channel
+2025-05-05T09:05:48.443Z [INFO]: Loaded command: setup-welcome
+2025-05-05T09:05:48.445Z [INFO]: Loaded command: status
+2025-05-05T09:05:48.451Z [INFO]: Loaded command: unlock
+2025-05-05T09:05:48.461Z [INFO]: Loaded command: add-job
+2025-05-05T09:05:48.463Z [INFO]: Loaded command: nhan_viec
+2025-05-05T09:05:48.465Z [INFO]: Loaded command: cong_viec_hien_tai
+2025-05-05T09:05:48.469Z [INFO]: Loaded command: cac_cong_viec
+2025-05-05T09:05:48.470Z [INFO]: Loaded command: remove-job
+2025-05-05T09:05:48.472Z [INFO]: Loaded command: nghi_viec
+2025-05-05T09:05:48.474Z [INFO]: Loaded command: nhan_luong
+2025-05-05T09:05:48.478Z [INFO]: Loaded command: add-xp
+2025-05-05T09:05:48.479Z [INFO]: Loaded command: level-rewards
+2025-05-05T09:05:48.481Z [INFO]: Loaded command: level
+2025-05-05T09:05:48.483Z [INFO]: Loaded command: rank
+2025-05-05T09:05:48.486Z [INFO]: Loaded command: bo_nghe
+2025-05-05T09:05:48.492Z [INFO]: Loaded command: danh_sach_nghe_chinh
+2025-05-05T09:05:48.495Z [INFO]: Loaded command: main_job_level_rewards
+2025-05-05T09:05:48.497Z [INFO]: Loaded command: chon_nghe
+2025-05-05T09:05:48.499Z [INFO]: Loaded command: view-main-job
+2025-05-05T09:05:48.504Z [INFO]: Loaded command: so_du
+2025-05-05T09:05:48.506Z [INFO]: Loaded command: bank
+2025-05-05T09:05:48.507Z [INFO]: Loaded command: daily
+2025-05-05T09:05:48.509Z [INFO]: Loaded command: chuyen_tien
+2025-05-05T09:05:48.510Z [INFO]: Loaded command: set-noti
+2025-05-05T09:05:48.512Z [INFO]: Loaded command: top-money
+2025-05-05T09:05:48.513Z [INFO]: Loaded command: work
+2025-05-05T09:05:48.515Z [INFO]: Loaded command: play
+2025-05-05T09:05:48.517Z [INFO]: Loaded command: bao-tri
+2025-05-05T09:05:48.520Z [INFO]: Loaded command: cap-cuu
+2025-05-05T09:05:48.522Z [INFO]: Loaded command: cat-co
+2025-05-05T09:05:48.524Z [INFO]: Loaded command: cham-soc-hoc-sinh
+2025-05-05T09:05:48.527Z [INFO]: Loaded command: day-hoc
+2025-05-05T09:05:48.528Z [INFO]: Loaded command: gieo-hat
+2025-05-05T09:05:48.530Z [INFO]: Loaded command: kham-suc-khoe
+2025-05-05T09:05:48.531Z [INFO]: Loaded command: kiem-dinh
+2025-05-05T09:05:48.533Z [INFO]: Loaded command: kiem-tra
+2025-05-05T09:05:48.535Z [INFO]: Loaded command: lap-rap
+2025-05-05T09:05:48.537Z [INFO]: Loaded command: phat-trien
+2025-05-05T09:05:48.539Z [INFO]: Loaded command: soan-giao-an
+2025-05-05T09:05:48.540Z [INFO]: Loaded command: tham-gia-hoi-thao
+2025-05-05T09:05:48.542Z [INFO]: Loaded command: thiet-ke
+2025-05-05T09:05:48.544Z [INFO]: Loaded command: thu-hoach
+2025-05-05T09:05:48.546Z [INFO]: Loaded command: thuc-hien-xet-nghiem
+2025-05-05T09:05:48.547Z [INFO]: Loaded command: tu-van-ky-thuat
+2025-05-05T09:05:48.549Z [INFO]: Loaded command: tu-van
+2025-05-05T09:05:48.550Z [INFO]: Loaded command: tuoi-cay
+2025-05-05T09:05:48.552Z [INFO]: Loaded command: van-chuyen
+2025-05-05T09:05:48.557Z [INFO]: Loaded command: buy
+2025-05-05T09:05:48.559Z [INFO]: Loaded command: inventory
+2025-05-05T09:05:48.561Z [INFO]: Loaded command: sell
+2025-05-05T09:05:48.563Z [INFO]: Loaded command: shop
+2025-05-05T09:05:48.566Z [INFO]: Loaded command: use
+2025-05-05T09:05:48.569Z [INFO]: Loaded command: avatar
+2025-05-05T09:05:48.572Z [INFO]: Loaded command: ban
+2025-05-05T09:05:48.575Z [INFO]: Loaded command: help
+2025-05-05T09:05:48.577Z [INFO]: Loaded command: kick
+2025-05-05T09:05:48.581Z [INFO]: Loaded command: mute
+2025-05-05T09:05:48.583Z [INFO]: Loaded command: ping
+2025-05-05T09:05:48.655Z [INFO]: Loaded command: search
+2025-05-05T09:05:48.656Z [INFO]: Loaded command: server-info
+2025-05-05T09:05:48.657Z [INFO]: Loaded command: unban
+2025-05-05T09:05:48.659Z [INFO]: Loaded command: unmute
+2025-05-05T09:05:48.661Z [INFO]: Loaded command: user-info
+2025-05-05T09:05:48.667Z [INFO]: Đang đăng ký 78 lệnh với Discord API...
+2025-05-05T09:05:49.273Z [INFO]: Đã đăng ký thành công 78 lệnh với Discord API
+2025-05-05T09:05:49.275Z [INFO]: Loaded event: guildMemberAdd
+2025-05-05T09:05:49.276Z [INFO]: Loaded event: guildMemberRemove
+2025-05-05T09:05:49.276Z [INFO]: Loaded event: messageReactionAdd
+2025-05-05T09:05:49.277Z [INFO]: Loaded event: messageReactionRemove
+2025-05-05T09:05:49.279Z [INFO]: Loaded event: messageCreate
+2025-05-05T09:05:49.280Z [INFO]: Loaded event: ready
+2025-05-05T09:05:49.282Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-05T09:05:49.282Z [INFO]: Total 7 events loaded.
+2025-05-05T09:05:49.282Z [INFO]: Command handler initialized
+2025-05-05T09:05:49.282Z [INFO]: Event handler initialized
+2025-05-05T09:05:49.283Z [INFO]: Bot is starting...
+2025-05-05T09:05:50.521Z [INFO]: Bot logged in as Perry#4690
+2025-05-05T09:05:50.851Z [INFO]: [AntiCaps Cache] Loading all anticaps settings...
+2025-05-05T09:05:50.853Z [INFO]: Bot is ready as Perry#4690
+2025-05-05T09:05:50.899Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1005814304509018113
+2025-05-05T09:05:50.933Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1186898120789995580
+2025-05-05T09:05:50.933Z [INFO]: [AntiCaps Cache] Finished loading all anticaps settings.
+2025-05-05T09:06:10.545Z [INFO]: User 953837159192879104 used 1 luoi-liem, reduced cooldown for thuHoach by 2400000ms. Old remaining: 3245705ms, New remaining: 845705ms
+2025-05-05T09:06:16.641Z [INFO]: [View Job Debug] user.mainJob.name is: "nông dân" (Type: string)
+2025-05-05T09:07:43.773Z [INFO]: Loaded command: anticaps
+2025-05-05T09:07:43.803Z [INFO]: Loaded command: captcha
+2025-05-05T09:07:43.805Z [INFO]: Loaded command: change-prefix
+2025-05-05T09:07:43.807Z [INFO]: Loaded command: clear
+2025-05-05T09:07:43.811Z [INFO]: Loaded command: disablecommand
+2025-05-05T09:07:43.813Z [INFO]: Loaded command: list-bans
+2025-05-05T09:07:43.816Z [INFO]: Loaded command: lock
+2025-05-05T09:07:43.819Z [INFO]: Loaded command: refresh
+2025-05-05T09:07:43.821Z [INFO]: Loaded command: reset-user
+2025-05-05T09:07:43.824Z [INFO]: Loaded command: setup-autorole
+2025-05-05T09:07:43.827Z [INFO]: Loaded command: setup-goodbye
+2025-05-05T09:07:43.828Z [INFO]: Loaded command: setup-log
+2025-05-05T09:07:43.831Z [INFO]: Loaded command: setup-role-channel
+2025-05-05T09:07:43.833Z [INFO]: Loaded command: setup-rule
+2025-05-05T09:07:43.835Z [INFO]: Loaded command: setup-stats-channel
+2025-05-05T09:07:43.837Z [INFO]: Loaded command: setup-welcome
+2025-05-05T09:07:43.841Z [INFO]: Loaded command: status
+2025-05-05T09:07:43.842Z [INFO]: Loaded command: unlock
+2025-05-05T09:07:43.847Z [INFO]: Loaded command: add-job
+2025-05-05T09:07:43.847Z [INFO]: Loaded command: nhan_viec
+2025-05-05T09:07:43.848Z [INFO]: Loaded command: cong_viec_hien_tai
+2025-05-05T09:07:43.850Z [INFO]: Loaded command: cac_cong_viec
+2025-05-05T09:07:43.851Z [INFO]: Loaded command: remove-job
+2025-05-05T09:07:43.852Z [INFO]: Loaded command: nghi_viec
+2025-05-05T09:07:43.853Z [INFO]: Loaded command: nhan_luong
+2025-05-05T09:07:43.856Z [INFO]: Loaded command: add-xp
+2025-05-05T09:07:43.857Z [INFO]: Loaded command: level-rewards
+2025-05-05T09:07:43.859Z [INFO]: Loaded command: level
+2025-05-05T09:07:43.860Z [INFO]: Loaded command: rank
+2025-05-05T09:07:43.861Z [INFO]: Loaded command: bo_nghe
+2025-05-05T09:07:43.871Z [INFO]: Loaded command: danh_sach_nghe_chinh
+2025-05-05T09:07:43.872Z [INFO]: Loaded command: main_job_level_rewards
+2025-05-05T09:07:43.873Z [INFO]: Loaded command: chon_nghe
+2025-05-05T09:07:43.875Z [INFO]: Loaded command: view-main-job
+2025-05-05T09:07:43.876Z [INFO]: Loaded command: so_du
+2025-05-05T09:07:43.878Z [INFO]: Loaded command: bank
+2025-05-05T09:07:43.880Z [INFO]: Loaded command: daily
+2025-05-05T09:07:43.881Z [INFO]: Loaded command: chuyen_tien
+2025-05-05T09:07:43.883Z [INFO]: Loaded command: set-noti
+2025-05-05T09:07:43.885Z [INFO]: Loaded command: top-money
+2025-05-05T09:07:43.888Z [INFO]: Loaded command: work
+2025-05-05T09:07:43.889Z [INFO]: Loaded command: play
+2025-05-05T09:07:43.891Z [INFO]: Loaded command: bao-tri
+2025-05-05T09:07:43.892Z [INFO]: Loaded command: cap-cuu
+2025-05-05T09:07:43.893Z [INFO]: Loaded command: cat-co
+2025-05-05T09:07:43.894Z [INFO]: Loaded command: cham-soc-hoc-sinh
+2025-05-05T09:07:43.895Z [INFO]: Loaded command: day-hoc
+2025-05-05T09:07:43.896Z [INFO]: Loaded command: gieo-hat
+2025-05-05T09:07:43.898Z [INFO]: Loaded command: kham-suc-khoe
+2025-05-05T09:07:43.900Z [INFO]: Loaded command: kiem-dinh
+2025-05-05T09:07:43.902Z [INFO]: Loaded command: kiem-tra
+2025-05-05T09:07:43.904Z [INFO]: Loaded command: lap-rap
+2025-05-05T09:07:43.905Z [INFO]: Loaded command: phat-trien
+2025-05-05T09:07:43.907Z [INFO]: Loaded command: soan-giao-an
+2025-05-05T09:07:43.908Z [INFO]: Loaded command: tham-gia-hoi-thao
+2025-05-05T09:07:43.909Z [INFO]: Loaded command: thiet-ke
+2025-05-05T09:07:43.911Z [INFO]: Loaded command: thu-hoach
+2025-05-05T09:07:43.913Z [INFO]: Loaded command: thuc-hien-xet-nghiem
+2025-05-05T09:07:43.916Z [INFO]: Loaded command: tu-van-ky-thuat
+2025-05-05T09:07:43.918Z [INFO]: Loaded command: tu-van
+2025-05-05T09:07:43.919Z [INFO]: Loaded command: tuoi-cay
+2025-05-05T09:07:43.921Z [INFO]: Loaded command: van-chuyen
+2025-05-05T09:07:43.924Z [INFO]: Loaded command: buy
+2025-05-05T09:07:43.925Z [INFO]: Loaded command: inventory
+2025-05-05T09:07:43.927Z [INFO]: Loaded command: sell
+2025-05-05T09:07:43.929Z [INFO]: Loaded command: shop
+2025-05-05T09:07:43.931Z [INFO]: Loaded command: use
+2025-05-05T09:07:43.934Z [INFO]: Loaded command: avatar
+2025-05-05T09:07:43.935Z [INFO]: Loaded command: ban
+2025-05-05T09:07:43.937Z [INFO]: Loaded command: help
+2025-05-05T09:07:43.938Z [INFO]: Loaded command: kick
+2025-05-05T09:07:43.940Z [INFO]: Loaded command: mute
+2025-05-05T09:07:43.942Z [INFO]: Loaded command: ping
+2025-05-05T09:07:44.010Z [INFO]: Loaded command: search
+2025-05-05T09:07:44.011Z [INFO]: Loaded command: server-info
+2025-05-05T09:07:44.012Z [INFO]: Loaded command: unban
+2025-05-05T09:07:44.014Z [INFO]: Loaded command: unmute
+2025-05-05T09:07:44.016Z [INFO]: Loaded command: user-info
+2025-05-05T09:07:44.022Z [INFO]: Đang đăng ký 78 lệnh với Discord API...
+2025-05-05T09:07:44.642Z [INFO]: Đã đăng ký thành công 78 lệnh với Discord API
+2025-05-05T09:07:44.645Z [INFO]: Loaded event: guildMemberAdd
+2025-05-05T09:07:44.647Z [INFO]: Loaded event: guildMemberRemove
+2025-05-05T09:07:44.649Z [INFO]: Loaded event: messageReactionAdd
+2025-05-05T09:07:44.650Z [INFO]: Loaded event: messageReactionRemove
+2025-05-05T09:07:44.652Z [INFO]: Loaded event: messageCreate
+2025-05-05T09:07:44.653Z [INFO]: Loaded event: ready
+2025-05-05T09:07:44.654Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-05T09:07:44.654Z [INFO]: Total 7 events loaded.
+2025-05-05T09:07:44.654Z [INFO]: Command handler initialized
+2025-05-05T09:07:44.654Z [INFO]: Event handler initialized
+2025-05-05T09:07:44.655Z [INFO]: Bot is starting...
+2025-05-05T09:07:45.700Z [INFO]: Bot logged in as Perry#4690
+2025-05-05T09:07:46.344Z [INFO]: [AntiCaps Cache] Loading all anticaps settings...
+2025-05-05T09:07:46.345Z [INFO]: Bot is ready as Perry#4690
+2025-05-05T09:07:46.384Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1005814304509018113
+2025-05-05T09:07:46.413Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1186898120789995580
+2025-05-05T09:07:46.413Z [INFO]: [AntiCaps Cache] Finished loading all anticaps settings.
+2025-05-05T09:07:57.153Z [INFO]: User 953837159192879104 used 1 luoi-liem, reduced cooldown for catCo by 2400000ms. Old remaining: 3558329ms, New remaining: 1158329ms
+2025-05-05T09:08:20.410Z [INFO]: User 953837159192879104 used 1 phan_bon, reduced cooldown for thuHoach by 1800000ms. Old remaining: 715840ms, New remaining: 0ms
+2025-05-05T09:08:31.769Z [INFO]: [View Job Debug] user.mainJob.name is: "nông dân" (Type: string)
+2025-05-05T09:10:23.809Z [INFO]: Loaded command: anticaps
+2025-05-05T09:10:23.836Z [INFO]: Loaded command: captcha
+2025-05-05T09:10:23.840Z [INFO]: Loaded command: change-prefix
+2025-05-05T09:10:23.843Z [INFO]: Loaded command: clear
+2025-05-05T09:10:23.845Z [INFO]: Loaded command: disablecommand
+2025-05-05T09:10:23.847Z [INFO]: Loaded command: list-bans
+2025-05-05T09:10:23.849Z [INFO]: Loaded command: lock
+2025-05-05T09:10:23.853Z [INFO]: Loaded command: refresh
+2025-05-05T09:10:23.855Z [INFO]: Loaded command: reset-user
+2025-05-05T09:10:23.856Z [INFO]: Loaded command: setup-autorole
+2025-05-05T09:10:23.859Z [INFO]: Loaded command: setup-goodbye
+2025-05-05T09:10:23.860Z [INFO]: Loaded command: setup-log
+2025-05-05T09:10:23.862Z [INFO]: Loaded command: setup-role-channel
+2025-05-05T09:10:23.867Z [INFO]: Loaded command: setup-rule
+2025-05-05T09:10:23.869Z [INFO]: Loaded command: setup-stats-channel
+2025-05-05T09:10:23.871Z [INFO]: Loaded command: setup-welcome
+2025-05-05T09:10:23.873Z [INFO]: Loaded command: status
+2025-05-05T09:10:23.879Z [INFO]: Loaded command: unlock
+2025-05-05T09:10:23.883Z [INFO]: Loaded command: add-job
+2025-05-05T09:10:23.883Z [INFO]: Loaded command: nhan_viec
+2025-05-05T09:10:23.884Z [INFO]: Loaded command: cong_viec_hien_tai
+2025-05-05T09:10:23.886Z [INFO]: Loaded command: cac_cong_viec
+2025-05-05T09:10:23.888Z [INFO]: Loaded command: remove-job
+2025-05-05T09:10:23.889Z [INFO]: Loaded command: nghi_viec
+2025-05-05T09:10:23.891Z [INFO]: Loaded command: nhan_luong
+2025-05-05T09:10:23.894Z [INFO]: Loaded command: add-xp
+2025-05-05T09:10:23.896Z [INFO]: Loaded command: level-rewards
+2025-05-05T09:10:23.897Z [INFO]: Loaded command: level
+2025-05-05T09:10:23.898Z [INFO]: Loaded command: rank
+2025-05-05T09:10:23.901Z [INFO]: Loaded command: bo_nghe
+2025-05-05T09:10:23.906Z [INFO]: Loaded command: danh_sach_nghe_chinh
+2025-05-05T09:10:23.908Z [INFO]: Loaded command: main_job_level_rewards
+2025-05-05T09:10:23.909Z [INFO]: Loaded command: chon_nghe
+2025-05-05T09:10:23.910Z [INFO]: Loaded command: view-main-job
+2025-05-05T09:10:23.912Z [INFO]: Loaded command: so_du
+2025-05-05T09:10:23.915Z [INFO]: Loaded command: bank
+2025-05-05T09:10:23.917Z [INFO]: Loaded command: daily
+2025-05-05T09:10:23.919Z [INFO]: Loaded command: chuyen_tien
+2025-05-05T09:10:23.921Z [INFO]: Loaded command: set-noti
+2025-05-05T09:10:23.923Z [INFO]: Loaded command: top-money
+2025-05-05T09:10:23.924Z [INFO]: Loaded command: work
+2025-05-05T09:10:23.927Z [INFO]: Loaded command: play
+2025-05-05T09:10:23.930Z [INFO]: Loaded command: bao-tri
+2025-05-05T09:10:23.931Z [INFO]: Loaded command: cap-cuu
+2025-05-05T09:10:23.933Z [INFO]: Loaded command: cat-co
+2025-05-05T09:10:23.935Z [INFO]: Loaded command: cham-soc-hoc-sinh
+2025-05-05T09:10:23.936Z [INFO]: Loaded command: day-hoc
+2025-05-05T09:10:23.937Z [INFO]: Loaded command: gieo-hat
+2025-05-05T09:10:23.939Z [INFO]: Loaded command: kham-suc-khoe
+2025-05-05T09:10:23.941Z [INFO]: Loaded command: kiem-dinh
+2025-05-05T09:10:23.944Z [INFO]: Loaded command: kiem-tra
+2025-05-05T09:10:23.945Z [INFO]: Loaded command: lap-rap
+2025-05-05T09:10:23.946Z [INFO]: Loaded command: phat-trien
+2025-05-05T09:10:23.948Z [INFO]: Loaded command: soan-giao-an
+2025-05-05T09:10:23.950Z [INFO]: Loaded command: tham-gia-hoi-thao
+2025-05-05T09:10:23.952Z [INFO]: Loaded command: thiet-ke
+2025-05-05T09:10:23.953Z [INFO]: Loaded command: thu-hoach
+2025-05-05T09:10:23.954Z [INFO]: Loaded command: thuc-hien-xet-nghiem
+2025-05-05T09:10:23.956Z [INFO]: Loaded command: tu-van-ky-thuat
+2025-05-05T09:10:23.958Z [INFO]: Loaded command: tu-van
+2025-05-05T09:10:23.959Z [INFO]: Loaded command: tuoi-cay
+2025-05-05T09:10:23.961Z [INFO]: Loaded command: van-chuyen
+2025-05-05T09:10:23.966Z [INFO]: Loaded command: buy
+2025-05-05T09:10:23.967Z [INFO]: Loaded command: inventory
+2025-05-05T09:10:23.969Z [INFO]: Loaded command: sell
+2025-05-05T09:10:23.971Z [INFO]: Loaded command: shop
+2025-05-05T09:10:23.973Z [INFO]: Loaded command: use
+2025-05-05T09:10:23.974Z [INFO]: Loaded command: avatar
+2025-05-05T09:10:23.976Z [INFO]: Loaded command: ban
+2025-05-05T09:10:23.979Z [INFO]: Loaded command: help
+2025-05-05T09:10:23.981Z [INFO]: Loaded command: kick
+2025-05-05T09:10:23.986Z [INFO]: Loaded command: mute
+2025-05-05T09:10:23.988Z [INFO]: Loaded command: ping
+2025-05-05T09:10:24.062Z [INFO]: Loaded command: search
+2025-05-05T09:10:24.063Z [INFO]: Loaded command: server-info
+2025-05-05T09:10:24.064Z [INFO]: Loaded command: unban
+2025-05-05T09:10:24.065Z [INFO]: Loaded command: unmute
+2025-05-05T09:10:24.067Z [INFO]: Loaded command: user-info
+2025-05-05T09:10:24.072Z [INFO]: Đang đăng ký 78 lệnh với Discord API...
+2025-05-05T09:10:24.842Z [INFO]: Đã đăng ký thành công 78 lệnh với Discord API
+2025-05-05T09:10:24.846Z [INFO]: Loaded event: guildMemberAdd
+2025-05-05T09:10:24.847Z [INFO]: Loaded event: guildMemberRemove
+2025-05-05T09:10:24.848Z [INFO]: Loaded event: messageReactionAdd
+2025-05-05T09:10:24.849Z [INFO]: Loaded event: messageReactionRemove
+2025-05-05T09:10:24.851Z [INFO]: Loaded event: messageCreate
+2025-05-05T09:10:24.852Z [INFO]: Loaded event: ready
+2025-05-05T09:10:24.854Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-05T09:10:24.854Z [INFO]: Total 7 events loaded.
+2025-05-05T09:10:24.854Z [INFO]: Command handler initialized
+2025-05-05T09:10:24.854Z [INFO]: Event handler initialized
+2025-05-05T09:10:24.854Z [INFO]: Bot is starting...
+2025-05-05T09:10:25.925Z [INFO]: Bot logged in as Perry#4690
+2025-05-05T09:10:26.428Z [INFO]: [AntiCaps Cache] Loading all anticaps settings...
+2025-05-05T09:10:26.429Z [INFO]: Bot is ready as Perry#4690
+2025-05-05T09:10:26.468Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1005814304509018113
+2025-05-05T09:10:26.524Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1186898120789995580
+2025-05-05T09:10:26.535Z [INFO]: [AntiCaps Cache] Finished loading all anticaps settings.
+2025-05-05T09:10:53.151Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:08:34.297Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:20:31.157Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:20:50.517Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:20:57.091Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:21:22.609Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:21:25.091Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:21:38.424Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:21:49.091Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:21:58.532Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:22:19.528Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:22:25.202Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:22:32.866Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:22:40.355Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:22:59.784Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:23:08.524Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:23:22.102Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:23:37.663Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:24:18.301Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:24:28.189Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:24:40.185Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:24:45.108Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:25:02.393Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:26:25.979Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:26:35.445Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:26:36.683Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:26:37.955Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:26:38.997Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:26:40.149Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:26:41.318Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:26:42.418Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:26:44.001Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:26:44.852Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:26:45.855Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:26:46.758Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:26:47.709Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:26:48.912Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:26:50.051Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:26:51.006Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:26:52.121Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:26:53.128Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:26:57.978Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:27:00.010Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:27:01.113Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:27:02.359Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:27:03.318Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:27:04.363Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:27:05.930Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:27:06.810Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:27:07.937Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:27:08.995Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:27:11.426Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:27:12.458Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:27:13.719Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:27:14.630Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:27:15.761Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:27:17.001Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:27:18.370Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:27:19.628Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:27:20.525Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:30:58.621Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:39:31.927Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:39:32.463Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:39:32.986Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:39:33.542Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:39:34.253Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:39:34.841Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:39:35.324Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:39:35.780Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:39:36.364Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:46:36.505Z [INFO]: Event file statsUpdater.js changed (change). Reloading events...
+2025-05-05T12:46:36.616Z [INFO]: Loaded event: guildMemberAdd
+2025-05-05T12:46:36.617Z [INFO]: Loaded event: guildMemberRemove
+2025-05-05T12:46:36.619Z [INFO]: Loaded event: messageReactionAdd
+2025-05-05T12:46:36.620Z [INFO]: Loaded event: messageReactionRemove
+2025-05-05T12:46:36.624Z [INFO]: Loaded event: messageCreate
+2025-05-05T12:46:36.625Z [INFO]: Loaded event: ready
+2025-05-05T12:46:36.627Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-05T12:46:36.627Z [INFO]: Total 7 events loaded.
+2025-05-05T12:46:36.628Z [INFO]: Events reloaded successfully.
+2025-05-05T12:46:36.628Z [INFO]: Event file guildMemberAdd.js changed (change). Reloading events...
+2025-05-05T12:46:36.630Z [INFO]: Event file guildMemberRemove.js changed (change). Reloading events...
+2025-05-05T12:46:36.631Z [INFO]: Event file messageReactionAdd.js changed (change). Reloading events...
+2025-05-05T12:46:36.632Z [INFO]: Event file messageReactionRemove.js changed (change). Reloading events...
+2025-05-05T12:46:36.632Z [INFO]: Event file messageXP.js changed (change). Reloading events...
+2025-05-05T12:46:36.633Z [INFO]: Event file voiceStateUpdate.js changed (change). Reloading events...
+2025-05-05T12:46:36.736Z [INFO]: Loaded event: guildMemberAdd
+2025-05-05T12:46:36.736Z [INFO]: Loaded event: guildMemberRemove
+2025-05-05T12:46:36.737Z [INFO]: Loaded event: messageReactionAdd
+2025-05-05T12:46:36.738Z [INFO]: Loaded event: messageReactionRemove
+2025-05-05T12:46:36.740Z [INFO]: Loaded event: messageCreate
+2025-05-05T12:46:36.740Z [INFO]: Loaded event: ready
+2025-05-05T12:46:36.742Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-05T12:46:36.742Z [INFO]: Total 7 events loaded.
+2025-05-05T12:46:36.742Z [INFO]: Events reloaded successfully.
+2025-05-05T12:46:36.743Z [INFO]: Loaded event: guildMemberAdd
+2025-05-05T12:46:36.744Z [INFO]: Loaded event: guildMemberRemove
+2025-05-05T12:46:36.745Z [INFO]: Loaded event: messageReactionAdd
+2025-05-05T12:46:36.748Z [INFO]: Loaded event: messageReactionRemove
+2025-05-05T12:46:36.749Z [INFO]: Loaded event: messageCreate
+2025-05-05T12:46:36.750Z [INFO]: Loaded event: ready
+2025-05-05T12:46:36.751Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-05T12:46:36.751Z [INFO]: Total 7 events loaded.
+2025-05-05T12:46:36.752Z [INFO]: Events reloaded successfully.
+2025-05-05T12:46:36.753Z [INFO]: Loaded event: guildMemberAdd
+2025-05-05T12:46:36.754Z [INFO]: Loaded event: guildMemberRemove
+2025-05-05T12:46:36.755Z [INFO]: Loaded event: messageReactionAdd
+2025-05-05T12:46:36.756Z [INFO]: Loaded event: messageReactionRemove
+2025-05-05T12:46:36.757Z [INFO]: Loaded event: messageCreate
+2025-05-05T12:46:36.758Z [INFO]: Loaded event: ready
+2025-05-05T12:46:36.759Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-05T12:46:36.759Z [INFO]: Total 7 events loaded.
+2025-05-05T12:46:36.759Z [INFO]: Events reloaded successfully.
+2025-05-05T12:46:36.760Z [INFO]: Loaded event: guildMemberAdd
+2025-05-05T12:46:36.761Z [INFO]: Loaded event: guildMemberRemove
+2025-05-05T12:46:36.762Z [INFO]: Loaded event: messageReactionAdd
+2025-05-05T12:46:36.763Z [INFO]: Loaded event: messageReactionRemove
+2025-05-05T12:46:36.765Z [INFO]: Loaded event: messageCreate
+2025-05-05T12:46:36.766Z [INFO]: Loaded event: ready
+2025-05-05T12:46:36.767Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-05T12:46:36.767Z [INFO]: Total 7 events loaded.
+2025-05-05T12:46:36.767Z [INFO]: Events reloaded successfully.
+2025-05-05T12:46:36.768Z [INFO]: Loaded event: guildMemberAdd
+2025-05-05T12:46:36.769Z [INFO]: Loaded event: guildMemberRemove
+2025-05-05T12:46:36.770Z [INFO]: Loaded event: messageReactionAdd
+2025-05-05T12:46:36.771Z [INFO]: Loaded event: messageReactionRemove
+2025-05-05T12:46:36.772Z [INFO]: Loaded event: messageCreate
+2025-05-05T12:46:36.773Z [INFO]: Loaded event: ready
+2025-05-05T12:46:36.775Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-05T12:46:36.775Z [INFO]: Total 7 events loaded.
+2025-05-05T12:46:36.776Z [INFO]: Events reloaded successfully.
+2025-05-05T12:46:36.776Z [INFO]: Loaded event: guildMemberAdd
+2025-05-05T12:46:36.777Z [INFO]: Loaded event: guildMemberRemove
+2025-05-05T12:46:36.778Z [INFO]: Loaded event: messageReactionAdd
+2025-05-05T12:46:36.779Z [INFO]: Loaded event: messageReactionRemove
+2025-05-05T12:46:36.780Z [INFO]: Loaded event: messageCreate
+2025-05-05T12:46:36.781Z [INFO]: Loaded event: ready
+2025-05-05T12:46:36.784Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-05T12:46:36.784Z [INFO]: Total 7 events loaded.
+2025-05-05T12:46:36.784Z [INFO]: Events reloaded successfully.
+2025-05-05T12:47:21.819Z [INFO]: Loaded command: anticaps
+2025-05-05T12:47:21.894Z [INFO]: Loaded command: captcha
+2025-05-05T12:47:21.896Z [INFO]: Loaded command: change-prefix
+2025-05-05T12:47:21.897Z [INFO]: Loaded command: clear
+2025-05-05T12:47:21.899Z [INFO]: Loaded command: disablecommand
+2025-05-05T12:47:21.900Z [INFO]: Loaded command: list-bans
+2025-05-05T12:47:21.902Z [INFO]: Loaded command: lock
+2025-05-05T12:47:21.905Z [INFO]: Loaded command: refresh
+2025-05-05T12:47:21.906Z [INFO]: Loaded command: reset-user
+2025-05-05T12:47:21.908Z [INFO]: Loaded command: setup-autorole
+2025-05-05T12:47:21.910Z [INFO]: Loaded command: setup-goodbye
+2025-05-05T12:47:21.911Z [INFO]: Loaded command: setup-log
+2025-05-05T12:47:21.913Z [INFO]: Loaded command: setup-role-channel
+2025-05-05T12:47:21.915Z [INFO]: Loaded command: setup-rule
+2025-05-05T12:47:21.919Z [INFO]: Loaded command: setup-stats-channel
+2025-05-05T12:47:21.922Z [INFO]: Loaded command: setup-welcome
+2025-05-05T12:47:21.924Z [INFO]: Loaded command: status
+2025-05-05T12:47:21.925Z [INFO]: Loaded command: unlock
+2025-05-05T12:47:21.928Z [INFO]: Loaded command: add-job
+2025-05-05T12:47:21.928Z [INFO]: Loaded command: nhan_viec
+2025-05-05T12:47:21.930Z [INFO]: Loaded command: cong_viec_hien_tai
+2025-05-05T12:47:21.931Z [INFO]: Loaded command: cac_cong_viec
+2025-05-05T12:47:21.933Z [INFO]: Loaded command: remove-job
+2025-05-05T12:47:21.935Z [INFO]: Loaded command: nghi_viec
+2025-05-05T12:47:21.936Z [INFO]: Loaded command: nhan_luong
+2025-05-05T12:47:21.939Z [INFO]: Loaded command: add-xp
+2025-05-05T12:47:21.940Z [INFO]: Loaded command: level-rewards
+2025-05-05T12:47:21.942Z [INFO]: Loaded command: level
+2025-05-05T12:47:21.943Z [INFO]: Loaded command: rank
+2025-05-05T12:47:21.947Z [INFO]: Loaded command: bo_nghe
+2025-05-05T12:47:21.955Z [INFO]: Loaded command: danh_sach_nghe_chinh
+2025-05-05T12:47:21.957Z [INFO]: Loaded command: main_job_level_rewards
+2025-05-05T12:47:21.958Z [INFO]: Loaded command: chon_nghe
+2025-05-05T12:47:21.961Z [INFO]: Loaded command: view-main-job
+2025-05-05T12:47:21.962Z [INFO]: Loaded command: so_du
+2025-05-05T12:47:21.963Z [INFO]: Loaded command: bank
+2025-05-05T12:47:21.965Z [INFO]: Loaded command: daily
+2025-05-05T12:47:21.966Z [INFO]: Loaded command: chuyen_tien
+2025-05-05T12:47:21.968Z [INFO]: Loaded command: set-noti
+2025-05-05T12:47:21.969Z [INFO]: Loaded command: top-money
+2025-05-05T12:47:21.970Z [INFO]: Loaded command: work
+2025-05-05T12:47:21.972Z [INFO]: Loaded command: play
+2025-05-05T12:47:21.974Z [INFO]: Loaded command: bao-tri
+2025-05-05T12:47:21.976Z [INFO]: Loaded command: cap-cuu
+2025-05-05T12:47:21.978Z [INFO]: Loaded command: cat-co
+2025-05-05T12:47:21.980Z [INFO]: Loaded command: cham-soc-hoc-sinh
+2025-05-05T12:47:21.982Z [INFO]: Loaded command: day-hoc
+2025-05-05T12:47:21.984Z [INFO]: Loaded command: gieo-hat
+2025-05-05T12:47:21.985Z [INFO]: Loaded command: kham-suc-khoe
+2025-05-05T12:47:21.987Z [INFO]: Loaded command: kiem-dinh
+2025-05-05T12:47:21.988Z [INFO]: Loaded command: kiem-tra
+2025-05-05T12:47:21.990Z [INFO]: Loaded command: lap-rap
+2025-05-05T12:47:21.991Z [INFO]: Loaded command: phat-trien
+2025-05-05T12:47:21.993Z [INFO]: Loaded command: soan-giao-an
+2025-05-05T12:47:21.994Z [INFO]: Loaded command: tham-gia-hoi-thao
+2025-05-05T12:47:21.995Z [INFO]: Loaded command: thiet-ke
+2025-05-05T12:47:21.997Z [INFO]: Loaded command: thu-hoach
+2025-05-05T12:47:21.998Z [INFO]: Loaded command: thuc-hien-xet-nghiem
+2025-05-05T12:47:21.999Z [INFO]: Loaded command: tu-van-ky-thuat
+2025-05-05T12:47:22.001Z [INFO]: Loaded command: tu-van
+2025-05-05T12:47:22.002Z [INFO]: Loaded command: tuoi-cay
+2025-05-05T12:47:22.004Z [INFO]: Loaded command: van-chuyen
+2025-05-05T12:47:22.008Z [INFO]: Loaded command: buy
+2025-05-05T12:47:22.010Z [INFO]: Loaded command: inventory
+2025-05-05T12:47:22.012Z [INFO]: Loaded command: sell
+2025-05-05T12:47:22.013Z [INFO]: Loaded command: shop
+2025-05-05T12:47:22.014Z [INFO]: Loaded command: use
+2025-05-05T12:47:22.018Z [INFO]: Loaded command: trade
+2025-05-05T12:47:22.019Z [INFO]: Loaded command: avatar
+2025-05-05T12:47:22.021Z [INFO]: Loaded command: ban
+2025-05-05T12:47:22.024Z [INFO]: Loaded command: help
+2025-05-05T12:47:22.026Z [INFO]: Loaded command: kick
+2025-05-05T12:47:22.028Z [INFO]: Loaded command: mute
+2025-05-05T12:47:22.029Z [INFO]: Loaded command: ping
+2025-05-05T12:47:22.116Z [INFO]: Loaded command: search
+2025-05-05T12:47:22.118Z [INFO]: Loaded command: server-info
+2025-05-05T12:47:22.119Z [INFO]: Loaded command: unban
+2025-05-05T12:47:22.121Z [INFO]: Loaded command: unmute
+2025-05-05T12:47:22.122Z [INFO]: Loaded command: user-info
+2025-05-05T12:47:22.127Z [INFO]: Đang đăng ký 79 lệnh với Discord API...
+2025-05-05T12:47:22.820Z [INFO]: Đã đăng ký thành công 79 lệnh với Discord API
+2025-05-05T12:47:22.823Z [INFO]: Loaded event: guildMemberAdd
+2025-05-05T12:47:22.824Z [INFO]: Loaded event: guildMemberRemove
+2025-05-05T12:47:22.824Z [INFO]: Loaded event: messageReactionAdd
+2025-05-05T12:47:22.825Z [INFO]: Loaded event: messageReactionRemove
+2025-05-05T12:47:22.826Z [INFO]: Loaded event: messageCreate
+2025-05-05T12:47:22.827Z [INFO]: Loaded event: ready
+2025-05-05T12:47:22.828Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-05T12:47:22.829Z [INFO]: Total 7 events loaded.
+2025-05-05T12:47:22.829Z [INFO]: Command handler initialized
+2025-05-05T12:47:22.829Z [INFO]: Event handler initialized
+2025-05-05T12:47:22.829Z [INFO]: Bot is starting...
+2025-05-05T12:47:23.952Z [INFO]: Bot logged in as Perry#4690
+2025-05-05T12:47:24.250Z [INFO]: [AntiCaps Cache] Loading all anticaps settings...
+2025-05-05T12:47:24.251Z [INFO]: Bot is ready as Perry#4690
+2025-05-05T12:47:24.292Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1005814304509018113
+2025-05-05T12:47:24.324Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1186898120789995580
+2025-05-05T12:47:24.325Z [INFO]: [AntiCaps Cache] Finished loading all anticaps settings.
+2025-05-05T12:50:37.422Z [INFO]: [View Job Debug] user.mainJob.name is: "nông dân" (Type: string)
+2025-05-05T12:57:13.981Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T12:59:07.841Z [INFO]: Loaded command: anticaps
+2025-05-05T12:59:07.956Z [INFO]: Loaded command: captcha
+2025-05-05T12:59:07.958Z [INFO]: Loaded command: change-prefix
+2025-05-05T12:59:07.960Z [INFO]: Loaded command: clear
+2025-05-05T12:59:07.962Z [INFO]: Loaded command: disablecommand
+2025-05-05T12:59:07.963Z [INFO]: Loaded command: list-bans
+2025-05-05T12:59:07.965Z [INFO]: Loaded command: lock
+2025-05-05T12:59:07.968Z [INFO]: Loaded command: refresh
+2025-05-05T12:59:07.970Z [INFO]: Loaded command: reset-user
+2025-05-05T12:59:07.971Z [INFO]: Loaded command: setup-autorole
+2025-05-05T12:59:07.973Z [INFO]: Loaded command: setup-goodbye
+2025-05-05T12:59:07.975Z [INFO]: Loaded command: setup-log
+2025-05-05T12:59:07.977Z [INFO]: Loaded command: setup-role-channel
+2025-05-05T12:59:07.979Z [INFO]: Loaded command: setup-rule
+2025-05-05T12:59:07.981Z [INFO]: Loaded command: setup-stats-channel
+2025-05-05T12:59:07.983Z [INFO]: Loaded command: setup-welcome
+2025-05-05T12:59:07.986Z [INFO]: Loaded command: status
+2025-05-05T12:59:07.988Z [INFO]: Loaded command: unlock
+2025-05-05T12:59:07.991Z [INFO]: Loaded command: add-job
+2025-05-05T12:59:07.991Z [INFO]: Loaded command: nhan_viec
+2025-05-05T12:59:07.992Z [INFO]: Loaded command: cong_viec_hien_tai
+2025-05-05T12:59:07.994Z [INFO]: Loaded command: cac_cong_viec
+2025-05-05T12:59:07.996Z [INFO]: Loaded command: remove-job
+2025-05-05T12:59:07.997Z [INFO]: Loaded command: nghi_viec
+2025-05-05T12:59:07.998Z [INFO]: Loaded command: nhan_luong
+2025-05-05T12:59:08.001Z [INFO]: Loaded command: add-xp
+2025-05-05T12:59:08.002Z [INFO]: Loaded command: level-rewards
+2025-05-05T12:59:08.003Z [INFO]: Loaded command: level
+2025-05-05T12:59:08.004Z [INFO]: Loaded command: rank
+2025-05-05T12:59:08.006Z [INFO]: Loaded command: bo_nghe
+2025-05-05T12:59:08.011Z [INFO]: Loaded command: danh_sach_nghe_chinh
+2025-05-05T12:59:08.013Z [INFO]: Loaded command: main_job_level_rewards
+2025-05-05T12:59:08.014Z [INFO]: Loaded command: chon_nghe
+2025-05-05T12:59:08.017Z [INFO]: Loaded command: view-main-job
+2025-05-05T12:59:08.019Z [INFO]: Loaded command: so_du
+2025-05-05T12:59:08.020Z [INFO]: Loaded command: bank
+2025-05-05T12:59:08.021Z [INFO]: Loaded command: daily
+2025-05-05T12:59:08.023Z [INFO]: Loaded command: chuyen_tien
+2025-05-05T12:59:08.024Z [INFO]: Loaded command: set-noti
+2025-05-05T12:59:08.025Z [INFO]: Loaded command: top-money
+2025-05-05T12:59:08.027Z [INFO]: Loaded command: work
+2025-05-05T12:59:08.029Z [INFO]: Loaded command: play
+2025-05-05T12:59:08.032Z [INFO]: Loaded command: bao-tri
+2025-05-05T12:59:08.033Z [INFO]: Loaded command: cap-cuu
+2025-05-05T12:59:08.035Z [INFO]: Loaded command: cat-co
+2025-05-05T12:59:08.036Z [INFO]: Loaded command: cham-soc-hoc-sinh
+2025-05-05T12:59:08.039Z [INFO]: Loaded command: day-hoc
+2025-05-05T12:59:08.040Z [INFO]: Loaded command: gieo-hat
+2025-05-05T12:59:08.042Z [INFO]: Loaded command: kham-suc-khoe
+2025-05-05T12:59:08.044Z [INFO]: Loaded command: kiem-dinh
+2025-05-05T12:59:08.045Z [INFO]: Loaded command: kiem-tra
+2025-05-05T12:59:08.047Z [INFO]: Loaded command: lap-rap
+2025-05-05T12:59:08.048Z [INFO]: Loaded command: phat-trien
+2025-05-05T12:59:08.049Z [INFO]: Loaded command: soan-giao-an
+2025-05-05T12:59:08.052Z [INFO]: Loaded command: tham-gia-hoi-thao
+2025-05-05T12:59:08.053Z [INFO]: Loaded command: thiet-ke
+2025-05-05T12:59:08.055Z [INFO]: Loaded command: thu-hoach
+2025-05-05T12:59:08.056Z [INFO]: Loaded command: thuc-hien-xet-nghiem
+2025-05-05T12:59:08.058Z [INFO]: Loaded command: tu-van-ky-thuat
+2025-05-05T12:59:08.059Z [INFO]: Loaded command: tu-van
+2025-05-05T12:59:08.061Z [INFO]: Loaded command: tuoi-cay
+2025-05-05T12:59:08.062Z [INFO]: Loaded command: van-chuyen
+2025-05-05T12:59:08.067Z [INFO]: Loaded command: buy
+2025-05-05T12:59:08.068Z [INFO]: Loaded command: inventory
+2025-05-05T12:59:08.070Z [INFO]: Loaded command: sell
+2025-05-05T12:59:08.071Z [INFO]: Loaded command: shop
+2025-05-05T12:59:08.073Z [INFO]: Loaded command: use
+2025-05-05T12:59:08.076Z [INFO]: Loaded command: trade
+2025-05-05T12:59:08.077Z [INFO]: Loaded command: avatar
+2025-05-05T12:59:08.079Z [INFO]: Loaded command: ban
+2025-05-05T12:59:08.081Z [INFO]: Loaded command: help
+2025-05-05T12:59:08.082Z [INFO]: Loaded command: kick
+2025-05-05T12:59:08.084Z [INFO]: Loaded command: mute
+2025-05-05T12:59:08.086Z [INFO]: Loaded command: ping
+2025-05-05T12:59:08.174Z [INFO]: Loaded command: search
+2025-05-05T12:59:08.176Z [INFO]: Loaded command: server-info
+2025-05-05T12:59:08.177Z [INFO]: Loaded command: unban
+2025-05-05T12:59:08.178Z [INFO]: Loaded command: unmute
+2025-05-05T12:59:08.179Z [INFO]: Loaded command: user-info
+2025-05-05T12:59:08.184Z [INFO]: Đang đăng ký 79 lệnh với Discord API...
+2025-05-05T12:59:08.892Z [INFO]: Đã đăng ký thành công 79 lệnh với Discord API
+2025-05-05T12:59:08.896Z [INFO]: Loaded event: guildMemberAdd
+2025-05-05T12:59:08.897Z [INFO]: Loaded event: guildMemberRemove
+2025-05-05T12:59:08.897Z [INFO]: Loaded event: messageReactionAdd
+2025-05-05T12:59:08.899Z [INFO]: Loaded event: messageReactionRemove
+2025-05-05T12:59:08.901Z [INFO]: Loaded event: messageCreate
+2025-05-05T12:59:08.903Z [INFO]: Loaded event: ready
+2025-05-05T12:59:08.904Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-05T12:59:08.905Z [INFO]: Total 7 events loaded.
+2025-05-05T12:59:08.905Z [INFO]: Command handler initialized
+2025-05-05T12:59:08.905Z [INFO]: Event handler initialized
+2025-05-05T12:59:08.905Z [INFO]: Bot is starting...
+2025-05-05T12:59:10.049Z [INFO]: Bot logged in as Perry#4690
+2025-05-05T12:59:10.680Z [INFO]: [AntiCaps Cache] Loading all anticaps settings...
+2025-05-05T12:59:10.685Z [INFO]: Bot is ready as Perry#4690
+2025-05-05T12:59:10.736Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1005814304509018113
+2025-05-05T12:59:10.763Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1186898120789995580
+2025-05-05T12:59:10.763Z [INFO]: [AntiCaps Cache] Finished loading all anticaps settings.
+2025-05-05T13:17:02.205Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:17:13.047Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:19:49.819Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:27:17.778Z [INFO]: Loaded command: anticaps
+2025-05-05T13:27:17.858Z [INFO]: Loaded command: captcha
+2025-05-05T13:27:17.861Z [INFO]: Loaded command: change-prefix
+2025-05-05T13:27:17.863Z [INFO]: Loaded command: clear
+2025-05-05T13:27:17.867Z [INFO]: Loaded command: disablecommand
+2025-05-05T13:27:17.869Z [INFO]: Loaded command: list-bans
+2025-05-05T13:27:17.870Z [INFO]: Loaded command: lock
+2025-05-05T13:27:17.872Z [INFO]: Loaded command: refresh
+2025-05-05T13:27:17.875Z [INFO]: Loaded command: reset-user
+2025-05-05T13:27:17.877Z [INFO]: Loaded command: setup-autorole
+2025-05-05T13:27:17.879Z [INFO]: Loaded command: setup-goodbye
+2025-05-05T13:27:17.881Z [INFO]: Loaded command: setup-log
+2025-05-05T13:27:17.883Z [INFO]: Loaded command: setup-role-channel
+2025-05-05T13:27:17.885Z [INFO]: Loaded command: setup-rule
+2025-05-05T13:27:17.891Z [INFO]: Loaded command: setup-stats-channel
+2025-05-05T13:27:17.893Z [INFO]: Loaded command: setup-welcome
+2025-05-05T13:27:17.895Z [INFO]: Loaded command: status
+2025-05-05T13:27:17.896Z [INFO]: Loaded command: unlock
+2025-05-05T13:27:17.900Z [INFO]: Loaded command: add-job
+2025-05-05T13:27:17.901Z [INFO]: Loaded command: nhan_viec
+2025-05-05T13:27:17.902Z [INFO]: Loaded command: cong_viec_hien_tai
+2025-05-05T13:27:17.904Z [INFO]: Loaded command: cac_cong_viec
+2025-05-05T13:27:17.906Z [INFO]: Loaded command: remove-job
+2025-05-05T13:27:17.908Z [INFO]: Loaded command: nghi_viec
+2025-05-05T13:27:17.910Z [INFO]: Loaded command: nhan_luong
+2025-05-05T13:27:17.915Z [INFO]: Loaded command: add-xp
+2025-05-05T13:27:17.916Z [INFO]: Loaded command: level-rewards
+2025-05-05T13:27:17.918Z [INFO]: Loaded command: level
+2025-05-05T13:27:17.920Z [INFO]: Loaded command: rank
+2025-05-05T13:27:17.922Z [INFO]: Loaded command: bo_nghe
+2025-05-05T13:27:17.928Z [INFO]: Loaded command: danh_sach_nghe_chinh
+2025-05-05T13:27:17.929Z [INFO]: Loaded command: main_job_level_rewards
+2025-05-05T13:27:17.931Z [INFO]: Loaded command: chon_nghe
+2025-05-05T13:27:17.934Z [INFO]: Loaded command: view-main-job
+2025-05-05T13:27:17.937Z [INFO]: Loaded command: so_du
+2025-05-05T13:27:17.939Z [INFO]: Loaded command: bank
+2025-05-05T13:27:17.941Z [INFO]: Loaded command: daily
+2025-05-05T13:27:17.943Z [INFO]: Loaded command: chuyen_tien
+2025-05-05T13:27:17.945Z [INFO]: Loaded command: set-noti
+2025-05-05T13:27:17.946Z [INFO]: Loaded command: top-money
+2025-05-05T13:27:17.948Z [INFO]: Loaded command: work
+2025-05-05T13:27:17.950Z [INFO]: Loaded command: play
+2025-05-05T13:27:17.952Z [INFO]: Loaded command: bao-tri
+2025-05-05T13:27:17.954Z [INFO]: Loaded command: cap-cuu
+2025-05-05T13:27:17.956Z [INFO]: Loaded command: cat-co
+2025-05-05T13:27:17.958Z [INFO]: Loaded command: cham-soc-hoc-sinh
+2025-05-05T13:27:17.960Z [INFO]: Loaded command: day-hoc
+2025-05-05T13:27:17.962Z [INFO]: Loaded command: gieo-hat
+2025-05-05T13:27:17.963Z [INFO]: Loaded command: kham-suc-khoe
+2025-05-05T13:27:17.965Z [INFO]: Loaded command: kiem-dinh
+2025-05-05T13:27:17.967Z [INFO]: Loaded command: kiem-tra
+2025-05-05T13:27:17.969Z [INFO]: Loaded command: lap-rap
+2025-05-05T13:27:17.971Z [INFO]: Loaded command: phat-trien
+2025-05-05T13:27:17.973Z [INFO]: Loaded command: soan-giao-an
+2025-05-05T13:27:17.975Z [INFO]: Loaded command: tham-gia-hoi-thao
+2025-05-05T13:27:17.976Z [INFO]: Loaded command: thiet-ke
+2025-05-05T13:27:17.978Z [INFO]: Loaded command: thu-hoach
+2025-05-05T13:27:17.979Z [INFO]: Loaded command: thuc-hien-xet-nghiem
+2025-05-05T13:27:17.982Z [INFO]: Loaded command: tu-van-ky-thuat
+2025-05-05T13:27:17.983Z [INFO]: Loaded command: tu-van
+2025-05-05T13:27:17.985Z [INFO]: Loaded command: tuoi-cay
+2025-05-05T13:27:17.987Z [INFO]: Loaded command: van-chuyen
+2025-05-05T13:27:17.992Z [INFO]: Loaded command: buy
+2025-05-05T13:27:17.993Z [INFO]: Loaded command: inventory
+2025-05-05T13:27:17.995Z [INFO]: Loaded command: sell
+2025-05-05T13:27:17.997Z [INFO]: Loaded command: shop
+2025-05-05T13:27:17.998Z [INFO]: Loaded command: use
+2025-05-05T13:27:18.001Z [INFO]: Loaded command: trade
+2025-05-05T13:27:18.002Z [INFO]: Loaded command: avatar
+2025-05-05T13:27:18.004Z [INFO]: Loaded command: ban
+2025-05-05T13:27:18.006Z [INFO]: Loaded command: help
+2025-05-05T13:27:18.007Z [INFO]: Loaded command: kick
+2025-05-05T13:27:18.009Z [INFO]: Loaded command: mute
+2025-05-05T13:27:18.011Z [INFO]: Loaded command: ping
+2025-05-05T13:27:18.121Z [INFO]: Loaded command: search
+2025-05-05T13:27:18.123Z [INFO]: Loaded command: server-info
+2025-05-05T13:27:18.125Z [INFO]: Loaded command: unban
+2025-05-05T13:27:18.128Z [INFO]: Loaded command: unmute
+2025-05-05T13:27:18.129Z [INFO]: Loaded command: user-info
+2025-05-05T13:27:18.134Z [INFO]: Đang đăng ký 79 lệnh với Discord API...
+2025-05-05T13:27:18.788Z [INFO]: Đã đăng ký thành công 79 lệnh với Discord API
+2025-05-05T13:27:18.791Z [INFO]: Loaded event: guildMemberAdd
+2025-05-05T13:27:18.792Z [INFO]: Loaded event: guildMemberRemove
+2025-05-05T13:27:18.792Z [INFO]: Loaded event: messageReactionAdd
+2025-05-05T13:27:18.794Z [INFO]: Loaded event: messageReactionRemove
+2025-05-05T13:27:18.796Z [INFO]: Loaded event: messageCreate
+2025-05-05T13:27:18.797Z [INFO]: Loaded event: ready
+2025-05-05T13:27:18.799Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-05T13:27:18.799Z [INFO]: Total 7 events loaded.
+2025-05-05T13:27:18.799Z [INFO]: Command handler initialized
+2025-05-05T13:27:18.799Z [INFO]: Event handler initialized
+2025-05-05T13:27:18.800Z [INFO]: Bot is starting...
+2025-05-05T13:27:19.970Z [INFO]: Bot logged in as Perry#4690
+2025-05-05T13:27:20.226Z [INFO]: [AntiCaps Cache] Loading all anticaps settings...
+2025-05-05T13:27:20.227Z [INFO]: Bot is ready as Perry#4690
+2025-05-05T13:27:20.269Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1005814304509018113
+2025-05-05T13:27:20.301Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1186898120789995580
+2025-05-05T13:27:20.301Z [INFO]: [AntiCaps Cache] Finished loading all anticaps settings.
+2025-05-05T13:27:41.359Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:27:55.787Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:28:33.893Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:32:27.360Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:32:32.657Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:32:37.312Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:32:43.470Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:36:47.232Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:40:08.528Z [INFO]: Loaded command: anticaps
+2025-05-05T13:40:08.564Z [INFO]: Loaded command: captcha
+2025-05-05T13:40:08.566Z [INFO]: Loaded command: change-prefix
+2025-05-05T13:40:08.568Z [INFO]: Loaded command: clear
+2025-05-05T13:40:08.570Z [INFO]: Loaded command: disablecommand
+2025-05-05T13:40:08.572Z [INFO]: Loaded command: list-bans
+2025-05-05T13:40:08.573Z [INFO]: Loaded command: lock
+2025-05-05T13:40:08.576Z [INFO]: Loaded command: refresh
+2025-05-05T13:40:08.578Z [INFO]: Loaded command: reset-user
+2025-05-05T13:40:08.580Z [INFO]: Loaded command: setup-autorole
+2025-05-05T13:40:08.582Z [INFO]: Loaded command: setup-goodbye
+2025-05-05T13:40:08.583Z [INFO]: Loaded command: setup-log
+2025-05-05T13:40:08.585Z [INFO]: Loaded command: setup-role-channel
+2025-05-05T13:40:08.587Z [INFO]: Loaded command: setup-rule
+2025-05-05T13:40:08.589Z [INFO]: Loaded command: setup-stats-channel
+2025-05-05T13:40:08.593Z [INFO]: Loaded command: setup-welcome
+2025-05-05T13:40:08.595Z [INFO]: Loaded command: status
+2025-05-05T13:40:08.596Z [INFO]: Loaded command: unlock
+2025-05-05T13:40:08.599Z [INFO]: Loaded command: add-job
+2025-05-05T13:40:08.599Z [INFO]: Loaded command: nhan_viec
+2025-05-05T13:40:08.601Z [INFO]: Loaded command: cong_viec_hien_tai
+2025-05-05T13:40:08.603Z [INFO]: Loaded command: cac_cong_viec
+2025-05-05T13:40:08.605Z [INFO]: Loaded command: remove-job
+2025-05-05T13:40:08.607Z [INFO]: Loaded command: nghi_viec
+2025-05-05T13:40:08.664Z [INFO]: Loaded command: nhan_luong
+2025-05-05T13:40:08.700Z [INFO]: Loaded command: add-xp
+2025-05-05T13:40:08.701Z [INFO]: Loaded command: level-rewards
+2025-05-05T13:40:08.703Z [INFO]: Loaded command: level
+2025-05-05T13:40:08.706Z [INFO]: Loaded command: rank
+2025-05-05T13:40:08.708Z [INFO]: Loaded command: bo_nghe
+2025-05-05T13:40:08.715Z [INFO]: Loaded command: danh_sach_nghe_chinh
+2025-05-05T13:40:08.717Z [INFO]: Loaded command: main_job_level_rewards
+2025-05-05T13:40:08.718Z [INFO]: Loaded command: chon_nghe
+2025-05-05T13:40:08.737Z [INFO]: Loaded command: view-main-job
+2025-05-05T13:40:08.739Z [INFO]: Loaded command: so_du
+2025-05-05T13:40:08.742Z [INFO]: Loaded command: bank
+2025-05-05T13:40:08.744Z [INFO]: Loaded command: daily
+2025-05-05T13:40:08.745Z [INFO]: Loaded command: chuyen_tien
+2025-05-05T13:40:08.748Z [INFO]: Loaded command: set-noti
+2025-05-05T13:40:08.749Z [INFO]: Loaded command: top-money
+2025-05-05T13:40:08.751Z [INFO]: Loaded command: work
+2025-05-05T13:40:08.753Z [INFO]: Loaded command: play
+2025-05-05T13:40:08.756Z [INFO]: Loaded command: bao-tri
+2025-05-05T13:40:08.758Z [INFO]: Loaded command: cap-cuu
+2025-05-05T13:40:08.759Z [INFO]: Loaded command: cat-co
+2025-05-05T13:40:08.760Z [INFO]: Loaded command: cham-soc-hoc-sinh
+2025-05-05T13:40:08.762Z [INFO]: Loaded command: day-hoc
+2025-05-05T13:40:08.764Z [INFO]: Loaded command: gieo-hat
+2025-05-05T13:40:08.765Z [INFO]: Loaded command: kham-suc-khoe
+2025-05-05T13:40:08.766Z [INFO]: Loaded command: kiem-dinh
+2025-05-05T13:40:08.767Z [INFO]: Loaded command: kiem-tra
+2025-05-05T13:40:08.770Z [INFO]: Loaded command: lap-rap
+2025-05-05T13:40:08.771Z [INFO]: Loaded command: phat-trien
+2025-05-05T13:40:08.772Z [INFO]: Loaded command: soan-giao-an
+2025-05-05T13:40:08.774Z [INFO]: Loaded command: tham-gia-hoi-thao
+2025-05-05T13:40:08.775Z [INFO]: Loaded command: thiet-ke
+2025-05-05T13:40:08.777Z [INFO]: Loaded command: thu-hoach
+2025-05-05T13:40:08.778Z [INFO]: Loaded command: thuc-hien-xet-nghiem
+2025-05-05T13:40:08.780Z [INFO]: Loaded command: tu-van-ky-thuat
+2025-05-05T13:40:08.781Z [INFO]: Loaded command: tu-van
+2025-05-05T13:40:08.782Z [INFO]: Loaded command: tuoi-cay
+2025-05-05T13:40:08.784Z [INFO]: Loaded command: van-chuyen
+2025-05-05T13:40:08.788Z [INFO]: Loaded command: buy
+2025-05-05T13:40:08.790Z [INFO]: Loaded command: inventory
+2025-05-05T13:40:08.792Z [INFO]: Loaded command: sell
+2025-05-05T13:40:08.793Z [INFO]: Loaded command: shop
+2025-05-05T13:40:08.794Z [INFO]: Loaded command: use
+2025-05-05T13:40:08.797Z [INFO]: Loaded command: trade
+2025-05-05T13:40:08.798Z [INFO]: Loaded command: avatar
+2025-05-05T13:40:08.800Z [INFO]: Loaded command: ban
+2025-05-05T13:40:08.801Z [INFO]: Loaded command: help
+2025-05-05T13:40:08.804Z [INFO]: Loaded command: kick
+2025-05-05T13:40:08.807Z [INFO]: Loaded command: mute
+2025-05-05T13:40:08.808Z [INFO]: Loaded command: ping
+2025-05-05T13:40:08.881Z [INFO]: Loaded command: search
+2025-05-05T13:40:08.882Z [INFO]: Loaded command: server-info
+2025-05-05T13:40:08.884Z [INFO]: Loaded command: unban
+2025-05-05T13:40:08.885Z [INFO]: Loaded command: unmute
+2025-05-05T13:40:08.886Z [INFO]: Loaded command: user-info
+2025-05-05T13:40:08.891Z [INFO]: Đang đăng ký 79 lệnh với Discord API...
+2025-05-05T13:40:09.555Z [INFO]: Đã đăng ký thành công 79 lệnh với Discord API
+2025-05-05T13:40:09.558Z [INFO]: Loaded event: guildMemberAdd
+2025-05-05T13:40:09.559Z [INFO]: Loaded event: guildMemberRemove
+2025-05-05T13:40:09.561Z [INFO]: Loaded event: messageReactionAdd
+2025-05-05T13:40:09.562Z [INFO]: Loaded event: messageReactionRemove
+2025-05-05T13:40:09.565Z [INFO]: Loaded event: messageCreate
+2025-05-05T13:40:09.566Z [INFO]: Loaded event: ready
+2025-05-05T13:40:09.569Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-05T13:40:09.569Z [INFO]: Total 7 events loaded.
+2025-05-05T13:40:09.570Z [INFO]: Command handler initialized
+2025-05-05T13:40:09.570Z [INFO]: Event handler initialized
+2025-05-05T13:40:09.570Z [INFO]: Bot is starting...
+2025-05-05T13:40:10.643Z [INFO]: Bot logged in as Perry#4690
+2025-05-05T13:40:11.081Z [INFO]: [AntiCaps Cache] Loading all anticaps settings...
+2025-05-05T13:40:11.083Z [INFO]: Bot is ready as Perry#4690
+2025-05-05T13:40:11.121Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1005814304509018113
+2025-05-05T13:40:11.153Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1186898120789995580
+2025-05-05T13:40:11.154Z [INFO]: [AntiCaps Cache] Finished loading all anticaps settings.
+2025-05-05T13:47:16.061Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:47:17.588Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:47:18.488Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:47:21.462Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:47:22.509Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:47:23.992Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:47:25.141Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:47:27.603Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:47:28.769Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:47:29.936Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:47:31.112Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:47:32.350Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:47:37.568Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:47:39.620Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:47:41.727Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:47:43.820Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:47:44.696Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:47:50.341Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:47:51.553Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:47:52.362Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:47:53.124Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:47:54.133Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:47:54.965Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:47:55.914Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:47:57.237Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:48:18.429Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:48:31.731Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T13:48:33.041Z [ERROR]: Unhandled promise rejection: Logger is not defined
+2025-05-05T14:24:33.960Z [INFO]: Loaded command: anticaps
+2025-05-05T14:24:34.011Z [INFO]: Loaded command: captcha
+2025-05-05T14:24:34.013Z [INFO]: Loaded command: change-prefix
+2025-05-05T14:24:34.016Z [INFO]: Loaded command: clear
+2025-05-05T14:24:34.021Z [INFO]: Loaded command: disablecommand
+2025-05-05T14:24:34.023Z [INFO]: Loaded command: list-bans
+2025-05-05T14:24:34.026Z [INFO]: Loaded command: lock
+2025-05-05T14:24:34.029Z [INFO]: Loaded command: refresh
+2025-05-05T14:24:34.032Z [INFO]: Loaded command: reset-user
+2025-05-05T14:24:34.035Z [INFO]: Loaded command: setup-autorole
+2025-05-05T14:24:34.038Z [INFO]: Loaded command: setup-goodbye
+2025-05-05T14:24:34.041Z [INFO]: Loaded command: setup-log
+2025-05-05T14:24:34.044Z [INFO]: Loaded command: setup-role-channel
+2025-05-05T14:24:34.047Z [INFO]: Loaded command: setup-rule
+2025-05-05T14:24:34.050Z [INFO]: Loaded command: setup-stats-channel
+2025-05-05T14:24:34.066Z [INFO]: Loaded command: setup-welcome
+2025-05-05T14:24:34.088Z [INFO]: Loaded command: status
+2025-05-05T14:24:34.092Z [INFO]: Loaded command: unlock
+2025-05-05T14:24:34.109Z [INFO]: Loaded command: add-job
+2025-05-05T14:24:34.112Z [INFO]: Loaded command: nhan_viec
+2025-05-05T14:24:34.114Z [INFO]: Loaded command: cong_viec_hien_tai
+2025-05-05T14:24:34.116Z [INFO]: Loaded command: cac_cong_viec
+2025-05-05T14:24:34.119Z [INFO]: Loaded command: remove-job
+2025-05-05T14:24:34.124Z [INFO]: Loaded command: nghi_viec
+2025-05-05T14:24:34.129Z [INFO]: Loaded command: nhan_luong
+2025-05-05T14:24:34.133Z [INFO]: Loaded command: add-xp
+2025-05-05T14:24:34.136Z [INFO]: Loaded command: level-rewards
+2025-05-05T14:24:34.138Z [INFO]: Loaded command: level
+2025-05-05T14:24:34.141Z [INFO]: Loaded command: rank
+2025-05-05T14:24:34.147Z [INFO]: Loaded command: bo_nghe
+2025-05-05T14:24:34.341Z [INFO]: Loaded command: danh_sach_nghe_chinh
+2025-05-05T14:24:34.397Z [INFO]: Loaded command: main_job_level_rewards
+2025-05-05T14:24:34.399Z [INFO]: Loaded command: chon_nghe
+2025-05-05T14:24:34.403Z [INFO]: Loaded command: view-main-job
+2025-05-05T14:24:34.406Z [INFO]: Loaded command: so_du
+2025-05-05T14:24:34.409Z [INFO]: Loaded command: bank
+2025-05-05T14:24:34.413Z [INFO]: Loaded command: daily
+2025-05-05T14:24:34.418Z [INFO]: Loaded command: chuyen_tien
+2025-05-05T14:24:34.435Z [INFO]: Loaded command: set-noti
+2025-05-05T14:24:34.452Z [INFO]: Loaded command: top-money
+2025-05-05T14:24:34.457Z [INFO]: Loaded command: work
+2025-05-05T14:24:34.463Z [INFO]: Loaded command: play
+2025-05-05T14:24:34.470Z [INFO]: Loaded command: bao-tri
+2025-05-05T14:24:34.476Z [INFO]: Loaded command: cap-cuu
+2025-05-05T14:24:34.486Z [INFO]: Loaded command: cat-co
+2025-05-05T14:24:34.490Z [INFO]: Loaded command: cham-soc-hoc-sinh
+2025-05-05T14:24:34.495Z [INFO]: Loaded command: day-hoc
+2025-05-05T14:24:34.502Z [INFO]: Loaded command: gieo-hat
+2025-05-05T14:24:34.505Z [INFO]: Loaded command: kham-suc-khoe
+2025-05-05T14:24:34.510Z [INFO]: Loaded command: kiem-dinh
+2025-05-05T14:24:34.513Z [INFO]: Loaded command: kiem-tra
+2025-05-05T14:24:34.518Z [INFO]: Loaded command: lap-rap
+2025-05-05T14:24:34.523Z [INFO]: Loaded command: phat-trien
+2025-05-05T14:24:34.526Z [INFO]: Loaded command: soan-giao-an
+2025-05-05T14:24:34.529Z [INFO]: Loaded command: tham-gia-hoi-thao
+2025-05-05T14:24:34.533Z [INFO]: Loaded command: thiet-ke
+2025-05-05T14:24:34.537Z [INFO]: Loaded command: thu-hoach
+2025-05-05T14:24:34.543Z [INFO]: Loaded command: thuc-hien-xet-nghiem
+2025-05-05T14:24:34.553Z [INFO]: Loaded command: tu-van-ky-thuat
+2025-05-05T14:24:34.559Z [INFO]: Loaded command: tu-van
+2025-05-05T14:24:34.587Z [INFO]: Loaded command: tuoi-cay
+2025-05-05T14:24:34.607Z [INFO]: Loaded command: van-chuyen
+2025-05-05T14:24:34.624Z [INFO]: Loaded command: buy
+2025-05-05T14:24:34.628Z [INFO]: Loaded command: inventory
+2025-05-05T14:24:34.634Z [INFO]: Loaded command: sell
+2025-05-05T14:24:34.643Z [INFO]: Loaded command: shop
+2025-05-05T14:24:34.647Z [INFO]: Loaded command: use
+2025-05-05T14:24:34.675Z [INFO]: Loaded command: trade
+2025-05-05T14:24:34.679Z [INFO]: Loaded command: avatar
+2025-05-05T14:24:34.712Z [INFO]: Loaded command: ban
+2025-05-05T14:24:34.716Z [INFO]: Loaded command: help
+2025-05-05T14:24:34.719Z [INFO]: Loaded command: kick
+2025-05-05T14:24:34.725Z [INFO]: Loaded command: mute
+2025-05-05T14:24:34.728Z [INFO]: Loaded command: ping
+2025-05-05T14:24:34.916Z [INFO]: Loaded command: search
+2025-05-05T14:24:34.918Z [INFO]: Loaded command: server-info
+2025-05-05T14:24:34.920Z [INFO]: Loaded command: unban
+2025-05-05T14:24:34.927Z [INFO]: Loaded command: unmute
+2025-05-05T14:24:34.930Z [INFO]: Loaded command: user-info
+2025-05-05T14:24:34.939Z [INFO]: Đang đăng ký 79 lệnh với Discord API...
+2025-05-05T14:24:35.805Z [INFO]: Đã đăng ký thành công 79 lệnh với Discord API
+2025-05-05T14:24:35.809Z [INFO]: Loaded event: guildMemberAdd
+2025-05-05T14:24:35.811Z [INFO]: Loaded event: guildMemberRemove
+2025-05-05T14:24:35.813Z [INFO]: Loaded event: messageReactionAdd
+2025-05-05T14:24:35.815Z [INFO]: Loaded event: messageReactionRemove
+2025-05-05T14:24:35.818Z [INFO]: Loaded event: messageCreate
+2025-05-05T14:24:35.820Z [INFO]: Loaded event: ready
+2025-05-05T14:24:35.822Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-05T14:24:35.823Z [INFO]: Total 7 events loaded.
+2025-05-05T14:24:35.824Z [INFO]: Command handler initialized
+2025-05-05T14:24:35.824Z [INFO]: Event handler initialized
+2025-05-05T14:24:35.825Z [INFO]: Bot is starting...
+2025-05-05T14:24:35.834Z [INFO]: Event file guildMemberAdd.js changed (change). Reloading events...
+2025-05-05T14:24:35.840Z [INFO]: Event file guildMemberRemove.js changed (change). Reloading events...
+2025-05-05T14:24:35.841Z [INFO]: Event file messageReactionAdd.js changed (change). Reloading events...
+2025-05-05T14:24:35.842Z [INFO]: Event file messageReactionRemove.js changed (change). Reloading events...
+2025-05-05T14:24:35.843Z [INFO]: Event file messageXP.js changed (change). Reloading events...
+2025-05-05T14:24:35.844Z [INFO]: Event file statsUpdater.js changed (change). Reloading events...
+2025-05-05T14:24:35.845Z [INFO]: Event file voiceStateUpdate.js changed (change). Reloading events...
+2025-05-05T14:24:35.941Z [INFO]: Loaded event: guildMemberAdd
+2025-05-05T14:24:35.942Z [INFO]: Loaded event: guildMemberRemove
+2025-05-05T14:24:35.942Z [INFO]: Loaded event: messageReactionAdd
+2025-05-05T14:24:35.943Z [INFO]: Loaded event: messageReactionRemove
+2025-05-05T14:24:35.944Z [INFO]: Loaded event: messageCreate
+2025-05-05T14:24:35.945Z [INFO]: Loaded event: ready
+2025-05-05T14:24:35.946Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-05T14:24:35.946Z [INFO]: Total 7 events loaded.
+2025-05-05T14:24:35.946Z [INFO]: Events reloaded successfully.
+2025-05-05T14:24:35.950Z [INFO]: Loaded event: guildMemberAdd
+2025-05-05T14:24:35.951Z [INFO]: Loaded event: guildMemberRemove
+2025-05-05T14:24:35.952Z [INFO]: Loaded event: messageReactionAdd
+2025-05-05T14:24:35.953Z [INFO]: Loaded event: messageReactionRemove
+2025-05-05T14:24:35.954Z [INFO]: Loaded event: messageCreate
+2025-05-05T14:24:35.955Z [INFO]: Loaded event: ready
+2025-05-05T14:24:35.956Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-05T14:24:35.957Z [INFO]: Total 7 events loaded.
+2025-05-05T14:24:35.958Z [INFO]: Events reloaded successfully.
+2025-05-05T14:24:35.959Z [INFO]: Loaded event: guildMemberAdd
+2025-05-05T14:24:35.960Z [INFO]: Loaded event: guildMemberRemove
+2025-05-05T14:24:35.961Z [INFO]: Loaded event: messageReactionAdd
+2025-05-05T14:24:35.962Z [INFO]: Loaded event: messageReactionRemove
+2025-05-05T14:24:35.964Z [INFO]: Loaded event: messageCreate
+2025-05-05T14:24:35.965Z [INFO]: Loaded event: ready
+2025-05-05T14:24:35.967Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-05T14:24:35.967Z [INFO]: Total 7 events loaded.
+2025-05-05T14:24:35.968Z [INFO]: Events reloaded successfully.
+2025-05-05T14:24:35.969Z [INFO]: Loaded event: guildMemberAdd
+2025-05-05T14:24:35.971Z [INFO]: Loaded event: guildMemberRemove
+2025-05-05T14:24:35.973Z [INFO]: Loaded event: messageReactionAdd
+2025-05-05T14:24:35.973Z [INFO]: Loaded event: messageReactionRemove
+2025-05-05T14:24:35.975Z [INFO]: Loaded event: messageCreate
+2025-05-05T14:24:35.975Z [INFO]: Loaded event: ready
+2025-05-05T14:24:35.977Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-05T14:24:35.977Z [INFO]: Total 7 events loaded.
+2025-05-05T14:24:35.977Z [INFO]: Events reloaded successfully.
+2025-05-05T14:24:35.980Z [INFO]: Loaded event: guildMemberAdd
+2025-05-05T14:24:35.980Z [INFO]: Loaded event: guildMemberRemove
+2025-05-05T14:24:35.981Z [INFO]: Loaded event: messageReactionAdd
+2025-05-05T14:24:35.982Z [INFO]: Loaded event: messageReactionRemove
+2025-05-05T14:24:35.985Z [INFO]: Loaded event: messageCreate
+2025-05-05T14:24:35.986Z [INFO]: Loaded event: ready
+2025-05-05T14:24:35.988Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-05T14:24:35.988Z [INFO]: Total 7 events loaded.
+2025-05-05T14:24:35.989Z [INFO]: Events reloaded successfully.
+2025-05-05T14:24:35.990Z [INFO]: Loaded event: guildMemberAdd
+2025-05-05T14:24:35.991Z [INFO]: Loaded event: guildMemberRemove
+2025-05-05T14:24:35.992Z [INFO]: Loaded event: messageReactionAdd
+2025-05-05T14:24:35.993Z [INFO]: Loaded event: messageReactionRemove
+2025-05-05T14:24:35.994Z [INFO]: Loaded event: messageCreate
+2025-05-05T14:24:35.995Z [INFO]: Loaded event: ready
+2025-05-05T14:24:35.996Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-05T14:24:35.997Z [INFO]: Total 7 events loaded.
+2025-05-05T14:24:35.997Z [INFO]: Events reloaded successfully.
+2025-05-05T14:24:36.000Z [INFO]: Loaded event: guildMemberAdd
+2025-05-05T14:24:36.001Z [INFO]: Loaded event: guildMemberRemove
+2025-05-05T14:24:36.002Z [INFO]: Loaded event: messageReactionAdd
+2025-05-05T14:24:36.003Z [INFO]: Loaded event: messageReactionRemove
+2025-05-05T14:24:36.004Z [INFO]: Loaded event: messageCreate
+2025-05-05T14:24:36.005Z [INFO]: Loaded event: ready
+2025-05-05T14:24:36.006Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-05T14:24:36.006Z [INFO]: Total 7 events loaded.
+2025-05-05T14:24:36.007Z [INFO]: Events reloaded successfully.
+2025-05-05T14:24:37.152Z [INFO]: Bot logged in as Perry#4690
+2025-05-06T05:25:27.678Z [INFO]: Loaded command: anticaps
+2025-05-06T05:25:27.792Z [INFO]: Loaded command: captcha
+2025-05-06T05:25:27.795Z [INFO]: Loaded command: change-prefix
+2025-05-06T05:25:27.797Z [INFO]: Loaded command: clear
+2025-05-06T05:25:27.801Z [INFO]: Loaded command: disablecommand
+2025-05-06T05:25:27.804Z [INFO]: Loaded command: list-bans
+2025-05-06T05:25:27.807Z [INFO]: Loaded command: lock
+2025-05-06T05:25:27.811Z [INFO]: Loaded command: refresh
+2025-05-06T05:25:27.814Z [INFO]: Loaded command: reset-user
+2025-05-06T05:25:27.817Z [INFO]: Loaded command: setup-autorole
+2025-05-06T05:25:27.820Z [INFO]: Loaded command: setup-goodbye
+2025-05-06T05:25:27.822Z [INFO]: Loaded command: setup-log
+2025-05-06T05:25:27.825Z [INFO]: Loaded command: setup-role-channel
+2025-05-06T05:25:27.828Z [INFO]: Loaded command: setup-rule
+2025-05-06T05:25:27.830Z [INFO]: Loaded command: setup-stats-channel
+2025-05-06T05:25:27.835Z [INFO]: Loaded command: setup-welcome
+2025-05-06T05:25:27.839Z [INFO]: Loaded command: status
+2025-05-06T05:25:27.841Z [INFO]: Loaded command: unlock
+2025-05-06T05:25:27.846Z [INFO]: Loaded command: add-job
+2025-05-06T05:25:27.846Z [INFO]: Loaded command: nhan_viec
+2025-05-06T05:25:27.849Z [INFO]: Loaded command: cong_viec_hien_tai
+2025-05-06T05:25:27.850Z [INFO]: Loaded command: cac_cong_viec
+2025-05-06T05:25:27.854Z [INFO]: Loaded command: remove-job
+2025-05-06T05:25:27.855Z [INFO]: Loaded command: nghi_viec
+2025-05-06T05:25:27.857Z [INFO]: Loaded command: nhan_luong
+2025-05-06T05:25:27.860Z [INFO]: Loaded command: add-xp
+2025-05-06T05:25:27.862Z [INFO]: Loaded command: level-rewards
+2025-05-06T05:25:27.863Z [INFO]: Loaded command: level
+2025-05-06T05:25:27.865Z [INFO]: Loaded command: rank
+2025-05-06T05:25:27.867Z [INFO]: Loaded command: bo_nghe
+2025-05-06T05:25:27.871Z [INFO]: Loaded command: danh_sach_nghe_chinh
+2025-05-06T05:25:27.873Z [INFO]: Loaded command: main_job_level_rewards
+2025-05-06T05:25:27.875Z [INFO]: Loaded command: chon_nghe
+2025-05-06T05:25:27.877Z [INFO]: Loaded command: view-main-job
+2025-05-06T05:25:27.879Z [INFO]: Loaded command: so_du
+2025-05-06T05:25:27.881Z [INFO]: Loaded command: bank
+2025-05-06T05:25:27.883Z [INFO]: Loaded command: daily
+2025-05-06T05:25:27.885Z [INFO]: Loaded command: chuyen_tien
+2025-05-06T05:25:27.887Z [INFO]: Loaded command: set-noti
+2025-05-06T05:25:27.889Z [INFO]: Loaded command: top-money
+2025-05-06T05:25:27.892Z [INFO]: Loaded command: work
+2025-05-06T05:25:27.895Z [INFO]: Loaded command: play
+2025-05-06T05:25:27.897Z [INFO]: Loaded command: bao-tri
+2025-05-06T05:25:27.898Z [INFO]: Loaded command: cap-cuu
+2025-05-06T05:25:27.900Z [INFO]: Loaded command: cat-co
+2025-05-06T05:25:27.902Z [INFO]: Loaded command: cham-soc-hoc-sinh
+2025-05-06T05:25:27.904Z [INFO]: Loaded command: day-hoc
+2025-05-06T05:25:27.905Z [INFO]: Loaded command: gieo-hat
+2025-05-06T05:25:27.906Z [INFO]: Loaded command: kham-suc-khoe
+2025-05-06T05:25:27.908Z [INFO]: Loaded command: kiem-dinh
+2025-05-06T05:25:27.911Z [INFO]: Loaded command: kiem-tra
+2025-05-06T05:25:27.917Z [INFO]: Loaded command: lap-rap
+2025-05-06T05:25:27.918Z [INFO]: Loaded command: phat-trien
+2025-05-06T05:25:27.919Z [INFO]: Loaded command: soan-giao-an
+2025-05-06T05:25:27.921Z [INFO]: Loaded command: tham-gia-hoi-thao
+2025-05-06T05:25:27.923Z [INFO]: Loaded command: thiet-ke
+2025-05-06T05:25:27.924Z [INFO]: Loaded command: thu-hoach
+2025-05-06T05:25:27.925Z [INFO]: Loaded command: thuc-hien-xet-nghiem
+2025-05-06T05:25:27.926Z [INFO]: Loaded command: tu-van-ky-thuat
+2025-05-06T05:25:27.928Z [INFO]: Loaded command: tu-van
+2025-05-06T05:25:27.929Z [INFO]: Loaded command: tuoi-cay
+2025-05-06T05:25:27.931Z [INFO]: Loaded command: van-chuyen
+2025-05-06T05:25:27.935Z [INFO]: Loaded command: buy
+2025-05-06T05:25:27.937Z [INFO]: Loaded command: inventory
+2025-05-06T05:25:27.938Z [INFO]: Loaded command: sell
+2025-05-06T05:25:27.940Z [INFO]: Loaded command: shop
+2025-05-06T05:25:27.942Z [INFO]: Loaded command: use
+2025-05-06T05:25:27.944Z [INFO]: Loaded command: trade
+2025-05-06T05:25:27.946Z [INFO]: Loaded command: avatar
+2025-05-06T05:25:27.948Z [INFO]: Loaded command: ban
+2025-05-06T05:25:27.958Z [INFO]: Loaded command: help
+2025-05-06T05:25:27.960Z [INFO]: Loaded command: kick
+2025-05-06T05:25:27.962Z [INFO]: Loaded command: mute
+2025-05-06T05:25:27.963Z [INFO]: Loaded command: ping
+2025-05-06T05:25:28.086Z [INFO]: Loaded command: search
+2025-05-06T05:25:28.088Z [INFO]: Loaded command: server-info
+2025-05-06T05:25:28.089Z [INFO]: Loaded command: unban
+2025-05-06T05:25:28.091Z [INFO]: Loaded command: unmute
+2025-05-06T05:25:28.093Z [INFO]: Loaded command: user-info
+2025-05-06T05:25:28.097Z [INFO]: Đang đăng ký 79 lệnh với Discord API...
+2025-05-06T05:25:29.041Z [INFO]: Đã đăng ký thành công 79 lệnh với Discord API
+2025-05-06T05:25:29.044Z [INFO]: Loaded event: guildMemberAdd
+2025-05-06T05:25:29.046Z [INFO]: Loaded event: guildMemberRemove
+2025-05-06T05:25:29.047Z [INFO]: Loaded event: messageReactionAdd
+2025-05-06T05:25:29.048Z [INFO]: Loaded event: messageReactionRemove
+2025-05-06T05:25:29.052Z [INFO]: Loaded event: messageCreate
+2025-05-06T05:25:29.054Z [INFO]: Loaded event: ready
+2025-05-06T05:25:29.067Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-06T05:25:29.067Z [INFO]: Total 7 events loaded.
+2025-05-06T05:25:29.067Z [INFO]: Command handler initialized
+2025-05-06T05:25:29.067Z [INFO]: Event handler initialized
+2025-05-06T05:25:29.068Z [INFO]: Bot is starting...
+2025-05-06T05:25:29.076Z [INFO]: Event file guildMemberAdd.js changed (change). Reloading events...
+2025-05-06T05:25:29.077Z [INFO]: Event file guildMemberRemove.js changed (change). Reloading events...
+2025-05-06T05:25:29.078Z [INFO]: Event file messageReactionAdd.js changed (change). Reloading events...
+2025-05-06T05:25:29.079Z [INFO]: Event file messageReactionRemove.js changed (change). Reloading events...
+2025-05-06T05:25:29.081Z [INFO]: Event file voiceStateUpdate.js changed (change). Reloading events...
+2025-05-06T05:25:29.189Z [INFO]: Loaded event: guildMemberAdd
+2025-05-06T05:25:29.189Z [INFO]: Loaded event: guildMemberRemove
+2025-05-06T05:25:29.190Z [INFO]: Loaded event: messageReactionAdd
+2025-05-06T05:25:29.191Z [INFO]: Loaded event: messageReactionRemove
+2025-05-06T05:25:29.192Z [INFO]: Loaded event: messageCreate
+2025-05-06T05:25:29.193Z [INFO]: Loaded event: ready
+2025-05-06T05:25:29.194Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-06T05:25:29.195Z [INFO]: Total 7 events loaded.
+2025-05-06T05:25:29.195Z [INFO]: Events reloaded successfully.
+2025-05-06T05:25:29.196Z [INFO]: Loaded event: guildMemberAdd
+2025-05-06T05:25:29.197Z [INFO]: Loaded event: guildMemberRemove
+2025-05-06T05:25:29.198Z [INFO]: Loaded event: messageReactionAdd
+2025-05-06T05:25:29.199Z [INFO]: Loaded event: messageReactionRemove
+2025-05-06T05:25:29.200Z [INFO]: Loaded event: messageCreate
+2025-05-06T05:25:29.201Z [INFO]: Loaded event: ready
+2025-05-06T05:25:29.202Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-06T05:25:29.203Z [INFO]: Total 7 events loaded.
+2025-05-06T05:25:29.203Z [INFO]: Events reloaded successfully.
+2025-05-06T05:25:29.205Z [INFO]: Loaded event: guildMemberAdd
+2025-05-06T05:25:29.206Z [INFO]: Loaded event: guildMemberRemove
+2025-05-06T05:25:29.207Z [INFO]: Loaded event: messageReactionAdd
+2025-05-06T05:25:29.208Z [INFO]: Loaded event: messageReactionRemove
+2025-05-06T05:25:29.209Z [INFO]: Loaded event: messageCreate
+2025-05-06T05:25:29.210Z [INFO]: Loaded event: ready
+2025-05-06T05:25:29.211Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-06T05:25:29.211Z [INFO]: Total 7 events loaded.
+2025-05-06T05:25:29.212Z [INFO]: Events reloaded successfully.
+2025-05-06T05:25:29.213Z [INFO]: Loaded event: guildMemberAdd
+2025-05-06T05:25:29.214Z [INFO]: Loaded event: guildMemberRemove
+2025-05-06T05:25:29.215Z [INFO]: Loaded event: messageReactionAdd
+2025-05-06T05:25:29.216Z [INFO]: Loaded event: messageReactionRemove
+2025-05-06T05:25:29.218Z [INFO]: Loaded event: messageCreate
+2025-05-06T05:25:29.220Z [INFO]: Loaded event: ready
+2025-05-06T05:25:29.222Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-06T05:25:29.222Z [INFO]: Total 7 events loaded.
+2025-05-06T05:25:29.222Z [INFO]: Events reloaded successfully.
+2025-05-06T05:25:29.223Z [INFO]: Loaded event: guildMemberAdd
+2025-05-06T05:25:29.224Z [INFO]: Loaded event: guildMemberRemove
+2025-05-06T05:25:29.225Z [INFO]: Loaded event: messageReactionAdd
+2025-05-06T05:25:29.226Z [INFO]: Loaded event: messageReactionRemove
+2025-05-06T05:25:29.227Z [INFO]: Loaded event: messageCreate
+2025-05-06T05:25:29.229Z [INFO]: Loaded event: ready
+2025-05-06T05:25:29.231Z [INFO]: Loaded event: voiceStateUpdate
+2025-05-06T05:25:29.231Z [INFO]: Total 7 events loaded.
+2025-05-06T05:25:29.231Z [INFO]: Events reloaded successfully.
+2025-05-06T05:25:30.148Z [INFO]: Bot logged in as Perry#4690
