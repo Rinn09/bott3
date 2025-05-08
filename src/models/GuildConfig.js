@@ -9,6 +9,7 @@ const GuildConfigSchema = new mongoose.Schema({
   autoRoleId: { type: String, default: null },
   roleChannelId: { type: String, default: null },
   salaryNotificationChannelId: { type: String, default: null },
+  marketNotificationChannelId: { type: String, default: null },
   roleMessageIds: {
     gender: { type: String, default: null },
     game: { type: String, default: null }

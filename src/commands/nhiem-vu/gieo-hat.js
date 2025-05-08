@@ -71,7 +71,7 @@ module.exports = {
       const requiredXP = getRequiredXPForLevel(user.mainJob.level);
       const embed = new EmbedBuilder()
         .setTitle(`🌱 ${task.name} thành công!`)
-        .setColor('Green')
+        .setColor('#4EEE94')
         .setDescription(
           `+💧 **${xpGain} XP**\n` +
           // Chỉ hiển thị tiền nếu rewardAmount > 0

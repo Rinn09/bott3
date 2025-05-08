@@ -14,7 +14,7 @@ module.exports = {
     const user = await User.findOne({ userId, guildId });
 
     if (!user || !user.inventory || user.inventory.size === 0) {
-      return interaction.reply({ content: '🎒 Túi đồ của bạn đang trống!', ephemeral: true });
+      return interaction.reply({ content: '🎒 Túi đồ của bạn đang trống!', ephemeral: false });
     }
 
     const inventoryEmbed = new EmbedBuilder()
