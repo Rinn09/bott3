@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const GuildConfigSchema = new mongoose.Schema({
   guildId: { type: String, required: true, unique: true },
@@ -12,14 +12,16 @@ const GuildConfigSchema = new mongoose.Schema({
   marketNotificationChannelId: { type: String, default: null },
   roleMessageIds: {
     gender: { type: String, default: null },
-    game: { type: String, default: null }
+    game: { type: String, default: null },
   },
   statsChannels: {
     total: { type: String, default: null },
     online: { type: String, default: null },
-    bots: { type: String, default: null }
+    bots: { type: String, default: null },
   },
-  prefix: { type: String, default: '!' }
+  disabledCommands: { type: Map, of: [String], default: {} },
+  disabledChannels: { type: Map, of: Boolean, default: {} },
+  prefix: { type: String, default: "!" },
 });
 
-module.exports = mongoose.model('GuildConfig', GuildConfigSchema);
+module.exports = mongoose.model("GuildConfig", GuildConfigSchema);

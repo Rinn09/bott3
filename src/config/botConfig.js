@@ -40,5 +40,11 @@ module.exports = {
     "https://i.imgur.com/3ZUrjUP.png",
     "https://i.imgur.com/l4eE0Ow.png",
     "https://i.imgur.com/q6LttPi.png"
-  ]
+  ],
+  gacha: {
+    freeRollCooldownHours: 24, // Cooldown cho free roll (giờ)
+    rollCostVND: 50000,      // Giá mỗi lượt roll bằng VNĐ
+    pityThreshold: 90,       // Số lượt roll để chắc chắn nhận được ít nhất đồ Rare trở lên
+    guaranteedRarities: ['rare', 'epic', 'legendary', 'mythic'] // Các độ hiếm được tính là "cao cấp" cho pity system
+  },
 };

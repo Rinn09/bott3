@@ -1,66 +1,73 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
-const fs = require('fs');
-const path = require('path');
-const { PermissionsBitField } = require('discord.js');
-
-const disabledCommandsPath = path.join(__dirname, 'disabledCommands.json');
+const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
+const GuildConfig = require("../../models/GuildConfig"); // Model lưu cấu hình server
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName('disablecommand')
-    .setDescription('Vô hiệu hóa lệnh')
-    .addStringOption(option => 
-      option.setName('command')
-        .setDescription('The command to disable')
-        .setRequired(true))
-    .addChannelOption(option =>
-      option.setName('channel')
-        .setDescription('The channel to disable the command in')
-        .setRequired(false))
-    .addBooleanOption(option =>
-      option.setName('allchannels')
-        .setDescription('Disable the command in all channels')
-        .setRequired(false)),
-  
+    .setName("disable-command")
+    .setDescription("[Admin] Vô hiệu hóa lệnh hoặc toàn bộ lệnh.")
+    .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
+    .addStringOption((option) =>
+      option
+        .setName("command")
+        .setDescription(
+          "Tên lệnh muốn vô hiệu hóa (để trống để vô hiệu hóa toàn bộ lệnh)",
+        )
+        .setRequired(false),
+    )
+    .addChannelOption((option) =>
+      option
+        .setName("channel")
+        .setDescription(
+          "Kênh muốn vô hiệu hóa lệnh (để trống để áp dụng cho toàn bộ kênh)",
+        )
+        .setRequired(false),
+    ),
+
   async execute(interaction) {
-    const commandName = interaction.options.getString('command');
-    const channel = interaction.options.getChannel('channel');
-    const allChannels = interaction.options.getBoolean('allchannels');
+    const guildId = interaction.guild.id;
+    const command = interaction.options.getString("command");
+    const channel = interaction.options.getChannel("channel");
 
-    if (!interaction.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
-      return interaction.reply({ content: 'Bạn cần quyền Quản trị viên để sử dụng lệnh này.', ephemeral: true });
-    }
+    await interaction.deferReply({ ephemeral: true });
 
-    let disabledCommands;
     try {
-      disabledCommands = JSON.parse(fs.readFileSync(disabledCommandsPath, 'utf8') || '{}');
-    } catch (error) {
-      if (error.code === 'ENOENT') {
-        disabledCommands = {};
+      const config = await GuildConfig.findOneAndUpdate(
+        { guildId },
+        { $setOnInsert: { disabledCommands: {}, disabledChannels: {} } },
+        { upsert: true, new: true },
+      );
+
+      if (command) {
+        // Vô hiệu hóa một lệnh cụ thể
+        if (channel) {
+          // Vô hiệu hóa lệnh trong một kênh cụ thể
+          config.disabledCommands[command] =
+            config.disabledCommands[command] || [];
+          if (!config.disabledCommands[command].includes(channel.id)) {
+            config.disabledCommands[command].push(channel.id);
+          }
+        } else {
+          // Vô hiệu hóa lệnh trên toàn bộ kênh
+          config.disabledCommands[command] = ["all"];
+        }
       } else {
-        console.error('Có lỗi xảy ra khi đọc file disabledCommands.json', error);
-        return interaction.reply({ content: 'Có lỗi xảy ra khi vô hiệu hóa lệnh.', ephemeral: true });
+        // Vô hiệu hóa toàn bộ lệnh
+        if (channel) {
+          // Vô hiệu hóa toàn bộ lệnh trong một kênh cụ thể
+          config.disabledChannels[channel.id] = true;
+        } else {
+          // Vô hiệu hóa toàn bộ lệnh trên toàn bộ kênh
+          config.disabledChannels["all"] = true;
+        }
       }
-    }
 
-    if (!disabledCommands[interaction.guild.id]) {
-      disabledCommands[interaction.guild.id] = {};
+      await config.save();
+      await interaction.editReply(
+        `✅ Đã vô hiệu hóa ${command || "toàn bộ lệnh"} ${channel ? `trong kênh <#${channel.id}>` : "trên toàn bộ kênh"}.`,
+      );
+    } catch (error) {
+      console.error(error);
+      await interaction.editReply("❌ Đã xảy ra lỗi khi vô hiệu hóa lệnh.");
     }
-
-    if (allChannels) {
-      disabledCommands[interaction.guild.id][commandName] = 'all';
-    } else if (channel) {
-      if (!disabledCommands[interaction.guild.id][commandName] || !Array.isArray(disabledCommands[interaction.guild.id][commandName])) {
-        disabledCommands[interaction.guild.id][commandName] = [];
-      }
-      if (!disabledCommands[interaction.guild.id][commandName].includes(channel.id)) {
-        disabledCommands[interaction.guild.id][commandName].push(channel.id);
-      }
-    } else {
-      return interaction.reply({ content: 'Bạn cần chọn kênh hoặc chọn tất cả kênh.', ephemeral: true });
-    }
-
-    fs.writeFileSync(disabledCommandsPath, JSON.stringify(disabledCommands, null, 2));
-    return interaction.reply({ content: `Lệnh ${commandName} đã bị vô hiệu hóa.`, ephemeral: true });
   },
 };
