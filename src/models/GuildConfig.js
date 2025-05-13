@@ -10,6 +10,7 @@ const GuildConfigSchema = new mongoose.Schema({
   roleChannelId: { type: String, default: null },
   salaryNotificationChannelId: { type: String, default: null },
   marketNotificationChannelId: { type: String, default: null },
+  goldenHourChannelId: { type: String, default: null },
   roleMessageIds: {
     gender: { type: String, default: null },
     game: { type: String, default: null },

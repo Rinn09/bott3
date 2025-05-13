@@ -86,4 +86,10 @@ const partDefinitionSchema = new Schema(
   { timestamps: true },
 );
 
-module.exports = mongoose.model("PartDefinition", partDefinitionSchema);
+const PartDefinition = mongoose.model("PartDefinition", partDefinitionSchema);
+
+module.exports = {
+  PartDefinition,
+  PartTypeEnum,
+  RarityEnum, // Export cả RarityEnum nếu cần ở nơi khác
+};

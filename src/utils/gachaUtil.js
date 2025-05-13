@@ -1,6 +1,7 @@
 const CarModel = require("../models/CarModel");
-const PartDefinition = require("../models/PartDefinition");
+const { PartDefinition } = require("../models/PartDefinition"); // Sửa import
 const Logger = require("./logger");
+const goldenHourManager = require("./goldenHourManager");
 
 /**
  * Thực hiện một lượt roll dựa trên trọng số gacha.
@@ -19,9 +20,27 @@ async function performWeightedRoll() {
       "partId name rarity gachaWeight imageUrl partType description statModifiers",
     ).lean(); // << THÊM description
 
+    const boostMultipliers = goldenHourManager.getGoldenHourBoostMultiplier(); // Lấy boost multipliers
+
     const allItems = [
-      ...cars.map((c) => ({ ...c, type: "car", weight: c.gachaWeight })),
-      ...parts.map((p) => ({ ...p, type: "part", weight: p.gachaWeight })),
+      ...cars.map((c) => ({
+        ...c,
+        type: "car",
+        weight:
+          c.gachaWeight *
+          (boostMultipliers && boostMultipliers[c.rarity]
+            ? boostMultipliers[c.rarity]
+            : 1),
+      })),
+      ...parts.map((p) => ({
+        ...p,
+        type: "part",
+        weight:
+          p.gachaWeight *
+          (boostMultipliers && boostMultipliers[p.rarity]
+            ? boostMultipliers[p.rarity]
+            : 1),
+      })),
     ];
 
     if (allItems.length === 0) {

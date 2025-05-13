@@ -1,28 +1,37 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
+const { Schema } = mongoose;
 
 const marketListingSchema = new mongoose.Schema({
-    guildId: { type: String, required: true, index: true }, // THÊM DÒNG NÀY
-    sellerId: { type: String, required: true, index: true },
-    sellerUsername: { type: String, required: true },
-    itemId: { type: String, required: true, index: true }, // ID từ ShopItem
-    itemName: { type: String, required: true, index: true }, // Để tìm kiếm dễ hơn
-    quantity: { type: Number, required: true, min: 1 },
-    price: { type: Number, required: true, min: 0 }, // Giá cho mỗi đơn vị (đã đúng trong code của bạn là pricePerItem)
-    listedAt: { type: Date, default: Date.now, index: true },
-    status: {
-        type: String,
-        enum: ['active', 'sold', 'cancelled', 'expired'],
-        default: 'active',
-        index: true
-    },
-    itemSnapshot: {
-        name: String,
-        description: String,
-        // Thêm các thuộc tính khác của vật phẩm bạn muốn lưu lại
-    }
+  guildId: { type: String, required: true, index: true },
+  sellerId: { type: String, required: true, index: true },
+  sellerUsername: { type: String, required: true },
+
+  itemType: {
+    type: String,
+    required: true,
+    enum: ["shop_item", "car_instance", "part_instance"],
+  },
+  itemId: {
+    type: String,
+    required: true,
+    index: true,
+  },
+  itemName: { type: String, required: true, index: true },
+  quantity: { type: Number, required: true, min: 1 },
+  price: { type: Number, required: true, min: 0 },
+
+  listedAt: { type: Date, default: Date.now, index: true },
+  status: {
+    type: String,
+    enum: ["active", "sold", "cancelled", "expired"],
+    default: "active",
+    index: true,
+  },
+  itemSnapshot: { type: Schema.Types.Mixed, required: true },
 });
 
-marketListingSchema.index({ itemName: 'text' });
-marketListingSchema.index({ guildId: 1, status: 1, listedAt: -1 }); // Index tối ưu cho lệnh market-view
+marketListingSchema.index({ itemName: "text" });
+marketListingSchema.index({ guildId: 1, status: 1, listedAt: -1 });
+marketListingSchema.index({ guildId: 1, itemType: 1, status: 1 });
 
-module.exports = mongoose.model('MarketListing', marketListingSchema);
+module.exports = mongoose.model("MarketListing", marketListingSchema);

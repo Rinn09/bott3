@@ -12,6 +12,8 @@ const PartInstanceSchema = new Schema(
       default: null,
       index: true, // Có thể thêm index nếu bạn thường xuyên query part theo xe nó lắp
     },
+    isListedOnMarket: { type: Boolean, default: false, index: true },
+    marketListingId: { type: Schema.Types.ObjectId, default: null },
   },
   { _id: true },
 ); // Bật _id để có ID duy nhất cho mỗi instance phụ tùng
@@ -53,6 +55,8 @@ const CarInstanceSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    isListedOnMarket: { type: Boolean, default: false, index: true },
+    marketListingId: { type: Schema.Types.ObjectId, default: null },
   },
   { _id: true },
 ); // Bật _id để có ID duy nhất cho mỗi instance xe
@@ -68,10 +72,18 @@ const userSchema = new mongoose.Schema(
     level: { type: Number, default: 1 },
     lastDaily: { type: Date },
     cooldowns: {
+      carDiscard: {
+        date: { type: String },
+        count: { type: Number, default: 0 },
+      },
       work: { type: Date },
-      // job và transfer có thể không cần nếu bạn dùng mainJob và pay
-      // job: { type: Date },
-      // transfer: { type: Date }
+      daily: { type: Date }, // Đổi tên từ lastDaily cho nhất quán
+      games: {
+        // Map cho cooldown các game
+        type: Map,
+        of: Number, // Key: tên game (vd: 'coinflip'), Value: timestamp lastPlayed
+        default: {},
+      },
     },
     job: {
       // Việc làm phụ (side job)

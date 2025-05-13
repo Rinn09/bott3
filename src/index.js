@@ -2,28 +2,31 @@
 // const { Connectors } = require('shoukaku');
 // const lavalinkConfig = require('./config/lavalinkConfig');
 // const LavalinkHandler = require('./handlers/lavalinkHandler');
-require('dotenv').config();
-const { Client, GatewayIntentBits, ActivityType } = require('discord.js');
-const Logger = require('./utils/logger');
-const CommandHandler = require('./handlers/commandHandler');
-const EventHandler = require('./handlers/eventHandler');
-const botConfig = require('./config/botConfig');
-const errorHandler = require('./utils/errorHandler');
-const mongoose = require('mongoose');
-const prefixHandler = require('./handlers/prefixHandler');
-const salaryNotificationHandler = require('./handlers/salaryReminder');
-const anticapsCache = require('./utils/anticapsCache');
+require("dotenv").config();
+const { Client, GatewayIntentBits, ActivityType } = require("discord.js");
+const Logger = require("./utils/logger");
+const CommandHandler = require("./handlers/commandHandler");
+const EventHandler = require("./handlers/eventHandler");
+const botConfig = require("./config/botConfig");
+const errorHandler = require("./utils/errorHandler");
+const mongoose = require("mongoose");
+const prefixHandler = require("./handlers/prefixHandler");
+const salaryNotificationHandler = require("./handlers/salaryReminder");
+const anticapsCache = require("./utils/anticapsCache");
+const goldenHourManager = require("./utils/goldenHourManager");
+const taskHandler = require("./handlers/taskHandler");
 
-console.log('Logger instance:', Logger);
+console.log("Logger instance:", Logger);
 
-mongoose.connect(process.env.MONGO_URI)
-.then(() => console.log("✅ Kết nối MongoDB thành công!"))
-.catch((err) => console.error("❌ MongoDB lỗi:", err));
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("✅ Kết nối MongoDB thành công!"))
+  .catch((err) => console.error("❌ MongoDB lỗi:", err));
 
 class Bot {
   constructor() {
     this.client = new Client({
-      intents: botConfig.intents.map(intent => GatewayIntentBits[intent])
+      intents: botConfig.intents.map((intent) => GatewayIntentBits[intent]),
     });
 
     this.commandHandler = new CommandHandler(this.client);
@@ -40,19 +43,19 @@ class Bot {
       // await this.commandHandler.refreshCommands(); // Uncomment if you want to refresh commands every time
       await this.eventHandler.loadEvents();
       // await this.lavalinkHandler.initialize(lavalinkConfig);
-      
+
       // Logger.info('Lavalink handler initialized');
-      Logger.info('Command handler initialized');
-      Logger.info('Event handler initialized');
-      Logger.info('Bot is starting...');
+      Logger.info("Command handler initialized");
+      Logger.info("Event handler initialized");
+      Logger.info("Bot is starting...");
 
       await this.client.login(process.env.TOKEN);
       await this.client.user.setPresence({
-        activities: [{ name: 'Your mom', type: ActivityType.Playing }],
-        status: 'online'
+        activities: [{ name: "Your mom", type: ActivityType.Playing }],
+        status: "online",
       });
       Logger.info(`Bot logged in as ${this.client.user.tag}`);
-      this.client.on('interactionCreate', async interaction => {
+      this.client.on("interactionCreate", async (interaction) => {
         await this.commandHandler.handleInteraction(interaction);
       });
     } catch (error) {
@@ -61,13 +64,13 @@ class Bot {
   }
 
   handleError(error) {
-    console.log('Error object:', error);
-  
-    const errorMessage = error?.message || 'Unknown error';
-    const errorStack = error?.stack || 'No stack trace available';
-  
+    console.log("Error object:", error);
+
+    const errorMessage = error?.message || "Unknown error";
+    const errorStack = error?.stack || "No stack trace available";
+
     Logger.error(`Critical error: ${errorMessage}`, { stack: errorStack });
-  
+
     if (this.client) {
       this.client.destroy();
     }
@@ -78,20 +81,22 @@ class Bot {
 const bot = new Bot();
 
 errorHandler(bot.client);
-bot.client.on('error', (error) => {
-  Logger.error('WebSocket error:', error);
+bot.client.on("error", (error) => {
+  Logger.error("WebSocket error:", error);
 });
-bot.client.on('ready', () => {
+bot.client.on("ready", () => {
   prefixHandler(bot.client);
   salaryNotificationHandler(bot.client);
   anticapsCache.loadAllConfigs(bot.client);
+  goldenHourManager.initializeGoldenHour(bot.client);
+  taskHandler.loadTasks(bot.client);
   Logger.info(`Bot is ready as ${bot.client.user.tag}`);
 });
-bot.client.on('disconnect', (event) => {
-  Logger.warn('Bot disconnected:', event);
+bot.client.on("disconnect", (event) => {
+  Logger.warn("Bot disconnected:", event);
 });
-bot.client.on('reconnect', () => {
-  Logger.info('Bot is reconnecting...');
+bot.client.on("reconnect", () => {
+  Logger.info("Bot is reconnecting...");
 });
 bot.start();
 

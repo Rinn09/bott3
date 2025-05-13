@@ -1,3 +1,11 @@
+// Function to calculate XP needed for the next level
+function getLevelXp(currentLevel) {
+  // Example formula: 150 XP per level, or more complex like 100 * (currentLevel ^ 1.2)
+  // For simplicity, let's use 150 * currentLevel
+  if (currentLevel <= 0) return 150; // Base case for level 0 or invalid
+  return Math.floor(150 * currentLevel);
+}
+
 function checkLevelUp(userData) {
   let leveledUp = false;
   let totalReward = 0;
@@ -27,3 +35,7 @@ function checkLevelUp(userData) {
       }
     : { leveledUp: false };
 }
+module.exports = {
+  checkLevelUp,
+  getLevelXp, // Export thêm getLevelXp
+};
