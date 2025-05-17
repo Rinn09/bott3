@@ -1520,7 +1520,8 @@ async function seedGachaItems() {
       brand: "Ford",
       rarity: "rare",
       baseStats: { speed: 240, acceleration: 5, handling: 78, durability: 120 },
-      imageUrl: "https://i.imgur.com/SjXv0mK.png",
+      imageUrl:
+        "https://hips.hearstapps.com/hmg-prod/images/2020-ford-mustang-ecoboost-coupe-hpp-102-1568989846.jpg",
       gachaWeight: 53,
       castrolValue: 12,
     },

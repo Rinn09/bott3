@@ -1,93 +1,115 @@
-const { Emojis } = require("../models/emojis");
+// src/utils/deckUtils.js
+const Emojis = require("../models/emojis"); // Giả sử bạn đã sửa emojis.js để export Emojis trực tiếp
+
+const SUIT_KEYS = ["SPADES", "CLUBS", "DIAMONDS", "HEARTS"]; // Key dùng để lặp và là key trong Emojis.suits
+const RANK_KEYS_FOR_DECK_CREATION = [
+  "ace",
+  "two",
+  "three",
+  "four",
+  "five",
+  "six",
+  "seven",
+  "eight",
+  "nine",
+  "ten",
+  "jack",
+  "queen",
+  "king",
+]; // Key dùng để lặp và là key trong Emojis.suits.SUIT
 
 const SUIT_NAMES = {
   SPADES: "Bích",
-  CLUBS: "Chuồn",
+  CLUBS: "Tép",
   DIAMONDS: "Rô",
   HEARTS: "Cơ",
 };
-const RANK_NAMES = {
-  A: "Át",
-  2: "Hai",
-  3: "Ba",
-  4: "Bốn",
-  5: "Năm",
-  6: "Sáu",
-  7: "Bảy",
-  8: "Tám",
-  9: "Chín",
-  10: "Mười",
-  J: "J",
-  Q: "Q",
-  K: "K",
+const RANK_NAMES_MAP = {
+  // Đổi tên để tránh nhầm với key của emoji, dùng để hiển thị tên
+  ace: "Át",
+  two: "2",
+  three: "3",
+  four: "4",
+  five: "5",
+  six: "6",
+  seven: "7",
+  eight: "8",
+  nine: "9",
+  ten: "10",
+  jack: "J",
+  queen: "Q",
+  king: "K",
 };
-const RANK_ORDER_STANDARD = [
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "7",
-  "8",
-  "9",
-  "10",
-  "J",
-  "Q",
-  "K",
-  "A",
-]; // Cho so sánh trong 1 số game
 
 class Card {
   constructor(suitKey, rankKey) {
-    const emojiRankMap = {
-      A: "ace",
-      2: "two",
-      3: "three",
-      4: "four",
-      5: "five",
-      6: "six",
-      7: "seven",
-      8: "eight",
-      9: "nine",
-      10: "ten",
-      J: "jack",
-      Q: "queen",
-      K: "king",
-    };
-    const emojiRankKey = emojiRankMap[rankKey];
-    this.suitKey = suitKey; // 'SPADES', 'CLUBS', 'DIAMONDS', 'HEARTS'
-    this.rankKey = rankKey; // 'A', '2', ..., 'K'
+    this.suitKey = suitKey; // 'SPADES'
+    this.rankKey = rankKey; // 'ace', 'two', ... (viết thường)
     this.suitName = SUIT_NAMES[suitKey];
-    this.rankName = RANK_NAMES[rankKey];
-    this.emoji =
-      Emojis.suits[suitKey.toLowerCase()]?.[emojiRankKey] ||
-      `${this.rankName} ${Emojis.suits[suitKey.toLowerCase()]?.suit || this.suitName.charAt(0)}`;
+    this.rankName = RANK_NAMES_MAP[rankKey];
+
+    // Đảm bảo Emojis và các cấp con được load đúng
+    if (!Emojis || !Emojis.suits || !Emojis.cardMeta) {
+      Logger.error(
+        "[DeckUtils] Emojis object or its properties are not loaded correctly!",
+      );
+      // Gán giá trị mặc định hoặc throw lỗi nếu Emojis không load được
+      this.emoji = `${this.rankName}${this.suitName.charAt(0)}`;
+      this.faceDownEmoji = "❓";
+    } else {
+      const emojiSuitKey = suitKey.toLowerCase(); // 'spades'
+      const emojiRankKey = rankKey.toLowerCase(); // 'ace'
+      this.emoji =
+        Emojis.suits[emojiSuitKey]?.[emojiRankKey] ||
+        `${this.rankName}${Emojis.suits[emojiSuitKey]?.suit || this.suitName.charAt(0)}`;
+      this.faceDownEmoji = Emojis.cardMeta.faceDown;
+    }
 
     // Giá trị cho Bài Cào
-    if (["J", "Q", "K", "10"].includes(rankKey)) this.baiCaoValue = 0;
-    else if (rankKey === "A") this.baiCaoValue = 1;
-    else this.baiCaoValue = parseInt(rankKey);
+    if (["jack", "queen", "king", "ten"].includes(rankKey))
+      this.baiCaoValue = 0;
+    else if (rankKey === "ace") this.baiCaoValue = 1;
+    else this.baiCaoValue = parseInt(RANK_NAMES_MAP[rankKey]); // Chính xác
 
     // Giá trị cho Xì Dách (Blackjack)
-    if (["K", "Q", "J", "10"].includes(rankKey)) this.blackjackValue = 10;
-    else if (rankKey === "A")
-      this.blackjackValue = 11; // A có thể là 1 hoặc 11
-    else this.blackjackValue = parseInt(rankKey);
+    if (["king", "queen", "jack", "ten"].includes(rankKey))
+      this.blackjackValue = 10;
+    else if (rankKey === "ace") this.blackjackValue = 11;
+    else this.blackjackValue = parseInt(RANK_NAMES_MAP[rankKey]); // CHÍNH XÁC: Lấy giá trị số từ RANK_NAMES_MAP
   }
 
-  toString() {
-    return `${this.rankName} ${this.suitName}`;
+  isAce() {
+    return this.rankKey === "ace";
+  }
+
+  isTenPointCard() {
+    return ["ten", "jack", "queen", "king"].includes(this.rankKey);
   }
 
   getEmoji() {
     return this.emoji;
   }
+  toString() {
+    return `${this.rankName} ${this.suitName}`;
+  }
 }
 
 function createDeck() {
   const deck = [];
-  for (const suitKey of Object.keys(SUIT_NAMES)) {
-    for (const rankKey of Object.keys(RANK_NAMES)) {
+  for (const suitKey of SUIT_KEYS) {
+    for (const rankKey of RANK_KEYS_FOR_DECK_CREATION) {
+      deck.push(new Card(suitKey, rankKey));
+    }
+  }
+  return deck;
+}
+
+function createDeck() {
+  const deck = [];
+  for (const suitKey of SUIT_KEYS) {
+    // SPADES, CLUBS...
+    for (const rankKey of RANK_KEYS_FOR_DECK_CREATION) {
+      // ace, two...
       deck.push(new Card(suitKey, rankKey));
     }
   }
@@ -104,10 +126,7 @@ function shuffleDeck(deck) {
 
 function dealCards(deck, numberOfCards) {
   const hand = [];
-  if (deck.length < numberOfCards) {
-    // console.warn("Không đủ bài trong bộ để chia!"); // Hoặc throw error
-    return []; // Trả về mảng rỗng nếu không đủ bài
-  }
+  if (deck.length < numberOfCards) return [];
   for (let i = 0; i < numberOfCards; i++) {
     hand.push(deck.pop());
   }
@@ -132,7 +151,4 @@ module.exports = {
   shuffleDeck,
   dealCards,
   formatHandEmojis,
-  SUIT_NAMES,
-  RANK_NAMES,
-  RANK_ORDER_STANDARD,
 };

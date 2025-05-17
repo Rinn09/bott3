@@ -3,19 +3,18 @@ const User = require("../../models/User");
 const Logger = require("../../utils/logger");
 const { getRandomInt } = require("../../utils/gameUtils"); // Đảm bảo đường dẫn đúng
 const { checkLevelUp } = require("../../utils/levelUtil"); // Nếu muốn game cho XP level chung
-const { Emojis } = require("../../models/emojis");
+const Emojis = require("../../models/emojis");
 
-const GAME_ID = "coinflip";
 const COOLDOWN_SECONDS = 5; // 5 giây cooldown cho coinflip
 const MIN_BET = 1;
-const MAX_BET = 1000000;
+const MAX_BET = 10000000;
 const WIN_MULTIPLIER = 2; // Thắng nhận lại x2 tiền cược (tức là lời x1 tiền cược)
-const EMOJI_SAP = Emojis.coinFaces.EMOJI_SAP;
-const EMOJI_NGUA = Emojis.coinFaces.EMOJI_NGUA;
+const EMOJI_SAP = Emojis.coinFaces.SAP;
+const EMOJI_NGUA = Emojis.coinFaces.NGUA;
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName(GAME_ID)
+    .setName("coinflip")
     .setDescription("Tung đồng xu may mắn, chọn Sấp hoặc Ngửa.")
     .addStringOption((option) =>
       option

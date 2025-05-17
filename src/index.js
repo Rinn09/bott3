@@ -1,7 +1,7 @@
 // const { Kazagumo, Plugins } = require('kazagumo');
 // const { Connectors } = require('shoukaku');
 // const lavalinkConfig = require('./config/lavalinkConfig');
-// const LavalinkHandler = require('./handlers/lavalinkHandler');
+const LavalinkHandler = require("./handlers/lavalinkHandler");
 require("dotenv").config();
 const { Client, GatewayIntentBits, ActivityType } = require("discord.js");
 const Logger = require("./utils/logger");
@@ -31,20 +31,20 @@ class Bot {
 
     this.commandHandler = new CommandHandler(this.client);
     this.eventHandler = new EventHandler(this.client);
-    // this.lavalinkHandler = new LavalinkHandler(this.client);
-    // this.client.lavalinkHandler = this.lavalinkHandler;
+    this.lavalinkHandler = new LavalinkHandler(this.client);
+    this.client.lavalinkHandler = this.lavalinkHandler;
   }
 
   async start() {
     try {
-      await this.commandHandler.loadCommands(); // Load commands first
+      await this.commandHandler.loadCommands();
       this.client.commands = this.commandHandler.commands;
-      await this.commandHandler.registerCommands(); // Register commands with Discord API
-      // await this.commandHandler.refreshCommands(); // Uncomment if you want to refresh commands every time
+      await this.commandHandler.registerCommands();
+      //await this.commandHandler.refreshCommands(); // Không khuyến khích
       await this.eventHandler.loadEvents();
       // await this.lavalinkHandler.initialize(lavalinkConfig);
 
-      // Logger.info('Lavalink handler initialized');
+      Logger.info("Lavalink handler initialized");
       Logger.info("Command handler initialized");
       Logger.info("Event handler initialized");
       Logger.info("Bot is starting...");
@@ -55,9 +55,11 @@ class Bot {
         status: "online",
       });
       Logger.info(`Bot logged in as ${this.client.user.tag}`);
+      /*
       this.client.on("interactionCreate", async (interaction) => {
         await this.commandHandler.handleInteraction(interaction);
       });
+      */
     } catch (error) {
       this.handleError(error);
     }

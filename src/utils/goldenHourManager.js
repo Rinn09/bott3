@@ -1,4 +1,3 @@
-// src/utils/goldenHourManager.js
 const Logger = require("./logger");
 const botConfig = require("../config/botConfig");
 const GuildConfig = require("../models/GuildConfig");
@@ -169,11 +168,24 @@ async function adminForceStartGoldenHour() {
   return "Đã kích hoạt Giờ Vàng thủ công!";
 }
 
+async function adminForceEndGoldenHour() {
+  if (!goldenHourActive) {
+    return "Giờ Vàng hiện không hoạt động.";
+  }
+  // Hủy timeout hiện tại của Giờ Vàng
+  if (nextGoldenHourTimeoutId) {
+    // nextGoldenHourTimeoutId ở đây nên là timeout của việc KẾT THÚC giờ vàng hiện tại
+    clearTimeout(nextGoldenHourTimeoutId); // Nếu nextGoldenHourTimeoutId dùng để lên lịch cho LẦN TIẾP THEO thì không clear ở đây
+    // Mà bạn cần một biến riêng để lưu timeout KẾT THÚC giờ vàng hiện tại
+  }
+  await endGoldenHour(); // Gọi hàm endGoldenHour để xử lý logic kết thúc và lên lịch lại
+  return "Đã kết thúc Giờ Vàng thủ công!";
+}
+
 module.exports = {
   initializeGoldenHour,
   isGoldenHourActive,
   getGoldenHourBoostMultiplier,
-  // (Tùy chọn) Thêm hàm để admin kích hoạt thủ công nếu cần
-  // forceStartGoldenHour: startGoldenHour,
-  // forceEndGoldenHour: endGoldenHour,
+  adminForceStartGoldenHour,
+  adminForceEndGoldenHour,
 };

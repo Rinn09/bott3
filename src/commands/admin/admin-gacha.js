@@ -11,6 +11,7 @@ const {
 const CarModel = require("../../models/CarModel");
 const PartDefinition = require("../../models/PartDefinition");
 const Logger = require("../../utils/logger");
+const goldenHourManager = require("../../utils/goldenHourManager");
 
 // Enum cho độ hiếm (Lấy từ add-car-model.js và add-part-definition.js)
 const RarityEnum = [
@@ -47,6 +48,22 @@ module.exports = {
       group
         .setName("car")
         .setDescription("Quản lý mẫu xe (car models).")
+        .addSubcommand((subcommand) =>
+          subcommand
+            .setName("goldenhour")
+            .setDescription("[OWNER] Quản lý sự kiện Giờ Vàng Gacha.")
+            .addStringOption((option) =>
+              option
+                .setName("action")
+                .setDescription("Hành động bạn muốn thực hiện.")
+                .setRequired(true)
+                .addChoices(
+                  { name: "Bắt đầu ngay (Force Start)", value: "start" },
+                  { name: "Kết thúc ngay (Force End)", value: "end" }, // Cần thêm hàm forceEndGoldenHour nếu muốn
+                  { name: "Xem trạng thái", value: "status" },
+                ),
+            ),
+        )
         .addSubcommand((subcommand) =>
           subcommand
             .setName("add")
@@ -245,7 +262,35 @@ module.exports = {
     await interaction.deferReply({ ephemeral: false });
 
     try {
-      if (subcommandGroup === "car") {
+      if (subcommand === "goldenhour") {
+        if (interaction.user.id !== process.env.OWNER_ID) {
+          return interaction.editReply({
+            content: "❌ Chỉ OWNER mới có thể quản lý Giờ Vàng thủ công.",
+            ephemeral: true,
+          });
+        }
+        const action = interaction.options.getString("action");
+
+        if (action === "start") {
+          const message = await goldenHourManager.adminForceStartGoldenHour();
+          await interaction.editReply({
+            content: `🎉 ${message}`,
+            ephemeral: true,
+          });
+        } else if (action === "end") {
+          const message = await goldenHourManager.adminForceEndGoldenHour();
+          await interaction.editReply({
+            content: `🔔 ${message}`,
+            ephemeral: true,
+          });
+        } else if (action === "status") {
+          const isActive = goldenHourManager.isGoldenHourActive();
+          await interaction.editReply({
+            content: `Trạng thái Giờ Vàng hiện tại: ${isActive ? "🟢 ĐANG DIỄN RA" : "🔴 KHÔNG HOẠT ĐỘNG"}.`,
+            ephemeral: true,
+          });
+        }
+      } else if (subcommandGroup === "car") {
         if (subcommand === "add") {
           // Logic từ add-car-model.js
           const modelIdInput = interaction.options

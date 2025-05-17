@@ -1,15 +1,18 @@
-require('dotenv').config();
+require("dotenv").config();
 module.exports = {
-  userId: process.env.CLIENT_ID, 
+  resume: true,
+  resumeTimeout: 30000,
+  reconnectTries: 3,
+  reconnectInterval: 5000,
+  restTimeout: 15000,
+  moveOnDisconnect: false,
+  voiceConnectionTimeout: 15000,
   nodes: [
     {
-      name: "localhost",
-      url: "127.0.0.1:2333",  
-      auth: "hahaha2702",    
-      secure: false,          
-      retryAmount: 5,
-      retryDelay: 3000,
-      reconnectAttempts: 7,
+      name: "localhost" || "lavalink-node",
+      url: `${process.env.LAVALINK_HOST || "127.0.0.1"}:${process.env.LAVALINK_PORT || 2333}`,
+      auth: process.env.LAVALINK_PASSWORD || "youshallnotpass",
+      secure: false,
     },
   ],
 };

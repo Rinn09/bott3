@@ -1,13 +1,7 @@
-const {
-  SlashCommandBuilder,
-  EmbedBuilder,
-  ActionRowBuilder,
-  ButtonBuilder,
-  ButtonStyle,
-} = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 const User = require("../../models/User");
 const Logger = require("../../utils/logger");
-const { Emojis } = require("../../models/emojis");
+const Emojis = require("../../models/emojis");
 const { getRandomInt } = require("../../utils/gameUtils"); // Nếu cần
 const { checkLevelUp } = require("../../utils/levelUtil");
 
@@ -31,7 +25,7 @@ const RANKS_META = {
   seven: { name: "Bảy", value: 7, emojiKey: "seven" },
   eight: { name: "Tám", value: 8, emojiKey: "eight" },
   nine: { name: "Chín", value: 9, emojiKey: "nine" },
-  ten: { name: "Mười", value: 0, emojiKey: "ten" }, // Hoặc 10 rồi lấy hàng đơn vị
+  ten: { name: "Mười", value: 0, emojiKey: "ten" },
   jack: { name: "J", value: 0, emojiKey: "jack" },
   queen: { name: "Q", value: 0, emojiKey: "queen" },
   king: { name: "K", value: 0, emojiKey: "king" },

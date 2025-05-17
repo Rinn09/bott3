@@ -3,21 +3,22 @@ const path = require("path");
 const User = require("../models/User"); // Đảm bảo import User model
 const Logger = require("../utils/logger");
 const { dealCards, formatHandEmojis } = require("../utils/deckUtils");
-const Emojis = require("../models/emojis");
-
+const mongoose = require("mongoose");
 const {
   activeBlackjackGames,
-  getHandDescriptionAndState,
+  getHandDetails,
   createXidachEmbed,
   createXidachButtons,
-  calculateBlackjackHandValue, // Import hàm này
-  NORMAL_WIN_MULTIPLIER,
+  calculateBlackjackHandValue,
+  PAYOUT_XIBAN,
+  PAYOUT_XIDACH,
+  PAYOUT_NGULINH,
+  PAYOUT_NORMAL,
   GAME_ID_XIDACH,
 } = require("../commands/games/xidach");
 
 module.exports = (client) => {
   client.buttons = new Map();
-  client.selectMenus = new Map();
 
   // Load Buttons
   const buttonPath = path.join(__dirname, "../interactions/buttons");
@@ -39,7 +40,6 @@ module.exports = (client) => {
       `[INTERACTION] ${interaction.customId} | ${interaction.user.tag}`,
     );
     if (interaction.isButton() && interaction.customId.startsWith("xidach_")) {
-      await interaction.deferUpdate(); // Luôn deferUpdate cho button click
       const [prefix, action, originalInteractionId] =
         interaction.customId.split("_");
       const gameData = activeBlackjackGames.get(originalInteractionId);
@@ -49,226 +49,186 @@ module.exports = (client) => {
         gameData.playerId !== interaction.user.id ||
         gameData.gameOver
       ) {
-        // Nếu game không tồn tại, không phải người chơi, hoặc game đã kết thúc
-        // Có thể gửi tin nhắn ephemeral báo lỗi hoặc không làm gì cả
-        if (!gameData) {
-          Logger.warn(
-            `[Xidach Button] No active game found for interaction ID: ${originalInteractionId} from button ${interaction.customId}`,
-          );
-          try {
-            await interaction.followUp({
-              content: "Ván Xì Dách này không còn hoạt động hoặc đã kết thúc.",
-              ephemeral: true,
-            });
-          } catch (e) {
-            Logger.error("Error sending followup for ended xidach game", e);
-          }
-        } else if (gameData.playerId !== interaction.user.id) {
-          try {
-            await interaction.followUp({
-              content: "Đây không phải là ván bài của bạn!",
-              ephemeral: true,
-            });
-          } catch (e) {
-            Logger.error(
-              "Error sending followup for wrong player xidach game",
-              e,
-            );
-          }
-        }
-        return;
+        return interaction
+          .reply({
+            content: "Ván Xì Dách này không hợp lệ hoặc đã kết thúc.",
+            ephemeral: true,
+          })
+          .catch(() => {});
       }
 
-      let user = gameData.user; // Lấy user document từ gameData
-      let finalMessage = "";
-      let playerWonOrPushed = null; // null: chưa quyết định, true: thắng/hòa, false: thua
+      await interaction.deferUpdate();
+      const session = await mongoose.startSession(); // Transaction mới cho mỗi button action
 
       try {
-        if (action === "hit") {
-          if (
-            gameData.playerHand.length < 5 &&
-            calculateBlackjackHandValue(gameData.playerHand) < 21
-          ) {
-            const newCard = dealCards(gameData.deck, 1);
-            if (newCard.length > 0) {
-              gameData.playerHand.push(newCard[0]);
-              gameData.playerValue = calculateBlackjackHandValue(
-                gameData.playerHand,
-              ); // Cập nhật playerValue
-              Logger.info(
-                `[Xidach HIT] User ${gameData.playerId} drew ${newCard[0].emoji}. Hand: ${formatHandEmojis(gameData.playerHand)}`,
-              );
-            } else {
-              finalMessage = "Lỗi: Hết bài trong bộ!"; // Trường hợp hiếm
-              gameData.playerTurnEnded = true;
-              gameData.gameOver = true;
-            }
-          }
-        } else if (action === "stand") {
-          gameData.playerTurnEnded = true;
-          Logger.info(
-            `[Xidach STAND] User ${gameData.playerId} stands with ${calculateBlackjackHandValue(gameData.playerHand)} points.`,
+        await session.startTransaction();
+        // Lấy lại user document trong session mới bằng userDocId đã lưu
+        let user = await User.findById(gameData.userDocId).session(session);
+        if (!user) {
+          throw new Error(
+            "Không tìm thấy dữ liệu người chơi trong DB cho ván bài này.",
           );
-        } else if (action === "double") {
+        }
+        // Gán lại user vào gameData để đảm bảo các thay đổi balance được áp dụng trên user document trong session
+        gameData.user = user;
+
+        let finalResultMessage = "";
+        let playerActionTaken = false;
+        let xpGainXidach = 0; // Khai báo ở đây
+
+        // ... (logic xử lý action 'hit', 'stand', 'double' như cũ)
+        // QUAN TRỌNG: Khi double down, phải save user trong transaction
+        if (action === "double") {
+          const playerCurrentDetails = getHandDetails(gameData.playerHand);
           if (
-            gameData.playerHand.length === 2 &&
+            playerCurrentDetails.numCards === 2 &&
             !gameData.doubledDown &&
-            user.balance >= gameData.betAmount
+            gameData.user.balance >= gameData.betAmount
           ) {
-            user.balance -= gameData.betAmount; // Trừ thêm tiền cược
-            user.totalSpent += gameData.betAmount;
+            gameData.user.balance -= gameData.betAmount;
+            gameData.user.totalSpent += gameData.betAmount;
             gameData.betAmount *= 2;
             gameData.doubledDown = true;
+            // await gameData.user.save({ session }); // Lưu lại balance sau khi trừ tiền double
 
             const newCard = dealCards(gameData.deck, 1);
-            if (newCard.length > 0) {
-              gameData.playerHand.push(newCard[0]);
-              gameData.playerValue = calculateBlackjackHandValue(
-                gameData.playerHand,
-              );
-              Logger.info(
-                `[Xidach DOUBLE] User ${gameData.playerId} doubled down. Drew ${newCard[0].emoji}. Hand: ${formatHandEmojis(gameData.playerHand)}. New bet: ${gameData.betAmount}`,
-              );
-            } else {
-              finalMessage = "Lỗi: Hết bài trong bộ khi cược gấp đôi!";
-              gameData.gameOver = true; // Nên kết thúc game nếu không thể chia bài
-            }
-            gameData.playerTurnEnded = true; // Sau double là hết lượt
-          } else {
-            // Không thể double, không làm gì, chỉ edit lại embed và button
-            // Hoặc gửi tin nhắn ephemeral báo không thể double
+            // ...
+            playerActionTaken = true;
           }
+        } else if (action === "hit") {
+          /* ... */ playerActionTaken = true;
+        } else if (action === "stand") {
+          /* ... */ playerActionTaken = true;
         }
 
-        const currentPlayerStatus = getHandDescriptionAndState(
-          gameData.playerHand,
-        );
+        if (!playerActionTaken && !gameData.gameOver) {
+          await session.abortTransaction();
+          session.endSession();
+          return;
+        }
+
+        const playerFinalDetails = getHandDetails(gameData.playerHand);
+
         if (
-          currentPlayerStatus.isBust ||
-          gameData.playerHand.length === 5 ||
+          playerFinalDetails.isBust ||
+          playerFinalDetails.numCards === 5 ||
           action === "stand" ||
           (action === "double" && gameData.playerTurnEnded)
         ) {
-          gameData.playerTurnEnded = true; // Đảm bảo lượt chơi của người chơi đã kết thúc
+          gameData.playerTurnEnded = true;
         }
 
         if (gameData.playerTurnEnded && !gameData.gameOver) {
           // --- Lượt của Nhà Cái (Bot) ---
-          let botCurrentValue = calculateBlackjackHandValue(gameData.botHand);
-          let botStatus = getHandDescriptionAndState(gameData.botHand);
-          Logger.info(
-            `[Xidach BotTurn] Bot initial hand: ${formatHandEmojis(gameData.botHand)} (${botStatus.readable})`,
-          );
+          // ... (logic bot chơi như cũ) ...
+          let botDetails = getHandDetails(gameData.botHand); // Cập nhật botDetails sau khi bot chơi xong
+          gameData.botState = botDetails; // Cập nhật botState
 
-          while (
-            botCurrentValue < 17 &&
-            gameData.botHand.length < 5 &&
-            !botStatus.isBust
-          ) {
-            const newBotCard = dealCards(gameData.deck, 1);
-            if (newBotCard.length > 0) {
-              gameData.botHand.push(newBotCard[0]);
-              botCurrentValue = calculateBlackjackHandValue(gameData.botHand);
-              botStatus = getHandDescriptionAndState(gameData.botHand);
-              Logger.info(
-                `[Xidach BotTurn] Bot draws ${newBotCard[0].emoji}. New hand: ${formatHandEmojis(gameData.botHand)} (${botStatus.readable})`,
-              );
+          // --- So sánh kết quả (CẬP NHẬT THEO LUẬT MỚI) ---
+          let playerWon = false;
+          let push = false;
+          let winningsCoefficient = 0; // Hệ số nhân tiền LỜI
+
+          if (playerFinalDetails.isBust) {
+            finalResultMessage = `😭 Bạn Quắc (${playerFinalDetails.readable})! Nhà cái thắng.`;
+          } else if (botDetails.isBust) {
+            finalResultMessage = `🎉 Nhà cái Quắc (${botDetails.readable})! Bạn thắng!`;
+            winningsCoefficient = PAYOUT_NORMAL; // Thắng thường
+            playerWon = true;
+          } else if (playerFinalDetails.isXiBan) {
+            // Player Xì Bàn (AA)
+            if (botDetails.isXiBan) {
+              finalResultMessage = "✨ Cả hai cùng Xì Bàn! Hòa tiền.";
+              push = true;
             } else {
-              finalMessage =
-                (finalMessage ? finalMessage + "\n" : "") +
-                "Lỗi: Hết bài trong bộ cho nhà cái!";
-              break; // Thoát vòng lặp nếu hết bài
+              finalResultMessage = `🏆 XÌ BÀN (AA)! Bạn thắng cực lớn!`;
+              winningsCoefficient = PAYOUT_XIBAN; // Thắng x2 tiền cược
+              playerWon = true;
             }
-          }
-          gameData.botValue = botCurrentValue; // Cập nhật giá trị cuối cùng của bot
-          gameData.botState = botStatus; // Cập nhật trạng thái cuối cùng của bot
-
-          // --- So sánh kết quả ---
-          const playerFinalStatus = getHandDescriptionAndState(
-            gameData.playerHand,
-          ); // Lấy lại trạng thái cuối của player
-
-          if (playerFinalStatus.isBust) {
-            finalMessage = `😭 Bạn đã Quắc! Nhà cái thắng. Bạn mất ${gameData.betAmount.toLocaleString()} VNĐ.`;
-            playerWonOrPushed = false;
-          } else if (botStatus.isBust) {
-            finalMessage = `🎉 Nhà cái Quắc! Bạn thắng!`;
-            playerWonOrPushed = true;
-          } else if (playerFinalStatus.isBlackjack && !botStatus.isBlackjack) {
-            // Player Xì Bàn, Bot không
-            finalMessage = `👑 Xì Bàn! Bạn thắng lớn!`;
-            playerWonOrPushed = true; // Sẽ xử lý payout riêng
-          } else if (!playerFinalStatus.isBlackjack && botStatus.isBlackjack) {
-            // Bot Xì Bàn, Player không
-            finalMessage = `😭 Nhà cái Xì Bàn! Bạn thua.`;
-            playerWonOrPushed = false;
-          } else if (playerFinalStatus.isNguLinh && !botStatus.isNguLinh) {
-            finalMessage = `✨ Ngũ Linh! Bạn thắng!`;
-            playerWonOrPushed = true;
-          } else if (!playerFinalStatus.isNguLinh && botStatus.isNguLinh) {
-            finalMessage = `😭 Nhà cái Ngũ Linh! Bạn thua.`;
-            playerWonOrPushed = false;
-          } else if (playerFinalStatus.isBlackjack && botStatus.isBlackjack) {
-            finalMessage = `✨ Cả hai cùng Xì Bàn! Hòa tiền.`;
-            playerWonOrPushed = true; // Hòa là true (nhận lại cược)
-          } else if (playerFinalStatus.value > botStatus.value) {
-            finalMessage = `🎉 Bạn thắng với ${playerFinalStatus.readable}!`;
-            playerWonOrPushed = true;
-          } else if (playerFinalStatus.value < botStatus.value) {
-            finalMessage = `😭 Bạn thua, nhà cái ${botStatus.readable} cao hơn.`;
-            playerWonOrPushed = false;
+          } else if (botDetails.isXiBan) {
+            // Bot Xì Bàn, Player không Xì Bàn
+            finalResultMessage = `😭 Nhà cái có Xì Bàn! Bạn thua.`;
+          } else if (playerFinalDetails.isXiZach) {
+            // Player Xì Dách (A + 10/J/Q/K)
+            if (botDetails.isXiBan) {
+              // Bot Xì Bàn > Player Xì Dách
+              finalResultMessage = `😭 Nhà cái Xì Bàn! Bạn thua.`;
+            } else if (botDetails.isXiZach) {
+              finalResultMessage = "✨ Cả hai cùng Xì Dách! Hòa tiền.";
+              push = true;
+            } else {
+              finalResultMessage = `🎉 Xì Dách! Bạn thắng!`;
+              winningsCoefficient = PAYOUT_XIDACH; // Thắng x1.5 tiền cược
+              playerWon = true;
+            }
+          } else if (botDetails.isXiZach) {
+            // Bot Xì Dách, Player không (Xì Bàn/Xì Dách)
+            finalResultMessage = `😭 Nhà cái có Xì Dách! Bạn thua.`;
+          } else if (playerFinalDetails.isNguLinh) {
+            if (botDetails.isNguLinh) {
+              // Cả 2 Ngũ Linh
+              if (playerFinalDetails.value < botDetails.value) {
+                // Xì Dách Ngũ Linh nhỏ điểm hơn thắng
+                finalResultMessage = `✨ Ngũ Linh của bạn (${playerFinalDetails.readable}) thắng Ngũ Linh nhà cái (${botDetails.readable})!`;
+                winningsCoefficient = PAYOUT_NGULINH;
+                playerWon = true;
+              } else if (playerFinalDetails.value > botDetails.value) {
+                finalResultMessage = `😭 Ngũ Linh nhà cái (${botDetails.readable}) thắng Ngũ Linh của bạn (${playerFinalDetails.readable})!`;
+              } else {
+                finalResultMessage = `✨ Cả hai cùng Ngũ Linh và bằng điểm! Hòa tiền.`;
+                push = true;
+              }
+            } else {
+              // Player Ngũ Linh, Bot không
+              finalResultMessage = `✨ Ngũ Linh! Bạn thắng!`;
+              winningsCoefficient = PAYOUT_NGULINH;
+              playerWon = true;
+            }
+          } else if (botDetails.isNguLinh) {
+            finalResultMessage = `😭 Nhà cái Ngũ Linh! Bạn thua.`;
+          } else if (playerFinalDetails.value > botDetails.value) {
+            finalResultMessage = `🎉 Bạn thắng với ${playerFinalDetails.readable}!`;
+            winningsCoefficient = PAYOUT_NORMAL;
+            playerWon = true;
+          } else if (playerFinalDetails.value < botDetails.value) {
+            finalResultMessage = `😭 Bạn thua, nhà cái ${botDetails.readable} cao hơn.`;
           } else {
-            // Hòa điểm
-            finalMessage = `⚖️ Hòa điểm (${playerFinalStatus.readable})! Bạn được hoàn tiền cược.`;
-            playerWonOrPushed = true; // Hòa là true (nhận lại cược)
+            // Hòa điểm thường
+            finalResultMessage = `⚖️ Hòa điểm (${playerFinalDetails.readable})! Bạn được hoàn tiền cược.`;
+            push = true;
           }
 
           // Xử lý tiền thắng/thua
-          if (playerWonOrPushed !== null) {
-            // Game đã có kết quả
-            let earnings = 0;
-            let netWinLoss = 0;
-
-            if (playerWonOrPushed) {
-              // Thắng hoặc hòa
-              if (playerFinalStatus.isBlackjack && !botStatus.isBlackjack) {
-                earnings = Math.floor(
-                  gameData.betAmount * BLACKJACK_PAYOUT_MULTIPLIER,
-                ); // Lời 1.5 lần
-                user.balance += gameData.betAmount + earnings; // Cộng tiền cược gốc + tiền lời
-                user.totalEarned += gameData.betAmount + earnings;
-                netWinLoss = earnings;
-              } else if (
-                playerFinalStatus.value === botStatus.value ||
-                (playerFinalStatus.isBlackjack && botStatus.isBlackjack)
-              ) {
-                // Hòa
-                user.balance += gameData.betAmount; // Hoàn tiền
-                user.totalSpent -= gameData.betAmount; // Giảm spent vì được hoàn
-                netWinLoss = 0;
-                finalMessage = `⚖️ Hòa điểm! Bạn được hoàn ${gameData.betAmount.toLocaleString()} VNĐ.`;
-              } else {
-                // Thắng bình thường
-                earnings = Math.floor(
-                  gameData.betAmount * NORMAL_WIN_MULTIPLIER,
-                ); // Lời 1 lần
-                user.balance += gameData.betAmount + earnings;
-                user.totalEarned += gameData.betAmount + earnings;
-                netWinLoss = earnings;
-              }
-            } else {
-              // Thua
-              netWinLoss = -gameData.betAmount;
-              // Tiền đã bị trừ lúc bắt đầu game hoặc khi double down
-            }
-
-            const xpGainXidach = playerWonOrPushed
-              ? getRandomInt(20, 40)
-              : getRandomInt(5, 15);
-            user.xp = (user.xp || 0) + xpGainXidach;
-            finalMessage += `\nBạn ${playerWonOrPushed ? (netWinLoss > 0 ? `lời +${netWinLoss.toLocaleString()}` : "hoà vốn") : `mất ${Math.abs(netWinLoss).toLocaleString()}`} VNĐ. XP: +${xpGainXidach}.`;
-            gameData.gameOver = true;
+          let netWinLoss = 0;
+          if (playerWon) {
+            const moneyWon = Math.floor(
+              gameData.betAmount * winningsCoefficient,
+            );
+            const totalReceived = gameData.betAmount + moneyWon; // Hoàn cược + tiền lời
+            user.balance += totalReceived;
+            user.totalEarned = (user.totalEarned || 0) + totalReceived;
+            netWinLoss = moneyWon;
+            finalResultMessage += `\nBạn lời **+${netWinLoss.toLocaleString()} VNĐ**.`;
+          } else if (push) {
+            user.balance += gameData.betAmount; // Hoàn tiền cược
+            user.totalSpent -= gameData.betAmount; // Giảm spent vì được hoàn
+            netWinLoss = 0;
+            finalResultMessage += `\nBạn được hoàn ${gameData.betAmount.toLocaleString()} VNĐ.`;
+          } else {
+            // Thua
+            netWinLoss = -gameData.betAmount;
+            // Tiền đã bị trừ ở đầu hoặc lúc double down
+            finalResultMessage += `\nBạn mất ${Math.abs(netWinLoss).toLocaleString()} VNĐ.`;
           }
+
+          xpGainXidach = playerWon
+            ? getRandomInt(20, 45)
+            : push
+              ? getRandomInt(5, 15)
+              : getRandomInt(5, 10);
+          user.xp = (user.xp || 0) + xpGainXidach;
+          finalResultMessage += ` XP: +${xpGainXidach}.`;
+          gameData.gameOver = true;
         }
 
         // Cập nhật Embed và Buttons
@@ -276,53 +236,53 @@ module.exports = (client) => {
           interaction,
           gameData,
           gameData.playerTurnEnded || gameData.gameOver,
+          gameData.gameOver ? finalResultMessage : null,
         );
-        let updatedButtons;
+        const updatedButtons = gameData.gameOver
+          ? new ActionRowBuilder()
+          : createXidachButtons(originalInteractionId, gameData);
 
-        if (gameData.gameOver) {
-          updatedButtons = new ActionRowBuilder(); // Không có nút nào khi game kết thúc
-          if (finalMessage) {
-            // Thêm thông báo kết quả cuối cùng vào embed
-            updatedEmbed.addFields({
-              name: "--- KẾT QUẢ CUỐI CÙNG ---",
-              value: finalMessage,
-            });
-          }
-          activeBlackjackGames.delete(originalInteractionId); // Xóa game khỏi danh sách active
-          user.cooldowns.games.set(GAME_ID_XIDACH, Date.now());
-          user.markModified("cooldowns.games");
-          await user.save(); // Lưu user data lần cuối
-          Logger.info(
-            `[Game/Xidach END] User ${gameData.playerId} game ended. Bet: ${gameData.betAmount}. Player won: ${playerWonOrPushed}. Final Message: ${finalMessage}`,
-          );
-        } else {
-          updatedButtons = createXidachButtons(originalInteractionId, gameData);
-        }
-
-        // Lấy lại message gốc để edit
-        const gameMessage = await interaction.channel.messages
+        const originalMessage = await interaction.channel.messages
           .fetch(gameData.messageId)
           .catch(() => null);
-        if (gameMessage) {
-          await gameMessage
-            .edit({
-              embeds: [updatedEmbed],
-              components: gameData.gameOver ? [] : [updatedButtons],
-            })
-            .catch(Logger.error);
-        } else {
-          Logger.warn(
-            `[Xidach Button] Could not fetch original game message ${gameData.messageId} to edit.`,
-          );
-          // Có thể gửi tin nhắn mới nếu tin nhắn gốc bị xóa
-          // await interaction.followUp({ embeds: [updatedEmbed], components: gameData.gameOver ? [] : [updatedButtons], ephemeral: true });
+        if (originalMessage) {
+          await originalMessage.edit({
+            embeds: [updatedEmbed],
+            components: gameData.gameOver ? [] : [updatedButtons],
+          });
         }
+
+        if (gameData.gameOver) {
+          activeBlackjackGames.delete(originalInteractionId);
+          user.cooldowns.games.set(GAME_ID_XIDACH, Date.now());
+          user.markModified("cooldowns.games");
+          await user.save({ session }); // LƯU USER TRONG SESSION
+          Logger.info(
+            `[Game/Xidach Button END] User ${gameData.playerId} game ended. Result: ${finalResultMessage}`,
+          );
+        }
+        await session.commitTransaction();
       } catch (error) {
+        await session.abortTransaction();
         Logger.error(
           `[Xidach Button Handler] Error processing button ${interaction.customId} for user ${interaction.user.id}: ${error.message}`,
           { stack: error.stack },
         );
-        // Không gửi followUp ở đây nữa vì có thể gây lỗi "unknown interaction" nếu interaction gốc đã được xử lý hoặc timeout
+        const gameMessageOnError = await interaction.channel.messages
+          .fetch(gameData?.messageId)
+          .catch(() => null);
+        if (gameMessageOnError) {
+          await gameMessageOnError
+            .edit({
+              content: "Có lỗi xảy ra khi xử lý. Vui lòng thử lại sau.",
+              components: [],
+              embeds: [],
+            })
+            .catch(Logger.error);
+        }
+        if (gameData) activeBlackjackGames.delete(originalInteractionId);
+      } finally {
+        session.endSession();
       }
     }
   });

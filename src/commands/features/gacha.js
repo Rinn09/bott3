@@ -194,6 +194,44 @@ module.exports = {
                 .setRequired(true),
             ),
         )
+        .addSubcommand(
+          (
+            subcommand, // << SUBCOMMAND MỚI
+          ) =>
+            subcommand
+              .setName("customize")
+              .setDescription(
+                "Tân trang xế hộp của bạn (màu sơn, biển số, decal).",
+              )
+              .addStringOption((option) =>
+                option
+                  .setName("car_instance_id")
+                  .setDescription(
+                    "ID instance của xe bạn muốn tùy chỉnh (Xem trong /gacha garage).",
+                  )
+                  .setRequired(true),
+              )
+              .addStringOption((option) =>
+                option
+                  .setName("action")
+                  .setDescription("Hành động bạn muốn thực hiện.")
+                  .setRequired(true)
+                  .addChoices(
+                    { name: "🎨 Thay Đổi Màu Sơn", value: "set_color" },
+                    { name: "🏷️ Đặt Biển Số Xe", value: "set_plate" },
+                    // { name: '🖼️ Gắn Decal', value: 'set_decal' }, // Sẽ làm sau
+                    // { name: '🚫 Tháo Decal', value: 'remove_decal' } // Sẽ làm sau
+                  ),
+              )
+              .addStringOption((option) =>
+                option
+                  .setName("value")
+                  .setDescription(
+                    "Giá trị mới (Mã màu HEX cho màu sơn, hoặc nội dung biển số).",
+                  )
+                  .setRequired(true),
+              ),
+        )
         .addSubcommand((subcommand) =>
           subcommand
             .setName("upgrade")
@@ -237,7 +275,6 @@ module.exports = {
 
     // Xử lý các lệnh không có group trước
     if (subcommand === "roll") {
-      await interaction.deferReply();
       const lastRoll = rollCooldown.get(userId);
       if (lastRoll && Date.now() - lastRoll < 700) {
         return interaction.editReply({
@@ -553,7 +590,6 @@ module.exports = {
       }
       return; // Kết thúc xử lý subcommand 'roll'
     } else if (subcommand === "list-items") {
-      await interaction.deferReply();
       const typeFilter = interaction.options.getString("type");
       let requestedPage = interaction.options.getInteger("page") || 1;
 
@@ -750,7 +786,8 @@ module.exports = {
     } else if (subcommand === "garage") {
       const targetUserOption = interaction.options.getUser("user");
       const targetUser = targetUserOption || interaction.user;
-      let carIndexToShow = (interaction.options.getInteger("index") || 1) - 1; // Chuyển sang 0-based index
+      let carIndexToShow = (interaction.options.getInteger("index") || 1) - 1;
+
       /*
       // Kiểm tra quyền nếu xem garage người khác
       if (
@@ -763,17 +800,19 @@ module.exports = {
         });
       }
         */
-      await interaction.deferReply({
-        ephemeral: !targetUserOption, // Sửa điều kiện ephemeral
-      }); // Ephemeral nếu xem của chính mình và không có option user
+      // await interaction.deferReply({
+      //   ephemeral: !targetUserOption, // Sửa điều kiện ephemeral
+      // }); // Ephemeral nếu xem của chính mình và không có option user
 
       const generateCarEmbedAndButtons = async (
-        userId,
-        guildId,
+        userIdForGarage,
+        guildIdForGarage,
         currentCarIndex,
       ) => {
-        const user = await User.findOne({ userId, guildId });
-
+        const user = await User.findOne({
+          userId: userIdForGarage,
+          guildId: guildIdForGarage,
+        });
         if (
           !user ||
           !user.garage ||
@@ -801,13 +840,19 @@ module.exports = {
 
         if (currentCarIndex < 0) currentCarIndex = 0;
         if (currentCarIndex >= totalCars) currentCarIndex = totalCars - 1;
+        if (totalCars > 0 && currentCarIndex < 0) currentCarIndex = 0;
 
         const carInstance = userCars[currentCarIndex];
+        if (!carInstance && totalCars > 0) {
+          currentCarIndex = 0;
+        }
         if (!carInstance) {
-          // Trường hợp hiếm
           const errorEmbed = new EmbedBuilder()
             .setColor("Red")
-            .setDescription("Không tìm thấy xe ở vị trí này.");
+            .setTitle(`Garage của ${targetUser.username}`)
+            .setDescription(
+              `Không tìm thấy xe ở vị trí yêu cầu (Index: ${currentCarIndex + 1}). Tổng số xe: ${totalCars}.`,
+            );
           return {
             embeds: [errorEmbed],
             components: [],
@@ -908,6 +953,21 @@ module.exports = {
                       (currentStats[stat] || 0) + (value || 0);
                   }
                 }
+                if (
+                  installedPartInst.bonusStats &&
+                  installedPartInst.bonusStats.size > 0
+                ) {
+                  for (const [
+                    stat,
+                    bonusValue,
+                  ] of installedPartInst.bonusStats.entries()) {
+                    currentStats[stat] =
+                      (currentStats[stat] || 0) + (bonusValue || 0);
+                    Logger.debug(
+                      `[Garage View] Applied bonus stat: +${bonusValue} ${stat} from part ${installedPartInst._id} to car ${carInstance._id}`,
+                    );
+                  }
+                }
               }
             }
             if (partsTextArray.length > 0) {
@@ -961,7 +1021,7 @@ module.exports = {
             { name: "⚙️ Phụ Tùng Đã Lắp", value: installedPartsInfo }, // installedPartsInfo giờ sẽ đúng
           )
           .setFooter({
-            text: `Xe ${currentCarIndex + 1}/${totalCars} | Garage của: ${targetUser.username}`,
+            text: `Xe ${currentCarIndex + 1}/${totalCars} | Garage của: ${targetUser.username}${carInstance.isDisplayed ? " (Đang Trưng Bày)" : ""}`,
           })
           .setTimestamp();
 
@@ -969,22 +1029,52 @@ module.exports = {
           embed.setImage(carDefinition.imageUrl);
         }
 
-        const buttons = new ActionRowBuilder().addComponents(
+        const components = [];
+
+        const paginationButtons = new ActionRowBuilder().addComponents(
           new ButtonBuilder()
-            .setCustomId(`garage_car_prev_${targetUser.id}_${currentCarIndex}`)
+            .setCustomId(
+              `garage_car_prev_${targetUser.id}_${currentCarIndex}_${interaction.id}`,
+            ) // Thêm interaction.id để unique hơn
             .setLabel("◀️ Xe Trước")
             .setStyle(ButtonStyle.Primary)
             .setDisabled(currentCarIndex === 0),
           new ButtonBuilder()
-            .setCustomId(`garage_car_next_${targetUser.id}_${currentCarIndex}`)
+            .setCustomId(
+              `garage_car_next_${targetUser.id}_${currentCarIndex}_${interaction.id}`,
+            )
             .setLabel("Xe Sau ▶️")
             .setStyle(ButtonStyle.Primary)
             .setDisabled(currentCarIndex >= totalCars - 1),
         );
+        components.push(paginationButtons);
+
+        // Chỉ thêm nút "Đặt làm Xe Đại Diện" nếu người dùng đang xem garage của chính họ
+        // Và ephemeral là false (nghĩa là không phải từ /profile gọi tới chẳng hạn)
+        if (userIdForGarage === interaction.user.id) {
+          // Bỏ điều kiện !isEphemeral ở đây
+          const displayButton = new ButtonBuilder()
+            .setCustomId(
+              `garage_set_display_${carInstance._id}_${interaction.id}`,
+            )
+            .setLabel(
+              carInstance.isDisplayed
+                ? "✅ Bỏ Trưng Bày"
+                : "⭐ Đặt Làm Xe Đại Diện",
+            )
+            .setStyle(
+              carInstance.isDisplayed
+                ? ButtonStyle.Danger
+                : ButtonStyle.Success,
+            );
+          const actionRowWithDisplayButton =
+            new ActionRowBuilder().addComponents(displayButton);
+          components.push(actionRowWithDisplayButton);
+        }
 
         return {
           embeds: [embed],
-          components: [buttons],
+          components, // Trả về mảng components
           currentCarInstance: carInstance,
           carDefinition,
           totalCars,
@@ -992,21 +1082,39 @@ module.exports = {
         };
       };
 
+      await interaction.deferReply({ ephemeral: false });
+
       // Hiển thị xe ban đầu
       const initialData = await generateCarEmbedAndButtons(
         targetUser.id,
         interaction.guild.id,
         carIndexToShow,
       );
+
       if (!initialData.currentCarInstance && initialData.totalCars === 0) {
-        // Trường hợp garage trống
         return interaction.editReply({
           embeds: initialData.embeds,
           components: initialData.components,
         });
       }
-      if (!initialData.currentCarInstance && initialData.totalCars > 0) {
-        // Lỗi không tìm thấy xe cụ thể
+      if (
+        !initialData.currentCarInstance &&
+        initialData.totalCars > 0 &&
+        carIndexToShow >= initialData.totalCars
+      ) {
+        carIndexToShow =
+          initialData.totalCars > 0 ? initialData.totalCars - 1 : 0;
+        const correctedData = await generateCarEmbedAndButtons(
+          targetUser.id,
+          interaction.guild.id,
+          carIndexToShow,
+        );
+        const message = await interaction.editReply({
+          embeds: correctedData.embeds,
+          components: correctedData.components,
+        });
+        // Gắn collector ở đây nếu cần thiết cho correctedData
+      } else if (!initialData.currentCarInstance && initialData.totalCars > 0) {
         return interaction.editReply({
           embeds: initialData.embeds,
           components: [],
@@ -1018,18 +1126,12 @@ module.exports = {
         components: initialData.components,
       });
 
-      const filter = (i) => {
-        // Người gọi lệnh hoặc người được xem garage (nếu khác người gọi) mới được tương tác
-        const canInteract =
-          i.user.id === interaction.user.id ||
-          (targetUser.id !== interaction.user.id &&
-            i.user.id === targetUser.id);
-        return (
-          canInteract &&
-          (i.customId.startsWith(`garage_car_prev_${targetUser.id}_`) ||
-            i.customId.startsWith(`garage_car_next_${targetUser.id}_`))
-        );
-      };
+      const filter = (i) =>
+        i.user.id === interaction.user.id && // CHỈ người gọi lệnh gốc mới được tương tác với TẤT CẢ các nút
+        i.message.id === message.id &&
+        (i.customId.startsWith(`garage_car_prev_${targetUser.id}_`) || // garageOwnerId trong customId để đảm bảo tính duy nhất của button theo context
+          i.customId.startsWith(`garage_car_next_${targetUser.id}_`) ||
+          i.customId.startsWith(`garage_set_display_`));
 
       const collector = message.createMessageComponentCollector({
         filter,
@@ -1041,33 +1143,103 @@ module.exports = {
 
       collector.on("collect", async (i) => {
         await i.deferUpdate();
-        const parts = i.customId.split("_"); // garage_car_action_targetUserId_pageIndexOfButton
-        const action = parts[2];
-        // currentCollectedIndex đã được lưu từ lần hiển thị trước
 
-        if (action === "prev") {
-          currentCollectedIndex--;
-        } else if (action === "next") {
-          currentCollectedIndex++;
-        }
+        if (i.customId.startsWith(`garage_set_display_`)) {
+          // Logic set display (chỉ người chủ garage mới thực hiện được, đã check ở filter)
+          const carInstanceIdToSet = i.customId.split("_")[3];
+          const userForUpdate = await User.findOne({
+            userId: interaction.user.id,
+            guildId: i.guild.id,
+          }); // Luôn là người thực hiện lệnh
 
-        try {
+          if (
+            !userForUpdate ||
+            !userForUpdate.garage ||
+            !userForUpdate.garage.cars
+          ) {
+            // Không nên editReply ở đây vì i đã được deferUpdate
+            return Logger.warn(
+              `[Garage SetDisplay] User data not found for ${interaction.user.id}`,
+            );
+          }
+
+          let carWasSet = false;
+          let currentlyDisplayedCarId = null;
+          let carToChange = null;
+
+          // Tìm xe đang được set display (nếu có) và xe được click
+          userForUpdate.garage.cars.forEach((car) => {
+            if (car.isDisplayed) {
+              currentlyDisplayedCarId = car._id.toString();
+            }
+            if (car._id.toString() === carInstanceIdToSet) {
+              carToChange = car;
+            }
+          });
+
+          if (carToChange) {
+            if (carToChange.isDisplayed) {
+              // Nếu click vào xe đang display -> bỏ display
+              carToChange.isDisplayed = false;
+              Logger.info(
+                `[Garage] User ${i.user.id} unset car ${carInstanceIdToSet} as displayed.`,
+              );
+            } else {
+              // Nếu click vào xe chưa display
+              // Bỏ display xe cũ (nếu có)
+              userForUpdate.garage.cars.forEach((car) => {
+                if (car._id.toString() !== carInstanceIdToSet) {
+                  car.isDisplayed = false;
+                }
+              });
+              // Set display xe mới
+              carToChange.isDisplayed = true;
+              Logger.info(
+                `[Garage] User ${i.user.id} set car ${carInstanceIdToSet} as displayed.`,
+              );
+            }
+            await userForUpdate.save();
+          }
+
           const newData = await generateCarEmbedAndButtons(
             targetUser.id,
-            interaction.guild.id,
-            currentCollectedIndex,
+            i.guild.id,
+            currentCollectedIndex, // Giữ nguyên trang
           );
-          currentCollectedIndex = newData.currentIndex; // Cập nhật lại index sau khi hàm đã clamp giá trị
           await i.editReply({
             embeds: newData.embeds,
             components: newData.components,
           });
-        } catch (error) {
-          Logger.error(
-            `[Garage Collector] Error updating car view: ${error.message}`,
-            { stack: error.stack },
+        } else if (
+          i.customId.startsWith(`garage_car_prev_`) ||
+          i.customId.startsWith(`garage_car_next_`)
+        ) {
+          const parts = i.customId.split("_"); // garage_car_prev_OWNERID_INDEX_INTERACTIONID
+          const action = parts[2]; // prev hoặc next
+          const ownerIdFromButton = parts[3]; // ID chủ garage từ button
+          let pageIndexOfButton = parseInt(parts[4]); // Index hiện tại của xe trên button đó
+
+          if (ownerIdFromButton !== targetUser.id) return; // Đảm bảo button này dành cho garage đang xem
+
+          if (action === "prev") {
+            currentCollectedIndex = Math.max(0, pageIndexOfButton - 1);
+          } else if (action === "next") {
+            currentCollectedIndex = Math.min(
+              initialData.totalCars - 1,
+              pageIndexOfButton + 1,
+            );
+          }
+
+          const newData = await generateCarEmbedAndButtons(
+            targetUser.id,
+            i.guild.id,
+            currentCollectedIndex,
           );
-          // Không cố editReply nữa nếu có lỗi ở đây, interaction có thể đã hỏng
+          // currentCollectedIndex đã được cập nhật ở trên rồi
+          await i.editReply({
+            embeds: newData.embeds,
+            components: newData.components,
+          });
         }
       });
 
@@ -1099,6 +1271,7 @@ module.exports = {
       const targetUserOption = interaction.options.getUser("user");
       const targetUser = targetUserOption || interaction.user;
       let requestedPage = interaction.options.getInteger("page") || 1;
+      await interaction.deferReply({ ephemeral: false });
 
       if (
         targetUser.id !== interaction.user.id &&
@@ -1107,15 +1280,11 @@ module.exports = {
         )
       ) {
         return interaction.reply({
+          // Dùng reply trực tiếp nếu lỗi quyền sớm
           content: "❌ Bạn không có quyền xem kho của người khác.",
           ephemeral: true,
         });
       }
-
-      await interaction.deferReply({
-        ephemeral: targetUser.id !== interaction.user.id && !targetUserOption,
-      });
-
       const generateWarehouseEmbed = async (page, targetUserId) => {
         const user = await User.findOne({
           userId: targetUserId,
@@ -1305,8 +1474,6 @@ module.exports = {
             ephemeral: true,
           });
         }
-
-        await interaction.deferReply({ ephemeral: true });
         const castrolSession = await mongoose.startSession();
 
         try {
@@ -1397,7 +1564,6 @@ module.exports = {
       }
     } else if (subcommandGroup === "car") {
       if (subcommand === "discard") {
-        await interaction.deferReply({ ephemeral: false });
         const carInstanceIdToDiscard =
           interaction.options.getString("car_instance_id");
         if (!mongoose.Types.ObjectId.isValid(carInstanceIdToDiscard)) {
@@ -1413,7 +1579,10 @@ module.exports = {
         let discardFee = 0; // Thêm biến cho phí bỏ xe
 
         try {
-          const user = await User.findOne({ userId, guildId });
+          const user = await User.findOne({ userId, guildId }).session(
+            interaction.mongoSession || null,
+          );
+
           if (!user || !user.garage || !user.garage.cars) {
             throw new Error("Không tìm thấy dữ liệu garage của bạn.");
           }
@@ -1758,22 +1927,18 @@ module.exports = {
         }
         return;
       } else if (subcommand === "upgrade") {
-        await interaction.deferReply({ ephemeral: false });
         const carInstanceIdToUpgrade =
           interaction.options.getString("car_instance_id");
         const partSlotToUpgrade = interaction.options.getString("part_slot");
         const partInstanceIdToInstall =
           interaction.options.getString("part_instance_id");
+        await interaction.deferReply({ ephemeral: false });
 
         if (
           !mongoose.Types.ObjectId.isValid(carInstanceIdToUpgrade) ||
           !mongoose.Types.ObjectId.isValid(partInstanceIdToInstall)
         ) {
-          // interaction.reply đã được gọi ở trên nếu điều kiện này true, và có return.
-          // Nếu điều kiện này false, deferReply ở trên đã chạy.
-          // Không cần deferReply thứ hai ở đây.
-          // await interaction.deferReply({ ephemeral: false }); // Xóa dòng này
-          return interaction.reply({
+          return interaction.editReply({
             // Sửa: Nếu ID không hợp lệ, phải reply và return ngay. deferReply ở trên sẽ không được gọi.
             content: "❌ ID xe hoặc ID phụ tùng không hợp lệ.",
             ephemeral: true,
@@ -1783,7 +1948,10 @@ module.exports = {
         // Nếu code chạy đến đây, nghĩa là ID hợp lệ và deferReply đầu tiên đã chạy.
 
         try {
-          const user = await User.findOne({ userId, guildId });
+          const user = await User.findOne({ userId, guildId }).session(
+            interaction.mongoSession || null,
+          );
+
           if (!user || !user.garage)
             throw new Error("Không tìm thấy dữ liệu garage của bạn.");
 
@@ -1995,12 +2163,86 @@ module.exports = {
             // Cập nhật trạng thái của PartInstance trong kho là đã được lắp vào xe này
             userInSession.garage.parts[partToInstallIdx].installedOnCar =
               carInst._id;
-            Logger.info(
-              `[Car Upgrade] Part ${partInstToInstall._id} installed on car ${carInst._id} slot ${partSlotToUpgrade}`,
-            );
+
+            let luckyUpgradeMessage = "";
+            if (Math.random() < botConfig.gacha.luckyUpgradeChance) {
+              // Kiểm tra tỷ lệ may mắn
+              Logger.info(
+                `[Car Upgrade] Lucky Upgrade triggered for user ${userId} on part ${partInstToInstall._id}`,
+              );
+              const effects = botConfig.gacha.luckyUpgradeEffects;
+              const totalEffectWeight = effects.reduce(
+                (sum, effect) => sum + effect.weight,
+                0,
+              );
+              let randomEffectWeight = Math.random() * totalEffectWeight;
+              let chosenEffect = null;
+
+              for (const effect of effects) {
+                randomEffectWeight -= effect.weight;
+                if (randomEffectWeight <= 0) {
+                  chosenEffect = effect;
+                  break;
+                }
+              }
+
+              if (chosenEffect) {
+                if (!partInstToInstall.bonusStats) {
+                  // Khởi tạo nếu chưa có
+                  partInstToInstall.bonusStats = new Map();
+                }
+
+                if (chosenEffect.type === "stat_boost") {
+                  const currentBonus =
+                    partInstToInstall.bonusStats.get(chosenEffect.stat) || 0;
+                  let boostAmount;
+                  if (chosenEffect.isFloat) {
+                    boostAmount = parseFloat(
+                      (
+                        Math.random() *
+                          (chosenEffect.maxBoost - chosenEffect.minBoost) +
+                        chosenEffect.minBoost
+                      ).toFixed(2),
+                    );
+                  } else {
+                    boostAmount = getRandomInt(
+                      chosenEffect.minBoost,
+                      chosenEffect.maxBoost,
+                    );
+                  }
+
+                  partInstToInstall.bonusStats.set(
+                    chosenEffect.stat,
+                    currentBonus + boostAmount,
+                  );
+                  luckyUpgradeMessage = `✨ Thợ độ may mắn phù hộ! Phụ tùng **${partDefToInstall.name}** nhận được thêm **+${boostAmount} ${chosenEffect.stat.toUpperCase()}**!`;
+                  Logger.info(
+                    `[Car Upgrade] Lucky stat_boost: +${boostAmount} ${chosenEffect.stat} for part ${partInstToInstall._id}`,
+                  );
+                }
+                // Thêm các 'else if' cho các loại 'chosenEffect.type' khác nếu có (vd: durability_repair)
+                // Ví dụ cho durability_repair (giả sử phụ tùng có trường durability riêng)
+                else if (
+                  chosenEffect.type === "durability_repair" &&
+                  partInstToInstall.currentDurability !== undefined &&
+                  partInstToInstall.maxDurability !== undefined
+                ) {
+                  const repairAmount = Math.floor(
+                    partInstToInstall.maxDurability * chosenEffect.percentage,
+                  );
+                  partInstToInstall.currentDurability = Math.min(
+                    partInstToInstall.maxDurability,
+                    partInstToInstall.currentDurability + repairAmount,
+                  );
+                  luckyUpgradeMessage = `✨ Thợ độ mát tay! Độ bền của phụ tùng **${partDefToInstall.name}** đã được phục hồi một phần!`;
+                }
+
+                userInSession.markModified("garage.parts");
+              }
+            }
 
             userInSession.markModified("garage.cars");
-            userInSession.markModified("garage.parts"); // Quan trọng: Vì ta đã thay đổi thuộc tính của một phần tử trong mảng parts
+            userInSession.markModified("garage.parts");
             if (upgradeCost > 0) userInSession.markModified("balance");
 
             await userInSession.save({ upgradeSession });
@@ -2010,7 +2252,8 @@ module.exports = {
               .setColor("Green")
               .setTitle(`✅ Nâng Cấp Thành Công!`)
               .setDescription(
-                `Đã lắp **${partDefToInstall.name}** vào slot **${partSlotToUpgrade.toUpperCase()}** cho xe **${carDef.name}**.`,
+                `Đã lắp **${partDefToInstall.name}** vào slot **${partSlotToUpgrade.toUpperCase()}** cho xe **${carDef.name}**.` +
+                  (luckyUpgradeMessage ? `\n\n${luckyUpgradeMessage}` : ""),
               )
               .addFields(
                 {
@@ -2068,6 +2311,133 @@ module.exports = {
         }
         return;
       }
+      if (subcommand === "customize") {
+        await interaction.deferReply({ ephemeral: false }); // Cho phép công khai để khoe xe
+        const carInstanceId = interaction.options.getString("car_instance_id");
+        const action = interaction.options.getString("action");
+        const value = interaction.options.getString("value"); // Đây là giá trị người dùng nhập
+
+        if (!mongoose.Types.ObjectId.isValid(carInstanceId)) {
+          return interaction.editReply({
+            content: "❌ ID instance của xe không hợp lệ.",
+          });
+        }
+
+        const user = await User.findOne({ userId, guildId });
+        if (!user || !user.garage || !user.garage.cars) {
+          return interaction.editReply(
+            "❌ Không tìm thấy dữ liệu garage của bạn.",
+          );
+        }
+
+        const carIndex = user.garage.cars.findIndex(
+          (c) => c._id.toString() === carInstanceId,
+        );
+        if (carIndex === -1) {
+          return interaction.editReply(
+            `❌ Không tìm thấy xe với ID instance ${inlineCode(carInstanceId)} trong garage của bạn.`,
+          );
+        }
+
+        const carToCustomize = user.garage.cars[carIndex];
+        const carModel = await CarModel.findOne({
+          modelId: carToCustomize.carModelId,
+        }).lean();
+        if (!carModel) {
+          return interaction.editReply(
+            "❌ Lỗi: Không tìm thấy thông tin mẫu xe.",
+          );
+        }
+
+        let successMessage = "";
+        let updatePerformed = false;
+
+        if (action === "set_color") {
+          // Kiểm tra value có phải là mã màu HEX hợp lệ không
+          const hexColorRegex = /^#([0-9A-F]{3}){1,2}$/i;
+          if (!hexColorRegex.test(value)) {
+            return interaction.editReply({
+              content: `❌ Mã màu không hợp lệ. Vui lòng nhập mã màu HEX (ví dụ: #FF0000 cho màu đỏ).`,
+            });
+          }
+          // Giả sử thay màu cơ bản là miễn phí
+          carToCustomize.cosmetics.color = value.toUpperCase();
+          successMessage = `🎨 Xe **${carModel.name}** đã được sơn màu mới: **${value.toUpperCase()}**!`;
+          updatePerformed = true;
+          Logger.info(
+            `[Car Customize] User ${userId} changed color of car ${carInstanceId} to ${value.toUpperCase()}`,
+          );
+        } else if (action === "set_plate") {
+          const licensePlateRegex = /^[A-Z0-9-]{1,10}$/; // Ví dụ: chỉ chữ hoa, số, dấu gạch ngang, tối đa 10 ký tự
+          const cleanedPlate = value.toUpperCase().replace(/\s+/g, ""); // Bỏ khoảng trắng, viết hoa
+
+          if (!licensePlateRegex.test(cleanedPlate)) {
+            return interaction.editReply({
+              content: `❌ Biển số không hợp lệ. Chỉ cho phép chữ cái (A-Z), số (0-9), dấu gạch ngang (-) và tối đa 10 ký tự.`,
+            });
+          }
+
+          // Kiểm tra phí đặt biển số (ví dụ)
+          const plateChangeCost = 5000; // 5,000 VNĐ
+          if (user.balance < plateChangeCost) {
+            return interaction.editReply({
+              content: `❌ Bạn không đủ ${plateChangeCost.toLocaleString()} VNĐ để đặt biển số này.`,
+            });
+          }
+          user.balance -= plateChangeCost;
+          user.totalSpent = (user.totalSpent || 0) + plateChangeCost;
+
+          carToCustomize.cosmetics.licensePlate = cleanedPlate;
+          successMessage = `🏷️ Xe **${carModel.name}** đã được gắn biển số mới: **${cleanedPlate}**! (Phí: ${plateChangeCost.toLocaleString()} VNĐ)`;
+          updatePerformed = true;
+          Logger.info(
+            `[Car Customize] User ${userId} set license plate for car ${carInstanceId} to ${cleanedPlate}. Cost: ${plateChangeCost}`,
+          );
+        }
+        // Các action khác như set_decal, remove_decal sẽ được thêm sau
+
+        if (updatePerformed) {
+          user.markModified("garage.cars"); // Quan trọng vì thay đổi object trong mảng
+          if (action === "set_plate") user.markModified("balance"); // Nếu có trừ tiền
+          await user.save();
+
+          // Tạo embed hiển thị xe đã được tùy chỉnh
+          // Có thể tái sử dụng một phần của generateCarEmbedAndButtons từ subcommand "garage"
+          // Hoặc tạo một embed đơn giản hơn
+          const updatedCarEmbed = new EmbedBuilder()
+            .setColor(
+              carToCustomize.cosmetics.color ||
+                (carModel.rarity &&
+                  rarityColors[carModel.rarity.toLowerCase()]) ||
+                rarityColors.default,
+            ) // Sử dụng màu mới của xe
+            .setTitle(`✨ Xế Yêu Đã Được Tân Trang! ✨`)
+            .setDescription(successMessage)
+            .addFields(
+              { name: "Tên Xe", value: carModel.name, inline: true },
+              {
+                name: "Màu Sơn Mới",
+                value: carToCustomize.cosmetics.color || "Chưa có",
+                inline: true,
+              },
+              {
+                name: "Biển Số Mới",
+                value: carToCustomize.cosmetics.licensePlate || "Chưa có",
+                inline: true,
+              },
+            );
+          if (carModel.imageUrl) {
+            updatedCarEmbed.setThumbnail(carModel.imageUrl);
+          }
+          await interaction.editReply({ embeds: [updatedCarEmbed] });
+        } else {
+          await interaction.editReply({
+            content: "⚠️ Không có thay đổi nào được thực hiện.",
+          });
+        }
+        return;
+      }
     }
   },
 };
+module.exports.useSession = true;

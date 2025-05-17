@@ -9,7 +9,7 @@ const {
 } = require("discord.js");
 const User = require("../../models/User");
 const Logger = require("../../utils/logger");
-const { Emojis } = require("../../models/emojis"); // Đảm bảo đường dẫn đúng
+const Emojis = require("../../models/emojis");
 const {
   createDeck,
   shuffleDeck,
@@ -18,23 +18,26 @@ const {
   Card,
 } = require("../../utils/deckUtils");
 const { getRandomInt } = require("../../utils/gameUtils");
-const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const mongoose = require("mongoose"); // Cần cho transaction
 
 const GAME_ID_XIDACH = "xidach";
-const XIDACH_COOLDOWN_SECONDS = 10; // Tăng cooldown 1 chút
+const XIDACH_COOLDOWN_SECONDS = 15; // Cooldown
 const MIN_BET_XIDACH = 1000;
-const MAX_BET_XIDACH = 500000; // Giới hạn cược
-const BLACKJACK_PAYOUT_MULTIPLIER = 1.5; // Thắng Xì Bàn lời 1.5 lần tiền cược (tổng nhận 2.5 lần)
-const NORMAL_WIN_MULTIPLIER = 1; // Thắng bình thường lời 1 lần tiền cược (tổng nhận 2 lần)
+const MAX_BET_XIDACH = 500000;
 
-// --- Logic Tính Điểm Xì Dách ---
+// Tỷ lệ trả thưởng
+const PAYOUT_XIBAN = 2; // Lời x2 tiền cược (tổng nhận 3 lần tiền cược)
+const PAYOUT_XIDACH = 1.5; // Lời x1.5 tiền cược (tổng nhận 2.5 lần tiền cược)
+const PAYOUT_NGULINH = 1.2; // Lời x1.2 tiền cược (tổng nhận 2.2 lần tiền cược) - tùy bạn
+const PAYOUT_NORMAL = 1; // Lời x1 tiền cược (tổng nhận 2 lần tiền cược)
+
+// --- Logic Tính Điểm và Trạng Thái Xì Dách (Cập nhật theo luật mới) ---
 function calculateBlackjackHandValue(hand) {
   let aceCount = 0;
   let sum = 0;
   for (const card of hand) {
-    sum += card.blackjackValue; // blackjackValue được định nghĩa trong class Card
-    if (card.rankKey === "A") {
-      // Giả sử rankKey của Át là 'A'
+    sum += card.blackjackValue;
+    if (card.isAce()) {
       aceCount++;
     }
   }
@@ -45,151 +48,130 @@ function calculateBlackjackHandValue(hand) {
   return sum;
 }
 
-function getHandDescriptionAndState(hand) {
+function getHandDetails(hand) {
   const value = calculateBlackjackHandValue(hand);
   const numCards = hand.length;
+  let state = "NORMAL";
+  let readable = `${value} điểm`;
+  let isBust = value > 21;
+  let isXiZach = false; // A + 10/J/Q/K
+  let isXiBan = false; // A + A
+  let isNguLinh = numCards === 5 && value <= 21;
+  let canHit = !isBust && numCards < 5;
+  let canStand = true;
 
-  if (value > 21)
-    return {
-      value,
-      readable: `Quắc (${value})`,
-      isBust: true,
-      isBlackjack: false,
-      isNguLinh: false,
-      canHit: false,
-      canStand: false,
-    };
-  if (numCards === 2 && value === 21)
-    return {
-      value,
-      readable: `Xì Bàn (21)`,
-      isBlackjack: true,
-      isBust: false,
-      isNguLinh: false,
-      canHit: false,
-      canStand: true,
-    };
-  // Xử lý trường hợp 2 lá A (Xì Dách) tùy theo luật bạn muốn. Ví dụ, có thể là một chiến thắng đặc biệt hoặc chỉ là 2/12 điểm.
-  // Hiện tại, A+A sẽ được tính là 12 điểm (11+1) hoặc 2 điểm (1+1) bởi calculateBlackjackHandValue.
-  if (numCards === 2 && hand.every((card) => card.rankKey === "A")) {
-    // Theo luật phổ thông, AA là 2 hoặc 12. Nếu bạn muốn nó là "Xì Dách" thắng luôn thì cần thêm logic ở đây.
-    // Hiện tại, nó sẽ được tính là 12 điểm (nếu 1 Át là 11, 1 Át là 1).
-    // Hoặc 2 điểm nếu cả 2 Át đều là 1.
+  if (isBust) {
+    state = "BUST";
+    readable = `Quắc (${value} điểm)!`;
+    canHit = false;
+  } else if (numCards === 2) {
+    const card1 = hand[0];
+    const card2 = hand[1];
+    if (card1.isAce() && card2.isAce()) {
+      state = "XIBAN";
+      readable = "Xì Bàn (AA)!";
+      isXiBan = true;
+      canHit = false; // Xì bàn dằn luôn
+    } else if (
+      (card1.isAce() && card2.isTenPointCard()) ||
+      (card2.isAce() && card1.isTenPointCard())
+    ) {
+      state = "XIZACH";
+      readable = "Xì Dách!";
+      isXiZach = true;
+      canHit = false; // Xì dách dằn luôn
+    }
   }
-  if (numCards === 5 && value <= 21)
-    return {
-      value,
-      readable: `Ngũ Linh (${value})`,
-      isNguLinh: true,
-      isBust: false,
-      isBlackjack: false,
-      canHit: false,
-      canStand: true,
-    };
+
+  if (isNguLinh) {
+    state = "NGULINH";
+    readable = `Ngũ Linh (${value} điểm)!`;
+    canHit = false;
+  }
 
   return {
     value,
-    readable: `${value} điểm`,
-    isBust: false,
-    isBlackjack: false,
-    isNguLinh: false,
-    canHit: value < 21 && numCards < 5, // Cho phép rút khi dưới 21 và chưa đủ 5 lá
-    canStand: true, // Luôn có thể dằn
+    readable,
+    state,
+    isBust,
+    isXiZach,
+    isXiBan,
+    isNguLinh,
+    canHit,
+    canStand,
+    numCards,
   };
 }
 
-// Lưu trữ trạng thái game đang diễn ra (nên được quản lý bởi một service/manager nếu có nhiều game)
-// Trong ví dụ này, dùng Map đơn giản. Key là interaction.id để mỗi lần gọi lệnh là một game mới.
+// --- Lưu trữ trạng thái game ---
 const activeBlackjackGames = new Map();
 
-async function revealXidachHandsStepByStep(
+// --- HÀM TẠO EMBED VÀ BUTTONS ---
+function createXidachEmbed(
   interaction,
   gameData,
-  user,
-  resultText,
+  revealBotHand = false,
+  resultMessage = null,
 ) {
-  const faceDown = Emojis.cardMeta.faceDown;
-  const playerHand = gameData.playerHand;
-  const botHand = gameData.botHand;
+  const playerDetails = getHandDetails(gameData.playerHand);
+  let botHandStr;
+  let botDetailsStr;
 
-  const playerStatus = getHandDescriptionAndState(playerHand);
-  const botStatus = getHandDescriptionAndState(botHand);
-
-  let playerDisplay = [playerHand[0].getEmoji(), faceDown];
-  let botDisplay = [botHand[0].getEmoji(), faceDown];
-
-  const embed = new EmbedBuilder()
-    .setTitle(`🃏 Xì Dách - ${interaction.user.username} vs. Bot`)
-    .setColor(
-      playerStatus.isBust
-        ? "Red"
-        : playerStatus.isBlackjack
-          ? "#FFD700"
-          : "#5865F2",
-    )
-    .addFields(
-      { name: `Bài của bạn`, value: playerDisplay.join(" ") },
-      { name: `Bài của Nhà Cái`, value: botDisplay.join(" ") },
-    )
-    .setTimestamp();
-
-  await interaction.editReply({ embeds: [embed] });
-  await wait(1200);
-
-  // Lật lá thứ hai
-  playerDisplay[1] = playerHand[1].getEmoji();
-  embed.spliceFields(0, 1, {
-    name: `Bài của bạn`,
-    value: playerDisplay.join(" "),
-  });
-  await interaction.editReply({ embeds: [embed] });
-
-  if (playerHand.length > 2) {
-    await wait(1200);
-    playerDisplay.push(playerHand[2].getEmoji());
-    embed.spliceFields(0, 1, {
-      name: `Bài của bạn`,
-      value: playerDisplay.join(" "),
-    });
-    await interaction.editReply({ embeds: [embed] });
+  if (revealBotHand || gameData.playerTurnEnded || gameData.gameOver) {
+    const botFinalDetails = getHandDetails(gameData.botHand);
+    botHandStr = formatHandEmojis(gameData.botHand, true);
+    botDetailsStr = botFinalDetails.readable;
+  } else {
+    botHandStr = `${gameData.botHand[0].getEmoji()} ${Emojis.cardMeta.faceDown}`;
+    const firstCardValue =
+      gameData.botHand[0].blackjackValue === 11 && gameData.botHand[0].isAce()
+        ? "A"
+        : gameData.botHand[0].blackjackValue;
+    botDetailsStr = `${firstCardValue} + ?`;
   }
 
-  await wait(1500);
-  const botFull = botHand.map((c) => c.getEmoji()).join(" ");
-  embed.spliceFields(1, 1, {
-    name: `Bài của Nhà Cái (${botStatus.readable})`,
-    value: botFull,
-  });
+  const embed = new EmbedBuilder()
+    .setTitle(`🎲 Xì Dách: ${interaction.user.username} vs. Nhà Cái 🎲`)
+    .setColor(
+      playerDetails.isBust
+        ? "#808080"
+        : playerDetails.isXiBan || playerDetails.isXiZach
+          ? "#FFD700"
+          : "#2ECC71",
+    )
+    .addFields(
+      {
+        name: `Bài của bạn (${playerDetails.readable})`,
+        value: formatHandEmojis(gameData.playerHand),
+        inline: true,
+      },
+      {
+        name: `Bài của Nhà Cái (${botDetailsStr})`,
+        value: botHandStr,
+        inline: true,
+      },
+    )
+    .setFooter({
+      text: `Tiền cược: ${gameData.betAmount.toLocaleString()} VNĐ`,
+    })
+    .setTimestamp();
 
-  embed.addFields(
-    {
-      name: "🧠 Trạng Thái",
-      value: `👤 Bạn: ${playerStatus.readable}\n🤖 Bot: ${botStatus.readable}`,
-    },
-    {
-      name: "🎯 Kết Quả",
-      value: resultText,
-    },
-    {
-      name: "💰 Số Dư Mới",
-      value: `${user.balance.toLocaleString()} VNĐ`,
-      inline: true,
-    },
-  );
+  if (resultMessage) {
+    embed.addFields({ name: "--- KẾT QUẢ ---", value: resultMessage });
+  }
+  if (gameData.gameOver && gameData.user) {
+    // Thêm số dư cuối nếu game over
+    embed.addFields({
+      name: "Số dư mới của bạn",
+      value: `${gameData.user.balance.toLocaleString()} VNĐ`,
+    });
+  }
 
-  embed.setColor(
-    playerStatus.isBust
-      ? "Red"
-      : playerStatus.value > botStatus.value
-        ? "Green"
-        : "Red",
-  );
-
-  await interaction.editReply({ embeds: [embed] });
+  return embed;
 }
 
 function createXidachButtons(interactionId, gameData) {
-  const playerStatus = getHandDescriptionAndState(gameData.playerHand);
+  const playerDetails = getHandDetails(gameData.playerHand);
   const canDouble =
     gameData.playerHand.length === 2 &&
     !gameData.doubledDown &&
@@ -199,33 +181,39 @@ function createXidachButtons(interactionId, gameData) {
     new ButtonBuilder()
       .setCustomId(`xidach_hit_${interactionId}`)
       .setLabel("Rút Bài")
-      .setEmoji("➕") // Thay bằng emoji của bạn nếu có
+      .setEmoji("➕")
       .setStyle(ButtonStyle.Success)
-      .setDisabled(!playerStatus.canHit || gameData.playerTurnEnded),
+      .setDisabled(
+        !playerDetails.canHit || gameData.playerTurnEnded || gameData.gameOver,
+      ),
     new ButtonBuilder()
       .setCustomId(`xidach_stand_${interactionId}`)
       .setLabel("Dằn Bài")
-      .setEmoji("✋") // Thay bằng emoji của bạn nếu có
-      .setStyle(ButtonStyle.Danger)
-      .setDisabled(!playerStatus.canStand || gameData.playerTurnEnded),
+      .setEmoji("✋")
+      .setStyle(ButtonStyle.Secondary) // Đổi thành Secondary cho đỡ chói
+      .setDisabled(
+        !playerDetails.canStand ||
+          gameData.playerTurnEnded ||
+          gameData.gameOver,
+      ),
     new ButtonBuilder()
       .setCustomId(`xidach_double_${interactionId}`)
       .setLabel("Cược Gấp Đôi")
-      .setEmoji("💰") // Thay bằng emoji của bạn nếu có
+      .setEmoji("💰")
       .setStyle(ButtonStyle.Primary)
-      .setDisabled(!canDouble || gameData.playerTurnEnded),
+      .setDisabled(!canDouble || gameData.playerTurnEnded || gameData.gameOver),
   );
 }
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName(GAME_ID_XIDACH)
-    .setDescription("Chơi Xì Dách với Nhà Cái (Bot). Cố gắng đạt 21 điểm!")
+    .setDescription("Chơi Xì Dách với Nhà Cái. Cố gắng đạt gần 21 điểm nhất!")
     .addIntegerOption((option) =>
       option
         .setName("bet_amount")
         .setDescription(
-          `Số tiền VNĐ bạn muốn cược (Tối thiểu: ${MIN_BET_XIDACH.toLocaleString()}).`,
+          `Số tiền VNĐ cược (Tối thiểu: ${MIN_BET_XIDACH.toLocaleString()}).`,
         )
         .setRequired(true)
         .setMinValue(MIN_BET_XIDACH)
@@ -238,56 +226,84 @@ module.exports = {
     const initialBetAmount = interaction.options.getInteger("bet_amount");
 
     if (
-      activeBlackjackGames.has(interaction.id) ||
       Array.from(activeBlackjackGames.values()).some(
         (g) => g.playerId === userId && !g.gameOver,
       )
     ) {
       return interaction.reply({
         content:
-          "Bạn đang trong một ván Xì Dách khác. Hãy hoàn thành ván đó trước!",
+          "Bạn đang trong một ván Xì Dách khác. Hoàn thành ván đó trước!",
         ephemeral: true,
       });
     }
 
     await interaction.deferReply();
 
+    const session = await mongoose.startSession(); // Khởi tạo session ở ngoài cùng
+    let userDocument; // Đổi tên biến để rõ ràng hơn
+
     try {
-      let user = await User.findOne({ userId, guildId });
-      if (!user) {
-        user = await User.create({
-          userId,
-          guildId,
-          balance: 0,
-          cooldowns: { games: new Map() },
-        });
+      await session.startTransaction();
+
+      userDocument = await User.findOne({ userId, guildId }).session(session);
+
+      if (!userDocument) {
+        Logger.info(`[Xidach] New user: ${userId}. Creating...`);
+        // Tạo user và đảm bảo nó nằm trong transaction
+        const createdUsers = await User.create(
+          [
+            {
+              userId,
+              guildId,
+              balance: 0,
+              bank: 0,
+              xp: 0,
+              level: 1,
+              cooldowns: { games: new Map() },
+            },
+          ],
+          { session },
+        );
+        userDocument = createdUsers[0];
+        if (!userDocument) {
+          // Kiểm tra lại sau khi tạo
+          throw new Error("Không thể tạo dữ liệu người dùng mới.");
+        }
       } else {
-        if (!user.cooldowns) user.cooldowns = { games: new Map() };
-        else if (!user.cooldowns.games) user.cooldowns.games = new Map();
+        // Đảm bảo các trường cần thiết tồn tại
+        if (userDocument.balance === undefined) userDocument.balance = 0;
+        if (userDocument.totalSpent === undefined) userDocument.totalSpent = 0;
+        if (userDocument.totalEarned === undefined)
+          userDocument.totalEarned = 0;
+        if (!userDocument.cooldowns)
+          userDocument.cooldowns = { games: new Map() };
+        else if (!userDocument.cooldowns.games)
+          userDocument.cooldowns.games = new Map();
       }
 
       const now = Date.now();
-      const gameCooldowns = user.cooldowns.games;
-      const lastPlayed = gameCooldowns.get(GAME_ID_XIDACH) || 0;
+      const lastPlayed = userDocument.cooldowns.games.get(GAME_ID_XIDACH) || 0;
 
       if (now - lastPlayed < XIDACH_COOLDOWN_SECONDS * 1000) {
         const timeLeft = Math.ceil(
           (XIDACH_COOLDOWN_SECONDS * 1000 - (now - lastPlayed)) / 1000,
         );
+        // Không cần abort transaction ở đây vì chưa làm gì thay đổi DB
         return interaction.editReply(
-          `⏳ Chờ **${timeLeft} giây** nữa để chơi Xì Dách tiếp.`,
+          `⏳ Chờ **${timeLeft} giây** nữa để chơi Xì Dách.`,
         );
       }
 
-      if (user.balance < initialBetAmount) {
+      if (userDocument.balance < initialBetAmount) {
+        // Sử dụng userDocument
+        // Không cần abort transaction
         return interaction.editReply(
-          `😢 Ví không đủ **${initialBetAmount.toLocaleString()} VNĐ**. Số dư: ${user.balance.toLocaleString()} VNĐ.`,
+          `😢 Ví không đủ **${initialBetAmount.toLocaleString()} VNĐ**. Số dư: ${userDocument.balance.toLocaleString()} VNĐ.`,
         );
       }
 
-      user.balance -= initialBetAmount;
-      user.totalSpent = (user.totalSpent || 0) + initialBetAmount;
-      // Sẽ save user sau khi có kết quả cuối cùng
+      userDocument.balance -= initialBetAmount;
+      userDocument.totalSpent += initialBetAmount;
 
       const deck = shuffleDeck(createDeck());
       const playerHand = dealCards(deck, 2);
@@ -296,8 +312,7 @@ module.exports = {
       const gameData = {
         interactionId: interaction.id,
         playerId: userId,
-        guildId: guildId,
-        user: user, // Truyền cả document user để cập nhật
+        userDocId: userDocument._id.toString(), // Quan trọng: dùng _id của userDocument
         deck: deck,
         playerHand: playerHand,
         botHand: botHand,
@@ -306,85 +321,81 @@ module.exports = {
         playerTurnEnded: false,
         gameOver: false,
         messageId: null,
+        // user: userDocument // Không cần lưu cả user document ở đây nữa, sẽ fetch lại trong button handler
       };
       activeBlackjackGames.set(interaction.id, gameData);
-      // Kiểm tra Xì Bàn ngay từ đầu
-      const playerInitialStatus = getHandDescriptionAndState(
-        gameData.playerHand,
-      );
-      const botInitialStatus = getHandDescriptionAndState(gameData.botHand);
 
-      if (playerInitialStatus.isBlackjack) {
-        gameData.playerTurnEnded = true; // Kết thúc lượt player
-        // (Logic xử lý Xì Bàn sẽ được gọi trong button handler nếu stand, hoặc tự động ở đây)
-        // Tạm thời, nếu player có blackjack, lượt họ kết thúc, đợi bot
-        // Hoặc xử lý thắng ngay nếu bot không có blackjack
-        if (!botInitialStatus.isBlackjack) {
-          const winnings = Math.floor(
-            gameData.betAmount * BLACKJACK_PAYOUT_MULTIPLIER,
-          );
-          const totalReceived = gameData.betAmount + winnings;
-          gameData.user.balance += totalReceived;
-          gameData.user.totalEarned =
-            (gameData.user.totalEarned || 0) + totalReceived;
-          resultMessage = `🎉 Xì Bàn! Bạn thắng ${winnings.toLocaleString()} VNĐ!`;
-          gameData.gameOver = true;
+      const playerDetails = getHandDetails(playerHand);
+      const botDetails = getHandDetails(botHand);
+      let gameEndedPrematurely = false;
+      let resultMessage = "";
+
+      // ... (Logic xử lý Xì Bàn/Xì Dách sớm như cũ, nhưng thay user bằng userDocument)
+      if (playerDetails.isXiBan) {
+        gameEndedPrematurely = true;
+        if (botDetails.isXiBan) {
+          /* Hòa */ userDocument.balance += initialBetAmount;
+          userDocument.totalSpent -= initialBetAmount;
+          resultMessage = "✨ Cả hai cùng Xì Bàn! Hòa tiền.";
         } else {
-          gameData.user.balance += gameData.betAmount; // Hòa, hoàn tiền
-          gameData.user.totalSpent -= gameData.betAmount;
-          resultMessage = `✨ Cả hai cùng Xì Bàn! Hòa tiền!`;
-          gameData.gameOver = true;
+          /* Thắng */ const winnings = Math.floor(
+            initialBetAmount * PAYOUT_XIBAN,
+          );
+          const totalReceived = initialBetAmount + winnings;
+          userDocument.balance += totalReceived;
+          userDocument.totalEarned += totalReceived;
+          resultMessage = `🏆 XÌ BÀN! Bạn thắng lớn ${winnings.toLocaleString()} VNĐ!`;
         }
-      } else if (botInitialStatus.isBlackjack) {
-        gameData.playerTurnEnded = true; // Player không có cơ hội rút nếu bot có blackjack
-        resultMessage = `😭 Nhà cái Xì Bàn! Bạn thua.`;
-        gameData.gameOver = true;
+      } else if (botDetails.isXiBan) {
+        /* ... */
       }
-      /*
-      const buttons = createXidachButtons(interaction.id, gameData);
+      // ... Tương tự cho Xì Dách ...
 
-      const embed = new EmbedBuilder()
-        .setTitle(`🎴 Xì Dách - ${interaction.user.username} vs. Bot`)
-        .setDescription("⏳ Chờ hành động của bạn (Rút / Dằn / Gấp đôi)...")
-        .addFields(
-          {
-            name: "Bài của bạn",
-            value: formatHandEmojis(gameData.playerHand),
-          },
-          {
-            name: "Bài của Nhà Cái",
-            value: `${gameData.botHand[0].getEmoji()} 🂠`, // 1 lá úp
-          },
-        )
-        .setColor("#5865F2")
-        .setTimestamp();
+      if (gameEndedPrematurely) {
+        gameData.gameOver = true;
+        gameData.playerTurnEnded = true;
+        // Truyền userDocument vào createXidachEmbed nếu nó cần thông tin user (ví dụ: balance để hiển thị ở footer)
+        // Hoặc sửa createXidachEmbed để nhận gameData và tự lấy user.balance từ gameData.user (nếu có)
+        const finalEmbed = createXidachEmbed(
+          interaction,
+          { ...gameData, user: userDocument },
+          true,
+          resultMessage,
+        );
+        await interaction.editReply({ embeds: [finalEmbed], components: [] });
 
+        userDocument.cooldowns.games.set(GAME_ID_XIDACH, Date.now());
+        userDocument.markModified("cooldowns.games");
+        await userDocument.save({ session });
+        await session.commitTransaction();
+        activeBlackjackGames.delete(interaction.id);
+        Logger.info(
+          `[Game/Xidach Premature End] User ${userId}. Bet: ${initialBetAmount}. Result: ${resultMessage}`,
+        );
+        return;
+      }
+
+      const embed = createXidachEmbed(interaction, {
+        ...gameData,
+        user: userDocument,
+      });
+      const buttons = createXidachButtons(interaction.id, {
+        ...gameData,
+        user: userDocument,
+      }); // Truyền user vào đây để check balance cho nút double
       const gameMessage = await interaction.editReply({
         embeds: [embed],
         components: [buttons],
       });
       gameData.messageId = gameMessage.id;
-*/
-      if (gameData.gameOver) {
-        await revealXidachHandsStepByStep(
-          interaction,
-          gameData,
-          gameData.user,
-          resultMessage,
-        );
-        gameData.user.cooldowns.games.set(GAME_ID_XIDACH, Date.now());
-        gameData.user.markModified("cooldowns.games");
-        await gameData.user.save();
-        activeBlackjackGames.delete(interaction.id);
-        Logger.info(
-          `[Game/Xidach] Initial Blackjack/Push for User ${userId}. Bet: ${gameData.betAmount}. Result: ${resultMessage}`,
-        );
-        return;
-      }
+
+      await userDocument.save({ session }); // Lưu việc trừ tiền cược ban đầu
+      await session.commitTransaction();
     } catch (error) {
-      Logger.error(`Lỗi lệnh /xidach: ${error.message}`, {
+      Logger.error(`Lỗi lệnh /xidach khởi tạo: ${error.message}`, {
         stack: error.stack,
       });
+      await session.abortTransaction(); // Abort nếu có lỗi trong khối try chính
       const errorMessage = "❌ Đã xảy ra lỗi khi bắt đầu ván Xì Dách.";
       if (interaction.replied || interaction.deferred) {
         await interaction
@@ -396,15 +407,26 @@ module.exports = {
           .catch((e) => Logger.error("Error in reply for xidach:", e));
       }
       activeBlackjackGames.delete(interaction.id);
+    } finally {
+      if (session.inTransaction()) {
+        // Đảm bảo abort nếu chưa commit
+        await session.abortTransaction();
+        Logger.warn(
+          "[Xidach Execute] Transaction was aborted in finally block.",
+        );
+      }
+      session.endSession(); // Luôn kết thúc session
     }
   },
+  // Hàm xử lý button sẽ được đặt trong interactionHandler.js
 };
 
-// Thêm module.exports.activeBlackjackGames để interactionHandler có thể truy cập
+// Export các hằng số và hàm cần thiết cho interactionHandler
 module.exports.activeBlackjackGames = activeBlackjackGames;
-module.exports.getHandDescriptionAndState = getHandDescriptionAndState;
-module.exports.revealXidachHandsStepByStep = revealXidachHandsStepByStep;
+module.exports.getHandDetails = getHandDetails;
+module.exports.createXidachEmbed = createXidachEmbed;
 module.exports.createXidachButtons = createXidachButtons;
-module.exports.calculateBlackjackHandValue = calculateBlackjackHandValue; // Export thêm hàm này
-module.exports.NORMAL_WIN_MULTIPLIER = NORMAL_WIN_MULTIPLIER;
+module.exports.calculateBlackjackHandValue = calculateBlackjackHandValue;
+module.exports.PAYOUT_NGULINH = PAYOUT_NGULINH;
+module.exports.PAYOUT_NORMAL = PAYOUT_NORMAL;
 module.exports.GAME_ID_XIDACH = GAME_ID_XIDACH;

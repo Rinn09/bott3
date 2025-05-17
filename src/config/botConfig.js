@@ -42,21 +42,48 @@ module.exports = {
     "https://i.imgur.com/q6LttPi.png",
   ],
   gacha: {
-    freeRollCooldownHours: 24, // Cooldown cho free roll (giờ)
-    rollCostVND: 50000, // Giá mỗi lượt roll bằng VNĐ
-    pityThreshold: 90, // Số lượt roll để chắc chắn nhận được ít nhất đồ Rare trở lên
-    guaranteedRarities: ["rare", "epic", "legendary", "mythic"], // Các độ hiếm được tính là "cao cấp" cho pity system
+    luckyUpgradeChance: 0.05, // 5% tỷ lệ đột phá
+    luckyUpgradeEffects: [
+      // Các loại đột phá có thể xảy ra
+      {
+        type: "stat_boost",
+        stat: "speed",
+        minBoost: 1,
+        maxBoost: 5,
+        weight: 40,
+      },
+      {
+        type: "stat_boost",
+        stat: "acceleration",
+        minBoost: 0.1,
+        maxBoost: 0.5,
+        weight: 30,
+        isFloat: true,
+      },
+      {
+        type: "stat_boost",
+        stat: "handling",
+        minBoost: 1,
+        maxBoost: 3,
+        weight: 20,
+      },
+      { type: "durability_repair", percentage: 0.1, weight: 10 },
+    ],
+    freeRollCooldownHours: 8,
+    pityThreshold: 90,
+    guaranteedRarities: ["rare", "epic", "legendary", "mythic"],
     goldenHour: {
       enabled: true,
       durationMinutes: 30,
-      frequencyHours: { min: 4, max: 8 },
+      frequencyHours: { min: 4, max: 24 },
       boostMultiplier: {
-        rare: 1.5,
-        epic: 1.3,
-        legendary: 1.2,
-        mythic: 1.1,
+        common: 0.5,
+        uncommon: 0.75,
+        rare: 2,
+        epic: 1.8,
+        legendary: 1.3,
+        mythic: 1.2,
       },
-      // announcementChannelId: "ID_KENH_THONG_BAO_GIO_VANG", // << XÓA HOẶC COMMENT DÒNG NÀY
       announcementMessage:
         "🎉 **GIỜ VÀNG GACHA ĐÃ BẮT ĐẦU!** 🎉\nTrong **{duration} phút** tới, tỷ lệ roll ra xe/phụ tùng hiếm sẽ được tăng cường! Cơ hội không chờ một ai, hãy thử vận may của bạn với `/roll` ngay nào!",
       endMessage:

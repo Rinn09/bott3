@@ -1,10 +1,16 @@
-const slotSymbols = {
-  symbols: ["🍒", "⭐", "💎", "🍋", "🔔", "<:Pcoin:1371705730972909694>"],
-};
+const slotSymbolsArray = [
+  "🍒",
+  "⭐",
+  "💎",
+  "🍋",
+  "🔔",
+  "<:Pcoin:1371705730972909694>",
+];
+
 const Emojis = {
   coinFaces: {
-    EMOJI_SAP: "<:Pcoin2:1371705735070744706>",
-    EMOJI_NGUA: "<:Pcoin:1371705730972909694>",
+    SAP: "<:Pcoin2:1371705735070744706>",
+    NGUA: "<:Pcoin:1371705730972909694>",
   },
 
   suits: {
@@ -95,6 +101,7 @@ const Emojis = {
     red: "🔴",
     white: "⚪️",
   },
+  slotSymbols: slotSymbolsArray,
 };
 
-module.exports = { slotSymbols, Emojis };
+module.exports = Emojis;
