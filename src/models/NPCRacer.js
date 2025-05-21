@@ -1,64 +1,33 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const NPCRacerSchema = new Schema(
+const NpcRacerSchema = new Schema(
   {
-    npcId: { type: String, required: true, unique: true, index: true },
-    name: { type: String, required: true },
-    description: { type: String, default: "Một tay đua bí ẩn." },
-    carModelId: { type: String, required: true, ref: "CarModel" }, // Tham chiếu đến CarModel
-    difficulty: {
+    npcId: {
       type: String,
-      enum: ["easy", "medium", "hard", "expert", "nightmare"],
-      default: "medium",
+      required: true,
+      unique: true,
+      trim: true,
+      lowercase: true,
     },
-    // Chỉ số này sẽ override baseStats của CarModel nếu được cung cấp
-    // Nếu không, NPC sẽ dùng baseStats từ CarModel đó
-    baseStatsOverride: {
-      speed: { type: Number },
-      acceleration: { type: Number },
-      handling: { type: Number },
-      durability: { type: Number },
+    name: { type: String, required: true, trim: true },
+    bio: { type: String, default: "Một tay đua bí ẩn." },
+    avatarUrl: { type: String, default: null },
+    preferredCarModelIds: [{ type: String }], // Mảng các modelId từ CarModel
+    baseSkillLevel: { type: Number, default: 50, min: 1, max: 100 }, // thang điểm 1-100
+    raceStats: {
+      wins: { type: Number, default: 0 },
+      losses: { type: Number, default: 0 },
+      specialMoveFrequency: { type: Number, default: 0.1, min: 0, max: 1 }, // Tần suất dùng skill đặc biệt (nếu có)
     },
-    // Lời thoại của NPC
     dialogues: {
-      startRace: [{ type: String }], // Mảng các câu thoại khi bắt đầu
-      winRace: [{ type: String }], // Khi NPC thắng
-      loseRace: [{ type: String }], // Khi NPC thua
+      preRace: [String],
+      postWin: [String],
+      postLoss: [String],
     },
-    // Phần thưởng khi thắng NPC này (ngoài phần thưởng của giải/track)
-    winBonus: {
-      vnđ: { type: Number, default: 0 },
-      xp: { type: Number, default: 0 },
-      items: [
-        {
-          // Ví dụ: { itemId: String, quantity: Number, type: 'part_definition' | 'shop_item' }
-          itemId: String,
-          quantity: Number,
-          itemType: { type: String, enum: ["part_definition", "shop_item"] },
-        },
-      ],
-    },
-    // Yêu cầu để người chơi có thể đua với NPC này (nếu đua lẻ)
-    requirements: {
-      minPlayerLevel: { type: Number, default: 1 },
-      minCarRarity: {
-        type: String,
-        enum: [
-          null,
-          "common",
-          "uncommon",
-          "rare",
-          "epic",
-          "legendary",
-          "mythic",
-        ],
-        default: null,
-      },
-      // Thêm các yêu cầu khác nếu cần
-    },
+    personalityTraits: [String], // Ví dụ: ['aggressive', 'plays_safe_when_leading']
   },
   { timestamps: true },
 );
 
-module.exports = mongoose.model("NPCRacer", NPCRacerSchema);
+module.exports = mongoose.model("NPCRacer", NpcRacerSchema);

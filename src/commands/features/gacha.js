@@ -277,12 +277,16 @@ module.exports = {
     if (subcommand === "roll") {
       const lastRoll = rollCooldown.get(userId);
       if (lastRoll && Date.now() - lastRoll < 700) {
-        return interaction.editReply({
+        return interaction.reply({
+          // Changed to reply for early exit
           content: "⏳ **Bạn đang roll quá nhanh!**",
           ephemeral: true,
         });
       }
       rollCooldown.set(userId, Date.now());
+
+      await interaction.deferReply(); // Added deferReply here
+
       const Rollsession = await mongoose.startSession();
       let rollResultData = null;
       let success = false;

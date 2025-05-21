@@ -11,6 +11,7 @@ const GuildConfigSchema = new mongoose.Schema({
   salaryNotificationChannelId: { type: String, default: null },
   marketNotificationChannelId: { type: String, default: null },
   goldenHourChannelId: { type: String, default: null },
+  repairOrdersChannelId: { type: String, default: null }, // <<==== THÊM DÒNG NÀY VÀO ĐÂY
   roleMessageIds: {
     gender: { type: String, default: null },
     game: { type: String, default: null },
@@ -24,5 +25,19 @@ const GuildConfigSchema = new mongoose.Schema({
   disabledChannels: { type: Map, of: Boolean, default: {} },
   prefix: { type: String, default: "!" },
 });
+
+// Static method findOrCreate của bro đã ổn
+GuildConfigSchema.statics.findOrCreate = async function findOrCreate(
+  condition,
+  doc,
+) {
+  let one = await this.findOne(condition);
+  if (one) {
+    return [one, false]; // Document found, not created
+  }
+  // Nếu tạo mới và doc có repairOrdersChannelId thì sẽ được gán, nếu không thì sẽ là default null
+  one = await this.create(doc);
+  return [one, true]; // Document created
+};
 
 module.exports = mongoose.model("GuildConfig", GuildConfigSchema);

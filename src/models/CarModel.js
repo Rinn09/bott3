@@ -20,7 +20,7 @@ const carModelSchema = new Schema(
       unique: true,
       trim: true,
       lowercase: true, // Đảm bảo ID luôn là chữ thường
-      index: true,
+      // index: true,
     },
     name: {
       // Tên hiển thị cho người dùng, ví dụ: "Sedan Cơ Bản", "HyperCar X1"
@@ -75,5 +75,5 @@ const carModelSchema = new Schema(
   },
   { timestamps: true },
 ); // Thêm createdAt và updatedAt tự động
-
+// carModelSchema.index({ modelId: 1 });
 module.exports = mongoose.model("CarModel", carModelSchema);
