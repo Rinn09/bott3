@@ -157,6 +157,38 @@ module.exports = {
             ),
         ),
     )
+    .addSubcommand(
+      (
+        subcommand, // THÊM SUBCOMMAND MỚI CHO CHALLENGE
+      ) =>
+        subcommand
+          .setName("challenge")
+          .setDescription("Thách đấu đua xe với một người chơi khác.")
+          .addUserOption((option) =>
+            option // Chọn người chơi để thách đấu
+              .setName("opponent")
+              .setDescription("Người bạn muốn thách đấu.")
+              .setRequired(true),
+          )
+          .addStringOption(
+            (option) =>
+              option // Chọn xe của người thách đấu (người dùng lệnh)
+                .setName("your_car_id")
+                .setDescription(
+                  "ID instance xe bạn muốn sử dụng để thách đấu (Lấy từ /gacha garage).",
+                )
+                .setRequired(true),
+            //.setAutocomplete(true) // Tạm bỏ autocomplete
+          )
+          .addIntegerOption(
+            (option) =>
+              option // Số tiền cược
+                .setName("bet_amount")
+                .setDescription("Số VNĐ bạn muốn cược cho trận đấu này.")
+                .setRequired(true)
+                .setMinValue(1000), // Ví dụ: cược tối thiểu
+          ),
+    )
     .addSubcommand((subcommand) =>
       subcommand
         .setName("start-npc")
