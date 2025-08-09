@@ -93,6 +93,13 @@ module.exports = {
               )
               .setRequired(true),
           ),
+    )
+    .addSubcommand((subcommand) =>
+      subcommand
+        .setName("claim-task")
+        .setDescription(
+          "Nhận phần thưởng cho nhiệm vụ nghề nghiệp đã hoàn thành (nếu có).",
+        ),
     ),
 
   async autocomplete(interaction) {
@@ -595,7 +602,52 @@ module.exports = {
           })
           .setTimestamp(); // Added missing .setTimestamp() call from original code
         await interaction.editReply({ embeds: [embed] }); // Added missing );
-      } // Closing brace for 'rewards' subcommand block was missing, now implicitly added by structure below
+      } else if (subcommand === "claim-task") {
+        // Không cần deferReply ở đây, completeActiveTask sẽ tự xử lý
+        if (!userData) {
+          // User đã được fetch ở đầu lệnh mainjob
+          return interaction.reply({
+            content: "❌ Không tìm thấy dữ liệu người dùng của bạn.",
+            ephemeral: true,
+          });
+        }
+        if (!userData.mainJob || !userData.mainJob.name) {
+          return interaction.reply({
+            content: "❌ Bạn hiện không có nghề chính nào.",
+            ephemeral: true,
+          });
+        }
+        if (
+          !userData.mainJob.activeTask ||
+          !userData.mainJob.activeTask.taskId
+        ) {
+          return interaction.reply({
+            content:
+              "ℹ️ Bạn không có nhiệm vụ nào đang chờ hoàn thành để nhận.",
+            ephemeral: true,
+          });
+        }
+
+        const jobDef = await MainJob.findOne({
+          name: userData.mainJob.name.toLowerCase(),
+        }).lean();
+        if (!jobDef) {
+          Logger.error(
+            `[ClaimTask] Không tìm thấy định nghĩa nghề nghiệp cho: ${userData.mainJob.name}`,
+          );
+          userData.mainJob.activeTask = null; // Xóa task lỗi
+          await userData.save(); // Lưu lại việc xóa task lỗi
+          return interaction.reply({
+            content:
+              "❌ Lỗi: Không tìm thấy thông tin nghề nghiệp của bạn. Tác vụ đang chờ đã được hủy.",
+            ephemeral: true,
+          });
+        }
+
+        // Gọi hàm completeActiveTask từ taskHandler
+        // Hàm này sẽ tự deferReply/editReply bên trong nó
+        await taskHandler.completeActiveTask(interaction, userData, jobDef);
+      }
     } catch (error) {
       // Re-inserting the catch block
       Logger.error(`Lỗi lệnh /mainjob ${subcommand}: ${error.message}`, {

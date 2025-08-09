@@ -39,7 +39,7 @@ Renault Logan 2017 https://i.imgur.com/EmrOMR1.png
 SsangYong Tivoli 2016 https://i.imgur.com/mkBkEl9.png
 BAIC Q7 2018 https://i.imgur.com/ooauzqC.png
 Honda Civic LX 2021 https://i.imgur.com/pSlYWoz.png -------------------------------------------------- uncommon
-Mazda CX-5 Touring 2020
+Mazda CX-5 Touring 2020 https://hips.hearstapps.com/hmg-prod/images/2020-mazda-cx-5-signature-1573658858.jpg
 Toyota Corolla Cross G 2021
 Kia Seltos Luxury 2022
 Hyundai Kona SE 2021

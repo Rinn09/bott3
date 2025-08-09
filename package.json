@@ -6,7 +6,14 @@
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
     "lint": "eslint .",
-    "test": "jest"
+    "test": "jest",
+    "seed:shop": "node src/database/seeds/seedShopItems.js",
+    "seed:mainjobs": "node src/database/seeds/seedMainJobs.js",
+    "seed:taskitems": "node src/database/seeds/seedTaskOutputItems.js",
+    "seed:cars": "node src/database/seeds/seedCarsModel.js",
+    "seed:parts": "node src/database/seeds/seedCarParts.js",
+    "seed:race": "node src/database/seeds/seedRaceDefinitions.js",
+    "seed:all": "npm run seed:shop && npm run seed:mainjobs && npm run seed:taskitems && npm run seed:cars && npm run seed:parts && npm run seed:race"
   },
   "author": "Lam",
   "license": "ISC",

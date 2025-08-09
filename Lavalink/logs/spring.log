@@ -1,3 +1,113 @@
-2025-04-24T13:26:30.853+07:00  INFO 3608 --- [Lavalink] [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:50557 with id spr4c54riicrshn0 -- CloseStatus[code=1006, reason=]
-2025-04-24T13:26:30.854+07:00  INFO 3608 --- [Lavalink] [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:50558 with status CloseStatus[code=1006, reason=] -- Session can be resumed within the next 30 seconds with id 95qqifgwxaqaildx
-2025-04-24T13:26:30.877+07:00  INFO 3608 --- [Lavalink] [XNIO-1 I/O-6] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2025-05-16T11:25:13.643+07:00  INFO 13732 --- [Lavalink] [main] lavalink.server.Launcher                 : Starting Launcher v4.0.8 using Java 24.0.1 with PID 13732 (C:\bott3\Lavalink\Lavalink.jar started by LAM PC in C:\bott3\Lavalink)
+2025-05-16T11:25:13.668+07:00  INFO 13732 --- [Lavalink] [main] lavalink.server.Launcher                 : No active profile set, falling back to 1 default profile: "default"
+2025-05-16T11:25:15.308+07:00  INFO 13732 --- [Lavalink] [main] l.server.bootstrap.PluginManager         : Found plugin 'lavasrc-plugin' version 4.6.0
+2025-05-16T11:25:15.593+07:00  INFO 13732 --- [Lavalink] [main] l.server.bootstrap.PluginManager         : Loaded lavasrc-plugin-4.6.0.jar (182 classes)
+2025-05-16T11:25:15.899+07:00  INFO 13732 --- [Lavalink] [main] lavalink.server.Launcher                 : Started Launcher in 3.096 seconds (process running for 3.905)
+2025-05-16T11:25:16.017+07:00  INFO 13732 --- [Lavalink] [main] lavalink.server.Launcher                 : 
+
+[32m       .  [31m _                  _ _       _    [32m__ _ _
+[32m      /\\ [31m| | __ ___   ____ _| (_)_ __ | | __[32m\ \ \ \
+[32m     ( ( )[31m| |/ _` \ \ / / _` | | | '_ \| |/ /[32m \ \ \ \
+[32m      \\/ [31m| | (_| |\ V / (_| | | | | | |   < [32m  ) ) ) )
+[32m       '  [31m|_|\__,_| \_/ \__,_|_|_|_| |_|_|\_\[32m / / / /
+[0m    =========================================[32m/_/_/_/[0m
+
+	Version:        4.0.8
+	Build time:     20.09.2024 20:20:10 UTC
+	Branch          HEAD
+	Commit:         2946608
+	Commit time:    20.09.2024 20:17:58 UTC
+	JVM:            24.0.1
+	Lavaplayer      2.2.2
+
+2025-05-16T11:25:16.031+07:00  INFO 13732 --- [Lavalink] [main] lavalink.server.Launcher                 : No active profile set, falling back to 1 default profile: "default"
+2025-05-16T11:25:17.148+07:00  WARN 13732 --- [Lavalink] [main] io.undertow.websockets.jsr               : UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2025-05-16T11:25:17.185+07:00  INFO 13732 --- [Lavalink] [main] io.undertow.servlet                      : Initializing Spring embedded WebApplicationContext
+2025-05-16T11:25:17.185+07:00  INFO 13732 --- [Lavalink] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1143 ms
+2025-05-16T11:25:17.341+07:00  INFO 13732 --- [Lavalink] [main] c.g.t.lavasrc.plugin.LavaSrcPlugin       : Loading LavaSrc plugin...
+2025-05-16T11:25:17.406+07:00  INFO 13732 --- [Lavalink] [main] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
+2025-05-16T11:25:18.649+07:00  INFO 13732 --- [Lavalink] [main] l.server.config.KoeConfiguration         : OS: WINDOWS, Arch: X86_64
+2025-05-16T11:25:18.650+07:00  INFO 13732 --- [Lavalink] [main] l.server.config.KoeConfiguration         : Enabling JDA-NAS
+2025-05-16T11:25:18.653+07:00  INFO 13732 --- [Lavalink] [main] c.s.l.c.natives.NativeLibraryLoader      : Native library udpqueue: loading with filter null
+2025-05-16T11:25:18.664+07:00  INFO 13732 --- [Lavalink] [main] c.s.l.c.natives.NativeLibraryLoader      : Native library udpqueue: successfully loaded.
+2025-05-16T11:25:18.712+07:00  WARN 13732 --- [Lavalink] [main] l.server.config.SentryConfiguration      : Turning off sentry
+2025-05-16T11:25:19.111+07:00  INFO 13732 --- [Lavalink] [main] io.undertow                              : starting server: Undertow - 2.3.13.Final
+2025-05-16T11:25:19.121+07:00  INFO 13732 --- [Lavalink] [main] org.xnio                                 : XNIO version 3.8.8.Final
+2025-05-16T11:25:19.132+07:00  INFO 13732 --- [Lavalink] [main] org.xnio.nio                             : XNIO NIO Implementation Version 3.8.8.Final
+2025-05-16T11:25:19.306+07:00  INFO 13732 --- [Lavalink] [main] org.jboss.threads                        : JBoss Threads version 3.5.0.Final
+2025-05-16T11:25:19.429+07:00  INFO 13732 --- [Lavalink] [main] o.s.b.w.e.undertow.UndertowWebServer     : Undertow started on port 2333 (http) with context path '/'
+2025-05-16T11:25:19.435+07:00  INFO 13732 --- [Lavalink] [main] lavalink.server.Launcher                 : Started Launcher in 3.527 seconds (process running for 7.442)
+2025-05-16T11:25:19.437+07:00  INFO 13732 --- [Lavalink] [main] lavalink.server.Launcher                 : Lavalink is ready to accept connections.
+2025-05-16T11:26:57.998+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] io.undertow.servlet                      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-16T11:26:57.999+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-16T11:26:58.002+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2025-05-16T11:26:58.043+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:59711
+2025-05-16T11:26:58.067+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/websocket, client=127.0.0.1
+2025-05-16T11:26:58.158+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from shoukaku/4.1.1 (https://github.com/shipgirlproject/Shoukaku.git)
+2025-05-16T11:26:58.489+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : PATCH /v4/sessions/ikmgjup7ubzd0i1k, client=127.0.0.1, payload={"resuming":true,"timeout":30000}
+2025-05-16T11:36:07.694+07:00  INFO 13732 --- [Lavalink] [XNIO-1 I/O-5] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:59711 with status CloseStatus[code=1006, reason=] -- Session can be resumed within the next 30000 seconds with id ikmgjup7ubzd0i1k
+2025-05-16T11:47:44.969+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:60665
+2025-05-16T11:47:44.973+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/websocket, client=127.0.0.1
+2025-05-16T11:47:44.977+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from shoukaku/4.1.1 (https://github.com/shipgirlproject/Shoukaku.git)
+2025-05-16T11:47:45.042+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : PATCH /v4/sessions/6w2sfhn4a1swryvh, client=127.0.0.1, payload={"resuming":true,"timeout":30000}
+2025-05-16T12:02:10.978+07:00  INFO 13732 --- [Lavalink] [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:60665 with status CloseStatus[code=1006, reason=] -- Session can be resumed within the next 30000 seconds with id 6w2sfhn4a1swryvh
+2025-05-16T12:02:38.695+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:61383
+2025-05-16T12:02:38.697+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/websocket, client=127.0.0.1
+2025-05-16T12:02:38.699+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from shoukaku/4.1.1 (https://github.com/shipgirlproject/Shoukaku.git)
+2025-05-16T12:02:38.721+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : PATCH /v4/sessions/lyrsjpizffkcogns, client=127.0.0.1, payload={"resuming":true,"timeout":30000}
+2025-05-16T12:44:52.367+07:00  INFO 13732 --- [Lavalink] [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:61383 with status CloseStatus[code=1006, reason=] -- Session can be resumed within the next 30000 seconds with id lyrsjpizffkcogns
+2025-05-16T12:50:06.137+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:63549
+2025-05-16T12:50:06.141+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/websocket, client=127.0.0.1
+2025-05-16T12:50:06.144+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from shoukaku/4.1.1 (https://github.com/shipgirlproject/Shoukaku.git)
+2025-05-16T12:50:06.171+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : PATCH /v4/sessions/r3cyqej4qix0nx7r, client=127.0.0.1, payload={"resuming":true,"timeout":30000}
+2025-05-16T12:58:19.692+07:00  INFO 13732 --- [Lavalink] [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:63549 with status CloseStatus[code=1006, reason=] -- Session can be resumed within the next 30000 seconds with id r3cyqej4qix0nx7r
+2025-05-16T12:58:28.270+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:64001
+2025-05-16T12:58:28.273+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/websocket, client=127.0.0.1
+2025-05-16T12:58:28.275+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from shoukaku/4.1.1 (https://github.com/shipgirlproject/Shoukaku.git)
+2025-05-16T12:58:28.299+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : PATCH /v4/sessions/eoy71r4pzu3oph5k, client=127.0.0.1, payload={"resuming":true,"timeout":30000}
+2025-05-16T13:03:06.853+07:00  INFO 13732 --- [Lavalink] [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:64001 with status CloseStatus[code=1006, reason=] -- Session can be resumed within the next 30000 seconds with id eoy71r4pzu3oph5k
+2025-05-16T13:03:15.066+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:64210
+2025-05-16T13:03:15.068+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/websocket, client=127.0.0.1
+2025-05-16T13:03:15.070+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from shoukaku/4.1.1 (https://github.com/shipgirlproject/Shoukaku.git)
+2025-05-16T13:03:15.106+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : PATCH /v4/sessions/nhk4y9n9sihw60iw, client=127.0.0.1, payload={"resuming":true,"timeout":30000}
+2025-05-16T13:04:23.406+07:00  INFO 13732 --- [Lavalink] [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:64210 with status CloseStatus[code=1006, reason=] -- Session can be resumed within the next 30000 seconds with id nhk4y9n9sihw60iw
+2025-05-16T13:04:34.141+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:64299
+2025-05-16T13:04:34.142+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/websocket, client=127.0.0.1
+2025-05-16T13:04:34.144+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from shoukaku/4.1.1 (https://github.com/shipgirlproject/Shoukaku.git)
+2025-05-16T13:04:34.162+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : PATCH /v4/sessions/8hl6kdzygg0e7wcw, client=127.0.0.1, payload={"resuming":true,"timeout":30000}
+2025-05-16T13:10:44.969+07:00  INFO 13732 --- [Lavalink] [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:64299 with status CloseStatus[code=1006, reason=] -- Session can be resumed within the next 30000 seconds with id 8hl6kdzygg0e7wcw
+2025-05-16T13:10:52.661+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:64586
+2025-05-16T13:10:52.664+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/websocket, client=127.0.0.1
+2025-05-16T13:10:52.668+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from shoukaku/4.1.1 (https://github.com/shipgirlproject/Shoukaku.git)
+2025-05-16T13:10:52.718+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : PATCH /v4/sessions/hreirq9j9evv9u44, client=127.0.0.1, payload={"resuming":true,"timeout":30000}
+2025-05-16T13:11:03.666+07:00  INFO 13732 --- [Lavalink] [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:64586 with status CloseStatus[code=1006, reason=] -- Session can be resumed within the next 30000 seconds with id hreirq9j9evv9u44
+2025-05-16T13:11:11.621+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:64621
+2025-05-16T13:11:11.622+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/websocket, client=127.0.0.1
+2025-05-16T13:11:11.627+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from shoukaku/4.1.1 (https://github.com/shipgirlproject/Shoukaku.git)
+2025-05-16T13:11:11.648+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : PATCH /v4/sessions/t6h5c3oiosgm5z6c, client=127.0.0.1, payload={"resuming":true,"timeout":30000}
+2025-05-16T13:49:45.187+07:00  INFO 13732 --- [Lavalink] [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:64621 with status CloseStatus[code=1006, reason=] -- Session can be resumed within the next 30000 seconds with id t6h5c3oiosgm5z6c
+2025-05-16T14:05:36.602+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:51005
+2025-05-16T14:05:36.608+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/websocket, client=127.0.0.1
+2025-05-16T14:05:36.613+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from shoukaku/4.1.1 (https://github.com/shipgirlproject/Shoukaku.git)
+2025-05-16T14:05:36.656+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : PATCH /v4/sessions/j4wpz7xmzycex3b9, client=127.0.0.1, payload={"resuming":true,"timeout":30000}
+2025-05-16T14:13:10.254+07:00  INFO 13732 --- [Lavalink] [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:51005 with status CloseStatus[code=1006, reason=] -- Session can be resumed within the next 30000 seconds with id j4wpz7xmzycex3b9
+2025-05-16T14:14:25.803+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:51410
+2025-05-16T14:14:25.805+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/websocket, client=127.0.0.1
+2025-05-16T14:14:25.810+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from shoukaku/4.1.1 (https://github.com/shipgirlproject/Shoukaku.git)
+2025-05-16T14:14:25.830+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : PATCH /v4/sessions/495b0jixqvh3tq8x, client=127.0.0.1, payload={"resuming":true,"timeout":30000}
+2025-05-16T14:31:26.513+07:00  INFO 13732 --- [Lavalink] [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:51410 with status CloseStatus[code=1006, reason=] -- Session can be resumed within the next 30000 seconds with id 495b0jixqvh3tq8x
+2025-05-16T14:31:43.162+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:52319
+2025-05-16T14:31:43.164+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/websocket, client=127.0.0.1
+2025-05-16T14:31:43.166+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from shoukaku/4.1.1 (https://github.com/shipgirlproject/Shoukaku.git)
+2025-05-16T14:31:43.211+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : PATCH /v4/sessions/joyu18y6t064df5q, client=127.0.0.1, payload={"resuming":true,"timeout":30000}
+2025-05-16T14:32:49.469+07:00  INFO 13732 --- [Lavalink] [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:52319 with status CloseStatus[code=1006, reason=] -- Session can be resumed within the next 30000 seconds with id joyu18y6t064df5q
+2025-05-16T14:32:56.736+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:52389
+2025-05-16T14:32:56.739+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/websocket, client=127.0.0.1
+2025-05-16T14:32:56.744+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from shoukaku/4.1.1 (https://github.com/shipgirlproject/Shoukaku.git)
+2025-05-16T14:32:56.797+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : PATCH /v4/sessions/o11uavm684od4sp6, client=127.0.0.1, payload={"resuming":true,"timeout":30000}
+2025-05-16T14:35:15.393+07:00  INFO 13732 --- [Lavalink] [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:52389 with status CloseStatus[code=1006, reason=] -- Session can be resumed within the next 30000 seconds with id o11uavm684od4sp6
+2025-05-16T14:35:24.109+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:52535
+2025-05-16T14:35:24.112+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : GET /v4/websocket, client=127.0.0.1
+2025-05-16T14:35:24.115+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from shoukaku/4.1.1 (https://github.com/shipgirlproject/Shoukaku.git)
+2025-05-16T14:35:24.179+07:00  INFO 13732 --- [Lavalink] [XNIO-1 task-2] l.server.io.RequestLoggingFilter         : PATCH /v4/sessions/ql2ts4099mt7hzzk, client=127.0.0.1, payload={"resuming":true,"timeout":30000}
+2025-05-16T15:39:15.704+07:00  INFO 13732 --- [Lavalink] [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:52535 with status CloseStatus[code=1006, reason=] -- Session can be resumed within the next 30000 seconds with id ql2ts4099mt7hzzk

@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const PartDefinition = require("../../models/PartDefinition");
+const { PartDefinition } = require("../../models/PartDefinition"); // Destructure here
 require("dotenv").config();
 
 async function seedCarParts() {

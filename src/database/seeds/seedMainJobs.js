@@ -273,45 +273,161 @@ async function seedJobs() {
   console.log("✅ Đã tạo/cập nhật nghề: kỹ sư");
 
   await MainJob.findOneAndUpdate(
-    { name: "thợ sửa xe" }, // Tìm bằng chữ thường
+    { name: "thợ sửa xe" },
     {
-      name: "thợ sửa xe", // Lưu bằng chữ thường
+      name: "thợ sửa xe",
+      displayName: "Thợ Sửa Xe",
+      icon: "🛠️",
       description:
-        "Chẩn đoán lỗi, sửa chữa và bảo dưỡng các loại xe cơ giới, giữ cho những cỗ máy tốc độ luôn ở trạng thái hoàn hảo.",
-      tasks: [
+        "Chuyên gia chẩn đoán, sửa chữa và nâng cấp xe cộ. Giữ cho những cỗ máy tốc độ luôn ở trạng thái hoàn hảo nhất.",
+      requirementsToJoin: {
+        minUserLevel: 5, // Ví dụ: Cần user level 5
+        costToJoin: 10000, // Phí gia nhập
+      },
+      salaryByLevel: new Map([
+        // Lương cơ bản cho task "Hoàn thành đơn sửa xe" (nếu task đó reward.money = 0)
+        ["1", 5000],
+        ["5", 10000],
+        ["10", 20000],
+      ]),
+      levelUpRewards: new Map([
+        [
+          "5",
+          {
+            money: 25000,
+            items: [
+              {
+                itemId: "advanced_repair_kit",
+                quantity: 1,
+                itemType: "shop_item",
+              },
+            ],
+          },
+        ],
+        [
+          "10",
+          {
+            money: 100000,
+            userXp: 500,
+            items: [
+              {
+                itemId: "blueprint_rare_engine_part",
+                quantity: 1,
+                itemType: "shop_item",
+              },
+            ],
+          },
+        ],
+      ]),
+      specializations: [
         {
-          taskId: "completeRepairOrder", // ID task tượng trưng cho việc hoàn thành 1 đơn sửa
-          name: "Hoàn Thành Đơn Sửa Xe",
-          command: "/race repair complete", // Người dùng sẽ dùng lệnh này để hoàn thành
-          xp: 75, // XP nghề nhận được khi hoàn thành 1 đơn sửa (có thể điều chỉnh)
-          reward: 0, // Thù lao chính đến từ offeredReward của đơn hàng
-          cooldown: 30 * 60 * 1000, // Cooldown 30 phút (ví dụ, để tránh spam hoàn thành liên tục nếu có lỗi)
+          specId: "engine_tuner",
+          name: "Chuyên Gia Độ Động Cơ",
+          description:
+            "Mở khóa các task liên quan đến sửa chữa và tối ưu hóa động cơ.",
+          requiredJobLevel: 5,
+          requiredTasksCompleted: [
+            { taskId: "completebasicrepair", count: 10 },
+          ], // Ví dụ: cần hoàn thành 10 đơn sửa cơ bản
+          statBonuses: new Map([
+            ["engine_repair_speed_multiplier", 1.1],
+            ["engine_crafting_success_chance", 0.05],
+          ]),
         },
         {
-          taskId: "performAdvancedDiagnostics",
-          name: "Thực Hiện Chẩn Đoán Nâng Cao",
-          command: "/mainjob task performAdvancedDiagnostics", // Lệnh task riêng (nếu có)
-          xp: 40,
-          reward: 10000, // Thưởng nhỏ cho việc "nghiên cứu" hoặc "thực hành"
-          cooldown: 2 * 60 * 60 * 1000, // Cooldown 2 giờ
-        },
-        {
-          taskId: "tuneUpEngineService",
-          name: "Bảo Dưỡng Tinh Chỉnh Động Cơ",
-          command: "/mainjob task tuneUpEngineService",
-          xp: 60,
-          reward: 15000,
-          cooldown: 3 * 60 * 60 * 1000, // Cooldown 3 giờ
+          specId: "chassis_master",
+          name: "Bậc Thầy Khung Gầm",
+          description:
+            "Chuyên sâu về sửa chữa và gia cố khung gầm, hệ thống treo.",
+          requiredJobLevel: 8,
+          // ...
         },
       ],
-      salaryByLevel: new Map([
-        // Đây có thể là bonus dựa trên level nghề khi hoàn thành đơn, HOẶC không cần thiết nếu thù lao chỉ từ chủ xe
-        ["1", 15000], // Bonus 1,500 VNĐ / đơn ở level 1
-        ["5", 75000],
-        ["10", 150000],
-        ["15", 250000],
-        ["20", 400000],
-      ]),
+      tasks: [
+        {
+          taskId: "diagnosecarproblem",
+          name: "Chẩn Đoán Lỗi Xe",
+          description:
+            "Kiểm tra một chiếc xe bị hỏng nhẹ để tìm ra nguyên nhân.",
+          requiredJobLevel: 1,
+          cooldownMs: 10 * 60 * 1000, // 10 phút
+          reward: { jobXp: 15, jobReputation: 5 },
+          type: "active_immediate",
+          // Output có thể là một "Báo cáo chẩn đoán" (item tạm thời)
+          // outputItems: [{ itemId: "diagnostic_report_common", quantity: 1, chance: 0.8, itemType: 'shop_item' }]
+        },
+        {
+          taskId: "performoilchange",
+          name: "Thay Nhớt Xe",
+          description: "Thực hiện thay nhớt cơ bản cho xe của khách.",
+          requiredJobLevel: 1,
+          requiredItems: [
+            { itemId: "new_engine_oil", quantity: 1, itemType: "shop_item" },
+          ], // Cần item "Dầu nhớt mới"
+          cooldownMs: 30 * 60 * 1000, // 30 phút
+          reward: { money: 3000, jobXp: 25, jobReputation: 10 },
+          type: "active_immediate",
+        },
+        {
+          taskId: "completerepairorder", // Task này liên kết với /race repair complete
+          name: "Hoàn Thành Đơn Sửa Xe Khách",
+          description:
+            "Hoàn thành một đơn sửa xe từ yêu cầu của người chơi khác.",
+          requiredJobLevel: 2,
+          // Không có reward cố định ở đây, vì reward đến từ đơn hàng
+          reward: { jobXp: 50, jobReputation: 20 }, // Chỉ có XP và danh tiếng
+          type: "repair_service", // Loại task đặc biệt
+          // Cooldown có thể không cần thiết nếu dựa vào tần suất đơn hàng
+        },
+        {
+          taskId: "tuneupbasicengine",
+          name: "Tinh Chỉnh Động Cơ Cơ Bản",
+          description: "Tối ưu hóa một động cơ để tăng nhẹ hiệu suất.",
+          requiredJobLevel: 5,
+          requiredSpecialization: "engine_tuner",
+          requiredItems: [
+            { itemId: "basic_tuning_kit", quantity: 1, itemType: "shop_item" },
+          ],
+          durationMs: 1 * 60 * 60 * 1000, // 1 giờ
+          successChance: 0.9,
+          reward: { jobXp: 100, jobReputation: 30 },
+          // outputItems: có thể là một "Engine Tune-up Voucher"
+          type: "active_duration",
+        },
+        {
+          taskId: "craftcommonenginepart",
+          name: "Chế Tạo Phụ Tùng Động Cơ Common",
+          description:
+            "Sử dụng mảnh vụn để chế tạo một phụ tùng động cơ cấp thấp.",
+          requiredJobLevel: 7,
+          requiredSpecialization: "engine_tuner",
+          requiredItems: [
+            {
+              itemId: "basic_metal_scrap",
+              quantity: 10,
+              itemType: "shop_item",
+            },
+            {
+              itemId: "engine_blueprints_common",
+              quantity: 1,
+              itemType: "shop_item",
+            },
+          ],
+          durationMs: 2 * 60 * 60 * 1000, // 2 giờ
+          successChance: 0.75,
+          outputItems: [
+            {
+              itemId: "random_common_engine_part",
+              quantity: 1,
+              itemType: "part_instance_definition",
+              chance: 1,
+            },
+          ], // Sẽ tạo 1 part instance mới
+          failureOutput: { itemLossPercentage: 0.5, xpLoss: 10 },
+          type: "crafting",
+        },
+        // Thêm các task khác cho thợ sửa xe...
+      ],
     },
     { upsert: true, new: true },
   );
