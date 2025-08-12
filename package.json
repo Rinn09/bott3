@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "main": "src/index.js",
   "scripts": {
+    "doctor": "node scripts/doctor.js",
+    "doctor:fix": "node scripts/doctor.js --fix",
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
     "lint": "eslint .",

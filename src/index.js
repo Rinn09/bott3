@@ -18,15 +18,48 @@ const taskHandler = require("./handlers/taskHandler");
 
 console.log("Logger instance:", Logger);
 
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => console.log("✅ Kết nối MongoDB thành công!"))
-  .catch((err) => console.error("❌ MongoDB lỗi:", err));
+async function connectMongoWithRetry(uri) {
+  if (!uri) {
+    Logger.warn("MONGO_URI is empty — skip DB connect");
+    return;
+  }
+  let attempt = 0;
+  const tryOnce = async () => {
+    attempt++;
+    try {
+      await mongoose.connect(uri, {
+        serverSelectionTimeoutMS: 10_000,
+        maxPoolSize: 10,
+      });
+      Logger.info("✅ Kết nối MongoDB thành công!");
+    } catch (err) {
+      const backoff = Math.min(30, 2 ** attempt) * 1000; // 2s→4s→...max 30s
+      Logger.error(`❌ MongoDB lỗi: ${err.code || err.name}: ${err.message}`);
+      Logger.warn(`↻ Thử lại sau ${backoff / 1000}s (lần ${attempt})...`);
+      setTimeout(tryOnce, backoff);
+    }
+  };
+  tryOnce();
+}
+
+// gọi sớm ở đầu file (trước bot.start())
+connectMongoWithRetry(process.env.MONGO_URI);
 
 class Bot {
   constructor() {
+    const names = botConfig?.intents || [];
+    const bits = names.map((n) => GatewayIntentBits[n]).filter(Boolean);
+    const unknown = names.filter((n) => !GatewayIntentBits[n]);
+    if (unknown.length)
+      Logger.warn(`[Boot] Unknown intents in botConfig: ${unknown.join(", ")}`);
+
     this.client = new Client({
-      intents: botConfig.intents.map((intent) => GatewayIntentBits[intent]),
+      intents: bits.length ? bits : [GatewayIntentBits.Guilds], // fallback nhẹ
+      partials: botConfig?.partials || [], // nếu m có cấu hình
+      ...(botConfig?.presence ? { presence: botConfig.presence } : {}),
+      ...(botConfig?.allowedMentions
+        ? { allowedMentions: botConfig.allowedMentions }
+        : {}),
     });
 
     this.commandHandler = new CommandHandler(this.client);
@@ -82,6 +115,21 @@ class Bot {
 
 const bot = new Bot();
 
+const waitDbAndRun = () => {
+  if (mongoose.connection.readyState === 1) {
+    prefixHandler(bot.client);
+    salaryNotificationHandler(bot.client);
+    anticapsCache.loadAllConfigs(bot.client);
+    goldenHourManager.initializeGoldenHour(bot.client);
+    taskHandler.loadTasks(bot.client);
+    Logger.info("Post-ready jobs started (DB connected).");
+  } else {
+    mongoose.connection.once("connected", () => {
+      waitDbAndRun();
+    });
+  }
+};
+
 errorHandler(bot.client);
 bot.client.on("error", (error) => {
   Logger.error("WebSocket error:", error);
@@ -101,6 +149,20 @@ bot.client.on("reconnect", () => {
   Logger.info("Bot is reconnecting...");
 });
 bot.start();
+process.on("unhandledRejection", (r) =>
+  Logger.error("Unhandled promise rejection:", r),
+);
+process.on("uncaughtException", (e) => Logger.error("Uncaught exception:", e));
+process.on("SIGINT", () => {
+  Logger.warn("SIGINT");
+  bot.client?.destroy();
+  process.exit(0);
+});
+process.on("SIGTERM", () => {
+  Logger.warn("SIGTERM");
+  bot.client?.destroy();
+  process.exit(0);
+});
 
 /*bot.client.manager = new Kazagumo({
   defaultSearchEngine: 'youtube',

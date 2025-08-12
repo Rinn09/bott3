@@ -35220,3 +35220,614 @@ Require stack:
 2025-05-25T12:02:38.388Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1371704233929474118
 2025-05-25T12:02:38.388Z [INFO]: [AntiCaps Cache] Finished loading all anticaps settings.
 2025-05-25T12:04:21.217Z [WARN]: [TaskHandler] Immediate task diagnosecarproblem reported failure for user 791679378534694942. Rolling back item consumption if any.
+2025-08-09T16:18:38.445Z [INFO]: Shoukaku (Lavalink Handler) initialized.
+2025-08-09T16:18:38.479Z [INFO]: Loaded command: admin-gacha
+2025-08-09T16:18:38.490Z [INFO]: Loaded command: admin-race
+2025-08-09T16:18:38.495Z [INFO]: Loaded command: admin-sidejob
+2025-08-09T16:18:38.501Z [INFO]: Loaded command: admin-value
+2025-08-09T16:18:38.508Z [INFO]: Loaded command: bot-admin
+2025-08-09T16:18:38.512Z [INFO]: Loaded command: channel
+2025-08-09T16:18:38.530Z [INFO]: Loaded command: gacha
+2025-08-09T16:18:38.533Z [INFO]: Loaded command: level
+2025-08-09T16:18:38.558Z [INFO]: Loaded command: mainjob
+2025-08-09T16:18:38.575Z [INFO]: Loaded command: market
+2025-08-09T16:18:38.580Z [INFO]: Loaded command: money
+2025-08-09T16:18:38.610Z [INFO]: Loaded command: race
+2025-08-09T16:18:38.616Z [INFO]: Loaded command: shop
+2025-08-09T16:18:38.621Z [INFO]: Loaded command: sidejob
+2025-08-09T16:18:38.743Z [INFO]: Loaded command: baicao
+2025-08-09T16:18:38.744Z [WARN]: Command at C:\bott3\src\commands\games\baucua.js missing required properties
+2025-08-09T16:18:38.749Z [INFO]: Loaded command: coinflip
+2025-08-09T16:18:38.750Z [WARN]: Command at C:\bott3\src\commands\games\loto.js missing required properties
+2025-08-09T16:18:38.759Z [ERROR]: Error loading command slot.js: Cannot read properties of undefined (reading '0')
+2025-08-09T16:18:38.761Z [WARN]: Command at C:\bott3\src\commands\games\taixiu.js missing required properties
+2025-08-09T16:18:38.767Z [INFO]: Loaded command: xidach
+2025-08-09T16:18:38.770Z [WARN]: Command at C:\bott3\src\commands\games\xocdia.js missing required properties
+2025-08-09T16:18:38.777Z [INFO]: Loaded command: moderation
+2025-08-09T16:18:38.781Z [INFO]: Loaded command: play
+2025-08-09T16:18:38.785Z [INFO]: Loaded command: queue
+2025-08-09T16:18:38.792Z [INFO]: Loaded command: set-goldenhour-channel
+2025-08-09T16:18:38.798Z [INFO]: Loaded command: set-market-noti
+2025-08-09T16:18:38.803Z [INFO]: Loaded command: set-noti
+2025-08-09T16:18:38.807Z [INFO]: Loaded command: setup-autorole
+2025-08-09T16:18:38.812Z [INFO]: Loaded command: setup-goodbye
+2025-08-09T16:18:38.817Z [INFO]: Loaded command: setup-log
+2025-08-09T16:18:38.821Z [INFO]: Loaded command: setup-role-channel
+2025-08-09T16:18:38.824Z [INFO]: Loaded command: setup-rule
+2025-08-09T16:18:38.828Z [INFO]: Loaded command: setup-stats-channel
+2025-08-09T16:18:38.830Z [INFO]: Loaded command: setup-welcome
+2025-08-09T16:18:38.836Z [INFO]: Đang đăng ký 30 lệnh với Discord API...
+2025-08-09T16:18:39.655Z [INFO]: Đã đăng ký thành công 30 lệnh với Discord API
+2025-08-09T16:18:39.661Z [INFO]: Loaded event: guildMemberAdd
+2025-08-09T16:18:39.663Z [INFO]: Loaded event: guildMemberRemove
+2025-08-09T16:18:39.665Z [INFO]: Loaded event: interactionCreate
+2025-08-09T16:18:39.667Z [INFO]: Loaded event: messageReactionAdd
+2025-08-09T16:18:39.669Z [INFO]: Loaded event: messageReactionRemove
+2025-08-09T16:18:39.674Z [INFO]: Loaded event: messageCreate
+2025-08-09T16:18:39.676Z [INFO]: Loaded event: ready
+2025-08-09T16:18:39.680Z [INFO]: Loaded event: voiceStateUpdate
+2025-08-09T16:18:39.681Z [INFO]: Total 8 events loaded.
+2025-08-09T16:18:39.681Z [INFO]: Lavalink handler initialized
+2025-08-09T16:18:39.681Z [INFO]: Command handler initialized
+2025-08-09T16:18:39.682Z [INFO]: Event handler initialized
+2025-08-09T16:18:39.682Z [INFO]: Bot is starting...
+2025-08-09T16:18:39.691Z [INFO]: Event file guildMemberAdd.js changed (change). Reloading events...
+2025-08-09T16:18:39.693Z [INFO]: Event file guildMemberRemove.js changed (change). Reloading events...
+2025-08-09T16:18:39.695Z [INFO]: Event file interactionCreate.js changed (change). Reloading events...
+2025-08-09T16:18:39.696Z [INFO]: Event file messageReactionAdd.js changed (change). Reloading events...
+2025-08-09T16:18:39.697Z [INFO]: Event file messageReactionRemove.js changed (change). Reloading events...
+2025-08-09T16:18:39.698Z [INFO]: Event file messageXP.js changed (change). Reloading events...
+2025-08-09T16:18:39.699Z [INFO]: Event file statsUpdater.js changed (change). Reloading events...
+2025-08-09T16:18:39.701Z [INFO]: Event file voiceStateUpdate.js changed (change). Reloading events...
+2025-08-09T16:18:39.806Z [INFO]: Loaded event: guildMemberAdd
+2025-08-09T16:18:39.807Z [INFO]: Loaded event: guildMemberRemove
+2025-08-09T16:18:39.809Z [INFO]: Loaded event: interactionCreate
+2025-08-09T16:18:39.810Z [INFO]: Loaded event: messageReactionAdd
+2025-08-09T16:18:39.811Z [INFO]: Loaded event: messageReactionRemove
+2025-08-09T16:18:39.813Z [INFO]: Loaded event: messageCreate
+2025-08-09T16:18:39.814Z [INFO]: Loaded event: ready
+2025-08-09T16:18:39.816Z [INFO]: Loaded event: voiceStateUpdate
+2025-08-09T16:18:39.816Z [INFO]: Total 8 events loaded.
+2025-08-09T16:18:39.816Z [INFO]: Events reloaded successfully.
+2025-08-09T16:18:39.818Z [INFO]: Loaded event: guildMemberAdd
+2025-08-09T16:18:39.819Z [INFO]: Loaded event: guildMemberRemove
+2025-08-09T16:18:39.821Z [INFO]: Loaded event: interactionCreate
+2025-08-09T16:18:39.822Z [INFO]: Loaded event: messageReactionAdd
+2025-08-09T16:18:39.823Z [INFO]: Loaded event: messageReactionRemove
+2025-08-09T16:18:39.825Z [INFO]: Loaded event: messageCreate
+2025-08-09T16:18:39.827Z [INFO]: Loaded event: ready
+2025-08-09T16:18:39.829Z [INFO]: Loaded event: voiceStateUpdate
+2025-08-09T16:18:39.829Z [INFO]: Total 8 events loaded.
+2025-08-09T16:18:39.829Z [INFO]: Events reloaded successfully.
+2025-08-09T16:18:39.830Z [INFO]: Loaded event: guildMemberAdd
+2025-08-09T16:18:39.832Z [INFO]: Loaded event: guildMemberRemove
+2025-08-09T16:18:39.834Z [INFO]: Loaded event: interactionCreate
+2025-08-09T16:18:39.835Z [INFO]: Loaded event: messageReactionAdd
+2025-08-09T16:18:39.836Z [INFO]: Loaded event: messageReactionRemove
+2025-08-09T16:18:39.838Z [INFO]: Loaded event: messageCreate
+2025-08-09T16:18:39.839Z [INFO]: Loaded event: ready
+2025-08-09T16:18:39.841Z [INFO]: Loaded event: voiceStateUpdate
+2025-08-09T16:18:39.841Z [INFO]: Total 8 events loaded.
+2025-08-09T16:18:39.842Z [INFO]: Events reloaded successfully.
+2025-08-09T16:18:39.844Z [INFO]: Loaded event: guildMemberAdd
+2025-08-09T16:18:39.846Z [INFO]: Loaded event: guildMemberRemove
+2025-08-09T16:18:39.847Z [INFO]: Loaded event: interactionCreate
+2025-08-09T16:18:39.849Z [INFO]: Loaded event: messageReactionAdd
+2025-08-09T16:18:39.850Z [INFO]: Loaded event: messageReactionRemove
+2025-08-09T16:18:39.853Z [INFO]: Loaded event: messageCreate
+2025-08-09T16:18:39.856Z [INFO]: Loaded event: ready
+2025-08-09T16:18:39.858Z [INFO]: Loaded event: voiceStateUpdate
+2025-08-09T16:18:39.859Z [INFO]: Total 8 events loaded.
+2025-08-09T16:18:39.860Z [INFO]: Events reloaded successfully.
+2025-08-09T16:18:39.862Z [INFO]: Loaded event: guildMemberAdd
+2025-08-09T16:18:39.863Z [INFO]: Loaded event: guildMemberRemove
+2025-08-09T16:18:39.865Z [INFO]: Loaded event: interactionCreate
+2025-08-09T16:18:39.866Z [INFO]: Loaded event: messageReactionAdd
+2025-08-09T16:18:39.868Z [INFO]: Loaded event: messageReactionRemove
+2025-08-09T16:18:39.870Z [INFO]: Loaded event: messageCreate
+2025-08-09T16:18:39.871Z [INFO]: Loaded event: ready
+2025-08-09T16:18:39.872Z [INFO]: Loaded event: voiceStateUpdate
+2025-08-09T16:18:39.873Z [INFO]: Total 8 events loaded.
+2025-08-09T16:18:39.874Z [INFO]: Events reloaded successfully.
+2025-08-09T16:18:39.876Z [INFO]: Loaded event: guildMemberAdd
+2025-08-09T16:18:39.877Z [INFO]: Loaded event: guildMemberRemove
+2025-08-09T16:18:39.878Z [INFO]: Loaded event: interactionCreate
+2025-08-09T16:18:39.880Z [INFO]: Loaded event: messageReactionAdd
+2025-08-09T16:18:39.881Z [INFO]: Loaded event: messageReactionRemove
+2025-08-09T16:18:39.884Z [INFO]: Loaded event: messageCreate
+2025-08-09T16:18:39.885Z [INFO]: Loaded event: ready
+2025-08-09T16:18:39.887Z [INFO]: Loaded event: voiceStateUpdate
+2025-08-09T16:18:39.889Z [INFO]: Total 8 events loaded.
+2025-08-09T16:18:39.889Z [INFO]: Events reloaded successfully.
+2025-08-09T16:18:39.890Z [INFO]: Loaded event: guildMemberAdd
+2025-08-09T16:18:39.892Z [INFO]: Loaded event: guildMemberRemove
+2025-08-09T16:18:39.894Z [INFO]: Loaded event: interactionCreate
+2025-08-09T16:18:39.895Z [INFO]: Loaded event: messageReactionAdd
+2025-08-09T16:18:39.896Z [INFO]: Loaded event: messageReactionRemove
+2025-08-09T16:18:39.898Z [INFO]: Loaded event: messageCreate
+2025-08-09T16:18:39.899Z [INFO]: Loaded event: ready
+2025-08-09T16:18:39.903Z [INFO]: Loaded event: voiceStateUpdate
+2025-08-09T16:18:39.903Z [INFO]: Total 8 events loaded.
+2025-08-09T16:18:39.905Z [INFO]: Events reloaded successfully.
+2025-08-09T16:18:39.907Z [INFO]: Loaded event: guildMemberAdd
+2025-08-09T16:18:39.909Z [INFO]: Loaded event: guildMemberRemove
+2025-08-09T16:18:39.911Z [INFO]: Loaded event: interactionCreate
+2025-08-09T16:18:39.913Z [INFO]: Loaded event: messageReactionAdd
+2025-08-09T16:18:39.915Z [INFO]: Loaded event: messageReactionRemove
+2025-08-09T16:18:39.918Z [INFO]: Loaded event: messageCreate
+2025-08-09T16:18:39.919Z [INFO]: Loaded event: ready
+2025-08-09T16:18:39.922Z [INFO]: Loaded event: voiceStateUpdate
+2025-08-09T16:18:39.922Z [INFO]: Total 8 events loaded.
+2025-08-09T16:18:39.923Z [INFO]: Events reloaded successfully.
+2025-08-09T16:18:40.862Z [INFO]: Bot logged in as Perry#4690
+2025-08-09T16:18:51.480Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:18:51.931Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:18:52.414Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:18:59.142Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:19:29.153Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:19:59.141Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:20:01.467Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:26:37.372Z [INFO]: Shoukaku (Lavalink Handler) initialized.
+2025-08-09T16:26:37.398Z [INFO]: Loaded command: admin-gacha
+2025-08-09T16:26:37.401Z [INFO]: Loaded command: admin-race
+2025-08-09T16:26:37.404Z [INFO]: Loaded command: admin-sidejob
+2025-08-09T16:26:37.410Z [INFO]: Loaded command: admin-value
+2025-08-09T16:26:37.414Z [INFO]: Loaded command: bot-admin
+2025-08-09T16:26:37.417Z [INFO]: Loaded command: channel
+2025-08-09T16:26:37.429Z [INFO]: Loaded command: gacha
+2025-08-09T16:26:37.432Z [INFO]: Loaded command: level
+2025-08-09T16:26:37.451Z [INFO]: Loaded command: mainjob
+2025-08-09T16:26:37.465Z [INFO]: Loaded command: market
+2025-08-09T16:26:37.469Z [INFO]: Loaded command: money
+2025-08-09T16:26:37.492Z [INFO]: Loaded command: race
+2025-08-09T16:26:37.496Z [INFO]: Loaded command: shop
+2025-08-09T16:26:37.500Z [INFO]: Loaded command: sidejob
+2025-08-09T16:26:37.541Z [INFO]: Loaded command: baicao
+2025-08-09T16:26:37.542Z [WARN]: Command at C:\bott3\src\commands\games\baucua.js missing required properties
+2025-08-09T16:26:37.546Z [INFO]: Loaded command: coinflip
+2025-08-09T16:26:37.547Z [WARN]: Command at C:\bott3\src\commands\games\loto.js missing required properties
+2025-08-09T16:26:37.554Z [ERROR]: Error loading command slot.js: Cannot read properties of undefined (reading '0')
+2025-08-09T16:26:37.556Z [WARN]: Command at C:\bott3\src\commands\games\taixiu.js missing required properties
+2025-08-09T16:26:37.564Z [INFO]: Loaded command: xidach
+2025-08-09T16:26:37.565Z [WARN]: Command at C:\bott3\src\commands\games\xocdia.js missing required properties
+2025-08-09T16:26:37.572Z [INFO]: Loaded command: moderation
+2025-08-09T16:26:37.576Z [INFO]: Loaded command: play
+2025-08-09T16:26:37.578Z [INFO]: Loaded command: queue
+2025-08-09T16:26:37.582Z [INFO]: Loaded command: set-goldenhour-channel
+2025-08-09T16:26:37.586Z [INFO]: Loaded command: set-market-noti
+2025-08-09T16:26:37.588Z [INFO]: Loaded command: set-noti
+2025-08-09T16:26:37.592Z [INFO]: Loaded command: setup-autorole
+2025-08-09T16:26:37.595Z [INFO]: Loaded command: setup-goodbye
+2025-08-09T16:26:37.599Z [INFO]: Loaded command: setup-log
+2025-08-09T16:26:37.602Z [INFO]: Loaded command: setup-role-channel
+2025-08-09T16:26:37.604Z [INFO]: Loaded command: setup-rule
+2025-08-09T16:26:37.608Z [INFO]: Loaded command: setup-stats-channel
+2025-08-09T16:26:37.610Z [INFO]: Loaded command: setup-welcome
+2025-08-09T16:26:37.617Z [INFO]: Đang đăng ký 30 lệnh với Discord API...
+2025-08-09T16:26:38.533Z [INFO]: Đã đăng ký thành công 30 lệnh với Discord API
+2025-08-09T16:26:38.536Z [INFO]: Loaded event: guildMemberAdd
+2025-08-09T16:26:38.538Z [INFO]: Loaded event: guildMemberRemove
+2025-08-09T16:26:38.540Z [INFO]: Loaded event: interactionCreate
+2025-08-09T16:26:38.541Z [INFO]: Loaded event: messageReactionAdd
+2025-08-09T16:26:38.543Z [INFO]: Loaded event: messageReactionRemove
+2025-08-09T16:26:38.545Z [INFO]: Loaded event: messageCreate
+2025-08-09T16:26:38.546Z [INFO]: Loaded event: ready
+2025-08-09T16:26:38.549Z [INFO]: Loaded event: voiceStateUpdate
+2025-08-09T16:26:38.549Z [INFO]: Total 8 events loaded.
+2025-08-09T16:26:38.550Z [INFO]: Lavalink handler initialized
+2025-08-09T16:26:38.550Z [INFO]: Command handler initialized
+2025-08-09T16:26:38.550Z [INFO]: Event handler initialized
+2025-08-09T16:26:38.550Z [INFO]: Bot is starting...
+2025-08-09T16:26:39.714Z [INFO]: Bot logged in as Perry#4690
+2025-08-09T16:26:40.459Z [INFO]: [AntiCaps Cache] Loading all anticaps settings...
+2025-08-09T16:26:40.461Z [INFO]: [GoldenHourManager] Initializing Golden Hour scheduling...
+2025-08-09T16:26:40.461Z [INFO]: [GoldenHourManager] Next Golden Hour scheduled in approx 9.40 hours.
+2025-08-09T16:26:40.463Z [INFO]: [TaskHandler] Loaded task: baoTri for job công nhân
+2025-08-09T16:26:40.465Z [INFO]: [TaskHandler] Loaded task: capCuu for job bác sĩ
+2025-08-09T16:26:40.467Z [INFO]: [TaskHandler] Loaded task: catCo for job nông dân
+2025-08-09T16:26:40.469Z [INFO]: [TaskHandler] Loaded task: chamSocHocSinh for job giáo viên
+2025-08-09T16:26:40.471Z [INFO]: [TaskHandler] Loaded task: completerepairorder for job thợ sửa xe
+2025-08-09T16:26:40.473Z [INFO]: [TaskHandler] Loaded task: craftcommonenginepart for job thợ sửa xe
+2025-08-09T16:26:40.476Z [INFO]: [TaskHandler] Loaded task: dayHoc for job giáo viên
+2025-08-09T16:26:40.478Z [INFO]: [TaskHandler] Loaded task: diagnosecarproblem for job thợ sửa xe
+2025-08-09T16:26:40.480Z [INFO]: [TaskHandler] Loaded task: gieoHat for job nông dân
+2025-08-09T16:26:40.483Z [INFO]: [TaskHandler] Loaded task: khamsucKhoe for job bác sĩ
+2025-08-09T16:26:40.485Z [INFO]: [TaskHandler] Loaded task: kiemDinh for job kỹ sư
+2025-08-09T16:26:40.487Z [INFO]: [TaskHandler] Loaded task: kiemTra for job công nhân
+2025-08-09T16:26:40.490Z [INFO]: [TaskHandler] Loaded task: lapRap for job công nhân
+2025-08-09T16:26:40.491Z [INFO]: [TaskHandler] Loaded task: performoilchange for job thợ sửa xe
+2025-08-09T16:26:40.493Z [INFO]: [TaskHandler] Loaded task: phatTrien for job kỹ sư
+2025-08-09T16:26:40.496Z [INFO]: [TaskHandler] Loaded task: soannGiaoAn for job giáo viên
+2025-08-09T16:26:40.498Z [INFO]: [TaskHandler] Loaded task: thamGiaHoiThao for job giáo viên
+2025-08-09T16:26:40.500Z [INFO]: [TaskHandler] Loaded task: thietKe for job kỹ sư
+2025-08-09T16:26:40.503Z [INFO]: [TaskHandler] Loaded task: thuHoach for job nông dân
+2025-08-09T16:26:40.505Z [INFO]: [TaskHandler] Loaded task: thucHienXetNghiem for job bác sĩ
+2025-08-09T16:26:40.507Z [INFO]: [TaskHandler] Loaded task: tuVanKyThuat for job kỹ sư
+2025-08-09T16:26:40.509Z [INFO]: [TaskHandler] Loaded task: tuVan for job bác sĩ
+2025-08-09T16:26:40.512Z [INFO]: [TaskHandler] Loaded task: tuneupbasicengine for job thợ sửa xe
+2025-08-09T16:26:40.514Z [INFO]: [TaskHandler] Loaded task: tuoiCay for job nông dân
+2025-08-09T16:26:40.517Z [INFO]: [TaskHandler] Loaded task: vanChuyen for job công nhân
+2025-08-09T16:26:40.517Z [INFO]: [TaskHandler] Total 25 job tasks loaded.
+2025-08-09T16:26:40.518Z [INFO]: Bot is ready as Perry#4690
+2025-08-09T16:26:40.527Z [ERROR]: Lavalink Node: localhost encountered an error: connect ECONNREFUSED 127.0.0.1:2333
+2025-08-09T16:26:40.527Z [WARN]: Lavalink Node: localhost closed with code 1006. Reason: No reason
+2025-08-09T16:26:50.540Z [ERROR]: [AntiCaps Cache] Error loading config for guild 1005814304509018113: Operation `anticaps.find()` buffering timed out after 10000ms
+2025-08-09T16:26:50.838Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:26:51.305Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:26:51.789Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:26:55.856Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:26:59.134Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:27:00.548Z [ERROR]: [AntiCaps Cache] Error loading config for guild 1186898120789995580: Operation `anticaps.find()` buffering timed out after 10000ms
+2025-08-09T16:27:01.978Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:27:04.259Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:27:10.554Z [ERROR]: [AntiCaps Cache] Error loading config for guild 1371704233929474118: Operation `anticaps.find()` buffering timed out after 10000ms
+2025-08-09T16:27:10.554Z [INFO]: [AntiCaps Cache] Finished loading all anticaps settings.
+2025-08-09T16:27:19.459Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:27:19.459Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:27:19.459Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:27:22.054Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:27:22.055Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:27:22.055Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:27:26.132Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:27:29.142Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:27:29.718Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:27:32.863Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:27:46.617Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:27:59.129Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:28:29.159Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:28:59.138Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:29:18.850Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:29:18.851Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:29:18.851Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:29:27.759Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:29:29.162Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:29:42.981Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:29:51.068Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:29:59.152Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:30:29.130Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:30:35.887Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:30:59.135Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:31:28.098Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:31:29.210Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:31:30.364Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:31:31.502Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:31:33.576Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:31:51.803Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:31:51.804Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:31:51.804Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:31:59.153Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:32:29.153Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:32:46.366Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:32:59.151Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:33:28.088Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:33:28.089Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:33:28.103Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:33:29.149Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:33:59.141Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:34:29.141Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:34:59.145Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:34:59.425Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:35:14.644Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:35:14.645Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:35:14.675Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:35:26.570Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:35:26.571Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:35:26.602Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:35:29.143Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:35:48.942Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:35:48.958Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:35:48.959Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:35:49.256Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:35:49.256Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:35:49.257Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:35:59.140Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:36:29.154Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:36:51.825Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:36:51.825Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:36:51.825Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:36:59.160Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:37:29.145Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:37:36.339Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:37:56.967Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:37:56.967Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:37:57.046Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:37:59.193Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:38:29.174Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:38:59.151Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:39:29.148Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:39:42.160Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:39:59.154Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:40:29.138Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:40:35.842Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:40:59.146Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:41:29.158Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:41:37.605Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:41:51.824Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:41:51.824Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:41:51.824Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:41:59.150Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:42:05.181Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:42:29.152Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:42:43.459Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:42:44.648Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:42:59.142Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:43:29.136Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:43:59.160Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:44:04.398Z [ERROR]: Unhandled promise rejection: Operation `guildconfigs.findOne()` buffering timed out after 10000ms
+2025-08-09T16:44:17.644Z [INFO]: Shoukaku (Lavalink Handler) initialized.
+2025-08-09T16:44:17.673Z [INFO]: Loaded command: admin-gacha
+2025-08-09T16:44:17.676Z [INFO]: Loaded command: admin-race
+2025-08-09T16:44:17.679Z [INFO]: Loaded command: admin-sidejob
+2025-08-09T16:44:17.684Z [INFO]: Loaded command: admin-value
+2025-08-09T16:44:17.688Z [INFO]: Loaded command: bot-admin
+2025-08-09T16:44:17.691Z [INFO]: Loaded command: channel
+2025-08-09T16:44:17.701Z [INFO]: Loaded command: gacha
+2025-08-09T16:44:17.704Z [INFO]: Loaded command: level
+2025-08-09T16:44:17.724Z [INFO]: Loaded command: mainjob
+2025-08-09T16:44:17.739Z [INFO]: Loaded command: market
+2025-08-09T16:44:17.742Z [INFO]: Loaded command: money
+2025-08-09T16:44:17.765Z [INFO]: Loaded command: race
+2025-08-09T16:44:17.769Z [INFO]: Loaded command: shop
+2025-08-09T16:44:17.773Z [INFO]: Loaded command: sidejob
+2025-08-09T16:44:17.810Z [INFO]: Loaded command: baicao
+2025-08-09T16:44:17.812Z [WARN]: Command at C:\bott3\src\commands\games\baucua.js missing required properties
+2025-08-09T16:44:17.814Z [INFO]: Loaded command: coinflip
+2025-08-09T16:44:17.815Z [WARN]: Command at C:\bott3\src\commands\games\loto.js missing required properties
+2025-08-09T16:44:17.820Z [ERROR]: Error loading command slot.js: Cannot read properties of undefined (reading '0')
+2025-08-09T16:44:17.822Z [WARN]: Command at C:\bott3\src\commands\games\taixiu.js missing required properties
+2025-08-09T16:44:17.827Z [INFO]: Loaded command: xidach
+2025-08-09T16:44:17.828Z [WARN]: Command at C:\bott3\src\commands\games\xocdia.js missing required properties
+2025-08-09T16:44:17.832Z [INFO]: Loaded command: moderation
+2025-08-09T16:44:17.837Z [INFO]: Loaded command: play
+2025-08-09T16:44:17.839Z [INFO]: Loaded command: queue
+2025-08-09T16:44:17.843Z [INFO]: Loaded command: set-goldenhour-channel
+2025-08-09T16:44:17.845Z [INFO]: Loaded command: set-market-noti
+2025-08-09T16:44:17.848Z [INFO]: Loaded command: set-noti
+2025-08-09T16:44:17.850Z [INFO]: Loaded command: setup-autorole
+2025-08-09T16:44:17.852Z [INFO]: Loaded command: setup-goodbye
+2025-08-09T16:44:17.854Z [INFO]: Loaded command: setup-log
+2025-08-09T16:44:17.856Z [INFO]: Loaded command: setup-role-channel
+2025-08-09T16:44:17.859Z [INFO]: Loaded command: setup-rule
+2025-08-09T16:44:17.861Z [INFO]: Loaded command: setup-stats-channel
+2025-08-09T16:44:17.863Z [INFO]: Loaded command: setup-welcome
+2025-08-09T16:44:17.868Z [INFO]: Đang đăng ký 30 lệnh với Discord API...
+2025-08-09T16:44:18.962Z [INFO]: Đã đăng ký thành công 30 lệnh với Discord API
+2025-08-09T16:44:18.965Z [INFO]: Loaded event: guildMemberAdd
+2025-08-09T16:44:18.967Z [INFO]: Loaded event: guildMemberRemove
+2025-08-09T16:44:18.970Z [INFO]: Loaded event: interactionCreate
+2025-08-09T16:44:18.971Z [INFO]: Loaded event: messageReactionAdd
+2025-08-09T16:44:18.973Z [INFO]: Loaded event: messageReactionRemove
+2025-08-09T16:44:18.975Z [INFO]: Loaded event: messageCreate
+2025-08-09T16:44:18.977Z [INFO]: Loaded event: ready
+2025-08-09T16:44:18.979Z [INFO]: Loaded event: voiceStateUpdate
+2025-08-09T16:44:18.979Z [INFO]: Total 8 events loaded.
+2025-08-09T16:44:18.979Z [INFO]: Lavalink handler initialized
+2025-08-09T16:44:18.979Z [INFO]: Command handler initialized
+2025-08-09T16:44:18.980Z [INFO]: Event handler initialized
+2025-08-09T16:44:18.980Z [INFO]: Bot is starting...
+2025-08-09T16:44:20.420Z [INFO]: Bot logged in as Perry#4690
+2025-08-09T16:44:20.723Z [INFO]: [AntiCaps Cache] Loading all anticaps settings...
+2025-08-09T16:44:20.724Z [INFO]: [GoldenHourManager] Initializing Golden Hour scheduling...
+2025-08-09T16:44:20.724Z [INFO]: [GoldenHourManager] Next Golden Hour scheduled in approx 22.21 hours.
+2025-08-09T16:44:20.726Z [INFO]: [TaskHandler] Loaded task: baoTri for job công nhân
+2025-08-09T16:44:20.728Z [INFO]: [TaskHandler] Loaded task: capCuu for job bác sĩ
+2025-08-09T16:44:20.729Z [INFO]: [TaskHandler] Loaded task: catCo for job nông dân
+2025-08-09T16:44:20.731Z [INFO]: [TaskHandler] Loaded task: chamSocHocSinh for job giáo viên
+2025-08-09T16:44:20.732Z [INFO]: [TaskHandler] Loaded task: completerepairorder for job thợ sửa xe
+2025-08-09T16:44:20.733Z [INFO]: [TaskHandler] Loaded task: craftcommonenginepart for job thợ sửa xe
+2025-08-09T16:44:20.735Z [INFO]: [TaskHandler] Loaded task: dayHoc for job giáo viên
+2025-08-09T16:44:20.736Z [INFO]: [TaskHandler] Loaded task: diagnosecarproblem for job thợ sửa xe
+2025-08-09T16:44:20.739Z [INFO]: [TaskHandler] Loaded task: gieoHat for job nông dân
+2025-08-09T16:44:20.740Z [INFO]: [TaskHandler] Loaded task: khamsucKhoe for job bác sĩ
+2025-08-09T16:44:20.741Z [INFO]: [TaskHandler] Loaded task: kiemDinh for job kỹ sư
+2025-08-09T16:44:20.742Z [INFO]: [TaskHandler] Loaded task: kiemTra for job công nhân
+2025-08-09T16:44:20.744Z [INFO]: [TaskHandler] Loaded task: lapRap for job công nhân
+2025-08-09T16:44:20.745Z [INFO]: [TaskHandler] Loaded task: performoilchange for job thợ sửa xe
+2025-08-09T16:44:20.747Z [INFO]: [TaskHandler] Loaded task: phatTrien for job kỹ sư
+2025-08-09T16:44:20.748Z [INFO]: [TaskHandler] Loaded task: soannGiaoAn for job giáo viên
+2025-08-09T16:44:20.749Z [INFO]: [TaskHandler] Loaded task: thamGiaHoiThao for job giáo viên
+2025-08-09T16:44:20.751Z [INFO]: [TaskHandler] Loaded task: thietKe for job kỹ sư
+2025-08-09T16:44:20.753Z [INFO]: [TaskHandler] Loaded task: thuHoach for job nông dân
+2025-08-09T16:44:20.754Z [INFO]: [TaskHandler] Loaded task: thucHienXetNghiem for job bác sĩ
+2025-08-09T16:44:20.755Z [INFO]: [TaskHandler] Loaded task: tuVanKyThuat for job kỹ sư
+2025-08-09T16:44:20.757Z [INFO]: [TaskHandler] Loaded task: tuVan for job bác sĩ
+2025-08-09T16:44:20.759Z [INFO]: [TaskHandler] Loaded task: tuneupbasicengine for job thợ sửa xe
+2025-08-09T16:44:20.761Z [INFO]: [TaskHandler] Loaded task: tuoiCay for job nông dân
+2025-08-09T16:44:20.762Z [INFO]: [TaskHandler] Loaded task: vanChuyen for job công nhân
+2025-08-09T16:44:20.762Z [INFO]: [TaskHandler] Total 25 job tasks loaded.
+2025-08-09T16:44:20.763Z [INFO]: Bot is ready as Perry#4690
+2025-08-09T16:44:20.770Z [ERROR]: Lavalink Node: localhost encountered an error: connect ECONNREFUSED 127.0.0.1:2333
+2025-08-09T16:44:20.770Z [WARN]: Lavalink Node: localhost closed with code 1006. Reason: No reason
+2025-08-09T16:44:20.809Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1005814304509018113
+2025-08-09T16:44:20.843Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1186898120789995580
+2025-08-09T16:44:20.878Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1371704233929474118
+2025-08-09T16:44:20.878Z [INFO]: [AntiCaps Cache] Finished loading all anticaps settings.
+2025-08-09T16:44:52.797Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:45:18.873Z [INFO]: [Gacha Roll] User 953837159192879104 using free roll #1/10.
+2025-08-09T16:45:19.069Z [INFO]: [Gacha Roll] User 953837159192879104 received NEW CAR: Toyota Raize 2022 (toyota_raize_2022)
+2025-08-09T16:45:19.177Z [INFO]: [Gacha Roll] Session ended for user 953837159192879104.
+2025-08-09T16:45:20.226Z [INFO]: [Gacha Roll] User 995716533571567667 using free roll #1/10.
+2025-08-09T16:45:20.403Z [INFO]: [Gacha Roll] User 995716533571567667 received DUPLICATE CAR: Nissan Sunny XL 2017 (nissan_sunny_2017_xl). Converted to 1 Castrol.
+2025-08-09T16:45:20.486Z [INFO]: [Gacha Roll] Session ended for user 995716533571567667.
+2025-08-09T16:45:24.416Z [INFO]: [Gacha Roll] User 953837159192879104 using free roll #2/10.
+2025-08-09T16:45:24.594Z [INFO]: [Gacha Roll] User 953837159192879104 got rare+ item (epic) before pity. Resetting pity counter from 2.
+2025-08-09T16:45:24.595Z [INFO]: [Gacha Roll] User 953837159192879104 received NEW CAR: Dodge Viper ACR 2017 (dodge_viper_acr_2017)
+2025-08-09T16:45:24.690Z [INFO]: [Gacha Roll] Session ended for user 953837159192879104.
+2025-08-09T16:45:39.713Z [INFO]: [Gacha Roll] User 995716533571567667 using free roll #2/10.
+2025-08-09T16:45:39.892Z [INFO]: [Gacha Roll] User 995716533571567667 got rare+ item (rare) before pity. Resetting pity counter from 10.
+2025-08-09T16:45:39.893Z [INFO]: [Gacha Roll] User 995716533571567667 received PART: Turbo BorgWarner EFR 7163 Twin-Scroll (fi_r_borgwarner_efr_7163_twin_scroll_turbo)
+2025-08-09T16:45:39.978Z [INFO]: [Gacha Roll] Session ended for user 995716533571567667.
+2025-08-09T16:45:43.002Z [INFO]: [Gacha Roll] User 995716533571567667 using free roll #3/10.
+2025-08-09T16:45:43.183Z [INFO]: [Gacha Roll] User 995716533571567667 got rare+ item (rare) before pity. Resetting pity counter from 1.
+2025-08-09T16:45:43.184Z [INFO]: [Gacha Roll] User 995716533571567667 received NEW CAR: Maserati Ghibli S Q4 2018 (maserati_ghibli_s_q4_2018)
+2025-08-09T16:45:43.269Z [INFO]: [Gacha Roll] Session ended for user 995716533571567667.
+2025-08-09T16:45:45.770Z [INFO]: [Gacha Roll] User 995716533571567667 using free roll #4/10.
+2025-08-09T16:45:45.950Z [INFO]: [Gacha Roll] User 995716533571567667 received PART: Quạt và Két Nước OEM Cơ Bản (cooling_c_oem_radiator_fan_basic)
+2025-08-09T16:45:46.032Z [INFO]: [Gacha Roll] Session ended for user 995716533571567667.
+2025-08-09T16:45:48.234Z [INFO]: [Gacha Roll] User 995716533571567667 using free roll #5/10.
+2025-08-09T16:45:48.410Z [INFO]: [Gacha Roll] User 995716533571567667 got rare+ item (rare) before pity. Resetting pity counter from 2.
+2025-08-09T16:45:48.411Z [INFO]: [Gacha Roll] User 995716533571567667 received PART: Full Kit Body Phong Cách Liberty Walk (bodykit_r_liberty_walk_style_full_kit)
+2025-08-09T16:45:48.501Z [INFO]: [Gacha Roll] Session ended for user 995716533571567667.
+2025-08-09T16:45:51.924Z [INFO]: [Gacha Roll] User 995716533571567667 using free roll #6/10.
+2025-08-09T16:45:52.102Z [INFO]: [Gacha Roll] User 995716533571567667 received DUPLICATE CAR: Mitsubishi Lancer Fortis 2013 (mitsubishi_lancer_2013_fortis). Converted to 1 Castrol.
+2025-08-09T16:45:52.193Z [INFO]: [Gacha Roll] Session ended for user 995716533571567667.
+2025-08-09T16:45:54.417Z [INFO]: [Gacha Roll] User 995716533571567667 using free roll #7/10.
+2025-08-09T16:45:54.595Z [INFO]: [Gacha Roll] User 995716533571567667 got rare+ item (epic) before pity. Resetting pity counter from 2.
+2025-08-09T16:45:54.596Z [INFO]: [Gacha Roll] User 995716533571567667 received PART: Lốp Trơn Đường Đua (Hợp Chất Mềm) (tires_e_racing_slick_soft_compound)
+2025-08-09T16:45:54.679Z [INFO]: [Gacha Roll] Session ended for user 995716533571567667.
+2025-08-09T16:46:12.278Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:46:15.807Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:46:16.948Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:46:17.810Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:46:18.689Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:46:19.706Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:46:24.096Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:46:25.500Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:46:26.695Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:46:27.670Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:46:28.578Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:46:29.536Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:46:30.571Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:46:31.196Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:46:32.111Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:46:33.196Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:46:36.259Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:46:37.134Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:46:38.238Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:46:42.210Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:46:43.874Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:46:44.875Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:46:45.843Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:46:47.059Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:46:47.932Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:46:48.867Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:46:49.495Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:46:50.941Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:46:52.025Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:46:53.121Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:46:54.239Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:46:55.424Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:46:56.594Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:46:57.513Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:46:58.698Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:46:59.966Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:47:01.181Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:47:02.752Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:47:09.726Z [INFO]: [Gacha Roll] User 995716533571567667 using free roll #8/10.
+2025-08-09T16:47:09.901Z [INFO]: [Gacha Roll] User 995716533571567667 got rare+ item (epic) before pity. Resetting pity counter from 1.
+2025-08-09T16:47:09.902Z [INFO]: [Gacha Roll] User 995716533571567667 received NEW CAR: Lamborghini Huracan RWD 2020 (lamborghini_huracan_rwd_2020)
+2025-08-09T16:47:09.983Z [INFO]: [Gacha Roll] Session ended for user 995716533571567667.
+2025-08-09T16:47:13.817Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:47:18.358Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:47:19.371Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:47:20.513Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:47:21.498Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:47:22.410Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:47:23.362Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:47:24.264Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:47:25.673Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-09T16:47:26.830Z [ERROR]: [AntiCaps Check Error] anticapsCache is not defined
+2025-08-12T09:00:33.201Z [INFO]: Shoukaku (Lavalink Handler) initialized.
+2025-08-12T09:00:33.220Z [INFO]: Loaded command: admin-gacha
+2025-08-12T09:00:33.222Z [INFO]: Loaded command: admin-race
+2025-08-12T09:00:33.225Z [INFO]: Loaded command: admin-sidejob
+2025-08-12T09:00:33.228Z [INFO]: Loaded command: admin-value
+2025-08-12T09:00:33.233Z [INFO]: Loaded command: bot-admin
+2025-08-12T09:00:33.238Z [INFO]: Loaded command: channel
+2025-08-12T09:00:33.249Z [INFO]: Loaded command: gacha
+2025-08-12T09:00:33.252Z [INFO]: Loaded command: level
+2025-08-12T09:00:33.267Z [INFO]: Loaded command: mainjob
+2025-08-12T09:00:33.280Z [INFO]: Loaded command: market
+2025-08-12T09:00:33.283Z [INFO]: Loaded command: money
+2025-08-12T09:00:33.308Z [INFO]: Loaded command: race
+2025-08-12T09:00:33.311Z [INFO]: Loaded command: shop
+2025-08-12T09:00:33.314Z [INFO]: Loaded command: sidejob
+2025-08-12T09:00:33.348Z [INFO]: Loaded command: baicao
+2025-08-12T09:00:33.351Z [INFO]: Loaded command: coinflip
+2025-08-12T09:00:33.352Z [INFO]: Loaded command: slot
+2025-08-12T09:00:33.357Z [INFO]: Loaded command: xidach
+2025-08-12T09:00:33.361Z [INFO]: Loaded command: moderation
+2025-08-12T09:00:33.364Z [INFO]: Loaded command: play
+2025-08-12T09:00:33.366Z [INFO]: Loaded command: queue
+2025-08-12T09:00:33.368Z [INFO]: Loaded command: set-goldenhour-channel
+2025-08-12T09:00:33.370Z [INFO]: Loaded command: set-market-noti
+2025-08-12T09:00:33.374Z [INFO]: Loaded command: set-noti
+2025-08-12T09:00:33.377Z [INFO]: Loaded command: setup-autorole
+2025-08-12T09:00:33.378Z [INFO]: Loaded command: setup-goodbye
+2025-08-12T09:00:33.380Z [INFO]: Loaded command: setup-log
+2025-08-12T09:00:33.382Z [INFO]: Loaded command: setup-role-channel
+2025-08-12T09:00:33.384Z [INFO]: Loaded command: setup-rule
+2025-08-12T09:00:33.387Z [INFO]: Loaded command: setup-stats-channel
+2025-08-12T09:00:33.388Z [INFO]: Loaded command: setup-welcome
+2025-08-12T09:00:33.391Z [INFO]: Loaded command: diag
+2025-08-12T09:00:33.396Z [INFO]: Đang đăng ký 32 lệnh với Discord API...
+2025-08-12T09:00:34.199Z [INFO]: ✅ Kết nối MongoDB thành công!
+2025-08-12T09:00:34.503Z [INFO]: Đã đăng ký thành công 32 lệnh với Discord API
+2025-08-12T09:00:34.507Z [INFO]: Loaded event: guildMemberAdd
+2025-08-12T09:00:34.509Z [INFO]: Loaded event: guildMemberRemove
+2025-08-12T09:00:34.511Z [INFO]: Loaded event: interactionCreate
+2025-08-12T09:00:34.513Z [INFO]: Loaded event: messageReactionAdd
+2025-08-12T09:00:34.515Z [INFO]: Loaded event: messageReactionRemove
+2025-08-12T09:00:34.518Z [INFO]: Loaded event: messageCreate
+2025-08-12T09:00:34.520Z [INFO]: Loaded event: ready
+2025-08-12T09:00:34.523Z [INFO]: Loaded event: voiceStateUpdate
+2025-08-12T09:00:34.523Z [INFO]: Total 8 events loaded.
+2025-08-12T09:00:34.523Z [INFO]: Lavalink handler initialized
+2025-08-12T09:00:34.524Z [INFO]: Command handler initialized
+2025-08-12T09:00:34.524Z [INFO]: Event handler initialized
+2025-08-12T09:00:34.524Z [INFO]: Bot is starting...
+2025-08-12T09:00:34.534Z [INFO]: Event file guildMemberAdd.js changed (change). Reloading events...
+2025-08-12T09:00:34.537Z [INFO]: Event file guildMemberRemove.js changed (change). Reloading events...
+2025-08-12T09:00:34.538Z [INFO]: Event file interactionCreate.js changed (change). Reloading events...
+2025-08-12T09:00:34.539Z [INFO]: Event file messageReactionAdd.js changed (change). Reloading events...
+2025-08-12T09:00:34.539Z [INFO]: Event file messageReactionRemove.js changed (change). Reloading events...
+2025-08-12T09:00:34.540Z [INFO]: Event file messageXP.js changed (change). Reloading events...
+2025-08-12T09:00:34.541Z [INFO]: Event file statsUpdater.js changed (change). Reloading events...
+2025-08-12T09:00:34.542Z [INFO]: Event file voiceStateUpdate.js changed (change). Reloading events...
+2025-08-12T09:00:34.850Z [INFO]: Loaded event: guildMemberAdd
+2025-08-12T09:00:34.851Z [INFO]: Loaded event: guildMemberRemove
+2025-08-12T09:00:34.852Z [INFO]: Loaded event: interactionCreate
+2025-08-12T09:00:34.853Z [INFO]: Loaded event: messageReactionAdd
+2025-08-12T09:00:34.853Z [INFO]: Loaded event: messageReactionRemove
+2025-08-12T09:00:34.855Z [INFO]: Loaded event: messageCreate
+2025-08-12T09:00:34.856Z [INFO]: Loaded event: ready
+2025-08-12T09:00:34.857Z [INFO]: Loaded event: voiceStateUpdate
+2025-08-12T09:00:34.858Z [INFO]: Total 8 events loaded.
+2025-08-12T09:00:34.858Z [INFO]: Events reloaded successfully.
+2025-08-12T09:00:36.001Z [INFO]: Bot logged in as Perry#4690
+2025-08-12T09:00:36.337Z [INFO]: [AntiCaps Cache] Loading all anticaps settings...
+2025-08-12T09:00:36.338Z [INFO]: [GoldenHourManager] Initializing Golden Hour scheduling...
+2025-08-12T09:00:36.338Z [INFO]: [GoldenHourManager] Next Golden Hour scheduled in approx 18.97 hours.
+2025-08-12T09:00:36.341Z [INFO]: [TaskHandler] Loaded task: baoTri for job công nhân
+2025-08-12T09:00:36.343Z [INFO]: [TaskHandler] Loaded task: capCuu for job bác sĩ
+2025-08-12T09:00:36.345Z [INFO]: [TaskHandler] Loaded task: catCo for job nông dân
+2025-08-12T09:00:36.346Z [INFO]: [TaskHandler] Loaded task: chamSocHocSinh for job giáo viên
+2025-08-12T09:00:36.348Z [INFO]: [TaskHandler] Loaded task: completerepairorder for job thợ sửa xe
+2025-08-12T09:00:36.350Z [INFO]: [TaskHandler] Loaded task: craftcommonenginepart for job thợ sửa xe
+2025-08-12T09:00:36.352Z [INFO]: [TaskHandler] Loaded task: dayHoc for job giáo viên
+2025-08-12T09:00:36.356Z [INFO]: [TaskHandler] Loaded task: diagnosecarproblem for job thợ sửa xe
+2025-08-12T09:00:36.357Z [INFO]: [TaskHandler] Loaded task: gieoHat for job nông dân
+2025-08-12T09:00:36.359Z [INFO]: [TaskHandler] Loaded task: khamsucKhoe for job bác sĩ
+2025-08-12T09:00:36.361Z [INFO]: [TaskHandler] Loaded task: kiemDinh for job kỹ sư
+2025-08-12T09:00:36.364Z [INFO]: [TaskHandler] Loaded task: kiemTra for job công nhân
+2025-08-12T09:00:36.368Z [INFO]: [TaskHandler] Loaded task: lapRap for job công nhân
+2025-08-12T09:00:36.370Z [INFO]: [TaskHandler] Loaded task: performoilchange for job thợ sửa xe
+2025-08-12T09:00:36.372Z [INFO]: [TaskHandler] Loaded task: phatTrien for job kỹ sư
+2025-08-12T09:00:36.375Z [INFO]: [TaskHandler] Loaded task: soannGiaoAn for job giáo viên
+2025-08-12T09:00:36.377Z [INFO]: [TaskHandler] Loaded task: thamGiaHoiThao for job giáo viên
+2025-08-12T09:00:36.380Z [INFO]: [TaskHandler] Loaded task: thietKe for job kỹ sư
+2025-08-12T09:00:36.382Z [INFO]: [TaskHandler] Loaded task: thuHoach for job nông dân
+2025-08-12T09:00:36.384Z [INFO]: [TaskHandler] Loaded task: thucHienXetNghiem for job bác sĩ
+2025-08-12T09:00:36.387Z [INFO]: [TaskHandler] Loaded task: tuVanKyThuat for job kỹ sư
+2025-08-12T09:00:36.388Z [INFO]: [TaskHandler] Loaded task: tuVan for job bác sĩ
+2025-08-12T09:00:36.391Z [INFO]: [TaskHandler] Loaded task: tuneupbasicengine for job thợ sửa xe
+2025-08-12T09:00:36.393Z [INFO]: [TaskHandler] Loaded task: tuoiCay for job nông dân
+2025-08-12T09:00:36.395Z [INFO]: [TaskHandler] Loaded task: vanChuyen for job công nhân
+2025-08-12T09:00:36.395Z [INFO]: [TaskHandler] Total 25 job tasks loaded.
+2025-08-12T09:00:36.395Z [INFO]: Bot is ready as Perry#4690
+2025-08-12T09:00:36.406Z [ERROR]: Lavalink Node: localhost encountered an error: connect ECONNREFUSED 127.0.0.1:2333
+2025-08-12T09:00:36.406Z [WARN]: Lavalink Node: localhost closed with code 1006. Reason: No reason
+2025-08-12T09:00:36.476Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1005814304509018113
+2025-08-12T09:00:36.557Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1186898120789995580
+2025-08-12T09:00:36.635Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1371704233929474118
+2025-08-12T09:00:36.635Z [INFO]: [AntiCaps Cache] Finished loading all anticaps settings.
