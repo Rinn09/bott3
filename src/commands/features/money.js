@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 const User = require("../../models/User");
 const Logger = require("../../utils/logger");
+const Economy = require("../../services/economy");
 const workMessages = [
   "Bạn vừa giao hàng cho một khách hàng vui tính!",
   "Bạn vừa hoàn thành xong một ca làm mệt mỏi.",
@@ -417,6 +418,140 @@ module.exports = {
             if (Math.random() < event.chance) {
               eventApplied = true;
               switch (event.type) {
+                case "daily": {
+                  const { ok, msg, amount, wallet } = await Economy.claimDaily({
+                    guildId: interaction.guild.id,
+                    userId: interaction.user.id,
+                    amount: 200,
+                    cooldownMs: 24 * 60 * 60 * 1000,
+                  });
+                  if (!ok)
+                    return interaction.reply({
+                      content: `⏳ ${msg}`,
+                      ephemeral: true,
+                    });
+                  return interaction.reply(
+                    `✅ Nhận daily **${amount}**. Ví hiện có: **${wallet}**`,
+                  );
+                }
+
+                case "work": {
+                  const { ok, msg, reward, wallet } = await Economy.doWork({
+                    guildId: interaction.guild.id,
+                    userId: interaction.user.id,
+                    base: 120,
+                    cooldownMs: 5 * 60 * 1000,
+                  });
+                  if (!ok)
+                    return interaction.reply({
+                      content: `⏳ ${msg}`,
+                      ephemeral: true,
+                    });
+                  return interaction.reply(
+                    `🛠️ Làm việc nhận **${reward}**. Ví: **${wallet}**`,
+                  );
+                }
+
+                case "deposit": {
+                  const amt = Math.floor(
+                    Math.max(0, interaction.options.getInteger("amount") || 0),
+                  );
+                  if (amt <= 0)
+                    return interaction.reply({
+                      content: "Số tiền không hợp lệ.",
+                      ephemeral: true,
+                    });
+                  try {
+                    const { wallet, bank } = await Economy.moveToBank({
+                      guildId: interaction.guild.id,
+                      userId: interaction.user.id,
+                      amount: amt,
+                    });
+                    return interaction.reply(
+                      `🏦 Gửi **${amt}** vào bank. Ví: **${wallet}**, Bank: **${bank}**`,
+                    );
+                  } catch (e) {
+                    return interaction.reply({
+                      content: `❌ ${e.message}`,
+                      ephemeral: true,
+                    });
+                  }
+                }
+
+                case "withdraw": {
+                  const amt = Math.floor(
+                    Math.max(0, interaction.options.getInteger("amount") || 0),
+                  );
+                  if (amt <= 0)
+                    return interaction.reply({
+                      content: "Số tiền không hợp lệ.",
+                      ephemeral: true,
+                    });
+                  try {
+                    const { wallet, bank } = await Economy.moveToWallet({
+                      guildId: interaction.guild.id,
+                      userId: interaction.user.id,
+                      amount: amt,
+                    });
+                    return interaction.reply(
+                      `💼 Rút **${amt}** về ví. Ví: **${wallet}**, Bank: **${bank}**`,
+                    );
+                  } catch (e) {
+                    return interaction.reply({
+                      content: `❌ ${e.message}`,
+                      ephemeral: true,
+                    });
+                  }
+                }
+
+                case "pay": {
+                  const target = interaction.options.getUser("target", true);
+                  const amt = Math.floor(
+                    Math.max(0, interaction.options.getInteger("amount") || 0),
+                  );
+                  if (target.id === interaction.user.id) {
+                    return interaction.reply({
+                      content: "Không thể tự chuyển cho chính mình.",
+                      ephemeral: true,
+                    });
+                  }
+                  if (amt <= 0)
+                    return interaction.reply({
+                      content: "Số tiền không hợp lệ.",
+                      ephemeral: true,
+                    });
+                  try {
+                    await Economy.transfer({
+                      guildId: interaction.guild.id,
+                      fromUserId: interaction.user.id,
+                      toUserId: target.id,
+                      amount: amt,
+                    });
+                    return interaction.reply(
+                      `🤝 Đã chuyển **${amt}** cho <@${target.id}>.`,
+                    );
+                  } catch (e) {
+                    return interaction.reply({
+                      content: `❌ ${e.message}`,
+                      ephemeral: true,
+                    });
+                  }
+                }
+
+                case "top-money": {
+                  const top = await Economy.topMoney({
+                    guildId: interaction.guild.id,
+                    limit: 10,
+                  });
+                  if (!top.length) return interaction.reply("Chưa có dữ liệu.");
+                  const lines = top.map(
+                    (u, i) => `**${i + 1}.** <@${u.userId}> — **${u.total}**`,
+                  );
+                  return interaction.reply({
+                    content: `💰 **Top tiền**\n${lines.join("\n")}`,
+                  });
+                }
+
                 case "bonus":
                   const bonusAmount = getRandomInt(event.min, event.max);
                   amountEarned += bonusAmount;

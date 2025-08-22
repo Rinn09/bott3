@@ -17,7 +17,7 @@ module.exports = {
     .setName("diag")
     .setDescription("Chẩn đoán nhanh trạng thái bot, MongoDB, Lavalink"),
   async execute(interaction) {
-    await interaction.deferReply({ ephemeral: true });
+    await interaction.deferReply({ ephemeral: false });
 
     // Discord
     const ping = interaction.client.ws.ping ?? 0;

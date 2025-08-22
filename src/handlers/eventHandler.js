@@ -46,11 +46,17 @@ class EventHandler {
 
         // Handler bao promise để bắt lỗi async
         const handler = (...args) => {
-          return Promise.resolve(event.execute(this.client, ...args)).catch(
-            (err) =>
-              Logger.error(
-                `Error executing event ${event.name}: ${err?.message || err}`,
-              ),
+          // Nếu event.execute định nghĩa >= 2 tham số -> coi như (client, ...args)
+          // Nếu chỉ 1 tham số -> coi như kiểu cũ (...args)
+          const wantsClient = event.execute.length >= 2;
+          const call = wantsClient
+            ? () => event.execute(this.client, ...args)
+            : () => event.execute(...args);
+
+          return Promise.resolve(call()).catch((err) =>
+            Logger.error(
+              `Error executing event ${event.name}: ${err?.message || err}`,
+            ),
           );
         };
 

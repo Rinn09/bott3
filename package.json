@@ -5,6 +5,7 @@
   "scripts": {
     "doctor": "node scripts/doctor.js",
     "doctor:fix": "node scripts/doctor.js --fix",
+    "db:index": "node scripts/createIndexes.js",
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
     "lint": "eslint .",
