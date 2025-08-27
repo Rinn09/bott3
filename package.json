@@ -5,6 +5,8 @@
   "scripts": {
     "doctor": "node scripts/doctor.js",
     "doctor:fix": "node scripts/doctor.js --fix",
+    "doctor:adv": "node scripts/doctor-advanced.js",
+    "smoke:economy": "node scripts/smoke-economy.js",
     "db:index": "node scripts/createIndexes.js",
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",

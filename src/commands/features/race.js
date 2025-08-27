@@ -12,15 +12,16 @@ const {
 const User = require("../../models/User");
 const CarModel = require("../../models/CarModel");
 const RaceDefinition = require("../../models/RaceDefinition");
-const NpcRacer = require("../../models/NPCRacer"); // Đảm bảo tên này khớp với model bro export
-const RepairOrder = require("../../models/RepairOrder"); // THÊM MODEL NÀY
-const GuildConfig = require("../../models/GuildConfig"); // THÊM MODEL NÀY
+const NpcRacer = require("../../models/NPCRacer");
+const RepairOrder = require("../../models/RepairOrder");
+const GuildConfig = require("../../models/GuildConfig");
 const raceSimulator = require("../../utils/raceSimulator");
 const Logger = require("../../utils/logger");
 const mongoose = require("mongoose");
 const { checkLevelUp } = require("../../utils/levelUtil");
 const { getRandomInt } = require("../../utils/gameUtils");
-const MainJob = require("../../models/MainJob"); // Thêm dòng này
+const MainJob = require("../../models/MainJob");
+const RaceTelemetry = require("../../utils/raceTelemetry");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -38,21 +39,18 @@ module.exports = {
             .setDescription(
               "Chủ xe: Tạo yêu cầu sửa chữa cho một chiếc xe bị hỏng.",
             )
-            .addStringOption(
-              (option) =>
-                option
-                  .setName("car_instance_id")
-                  .setDescription("ID instance của xe cần sửa (Bắt buộc).")
-                  .setRequired(true),
-              //.setAutocomplete(true) // Sẽ thêm autocomplete sau nếu muốn
+            .addStringOption((option) =>
+              option
+                .setName("car_instance_id")
+                .setDescription("ID instance của xe cần sửa (Bắt buộc).")
+                .setRequired(true),
             )
-            .addIntegerOption(
-              (option) =>
-                option
-                  .setName("reward")
-                  .setDescription("Số VNĐ bạn muốn trả cho thợ sửa xe.")
-                  .setRequired(true)
-                  .setMinValue(1000), // Ví dụ: thù lao tối thiểu
+            .addIntegerOption((option) =>
+              option
+                .setName("reward")
+                .setDescription("Số VNĐ bạn muốn trả cho thợ sửa xe.")
+                .setRequired(true)
+                .setMinValue(1000),
             )
             .addIntegerOption((option) =>
               option
@@ -90,8 +88,8 @@ module.exports = {
                     value: "accepted_inprogress",
                   },
                   { name: "Đã hoàn thành (Completed)", value: "completed" },
-                  { name: "Đơn của tôi (Chủ xe)", value: "my_owner_orders" }, // Tất cả đơn mà user là chủ
-                  { name: "Đơn tôi nhận sửa (Thợ)", value: "my_mechanic_jobs" }, // Tất cả đơn mà user là thợ
+                  { name: "Đơn của tôi (Chủ xe)", value: "my_owner_orders" },
+                  { name: "Đơn tôi nhận sửa (Thợ)", value: "my_mechanic_jobs" },
                 ),
             )
             .addIntegerOption((option) =>
@@ -108,15 +106,14 @@ module.exports = {
           subcommand
             .setName("accept")
             .setDescription("Thợ sửa xe: Nhận một đơn sửa chữa đang chờ.")
-            .addStringOption(
-              (option) =>
-                option
-                  .setName("order_id")
-                  .setDescription(
-                    "ID của đơn sửa chữa bạn muốn nhận (Xem trong /race repair view-orders).",
-                  )
-                  .setRequired(true)
-                  .setAutocomplete(true), // Autocomplete cho các đơn 'pending'
+            .addStringOption((option) =>
+              option
+                .setName("order_id")
+                .setDescription(
+                  "ID của đơn sửa chữa bạn muốn nhận (Xem trong /race repair view-orders).",
+                )
+                .setRequired(true)
+                .setAutocomplete(true),
             ),
         )
         .addSubcommand((subcommand) =>
@@ -125,13 +122,12 @@ module.exports = {
             .setDescription(
               "Thợ sửa xe: Đánh dấu một đơn sửa chữa đã hoàn thành.",
             )
-            .addStringOption(
-              (option) =>
-                option
-                  .setName("order_id")
-                  .setDescription("ID của đơn sửa chữa bạn đã hoàn thành.")
-                  .setRequired(true)
-                  .setAutocomplete(true), // Autocomplete cho các đơn 'accepted/in_progress' của thợ này
+            .addStringOption((option) =>
+              option
+                .setName("order_id")
+                .setDescription("ID của đơn sửa chữa bạn đã hoàn thành.")
+                .setRequired(true)
+                .setAutocomplete(true),
             )
             .addStringOption((option) =>
               option
@@ -147,47 +143,40 @@ module.exports = {
             .setDescription(
               "Chủ xe: Hủy một yêu cầu sửa chữa của bạn (nếu chưa có thợ nhận).",
             )
-            .addStringOption(
-              (option) =>
-                option
-                  .setName("order_id")
-                  .setDescription("ID của đơn sửa chữa bạn muốn hủy.")
-                  .setRequired(true)
-                  .setAutocomplete(true), // Autocomplete cho các đơn 'pending' của chủ xe này
+            .addStringOption((option) =>
+              option
+                .setName("order_id")
+                .setDescription("ID của đơn sửa chữa bạn muốn hủy.")
+                .setRequired(true)
+                .setAutocomplete(true),
             ),
         ),
     )
-    .addSubcommand(
-      (
-        subcommand, // THÊM SUBCOMMAND MỚI CHO CHALLENGE
-      ) =>
-        subcommand
-          .setName("challenge")
-          .setDescription("Thách đấu đua xe với một người chơi khác.")
-          .addUserOption((option) =>
-            option // Chọn người chơi để thách đấu
-              .setName("opponent")
-              .setDescription("Người bạn muốn thách đấu.")
-              .setRequired(true),
-          )
-          .addStringOption(
-            (option) =>
-              option // Chọn xe của người thách đấu (người dùng lệnh)
-                .setName("your_car_id")
-                .setDescription(
-                  "ID instance xe bạn muốn sử dụng để thách đấu (Lấy từ /gacha garage).",
-                )
-                .setRequired(true),
-            //.setAutocomplete(true) // Tạm bỏ autocomplete
-          )
-          .addIntegerOption(
-            (option) =>
-              option // Số tiền cược
-                .setName("bet_amount")
-                .setDescription("Số VNĐ bạn muốn cược cho trận đấu này.")
-                .setRequired(true)
-                .setMinValue(1000), // Ví dụ: cược tối thiểu
-          ),
+    .addSubcommand((subcommand) =>
+      subcommand
+        .setName("challenge")
+        .setDescription("Thách đấu đua xe với một người chơi khác.")
+        .addUserOption((option) =>
+          option
+            .setName("opponent")
+            .setDescription("Người bạn muốn thách đấu.")
+            .setRequired(true),
+        )
+        .addStringOption((option) =>
+          option
+            .setName("your_car_id")
+            .setDescription(
+              "ID instance xe bạn muốn sử dụng để thách đấu (Lấy từ /gacha garage).",
+            )
+            .setRequired(true),
+        )
+        .addIntegerOption((option) =>
+          option
+            .setName("bet_amount")
+            .setDescription("Số VNĐ bạn muốn cược cho trận đấu này.")
+            .setRequired(true)
+            .setMinValue(1000),
+        ),
     )
     .addSubcommand((subcommand) =>
       subcommand
@@ -232,7 +221,7 @@ module.exports = {
             const carsNeedingRepair = user.garage.cars.filter(
               (car) =>
                 car.status === "needs_repair" ||
-                (car.status === "ready" && car.durability < 90), // Cho phép tạo đơn nếu độ bền < 90
+                (car.status === "ready" && car.durability < 90),
             );
             if (carsNeedingRepair.length > 0) {
               const modelIds = [
@@ -264,13 +253,12 @@ module.exports = {
           let query = { guildId };
           if (subcommand === "accept") {
             query.status = "pending";
-            // Thợ chỉ thấy đơn họ có thể nhận (chưa có ai nhận)
           } else if (subcommand === "complete") {
-            query.mechanicId = userId; // Chỉ thấy đơn mình đã nhận
+            query.mechanicId = userId;
             query.status = { $in: ["accepted", "in_progress"] };
           } else if (subcommand === "cancel") {
-            query.ownerId = userId; // Chỉ thấy đơn của mình
-            query.status = "pending"; // Chỉ hủy được đơn đang chờ
+            query.ownerId = userId;
+            query.status = "pending";
           }
 
           const orders = await RepairOrder.find(query)
@@ -283,7 +271,6 @@ module.exports = {
           }));
         }
       } else if (focusedOption.name === "car_instance_id") {
-        // Autocomplete cho /race start-npc
         const user = await User.findOne({ userId, guildId }).lean();
         if (user && user.garage && user.garage.cars) {
           const readyCars = user.garage.cars.filter(
@@ -313,7 +300,6 @@ module.exports = {
           }
         }
       } else if (focusedOption.name === "tournament_id") {
-        // Autocomplete cho /race start-npc
         const userForLevelCheck = await User.findOne({
           userId,
           guildId,
@@ -368,7 +354,7 @@ module.exports = {
     if (subcommandGroup === "repair") {
       const repairSession = await mongoose.startSession();
       try {
-        await interaction.deferReply({ ephemeral: true }); // Hầu hết lệnh repair nên ephemeral với người dùng
+        await interaction.deferReply({ ephemeral: true });
         repairSession.startTransaction();
 
         const player = await User.findOne({ userId, guildId }).session(
@@ -430,7 +416,6 @@ module.exports = {
           }
 
           if (carToRepair.durability >= 95 && carToRepair.status === "ready") {
-            // Ví dụ: Chỉ cho sửa khi độ bền dưới 95%
             await repairSession.abortTransaction();
             repairSession.endSession();
             return interaction.editReply(
@@ -463,12 +448,12 @@ module.exports = {
           });
 
           await newOrder.save({ session: repairSession });
-          await player.save({ session: repairSession }); // player đã được lấy trong session
+          await player.save({ session: repairSession });
 
-          // Lấy kênh thông báo đơn sửa xe từ GuildConfig
+          // Lấy kênh thông báo đơn sửa xe
           const guildConfig = await GuildConfig.findOne({
             guildId: guildId,
-          }).lean(); // Không cần session ở đây vì chỉ đọc
+          }).lean();
           let notificationSent = false;
           if (guildConfig && guildConfig.repairOrdersChannelId) {
             const repairChannel = await interaction.client.channels
@@ -520,15 +505,8 @@ module.exports = {
                   text: `Sử dụng /race repair accept order_id:${newOrder._id.toString()}`,
                 });
 
-              // Không thêm button ở đây nữa, thay vào đó là hướng dẫn dùng lệnh accept
-              // const acceptButton = new ButtonBuilder()
-              //     .setCustomId(`repair_accept_${newOrder._id}`)
-              //     .setLabel("Nhận Sửa Đơn Này")
-              //     .setStyle(ButtonStyle.Success);
-              // const actionRow = new ActionRowBuilder().addComponents(acceptButton);
-
               await repairChannel.send({
-                embeds: [orderEmbed] /*, components: [actionRow] */,
+                embeds: [orderEmbed],
               });
               notificationSent = true;
             } else {
@@ -550,7 +528,7 @@ module.exports = {
           const statusFilter =
             interaction.options.getString("status_filter") || "pending";
           const page = interaction.options.getInteger("page") || 1;
-          const ordersPerPage = 5; // Số đơn mỗi trang
+          const ordersPerPage = 5;
 
           let query = { guildId: guildId };
           let title = "Danh Sách Đơn Sửa Xe";
@@ -570,12 +548,10 @@ module.exports = {
               break;
             case "my_owner_orders":
               query.ownerId = userId;
-              // không lọc status, hiện tất cả đơn của người này
               title = `Tất Cả Đơn Sửa Xe Của Bạn`;
               break;
             case "my_mechanic_jobs":
               query.mechanicId = userId;
-              // không lọc status, hiện tất cả đơn người này nhận
               title = `Tất Cả Đơn Bạn Nhận Sửa`;
               break;
             default:
@@ -584,7 +560,7 @@ module.exports = {
           }
 
           const totalOrders =
-            await RepairOrder.countDocuments(query).session(repairSession); // Dùng session nếu các lệnh khác có sửa đổi
+            await RepairOrder.countDocuments(query).session(repairSession);
           const totalPages = Math.ceil(totalOrders / ordersPerPage);
           if (page > totalPages && totalPages > 0) {
             await repairSession.abortTransaction();
@@ -602,10 +578,10 @@ module.exports = {
           }
 
           const orders = await RepairOrder.find(query)
-            .sort({ createdAt: -1 }) // Sắp xếp mới nhất lên đầu
+            .sort({ createdAt: -1 })
             .skip((page - 1) * ordersPerPage)
             .limit(ordersPerPage)
-            .lean() // Dùng lean để nhanh hơn
+            .lean()
             .session(repairSession);
 
           const embed = new EmbedBuilder()
@@ -651,8 +627,7 @@ module.exports = {
               });
             }
           }
-          // Không cần commit transaction vì chỉ đọc
-          await repairSession.abortTransaction(); // Hoặc commit nếu có lý do khác
+          await repairSession.abortTransaction();
           await interaction.editReply({ embeds: [embed] });
         } else if (subcommand === "accept") {
           const orderIdString = interaction.options.getString("order_id");
@@ -673,13 +648,16 @@ module.exports = {
             return interaction.editReply("❌ Không tìm thấy đơn sửa chữa này.");
           }
           if (repairOrder.guildId !== guildId) {
-            // Kiểm tra guildId của đơn hàng
             await repairSession.abortTransaction();
             repairSession.endSession();
             return interaction.editReply(
               "❌ Đơn sửa chữa này không thuộc server này.",
             );
           }
+
+          const player = await User.findOne({ userId, guildId }).session(
+            repairSession,
+          );
 
           if (player.mainJob?.name !== "thợ sửa xe") {
             await repairSession.abortTransaction();
@@ -695,13 +673,12 @@ module.exports = {
               "❌ Bạn không thể nhận sửa xe của chính mình.",
             );
           }
-          // Kiểm tra xem có thợ nào khác đang làm quá nhiều đơn không (tùy chọn)
+
           const currentJobsByMechanic = await RepairOrder.countDocuments({
             mechanicId: userId,
             status: { $in: ["accepted", "in_progress"] },
           }).session(repairSession);
           if (currentJobsByMechanic >= 3) {
-            // Ví dụ: giới hạn 3 đơn đang làm cùng lúc
             await repairSession.abortTransaction();
             repairSession.endSession();
             return interaction.editReply(
@@ -726,7 +703,7 @@ module.exports = {
           }
 
           // Cập nhật đơn hàng
-          repairOrder.status = "accepted"; // Hoặc 'in_progress' nếu muốn bỏ qua bước accepted
+          repairOrder.status = "accepted";
           repairOrder.mechanicId = userId;
           repairOrder.acceptedAt = new Date();
 
@@ -752,11 +729,10 @@ module.exports = {
             Logger.warn(
               `[Race Repair Accept] Không tìm thấy xe ${repairOrder.carInstanceId} trong garage của chủ xe ${repairOrder.ownerId} cho đơn ${repairOrder._id}`,
             );
-            // Không nên abort transaction ở đây, vẫn cho thợ nhận việc
           }
 
           await repairOrder.save({ session: repairSession });
-          if (owner) await owner.save({ session: repairSession }); // Lưu lại owner nếu xe được tìm thấy và update
+          if (owner) await owner.save({ session: repairSession });
 
           await repairSession.commitTransaction();
 
@@ -776,7 +752,7 @@ module.exports = {
               );
           }
 
-          // Cập nhật lại tin nhắn thông báo đơn hàng ở kênh sửa xe (nếu có)
+          // Cập nhật kênh thông báo (nếu có)
           const guildConfig = await GuildConfig.findOne({
             guildId: guildId,
           }).lean();
@@ -785,14 +761,9 @@ module.exports = {
               .fetch(guildConfig.repairOrdersChannelId)
               .catch(() => null);
             if (repairChannel && repairChannel.isTextBased()) {
-              // Tìm và edit tin nhắn gốc của đơn hàng
-              // Cách đơn giản: Gửi một tin nhắn mới cập nhật trạng thái, hoặc xóa tin nhắn cũ và gửi mới
-              // Cách phức tạp hơn: Lưu messageId của thông báo đơn hàng khi tạo, rồi fetch và edit.
-              // Tạm thời gửi tin nhắn cập nhật mới:
               await repairChannel.send(
                 `✅ Đơn sửa xe #${repairOrder._id.toString().slice(-6)} (Xe: ${repairOrder.carModelName}) đã được thợ **${interaction.user.tag}** nhận!`,
               );
-              // Hoặc tìm cách xóa button "Nhận sửa" trên tin nhắn gốc
             }
           }
 
@@ -819,6 +790,11 @@ module.exports = {
               "❌ Không tìm thấy đơn sửa chữa này hoặc đơn không thuộc server này.",
             );
           }
+
+          const player = await User.findOne({ userId, guildId }).session(
+            repairSession,
+          );
+
           if (repairOrder.mechanicId !== userId) {
             await repairSession.abortTransaction();
             repairSession.endSession();
@@ -878,7 +854,7 @@ module.exports = {
           }
 
           // Phục hồi độ bền xe
-          carRepaired.durability = 100; // Hoặc repairOrder.repairToFull ? 100 : Math.min(100, repairOrder.currentDurability + X);
+          carRepaired.durability = 100;
           carRepaired.status = "ready";
 
           // Thợ nhận tiền thù lao
@@ -886,41 +862,36 @@ module.exports = {
           player.totalEarned =
             (player.totalEarned || 0) + repairOrder.offeredReward;
 
-          // Thợ nhận XP nghề và có thể có bonus lương từ MainJob
+          // Thợ nhận XP nghề + lương bonus (nếu có)
           const mechanicJobInfo = await MainJob.findOne({
             name: "thợ sửa xe",
-          }).lean(); // Không cần session
+          }).lean();
           if (mechanicJobInfo) {
             const completeTask = mechanicJobInfo.tasks.find(
               (t) => t.taskId === "completeRepairOrder",
             );
             if (completeTask) {
               player.mainJob.xp = (player.mainJob.xp || 0) + completeTask.xp;
-              // Kiểm tra level up cho nghề
-              // (Cần hàm checkMainJobLevelUp(player, mechanicJobInfo) tương tự checkLevelUp chung)
             }
-            // Bonus lương theo level nghề (nếu có)
             const salaryBonus =
-              mechanicJobInfo.salaryByLevel[player.mainJob.level.toString()] ||
-              0;
+              mechanicJobInfo.salaryByLevel[
+                player.mainJob.level?.toString?.()
+              ] || 0;
             if (salaryBonus > 0) {
               player.balance += salaryBonus;
               player.totalEarned += salaryBonus;
-              // Ghi chú thêm về bonus này
             }
           }
 
           let replyMessage = `✅ Bạn đã hoàn thành sửa xe **${repairOrder.carModelName}** (Đơn #${repairOrder._id.toString().slice(-6)}) và nhận được **${repairOrder.offeredReward.toLocaleString()} VNĐ**.`;
           if (isLate) {
             replyMessage +=
-              "\n⚠️ **LƯU Ý:** Bạn đã hoàn thành đơn hàng này trễ hạn! (Có thể bị phạt hoặc giảm uy tín trong tương lai).";
-            // Logic phạt nếu có (ví dụ: trừ % thù lao)
-            // player.balance -= repairOrder.offeredReward * 0.1; // Phạt 10%
+              "\n⚠️ **LƯU Ý:** Bạn đã hoàn thành đơn hàng này trễ hạn!";
           }
 
           await repairOrder.save({ session: repairSession });
           await owner.save({ session: repairSession });
-          await player.save({ session: repairSession }); // Lưu lại player (thợ)
+          await player.save({ session: repairSession });
 
           await repairSession.commitTransaction();
 
@@ -931,7 +902,7 @@ module.exports = {
           if (ownerUserDM) {
             ownerUserDM
               .send(
-                `🎉 Xe **${repairOrder.carModelName}** (Đơn #${repairOrder._id.toString().slice(-6)}) của bạn đã được thợ **${interaction.user.tag}** sửa xong! Độ bền đã được phục hồi. ${isLate ? "Tuy nhiên, việc sửa chữa bị trễ hạn." : ""}`,
+                `🎉 Xe **${repairOrder.carModelName}** (Đơn #${repairOrder._id.toString().slice(-6)}) của bạn đã được thợ **${interaction.user.tag}** sửa xong!`,
               )
               .catch((e) =>
                 Logger.error(
@@ -960,13 +931,10 @@ module.exports = {
               "❌ Không tìm thấy đơn sửa chữa này hoặc đơn không thuộc server này.",
             );
           }
-          if (repairOrder.ownerId !== userId) {
-            await repairSession.abortTransaction();
-            repairSession.endSession();
-            return interaction.editReply(
-              "❌ Bạn không phải là chủ của đơn sửa chữa này.",
-            );
-          }
+          const player = await User.findOne({ userId, guildId }).session(
+            repairSession,
+          );
+
           if (repairOrder.status !== "pending") {
             await repairSession.abortTransaction();
             repairSession.endSession();
@@ -978,12 +946,11 @@ module.exports = {
           // Hoàn lại tiền thù lao cho chủ xe
           player.balance += repairOrder.offeredReward;
           player.totalSpent =
-            (player.totalSpent || 0) - repairOrder.offeredReward; // Giảm lại totalSpent
+            (player.totalSpent || 0) - repairOrder.offeredReward;
 
           // Cập nhật trạng thái xe
           const carToRestore = player.garage.cars.id(repairOrder.carInstanceId);
           if (carToRestore) {
-            // Quyết định status của xe sau khi hủy: 'needs_repair' hay 'ready' (nếu độ bền vẫn còn > threshold)
             carToRestore.status =
               carToRestore.durability <= 20 ? "needs_repair" : "ready";
           }
@@ -995,16 +962,10 @@ module.exports = {
 
           await repairSession.commitTransaction();
 
-          // Thông báo ở kênh sửa xe (nếu cần, ví dụ xóa tin nhắn gốc của đơn hàng)
-          // ...
-
           await interaction.editReply(
             `✅ Đã hủy thành công đơn sửa xe #${repairOrder._id.toString().slice(-6)} cho xe **${repairOrder.carModelName}**. Số tiền ${repairOrder.offeredReward.toLocaleString()} VNĐ đã được hoàn lại.`,
           );
-        }
-        // ... (các subcommand khác của repair group)
-        else {
-          // Nếu không phải là subcommand 'request', tạm thời abort và báo đang phát triển
+        } else {
           if (repairSession.inTransaction())
             await repairSession.abortTransaction();
           await interaction.editReply(
@@ -1018,7 +979,6 @@ module.exports = {
         Logger.error(`Lỗi lệnh /race repair ${subcommand}: ${error.message}`, {
           stack: error.stack,
         });
-        // Kiểm tra initialReplySent trước khi editReply/followUp
         if (initialReplySent && !interaction.replied) {
           await interaction
             .editReply({ content: `❌ Đã xảy ra lỗi: ${error.message}` })
@@ -1049,7 +1009,6 @@ module.exports = {
         interaction.options.getString("car_instance_id");
       let tournamentIdString = interaction.options.getString("tournament_id");
 
-      // Sử dụng session cho các thao tác DB quan trọng
       const session = await mongoose.startSession();
 
       try {
@@ -1071,7 +1030,7 @@ module.exports = {
         const carInstanceObjectId = new mongoose.Types.ObjectId(
           carInstanceIdString,
         );
-        const playerCarInstance = player.garage.cars.id(carInstanceObjectId); // Sử dụng .id() để lấy subdocument
+        const playerCarInstance = player.garage.cars.id(carInstanceObjectId);
 
         if (!playerCarInstance) {
           await session.abortTransaction();
@@ -1082,7 +1041,7 @@ module.exports = {
         if (playerCarInstance.status !== "ready") {
           await session.abortTransaction();
           return interaction.editReply(
-            `❌ Xe "${playerCarInstance.carModelId}" của bạn đang ở trạng thái "${playerCarInstance.status}" (ví dụ: đang sửa, đang trong cuộc đua khác) và không thể đua.`,
+            `❌ Xe "${playerCarInstance.carModelId}" của bạn đang ở trạng thái "${playerCarInstance.status}" và không thể đua.`,
           );
         }
         if (playerCarInstance.durability <= 20) {
@@ -1137,19 +1096,16 @@ module.exports = {
           const selectMenu = new StringSelectMenuBuilder()
             .setCustomId(
               `select_tournament_${interaction.id}_${playerCarInstance._id}`,
-            ) // Thêm carId để dùng lại khi chọn
+            )
             .setPlaceholder("Chọn một giải đấu NPC...")
             .addOptions(tournamentOptions);
           const row = new ActionRowBuilder().addComponents(selectMenu);
 
-          // Hủy transaction trước khi chờ người dùng, vì transaction có timeout
           if (session.inTransaction()) {
-            // Kiểm tra lại nếu session còn active
             await session.abortTransaction();
           }
 
           const selectMessageInstance = await interaction.editReply({
-            // Đảm bảo lấy được instance message
             content: `Bạn đã chọn xe **${playerCarModel.name}**. Vui lòng chọn một giải đấu NPC để tham gia:`,
             components: [row],
             embeds: [],
@@ -1168,17 +1124,13 @@ module.exports = {
               },
             );
             tournamentIdString = collected.values[0];
-            // Quan trọng: collected.update() sẽ cập nhật tin nhắn gốc mà select menu được gắn vào
             await collected.update({
               content: `Đang chuẩn bị giải đấu "${tournamentIdString}" cho xe **${playerCarModel.name}**...`,
               components: [],
             });
-            messageForRaceStart = collected.message; // Giờ messageForRaceStart chính là tin nhắn đã được update
+            messageForRaceStart = collected.message;
 
-            // Bắt đầu lại transaction cho phần xử lý đua
-            // Đảm bảo session chưa bị end nếu đã abort ở trên
             if (!session.inTransaction()) {
-              // Chỉ start nếu chưa có transaction active
               await session.startTransaction();
             }
           } catch (e) {
@@ -1187,13 +1139,13 @@ module.exports = {
                 "⏰ Bạn đã không chọn giải đấu trong thời gian cho phép. Cuộc đua bị hủy.",
               components: [],
             });
-            if (session.inTransaction()) await session.abortTransaction(); // Abort nếu lỗi
+            if (session.inTransaction()) await session.abortTransaction();
             session.endSession();
             return;
           }
         }
 
-        // Lấy lại player data trong session mới (nếu select menu được dùng)
+        // Lấy lại player data trong session mới
         const currentPlayerInSession = await User.findOne({
           userId,
           guildId,
@@ -1216,10 +1168,9 @@ module.exports = {
           );
         }
 
-        // Kiểm tra yêu cầu xe của giải đấu
+        // Kiểm tra yêu cầu xe
         if (selectedTournament.carRequirements) {
           const req = selectedTournament.carRequirements;
-          // Tạm tính currentStats của xe người chơi để check minTotalStats (chưa cần full calculateEffectiveCarStats)
           let tempPlayerCarStatsSum = 0;
           if (playerCarModel.baseStats) {
             tempPlayerCarStatsSum =
@@ -1228,9 +1179,6 @@ module.exports = {
               (playerCarModel.baseStats.handling || 0) +
               (playerCarModel.baseStats.durability || 0);
           }
-          // Logic tính currentStats đầy đủ nên được gọi ở đây nếu có phụ tùng
-          // const actualPlayerStats = await raceSimulator.calculateEffectiveCarStats(currentCarInSession, playerCarModel, currentPlayerInSession.garage.parts, 'sunny'); // Thời tiết tạm để sunny
-          // tempPlayerCarStatsSum = actualPlayerStats.speed + actualPlayerStats.acceleration + actualPlayerStats.handling + actualPlayerStats.durability;
 
           if (req.rarity && playerCarModel.rarity !== req.rarity) {
             await session.abortTransaction();
@@ -1264,7 +1212,6 @@ module.exports = {
               `❌ Mẫu xe ${playerCarModel.name} bị cấm tham gia giải này.`,
             );
           }
-          // Thêm kiểm tra requiredPartTypes nếu cần
         }
         if (
           currentPlayerInSession.level < (selectedTournament.requiredLevel || 1)
@@ -1319,9 +1266,27 @@ module.exports = {
           return interaction.editReply("❌ Lỗi: Không tìm thấy xe của NPC.");
         }
 
-        currentCarInSession.status = "racing"; // Xe của người chơi đang đua
-        // Lưu thay đổi trước khi chạy mô phỏng dài
-        await currentPlayerInSession.save({ session }); // Lưu tiền và status xe
+        // ---- Telemetry: START ----
+        const seed = Math.floor(Math.random() * 2147483647);
+        const trace = RaceTelemetry.start({
+          guildId,
+          userId,
+          carId: String(playerCarInstance._id),
+          track: selectedTournament.trackInfo?.name,
+          seed,
+          weather: selectedTournament.trackInfo?.defaultWeather,
+          stats0: {
+            playerLevel: currentPlayerInSession.level || 1,
+            carModelId: playerCarModel.modelId,
+            carName: playerCarModel.name,
+            durability: playerCarInstance.durability,
+            entryFee,
+          },
+        });
+        // ---- Telemetry: START ----
+
+        currentCarInSession.status = "racing";
+        await currentPlayerInSession.save({ session });
 
         const raceStartEmbed = new EmbedBuilder()
           .setTitle(`🏁 Giải Đua: ${selectedTournament.name} 🏁`)
@@ -1348,14 +1313,7 @@ module.exports = {
           .setFooter({
             text: "Cuộc đua đang diễn ra... Kết quả sẽ được thông báo sau ít phút!",
           });
-        // Nếu đã editReply ở select menu, giờ phải dùng followUp
-        if (tournamentIdString && !messageForRaceStart.components) {
-          // Nếu tournament_id được nhập từ đầu, và messageForRaceStart vẫn là interaction ban đầu (chưa có components của select menu)
-          await interaction.editReply({
-            embeds: [raceStartEmbed],
-            components: [],
-          });
-        }
+
         const raceProgressMessage = await interaction.editReply({
           embeds: [raceStartEmbed],
           components: [],
@@ -1372,22 +1330,31 @@ module.exports = {
           interaction.user.username,
         );
 
-        // Hiển thị log đua bằng cách edit tin nhắn
-        let accumulatedLog = raceResult.raceLog.slice(0, 3).join("\n"); // Lấy 3 dòng đầu tiên
+        // (optional) Telemetry point: raw log snapshot (tránh file quá lớn)
+        try {
+          const sliceLen = Math.min(raceResult.raceLog?.length || 0, 120);
+          RaceTelemetry.point(trace.id, "raceLog", {
+            firstLines: (raceResult.raceLog || []).slice(0, sliceLen),
+          });
+        } catch (e) {
+          Logger.warn(`[RaceTelemetry] point failed: ${e.message}`);
+        }
+
+        // Hiển thị log diễn biến
+        let accumulatedLog = raceResult.raceLog.slice(0, 3).join("\n");
         const raceInProgressEmbed = new EmbedBuilder()
           .setTitle(`🏁 Đang Đua: ${selectedTournament.name} 🏁`)
           .setColor("Blurple")
           .setDescription(accumulatedLog + "\n\n*Đang cập nhật diễn biến...*")
           .setFooter({ text: "Xin vui lòng chờ!" });
 
-        await raceProgressMessage.edit({ embeds: [raceInProgressEmbed] }); // Edit lần đầu với 3 dòng log
+        await raceProgressMessage.edit({ embeds: [raceInProgressEmbed] });
 
         for (let i = 3; i < raceResult.raceLog.length; i++) {
-          await new Promise((resolve) => setTimeout(resolve, 1500)); // Delay giữa các cập nhật
+          await new Promise((resolve) => setTimeout(resolve, 1500));
           accumulatedLog += "\n" + raceResult.raceLog[i];
-          // Giới hạn độ dài của accumulatedLog để tránh lỗi embed quá dài
           if (accumulatedLog.length > 3800) {
-            accumulatedLog = "...\n" + accumulatedLog.slice(-3800); // Giữ lại phần cuối
+            accumulatedLog = "...\n" + accumulatedLog.slice(-3800);
           }
           raceInProgressEmbed.setDescription(
             accumulatedLog + "\n\n*Đang cập nhật diễn biến...*",
@@ -1398,17 +1365,14 @@ module.exports = {
             Logger.error(
               `Error editing race progress message: ${editError.message}`,
             );
-            // Nếu edit lỗi, có thể followUp như một fallback, nhưng cố gắng tránh
-            // await interaction.followUp({content: raceResult.raceLog[i], ephemeral: false}).catch(()=>{});
-            break; // Dừng cập nhật nếu lỗi
+            break;
           }
         }
 
-        // Lấy lại user và xe để cập nhật lần cuối trong transaction
+        // Lấy lại user/xe để cập nhật lần cuối
         const finalPlayerToUpdate = await User.findById(
           currentPlayerInSession._id,
         ).session(session);
-
         if (!finalPlayerToUpdate)
           throw new Error(
             "Lỗi nghiêm trọng: Không tìm thấy người chơi để cập nhật kết quả.",
@@ -1426,18 +1390,17 @@ module.exports = {
         finalCarToUpdate.durability = raceResult.finalPlayerDurability;
         finalCarToUpdate.lastRaceAt = new Date();
 
-        if (finalCarToUpdate.durability <= 0) {
-          finalCarToUpdate.status = "needs_repair";
-          // Không cần thêm vào fullRaceLog nữa vì chúng ta sẽ hiển thị ở embed cuối cùng
-        } else if (finalCarToUpdate.durability <= 20) {
+        if (finalCarToUpdate.durability <= 20) {
           finalCarToUpdate.status = "needs_repair";
         } else {
           finalCarToUpdate.status = "ready";
         }
 
+        // Tính thưởng/xp & kết quả
         let rewardDescription = "";
         let resultTitle = "";
         let resultColor = "Yellow";
+        let cashReward = 0;
 
         if (raceResult.winner === "player") {
           resultTitle = `🎉 BẠN ĐÃ CHIẾN THẮNG GIẢI "${selectedTournament.name}"! 🎉`;
@@ -1450,6 +1413,7 @@ module.exports = {
                 selectedTournament.rewards.vnd.max,
               )
             : 0;
+          cashReward = vndReward;
           const xpReward = selectedTournament.rewards.xp
             ? getRandomInt(
                 selectedTournament.rewards.xp.min,
@@ -1480,7 +1444,6 @@ module.exports = {
             rewardDescription += `✨ +${consolationXp} XP (an ủi)\n`;
           }
         } else {
-          // Hòa
           resultTitle = `⚖️ KẾT QUẢ HÒA TẠI GIẢI "${selectedTournament.name}"! ⚖️`;
           resultColor = "Greyple";
           const drawXp = Math.floor(
@@ -1503,12 +1466,11 @@ module.exports = {
         }
 
         await finalPlayerToUpdate.save({ session });
-        await session.commitTransaction(); // Commit transaction ở đây
+        await session.commitTransaction();
 
         const finalResultEmbed = new EmbedBuilder()
           .setTitle(resultTitle)
           .setColor(resultColor)
-          // Hiển thị toàn bộ log cuộc đua trong description của embed cuối cùng
           .setDescription("```\n" + raceResult.raceLog.join("\n") + "\n```")
           .addFields(
             {
@@ -1534,11 +1496,49 @@ module.exports = {
           })
           .setTimestamp();
 
-        // Edit tin nhắn cuối cùng với kết quả tổng hợp
         await raceProgressMessage.edit({
           embeds: [finalResultEmbed],
           components: [],
         });
+
+        // ---- Telemetry: FINISH ----
+        try {
+          const placement =
+            raceResult.winner === "player"
+              ? 1
+              : raceResult.winner === "npc"
+                ? 2
+                : 0;
+          const wearDelta =
+            (playerCarInstance.durability || 0) -
+            (finalCarToUpdate.durability || 0);
+
+          await RaceTelemetry.finish(trace.id, {
+            guildId,
+            userId,
+            carId: String(playerCarInstance._id),
+            track: selectedTournament.trackInfo?.name,
+            seed,
+            weather: selectedTournament.trackInfo?.defaultWeather,
+            stats0: {
+              levelBefore: currentPlayerInSession.level || 1,
+              durabilityBefore: playerCarInstance.durability,
+            },
+            stats1: {
+              levelAfter:
+                finalPlayerToUpdate.level || currentPlayerInSession.level || 1,
+              durabilityAfter: finalCarToUpdate.durability,
+            },
+            lapTimes: raceResult.lapTimes || [],
+            placement,
+            reward: cashReward,
+            wearDelta,
+            totalTimeMs: Date.now() - (trace.t0 || Date.now()),
+          });
+        } catch (e) {
+          Logger.warn(`[RaceTelemetry] finish failed: ${e.message}`);
+        }
+        // ---- Telemetry: FINISH ----
       } catch (error) {
         if (session.inTransaction()) {
           await session.abortTransaction();
@@ -1554,20 +1554,18 @@ module.exports = {
           components: [],
         };
         if (initialReplySent) {
-          // Nếu đã deferReply hoặc editReply rồi
           await interaction
             .editReply(errorReplyOptions)
             .catch((e) =>
               Logger.error("Error editing reply with final error:", e),
             );
         } else {
-          // Nếu chưa gửi phản hồi nào
           await interaction
             .reply(errorReplyOptions)
             .catch((e) => Logger.error("Error replying initial error:", e));
         }
 
-        // Cố gắng khôi phục trạng thái xe người chơi nếu bị kẹt 'racing'
+        // Recovery: reset xe nếu kẹt racing
         try {
           const userToFix = await User.findOne({ userId, guildId });
           if (userToFix) {
@@ -1589,12 +1587,10 @@ module.exports = {
         }
       } finally {
         if (session.inTransaction()) {
-          // Đảm bảo session luôn được đóng
-          await session.abortTransaction(); // Abort nếu chưa commit
+          await session.abortTransaction();
         }
         session.endSession();
       }
     }
-    // ... các subcommand khác của /race
   },
 };
