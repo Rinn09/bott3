@@ -1,172 +1,144 @@
-const { InteractionType, EmbedBuilder } = require("discord.js");
 const Logger = require("../utils/logger");
+const rateLimiter = require("../utils/ratelimiter");
+const mongoose = require("mongoose");
+const { PermissionFlagsBits } = require("discord.js");
+
+// Bạn có thể cấu hình ở đây nếu muốn
+const OWNER_IDS = (process.env.BOT_OWNER_IDS || "")
+  .split(",")
+  .map((s) => s.trim())
+  .filter(Boolean);
+
+const running = new Set(); // per-user concurrency lock
 
 module.exports = {
   name: "interactionCreate",
-  async execute(interaction) {
-    const { client } = interaction;
 
-    if (interaction.isChatInputCommand()) {
-      const command = client.commands.get(interaction.commandName);
-      if (!command) {
-        Logger.error(
-          `No command matching ${interaction.commandName} was found.`,
-        );
-        try {
-          await interaction.reply({
-            content: `❌ Lệnh ${interaction.commandName} không tồn tại!`,
+  /**
+   * Hỗ trợ cả EventHandler kiểu mới (execute(client, interaction))
+   * và kiểu cũ (execute(interaction)) nhờ patch EventHandler đã làm trước đó.
+   */
+  async execute(client, interaction) {
+    try {
+      // 1) Chỉ xử lý command slash
+      if (!interaction?.isChatInputCommand?.()) return;
+
+      const key = `${interaction.user.id}:${interaction.guildId}`;
+      const rate = rateLimiter.consume(key);
+      if (!rate.ok) {
+        const sec = Math.ceil(rate.retryAfterMs / 1000);
+        return interaction
+          .reply({
+            content: `⏳ Chậm thôi bạn ơi! Hãy thử lại sau **${sec}s**.`,
             ephemeral: true,
-          });
-        } catch (e) {
-          Logger.error("Error replying to unknown command:", e);
-        }
-        return;
+          })
+          .catch(() => {});
       }
-      try {
-        await command.execute(interaction); // Truyền client nếu lệnh cần
-      } catch (error) {
-        Logger.error(`Error executing ${interaction.commandName}:`, error);
-        if (interaction.replied || interaction.deferred) {
-          await interaction.followUp({
-            content: "❌ Có lỗi khi thực thi lệnh này!",
+
+      // 2) Khoá chạy song song 1 user
+      if (running.has(interaction.user.id)) {
+        return interaction
+          .reply({
+            content: "⚠️ Lệnh trước của bạn vẫn đang chạy, đợi xíu nhé.",
             ephemeral: true,
-          });
-        } else {
-          await interaction.reply({
-            content: "❌ Có lỗi khi thực thi lệnh này!",
-            ephemeral: true,
-          });
-        }
+          })
+          .catch(() => {});
       }
-      return; // Kết thúc sớm để không chạy code button bên dưới nếu là slash command
-    }
+      running.add(interaction.user.id);
 
-    if (interaction.isButton()) {
-      const { customId } = interaction;
-      // Sửa dòng này:
-      const lavalinkHandler = client.lavalinkHandler; // Lấy từ client instance
+      // 3) Tìm command đã load
+      const command = client.commands?.get(interaction.commandName);
+      if (!command || typeof command.execute !== "function") {
+        running.delete(interaction.user.id);
+        return interaction
+          .reply({
+            content: "❌ Lệnh không tồn tại hoặc chưa được tải.",
+            ephemeral: true,
+          })
+          .catch(() => {});
+      }
 
-      // if (!lavalinkHandler || !lavalinkHandler.shoukaku) { // Không cần check shoukaku ở đây nữa, chỉ cần lavalinkHandler
-      if (!lavalinkHandler) {
+      // 4) Kiểm tra DB (nhẹ nhàng)
+      if (mongoose.connection?.readyState !== 1) {
+        // cho qua các lệnh không cần DB, nhưng cảnh báo
         Logger.warn(
-          "LavalinkHandler not found on client in interactionCreate for button.",
+          `[DB] readyState=${mongoose.connection?.readyState} while handling /${interaction.commandName}`,
         );
-        if (customId.startsWith("music_")) {
-          await interaction
-            .reply({
-              content: "⚠️ Hệ thống nhạc chưa được khởi tạo đúng cách.",
-              ephemeral: true,
-            })
-            .catch(() => {});
-        }
-        return;
       }
 
-      const player = lavalinkHandler.shoukaku?.players.get(interaction.guildId);
+      // 5) Kiểm tra quyền user/bot nếu command có khai báo
+      //   - command.requiredUserPerms / command.userPerms
+      //   - command.requiredBotPerms  / command.botPerms
+      const userPerms = command.requiredUserPerms || command.userPerms || [];
+      const botPerms = command.requiredBotPerms || command.botPerms || [];
 
-      if (!player) {
-        if (customId.startsWith("music_")) {
-          await interaction
-            .reply({
-              content:
-                "⚠️ Bot hiện không phát nhạc trong server này hoặc player đã bị hủy.",
-              ephemeral: true,
-            })
-            .catch(() => {});
-        }
-        return;
-      }
-
-      if (interaction.member.voice.channelId !== player.channelId) {
-        if (customId.startsWith("music_")) {
-          return interaction.reply({
-            content:
-              "🔊 Bạn cần ở trong cùng kênh thoại với bot để điều khiển nhạc.",
+      if (userPerms.length && !interaction.memberPermissions?.has(userPerms)) {
+        running.delete(interaction.user.id);
+        return interaction
+          .reply({
+            content: `🚫 Bạn thiếu quyền: ${userPerms.map((p) => `\`${p}\``).join(", ")}`,
             ephemeral: true,
-          });
-        }
+          })
+          .catch(() => {});
+      }
+      if (
+        botPerms.length &&
+        !interaction.guild?.members?.me?.permissions?.has(botPerms)
+      ) {
+        running.delete(interaction.user.id);
+        return interaction
+          .reply({
+            content: `🤖 Bot thiếu quyền: ${botPerms.map((p) => `\`${p}\``).join(", ")}. Hãy cấp đủ quyền cho bot.`,
+            ephemeral: true,
+          })
+          .catch(() => {});
       }
 
-      try {
-        await interaction.deferUpdate();
+      // 6) Owner-only (nếu command gắn cờ)
+      if (command.ownerOnly && !OWNER_IDS.includes(interaction.user.id)) {
+        running.delete(interaction.user.id);
+        return interaction
+          .reply({
+            content: "🔐 Lệnh này chỉ dành cho owner.",
+            ephemeral: true,
+          })
+          .catch(() => {});
+      }
 
-        switch (customId) {
-          case "music_toggle_play":
-            if (player.paused) {
-              await player.setPaused(false);
-            } else {
-              await player.setPaused(true);
-            }
-            // Player event 'pause' và 'resume' trong lavalinkHandler sẽ tự động cập nhật nút
-            break;
-          case "music_skip":
-            if (player.track || player.queue.length > 0) {
-              // Kiểm tra cả track đang phát
-              await player.skip();
-            } else {
-              interaction
-                .followUp({
-                  content: "❌ Không có bài nào để bỏ qua.",
-                  ephemeral: true,
-                })
-                .catch(() => {});
-            }
-            break;
-          case "music_stop":
-            player.queue.clear();
-            await player.stopTrack();
-            // Cân nhắc gọi leaveChannel nếu muốn bot rời ngay
-            // await lavalinkHandler.shoukaku.leaveChannel(interaction.guildId);
-            // nowPlayingMessage sẽ được xóa bởi event 'end' hoặc 'closed'
-            break;
-          case "music_queue":
-            const queue = player.queue;
-            const currentTrackDisplay = player.track;
+      // 7) Auto-defer fallback (không phá lệnh cũ): sau 2s mà chưa reply → defer ephemeral
+      const autoDefer = setTimeout(() => {
+        if (!interaction.deferred && !interaction.replied) {
+          interaction
+            .deferReply({ ephemeral: !!command.ephemeralByDefault })
+            .catch(() => {});
+        }
+      }, 2000);
 
-            const queueEmbed = new EmbedBuilder()
-              .setColor("#0099ff")
-              .setTitle("🎵 Hàng Chờ Nhạc");
+      // 8) Thực thi lệnh
+      await Promise.resolve(command.execute(interaction));
 
-            let description = "";
+      clearTimeout(autoDefer);
+      running.delete(interaction.user.id);
+    } catch (err) {
+      Logger.error(
+        `Error executing event interactionCreate: ${err?.stack || err}`,
+      );
+      running.delete(interaction.user.id);
 
-            if (currentTrackDisplay) {
-              description += `**▶️ Đang phát:** [${currentTrackDisplay.info.title}](${currentTrackDisplay.info.uri}) - \`${lavalinkHandler.formatDuration(currentTrackDisplay.info.length)}\`\n\n`;
-            }
-
-            const upcomingTracks = player.playing
-              ? queue.slice(1)
-              : queue.slice(0);
-
-            if (upcomingTracks.length > 0) {
-              description += "**🎶 Tiếp theo:**\n";
-              description += upcomingTracks
-                .slice(0, 10) // Giới hạn 10 bài
-                .map(
-                  (track, index) =>
-                    `${index + 1}. [${track.info.title}](${track.info.uri}) - \`${lavalinkHandler.formatDuration(track.info.length)}\``,
-                )
-                .join("\n");
-              if (upcomingTracks.length > 10) {
-                description += `\n...và ${upcomingTracks.length - 10} bài khác.`;
-              }
-            } else if (currentTrackDisplay) {
-              description += "Không có bài nào khác trong hàng chờ.";
-            } else {
-              description = "📪 Hàng chờ hiện đang trống.";
-            }
-
-            queueEmbed.setDescription(description.substring(0, 4090));
-
-            await interaction.followUp({
-              embeds: [queueEmbed],
+      // cố gắng phản hồi gọn
+      if (interaction && !interaction.replied) {
+        try {
+          if (!interaction.deferred) {
+            await interaction.reply({
+              content: "❌ Có lỗi xảy ra khi xử lý lệnh.",
               ephemeral: true,
             });
-            break;
-        }
-      } catch (error) {
-        Logger.error(`Lỗi xử lý button nhạc (${customId}): ${error.message}`, {
-          stack: error.stack,
-        });
+          } else {
+            await interaction.editReply({
+              content: "❌ Có lỗi xảy ra khi xử lý lệnh.",
+            });
+          }
+        } catch {}
       }
     }
   },

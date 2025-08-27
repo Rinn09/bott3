@@ -36230,3 +36230,301 @@ Require stack:
 2025-08-22T11:57:06.723Z [INFO]: [Money/Pay] User 953837159192879104 paid 1 to 995716533571567667
 2025-08-22T13:24:42.417Z [ERROR]: Lavalink Node: localhost encountered an error: connect ECONNREFUSED 127.0.0.1:2333
 2025-08-22T13:24:42.419Z [WARN]: Lavalink Node: localhost closed with code 1006. Reason: No reason
+2025-08-27T10:33:59.884Z [INFO]: Shoukaku (Lavalink Handler) initialized.
+2025-08-27T10:33:59.905Z [INFO]: Loaded command: admin-gacha
+2025-08-27T10:33:59.909Z [INFO]: Loaded command: admin-race
+2025-08-27T10:33:59.912Z [INFO]: Loaded command: admin-sidejob
+2025-08-27T10:33:59.917Z [INFO]: Loaded command: admin-value
+2025-08-27T10:33:59.921Z [INFO]: Loaded command: bot-admin
+2025-08-27T10:33:59.924Z [INFO]: Loaded command: channel
+2025-08-27T10:33:59.935Z [INFO]: Loaded command: gacha
+2025-08-27T10:33:59.938Z [INFO]: Loaded command: level
+2025-08-27T10:33:59.950Z [INFO]: Loaded command: mainjob
+2025-08-27T10:33:59.962Z [INFO]: Loaded command: market
+2025-08-27T10:33:59.968Z [INFO]: Loaded command: money
+2025-08-27T10:33:59.994Z [INFO]: Loaded command: race
+2025-08-27T10:33:59.998Z [INFO]: Loaded command: shop
+2025-08-27T10:34:00.002Z [INFO]: Loaded command: sidejob
+2025-08-27T10:34:00.092Z [INFO]: Loaded command: baicao
+2025-08-27T10:34:00.095Z [INFO]: Loaded command: coinflip
+2025-08-27T10:34:00.096Z [INFO]: Loaded command: slot
+2025-08-27T10:34:00.101Z [INFO]: Loaded command: xidach
+2025-08-27T10:34:00.105Z [INFO]: Loaded command: moderation
+2025-08-27T10:34:00.107Z [INFO]: Loaded command: play
+2025-08-27T10:34:00.110Z [INFO]: Loaded command: queue
+2025-08-27T10:34:00.113Z [INFO]: Loaded command: set-goldenhour-channel
+2025-08-27T10:34:00.116Z [INFO]: Loaded command: set-market-noti
+2025-08-27T10:34:00.118Z [INFO]: Loaded command: set-noti
+2025-08-27T10:34:00.120Z [INFO]: Loaded command: setup-autorole
+2025-08-27T10:34:00.122Z [INFO]: Loaded command: setup-goodbye
+2025-08-27T10:34:00.125Z [INFO]: Loaded command: setup-log
+2025-08-27T10:34:00.127Z [INFO]: Loaded command: setup-role-channel
+2025-08-27T10:34:00.129Z [INFO]: Loaded command: setup-rule
+2025-08-27T10:34:00.133Z [INFO]: Loaded command: setup-stats-channel
+2025-08-27T10:34:00.135Z [INFO]: Loaded command: setup-welcome
+2025-08-27T10:34:00.138Z [INFO]: Loaded command: diag
+2025-08-27T10:34:00.142Z [INFO]: Đang đăng ký 32 lệnh với Discord API...
+2025-08-27T10:34:00.743Z [INFO]: ✅ Kết nối MongoDB thành công!
+2025-08-27T10:34:01.001Z [INFO]: Đã đăng ký thành công 32 lệnh với Discord API
+2025-08-27T10:34:01.006Z [INFO]: Loaded event: guildMemberAdd
+2025-08-27T10:34:01.007Z [INFO]: Loaded event: guildMemberRemove
+2025-08-27T10:34:01.010Z [INFO]: Loaded event: interactionCreate
+2025-08-27T10:34:01.012Z [INFO]: Loaded event: messageReactionAdd
+2025-08-27T10:34:01.014Z [INFO]: Loaded event: messageReactionRemove
+2025-08-27T10:34:01.017Z [INFO]: Loaded event: messageCreate
+2025-08-27T10:34:01.020Z [INFO]: Loaded event: ready
+2025-08-27T10:34:01.022Z [INFO]: Loaded event: voiceStateUpdate
+2025-08-27T10:34:01.022Z [INFO]: Total 8 events loaded.
+2025-08-27T10:34:01.023Z [INFO]: Lavalink handler initialized
+2025-08-27T10:34:01.023Z [INFO]: Command handler initialized
+2025-08-27T10:34:01.023Z [INFO]: Event handler initialized
+2025-08-27T10:34:01.023Z [INFO]: Bot is starting...
+2025-08-27T10:34:01.032Z [INFO]: Event file guildMemberAdd.js changed (change). Reloading events...
+2025-08-27T10:34:01.040Z [INFO]: Event file guildMemberRemove.js changed (change). Reloading events...
+2025-08-27T10:34:01.041Z [INFO]: Event file interactionCreate.js changed (change). Reloading events...
+2025-08-27T10:34:01.042Z [INFO]: Event file messageReactionAdd.js changed (change). Reloading events...
+2025-08-27T10:34:01.043Z [INFO]: Event file messageReactionRemove.js changed (change). Reloading events...
+2025-08-27T10:34:01.044Z [INFO]: Event file messageXP.js changed (change). Reloading events...
+2025-08-27T10:34:01.045Z [INFO]: Event file statsUpdater.js changed (change). Reloading events...
+2025-08-27T10:34:01.047Z [INFO]: Event file voiceStateUpdate.js changed (change). Reloading events...
+2025-08-27T10:34:01.360Z [INFO]: Loaded event: guildMemberAdd
+2025-08-27T10:34:01.361Z [INFO]: Loaded event: guildMemberRemove
+2025-08-27T10:34:01.362Z [INFO]: Loaded event: interactionCreate
+2025-08-27T10:34:01.363Z [INFO]: Loaded event: messageReactionAdd
+2025-08-27T10:34:01.364Z [INFO]: Loaded event: messageReactionRemove
+2025-08-27T10:34:01.365Z [INFO]: Loaded event: messageCreate
+2025-08-27T10:34:01.366Z [INFO]: Loaded event: ready
+2025-08-27T10:34:01.367Z [INFO]: Loaded event: voiceStateUpdate
+2025-08-27T10:34:01.367Z [INFO]: Total 8 events loaded.
+2025-08-27T10:34:01.368Z [INFO]: Events reloaded successfully.
+2025-08-27T10:34:02.192Z [INFO]: Bot logged in as Perry#4690
+2025-08-27T10:34:02.485Z [INFO]: [AntiCaps Cache] Loading all anticaps settings...
+2025-08-27T10:34:02.487Z [INFO]: [GoldenHourManager] Initializing Golden Hour scheduling...
+2025-08-27T10:34:02.488Z [INFO]: [GoldenHourManager] Next Golden Hour scheduled in approx 19.56 hours.
+2025-08-27T10:34:02.490Z [INFO]: [TaskHandler] Loaded task: baoTri for job công nhân
+2025-08-27T10:34:02.492Z [INFO]: [TaskHandler] Loaded task: capCuu for job bác sĩ
+2025-08-27T10:34:02.494Z [INFO]: [TaskHandler] Loaded task: catCo for job nông dân
+2025-08-27T10:34:02.496Z [INFO]: [TaskHandler] Loaded task: chamSocHocSinh for job giáo viên
+2025-08-27T10:34:02.497Z [INFO]: [TaskHandler] Loaded task: completerepairorder for job thợ sửa xe
+2025-08-27T10:34:02.500Z [INFO]: [TaskHandler] Loaded task: craftcommonenginepart for job thợ sửa xe
+2025-08-27T10:34:02.502Z [INFO]: [TaskHandler] Loaded task: dayHoc for job giáo viên
+2025-08-27T10:34:02.505Z [INFO]: [TaskHandler] Loaded task: diagnosecarproblem for job thợ sửa xe
+2025-08-27T10:34:02.508Z [INFO]: [TaskHandler] Loaded task: gieoHat for job nông dân
+2025-08-27T10:34:02.510Z [INFO]: [TaskHandler] Loaded task: khamsucKhoe for job bác sĩ
+2025-08-27T10:34:02.513Z [INFO]: [TaskHandler] Loaded task: kiemDinh for job kỹ sư
+2025-08-27T10:34:02.516Z [INFO]: [TaskHandler] Loaded task: kiemTra for job công nhân
+2025-08-27T10:34:02.518Z [INFO]: [TaskHandler] Loaded task: lapRap for job công nhân
+2025-08-27T10:34:02.519Z [INFO]: [TaskHandler] Loaded task: performoilchange for job thợ sửa xe
+2025-08-27T10:34:02.522Z [INFO]: [TaskHandler] Loaded task: phatTrien for job kỹ sư
+2025-08-27T10:34:02.525Z [INFO]: [TaskHandler] Loaded task: soannGiaoAn for job giáo viên
+2025-08-27T10:34:02.526Z [INFO]: [TaskHandler] Loaded task: thamGiaHoiThao for job giáo viên
+2025-08-27T10:34:02.529Z [INFO]: [TaskHandler] Loaded task: thietKe for job kỹ sư
+2025-08-27T10:34:02.531Z [INFO]: [TaskHandler] Loaded task: thuHoach for job nông dân
+2025-08-27T10:34:02.533Z [INFO]: [TaskHandler] Loaded task: thucHienXetNghiem for job bác sĩ
+2025-08-27T10:34:02.536Z [INFO]: [TaskHandler] Loaded task: tuVanKyThuat for job kỹ sư
+2025-08-27T10:34:02.538Z [INFO]: [TaskHandler] Loaded task: tuVan for job bác sĩ
+2025-08-27T10:34:02.540Z [INFO]: [TaskHandler] Loaded task: tuneupbasicengine for job thợ sửa xe
+2025-08-27T10:34:02.543Z [INFO]: [TaskHandler] Loaded task: tuoiCay for job nông dân
+2025-08-27T10:34:02.545Z [INFO]: [TaskHandler] Loaded task: vanChuyen for job công nhân
+2025-08-27T10:34:02.545Z [INFO]: [TaskHandler] Total 25 job tasks loaded.
+2025-08-27T10:34:02.545Z [INFO]: Bot is ready as Perry#4690
+2025-08-27T10:34:02.554Z [ERROR]: Lavalink Node: localhost encountered an error: connect ECONNREFUSED 127.0.0.1:2333
+2025-08-27T10:34:02.555Z [WARN]: Lavalink Node: localhost closed with code 1006. Reason: No reason
+2025-08-27T10:34:02.600Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1005814304509018113
+2025-08-27T10:34:02.638Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1186898120789995580
+2025-08-27T10:34:02.690Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1371704233929474118
+2025-08-27T10:34:02.709Z [INFO]: [AntiCaps Cache] Finished loading all anticaps settings.
+2025-08-27T10:34:31.930Z [INFO]: [Money/Daily] User 953837159192879104 claimed daily reward: 40046
+2025-08-27T10:35:16.200Z [INFO]: [Money/Pay] User 953837159192879104 paid 100000 to 995716533571567667
+2025-08-27T10:45:57.608Z [WARN]: SIGINT
+2025-08-27T10:46:02.540Z [INFO]: Shoukaku (Lavalink Handler) initialized.
+2025-08-27T10:46:02.559Z [INFO]: Loaded command: admin-gacha
+2025-08-27T10:46:02.562Z [INFO]: Loaded command: admin-race
+2025-08-27T10:46:02.565Z [INFO]: Loaded command: admin-sidejob
+2025-08-27T10:46:02.568Z [INFO]: Loaded command: admin-value
+2025-08-27T10:46:02.572Z [INFO]: Loaded command: bot-admin
+2025-08-27T10:46:02.575Z [INFO]: Loaded command: channel
+2025-08-27T10:46:02.585Z [INFO]: Loaded command: gacha
+2025-08-27T10:46:02.587Z [INFO]: Loaded command: level
+2025-08-27T10:46:02.600Z [INFO]: Loaded command: mainjob
+2025-08-27T10:46:02.611Z [INFO]: Loaded command: market
+2025-08-27T10:46:02.620Z [INFO]: Loaded command: money
+2025-08-27T10:46:02.644Z [INFO]: Loaded command: race
+2025-08-27T10:46:02.647Z [INFO]: Loaded command: shop
+2025-08-27T10:46:02.649Z [INFO]: Loaded command: sidejob
+2025-08-27T10:46:02.681Z [INFO]: Loaded command: baicao
+2025-08-27T10:46:02.684Z [INFO]: Loaded command: coinflip
+2025-08-27T10:46:02.685Z [INFO]: Loaded command: slot
+2025-08-27T10:46:02.689Z [INFO]: Loaded command: xidach
+2025-08-27T10:46:02.692Z [INFO]: Loaded command: moderation
+2025-08-27T10:46:02.695Z [INFO]: Loaded command: play
+2025-08-27T10:46:02.696Z [INFO]: Loaded command: queue
+2025-08-27T10:46:02.698Z [INFO]: Loaded command: set-goldenhour-channel
+2025-08-27T10:46:02.700Z [INFO]: Loaded command: set-market-noti
+2025-08-27T10:46:02.703Z [INFO]: Loaded command: set-noti
+2025-08-27T10:46:02.704Z [INFO]: Loaded command: setup-autorole
+2025-08-27T10:46:02.706Z [INFO]: Loaded command: setup-goodbye
+2025-08-27T10:46:02.708Z [INFO]: Loaded command: setup-log
+2025-08-27T10:46:02.710Z [INFO]: Loaded command: setup-role-channel
+2025-08-27T10:46:02.712Z [INFO]: Loaded command: setup-rule
+2025-08-27T10:46:02.714Z [INFO]: Loaded command: setup-stats-channel
+2025-08-27T10:46:02.716Z [INFO]: Loaded command: setup-welcome
+2025-08-27T10:46:02.718Z [INFO]: Loaded command: diag
+2025-08-27T10:46:02.723Z [INFO]: Đang đăng ký 32 lệnh với Discord API...
+2025-08-27T10:46:03.339Z [INFO]: ✅ Kết nối MongoDB thành công!
+2025-08-27T10:46:03.478Z [INFO]: Đã đăng ký thành công 32 lệnh với Discord API
+2025-08-27T10:46:03.484Z [INFO]: Loaded event: guildMemberAdd
+2025-08-27T10:46:03.486Z [INFO]: Loaded event: guildMemberRemove
+2025-08-27T10:46:03.487Z [INFO]: Loaded event: interactionCreate
+2025-08-27T10:46:03.489Z [INFO]: Loaded event: messageReactionAdd
+2025-08-27T10:46:03.490Z [INFO]: Loaded event: messageReactionRemove
+2025-08-27T10:46:03.493Z [INFO]: Loaded event: messageCreate
+2025-08-27T10:46:03.494Z [INFO]: Loaded event: ready
+2025-08-27T10:46:03.496Z [INFO]: Loaded event: voiceStateUpdate
+2025-08-27T10:46:03.496Z [INFO]: Total 8 events loaded.
+2025-08-27T10:46:03.497Z [INFO]: Lavalink handler initialized
+2025-08-27T10:46:03.497Z [INFO]: Command handler initialized
+2025-08-27T10:46:03.497Z [INFO]: Event handler initialized
+2025-08-27T10:46:03.498Z [INFO]: Bot is starting...
+2025-08-27T10:46:04.647Z [INFO]: Bot logged in as Perry#4690
+2025-08-27T10:46:05.164Z [INFO]: [AntiCaps Cache] Loading all anticaps settings...
+2025-08-27T10:46:05.165Z [INFO]: [GoldenHourManager] Initializing Golden Hour scheduling...
+2025-08-27T10:46:05.166Z [INFO]: [GoldenHourManager] Next Golden Hour scheduled in approx 18.58 hours.
+2025-08-27T10:46:05.175Z [INFO]: [TaskHandler] Loaded task: baoTri for job công nhân
+2025-08-27T10:46:05.177Z [INFO]: [TaskHandler] Loaded task: capCuu for job bác sĩ
+2025-08-27T10:46:05.179Z [INFO]: [TaskHandler] Loaded task: catCo for job nông dân
+2025-08-27T10:46:05.181Z [INFO]: [TaskHandler] Loaded task: chamSocHocSinh for job giáo viên
+2025-08-27T10:46:05.182Z [INFO]: [TaskHandler] Loaded task: completerepairorder for job thợ sửa xe
+2025-08-27T10:46:05.184Z [INFO]: [TaskHandler] Loaded task: craftcommonenginepart for job thợ sửa xe
+2025-08-27T10:46:05.186Z [INFO]: [TaskHandler] Loaded task: dayHoc for job giáo viên
+2025-08-27T10:46:05.188Z [INFO]: [TaskHandler] Loaded task: diagnosecarproblem for job thợ sửa xe
+2025-08-27T10:46:05.190Z [INFO]: [TaskHandler] Loaded task: gieoHat for job nông dân
+2025-08-27T10:46:05.193Z [INFO]: [TaskHandler] Loaded task: khamsucKhoe for job bác sĩ
+2025-08-27T10:46:05.195Z [INFO]: [TaskHandler] Loaded task: kiemDinh for job kỹ sư
+2025-08-27T10:46:05.198Z [INFO]: [TaskHandler] Loaded task: kiemTra for job công nhân
+2025-08-27T10:46:05.200Z [INFO]: [TaskHandler] Loaded task: lapRap for job công nhân
+2025-08-27T10:46:05.202Z [INFO]: [TaskHandler] Loaded task: performoilchange for job thợ sửa xe
+2025-08-27T10:46:05.205Z [INFO]: [TaskHandler] Loaded task: phatTrien for job kỹ sư
+2025-08-27T10:46:05.207Z [INFO]: [TaskHandler] Loaded task: soannGiaoAn for job giáo viên
+2025-08-27T10:46:05.209Z [INFO]: [TaskHandler] Loaded task: thamGiaHoiThao for job giáo viên
+2025-08-27T10:46:05.211Z [INFO]: [TaskHandler] Loaded task: thietKe for job kỹ sư
+2025-08-27T10:46:05.213Z [INFO]: [TaskHandler] Loaded task: thuHoach for job nông dân
+2025-08-27T10:46:05.215Z [INFO]: [TaskHandler] Loaded task: thucHienXetNghiem for job bác sĩ
+2025-08-27T10:46:05.217Z [INFO]: [TaskHandler] Loaded task: tuVanKyThuat for job kỹ sư
+2025-08-27T10:46:05.219Z [INFO]: [TaskHandler] Loaded task: tuVan for job bác sĩ
+2025-08-27T10:46:05.221Z [INFO]: [TaskHandler] Loaded task: tuneupbasicengine for job thợ sửa xe
+2025-08-27T10:46:05.223Z [INFO]: [TaskHandler] Loaded task: tuoiCay for job nông dân
+2025-08-27T10:46:05.225Z [INFO]: [TaskHandler] Loaded task: vanChuyen for job công nhân
+2025-08-27T10:46:05.226Z [INFO]: [TaskHandler] Total 25 job tasks loaded.
+2025-08-27T10:46:05.226Z [INFO]: Bot is ready as Perry#4690
+2025-08-27T10:46:05.236Z [ERROR]: Lavalink Node: localhost encountered an error: connect ECONNREFUSED 127.0.0.1:2333
+2025-08-27T10:46:05.237Z [WARN]: Lavalink Node: localhost closed with code 1006. Reason: No reason
+2025-08-27T10:46:05.274Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1005814304509018113
+2025-08-27T10:46:05.308Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1186898120789995580
+2025-08-27T10:46:05.342Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1371704233929474118
+2025-08-27T10:46:05.342Z [INFO]: [AntiCaps Cache] Finished loading all anticaps settings.
+2025-08-27T10:47:28.804Z [INFO]: [Money/Pay] 953837159192879104 -> 995716533571567667 : 100
+2025-08-27T10:48:15.028Z [INFO]: [Money/Work] 953837159192879104 earned 5864. Event: None
+2025-08-27T11:22:02.994Z [ERROR]: Unhandled promise rejection: Members didn't arrive in time.
+2025-08-27T11:22:02.995Z [ERROR]: Unhandled promise rejection: Members didn't arrive in time.
+2025-08-27T11:26:06.311Z [INFO]: Event file interactionCreate.js changed (change). Reloading events...
+2025-08-27T11:26:06.312Z [INFO]: Event file interactionCreate.js changed (change). Reloading events...
+2025-08-27T11:26:06.313Z [INFO]: Event file interactionCreate.js changed (change). Reloading events...
+2025-08-27T11:26:06.615Z [INFO]: Loaded event: guildMemberAdd
+2025-08-27T11:26:06.617Z [INFO]: Loaded event: guildMemberRemove
+2025-08-27T11:26:06.621Z [INFO]: Loaded event: interactionCreate
+2025-08-27T11:26:06.623Z [INFO]: Loaded event: messageReactionAdd
+2025-08-27T11:26:06.624Z [INFO]: Loaded event: messageReactionRemove
+2025-08-27T11:26:06.631Z [INFO]: Loaded event: messageCreate
+2025-08-27T11:26:06.635Z [INFO]: Loaded event: ready
+2025-08-27T11:26:06.639Z [INFO]: Loaded event: voiceStateUpdate
+2025-08-27T11:26:06.639Z [INFO]: Total 8 events loaded.
+2025-08-27T11:26:06.641Z [INFO]: Events reloaded successfully.
+2025-08-27T11:26:24.539Z [WARN]: SIGINT
+2025-08-27T11:26:32.173Z [INFO]: Shoukaku (Lavalink Handler) initialized.
+2025-08-27T11:26:32.200Z [INFO]: Loaded command: admin-gacha
+2025-08-27T11:26:32.205Z [INFO]: Loaded command: admin-race
+2025-08-27T11:26:32.208Z [INFO]: Loaded command: admin-sidejob
+2025-08-27T11:26:32.213Z [INFO]: Loaded command: admin-value
+2025-08-27T11:26:32.218Z [INFO]: Loaded command: bot-admin
+2025-08-27T11:26:32.222Z [INFO]: Loaded command: channel
+2025-08-27T11:26:32.235Z [INFO]: Loaded command: gacha
+2025-08-27T11:26:32.238Z [INFO]: Loaded command: level
+2025-08-27T11:26:32.256Z [INFO]: Loaded command: mainjob
+2025-08-27T11:26:32.271Z [INFO]: Loaded command: market
+2025-08-27T11:26:32.278Z [INFO]: Loaded command: money
+2025-08-27T11:26:32.304Z [INFO]: Loaded command: race
+2025-08-27T11:26:32.307Z [INFO]: Loaded command: shop
+2025-08-27T11:26:32.311Z [INFO]: Loaded command: sidejob
+2025-08-27T11:26:32.345Z [INFO]: Loaded command: baicao
+2025-08-27T11:26:32.347Z [INFO]: Loaded command: coinflip
+2025-08-27T11:26:32.349Z [INFO]: Loaded command: slot
+2025-08-27T11:26:32.353Z [INFO]: Loaded command: xidach
+2025-08-27T11:26:32.359Z [INFO]: Loaded command: moderation
+2025-08-27T11:26:32.363Z [INFO]: Loaded command: play
+2025-08-27T11:26:32.365Z [INFO]: Loaded command: queue
+2025-08-27T11:26:32.368Z [INFO]: Loaded command: set-goldenhour-channel
+2025-08-27T11:26:32.370Z [INFO]: Loaded command: set-market-noti
+2025-08-27T11:26:32.372Z [INFO]: Loaded command: set-noti
+2025-08-27T11:26:32.375Z [INFO]: Loaded command: setup-autorole
+2025-08-27T11:26:32.377Z [INFO]: Loaded command: setup-goodbye
+2025-08-27T11:26:32.379Z [INFO]: Loaded command: setup-log
+2025-08-27T11:26:32.382Z [INFO]: Loaded command: setup-role-channel
+2025-08-27T11:26:32.384Z [INFO]: Loaded command: setup-rule
+2025-08-27T11:26:32.387Z [INFO]: Loaded command: setup-stats-channel
+2025-08-27T11:26:32.389Z [INFO]: Loaded command: setup-welcome
+2025-08-27T11:26:32.391Z [INFO]: Loaded command: diag
+2025-08-27T11:26:32.397Z [INFO]: Đang đăng ký 32 lệnh với Discord API...
+2025-08-27T11:26:33.017Z [INFO]: ✅ Kết nối MongoDB thành công!
+2025-08-27T11:26:33.163Z [INFO]: Đã đăng ký thành công 32 lệnh với Discord API
+2025-08-27T11:26:33.166Z [INFO]: Loaded event: guildMemberAdd
+2025-08-27T11:26:33.167Z [INFO]: Loaded event: guildMemberRemove
+2025-08-27T11:26:33.170Z [INFO]: Loaded event: interactionCreate
+2025-08-27T11:26:33.172Z [INFO]: Loaded event: messageReactionAdd
+2025-08-27T11:26:33.173Z [INFO]: Loaded event: messageReactionRemove
+2025-08-27T11:26:33.175Z [INFO]: Loaded event: messageCreate
+2025-08-27T11:26:33.177Z [INFO]: Loaded event: ready
+2025-08-27T11:26:33.179Z [INFO]: Loaded event: voiceStateUpdate
+2025-08-27T11:26:33.179Z [INFO]: Total 8 events loaded.
+2025-08-27T11:26:33.179Z [INFO]: Lavalink handler initialized
+2025-08-27T11:26:33.180Z [INFO]: Command handler initialized
+2025-08-27T11:26:33.180Z [INFO]: Event handler initialized
+2025-08-27T11:26:33.180Z [INFO]: Bot is starting...
+2025-08-27T11:26:34.472Z [INFO]: Bot logged in as Perry#4690
+2025-08-27T11:26:34.932Z [INFO]: [AntiCaps Cache] Loading all anticaps settings...
+2025-08-27T11:26:34.934Z [INFO]: [GoldenHourManager] Initializing Golden Hour scheduling...
+2025-08-27T11:26:34.934Z [INFO]: [GoldenHourManager] Next Golden Hour scheduled in approx 18.10 hours.
+2025-08-27T11:26:34.936Z [INFO]: [TaskHandler] Loaded task: baoTri for job công nhân
+2025-08-27T11:26:34.938Z [INFO]: [TaskHandler] Loaded task: capCuu for job bác sĩ
+2025-08-27T11:26:34.939Z [INFO]: [TaskHandler] Loaded task: catCo for job nông dân
+2025-08-27T11:26:34.941Z [INFO]: [TaskHandler] Loaded task: chamSocHocSinh for job giáo viên
+2025-08-27T11:26:34.942Z [INFO]: [TaskHandler] Loaded task: completerepairorder for job thợ sửa xe
+2025-08-27T11:26:34.944Z [INFO]: [TaskHandler] Loaded task: craftcommonenginepart for job thợ sửa xe
+2025-08-27T11:26:34.945Z [INFO]: [TaskHandler] Loaded task: dayHoc for job giáo viên
+2025-08-27T11:26:34.947Z [INFO]: [TaskHandler] Loaded task: diagnosecarproblem for job thợ sửa xe
+2025-08-27T11:26:34.950Z [INFO]: [TaskHandler] Loaded task: gieoHat for job nông dân
+2025-08-27T11:26:34.951Z [INFO]: [TaskHandler] Loaded task: khamsucKhoe for job bác sĩ
+2025-08-27T11:26:34.953Z [INFO]: [TaskHandler] Loaded task: kiemDinh for job kỹ sư
+2025-08-27T11:26:34.954Z [INFO]: [TaskHandler] Loaded task: kiemTra for job công nhân
+2025-08-27T11:26:34.956Z [INFO]: [TaskHandler] Loaded task: lapRap for job công nhân
+2025-08-27T11:26:34.957Z [INFO]: [TaskHandler] Loaded task: performoilchange for job thợ sửa xe
+2025-08-27T11:26:34.959Z [INFO]: [TaskHandler] Loaded task: phatTrien for job kỹ sư
+2025-08-27T11:26:34.961Z [INFO]: [TaskHandler] Loaded task: soannGiaoAn for job giáo viên
+2025-08-27T11:26:34.963Z [INFO]: [TaskHandler] Loaded task: thamGiaHoiThao for job giáo viên
+2025-08-27T11:26:34.965Z [INFO]: [TaskHandler] Loaded task: thietKe for job kỹ sư
+2025-08-27T11:26:34.966Z [INFO]: [TaskHandler] Loaded task: thuHoach for job nông dân
+2025-08-27T11:26:34.968Z [INFO]: [TaskHandler] Loaded task: thucHienXetNghiem for job bác sĩ
+2025-08-27T11:26:34.970Z [INFO]: [TaskHandler] Loaded task: tuVanKyThuat for job kỹ sư
+2025-08-27T11:26:34.971Z [INFO]: [TaskHandler] Loaded task: tuVan for job bác sĩ
+2025-08-27T11:26:34.973Z [INFO]: [TaskHandler] Loaded task: tuneupbasicengine for job thợ sửa xe
+2025-08-27T11:26:34.974Z [INFO]: [TaskHandler] Loaded task: tuoiCay for job nông dân
+2025-08-27T11:26:34.976Z [INFO]: [TaskHandler] Loaded task: vanChuyen for job công nhân
+2025-08-27T11:26:34.976Z [INFO]: [TaskHandler] Total 25 job tasks loaded.
+2025-08-27T11:26:34.976Z [INFO]: Bot is ready as Perry#4690
+2025-08-27T11:26:34.986Z [ERROR]: Lavalink Node: localhost encountered an error: connect ECONNREFUSED 127.0.0.1:2333
+2025-08-27T11:26:34.987Z [WARN]: Lavalink Node: localhost closed with code 1006. Reason: No reason
+2025-08-27T11:26:35.027Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1005814304509018113
+2025-08-27T11:26:35.062Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1186898120789995580
+2025-08-27T11:26:35.098Z [INFO]: [AntiCaps Cache] Loaded settings for guild 1371704233929474118
+2025-08-27T11:26:35.099Z [INFO]: [AntiCaps Cache] Finished loading all anticaps settings.
+2025-08-27T11:27:25.491Z [INFO]: [Money/Work] 953837159192879104 earned 3902. Event: None
